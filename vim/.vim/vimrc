@@ -1,0 +1,763 @@
+" ╔═══════════════════════════════════════════════════════════════════════════╗
+" ║¤                                                                         ¤║
+" ║     ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗    ███████╗ ██████╗ ██████╗   ║
+" ║     ██║   ██║██║████╗ ████║██╔══██╗██╔════╝    ██╔════╝██╔═══██╗██╔══██╗  ║
+" ║     ██║   ██║██║██╔████╔██║██████╔╝██║         █████╗  ██║   ██║██████╔╝  ║
+" ║     ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║         ██╔══╝  ██║   ██║██╔══██╗  ║
+" ║  ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗    ██║     ╚██████╔╝██║  ██║  ║
+" ║  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝    ╚═╝      ╚═════╝ ╚═╝  ╚═╝  ║
+" ║                                                                           ║
+" ║  ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗               ║
+" ║  ██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║               ║
+" ║  ██████╔╝███████║██║  ███╗██║     ██║███████║██║     ██║██║ ┌───────────┐ ║
+" ║  ██╔═══╝ ██╔══██║██║   ██║██║     ██║██╔══██║██║     ██║██║ │►Pagliacii │ ║
+" ║  ██║     ██║  ██║╚██████╔╝███████╗██║██║  ██║╚██████╗██║██║ │►2019-12-05│ ║
+" ║  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝ └───────────┘ ║
+" ║¤                                                                         ¤║
+" ╚═══════════════════════════════════════════════════════════════════════════╝
+
+" ================ Plugin ================ {{{
+
+if has('vim_starting')
+    set nocompatible " be improved
+endif
+
+" > check vim-plug
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+if !filereadable(vimplug_exists)
+    if !executable("curl")
+        echoerr "You have to install curl or first install vim-plug yourself!"
+        execute "q!"
+    endif
+    echo "Installing Vim-Plug..."
+    echo ""
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let g:not_finish_vimplug = "yes"
+
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Required:
+call plug#begin(expand('~/.vim/plugged'))
+
+" > file navigations
+" >> A tree explorer plugin for vim.
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" >> NERDTree and tabs together in Vim, painlessly
+" Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeToggle' }
+" >> A plugin of NERDTree showing git status
+" Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+" >> Extra syntax and highlight for nerdtree files
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" >> Ranger integration in vim and neovim
+Plug 'francoiscabrol/ranger.vim'
+if has('nvim')
+    " ranger dependence
+    Plug 'rbgrouleff/bclose.vim'
+endif
+
+" > pretty status line
+" >> lean & mean status/tabline for vim that's light as air
+Plug 'vim-airline/vim-airline'
+" >> A collection of themes for vim-airline
+Plug 'vim-airline/vim-airline-themes'
+
+" > vim-session
+" >> Miscellaneous auto-load Vim scripts
+Plug 'xolox/vim-misc'
+" >> Extended session management for Vim (:mksession on steroids)
+Plug 'xolox/vim-session'
+
+" > git
+" >> A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks and partial hunks.
+Plug 'airblade/vim-gitgutter'
+" >> fugitive.vim: A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+" >> Gitignore plugin for Vim
+Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+
+" > comment
+" >> Vim plugin for intensely orgasmic commenting
+Plug 'scrooloose/nerdcommenter'
+
+" > snippets
+if v:version >= 704
+    " >> The ultimate snippet solution for Vim.
+    Plug 'SirVer/ultisnips'
+endif
+" >> vim-snipmate default snippets (Previously snipmate-snippets)
+Plug 'honza/vim-snippets'
+
+" > tag management
+" >> Viewer & Finder for LSP symbols and tags
+Plug 'liuchengxu/vista.vim'
+" >> A Vim plugin that manages your tag files
+Plug 'ludovicchabant/vim-gutentags'
+
+" > file type icons
+" >> Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+Plug 'ryanoasis/vim-devicons'
+
+" > beatify the start screen
+" >> The fancy start screen for Vim.
+Plug 'mhinz/vim-startify'
+
+" > color scheme
+" >> Make gvim-only colorschemes work transparently in terminal vim
+Plug 'vim-scripts/CSApprox'
+" >> Oceanic Next theme for neovim, use it's statusline
+Plug 'mhartington/oceanic-next'
+" >> equinusocio's Material Theme port for vim/neovim
+Plug 'hzchirs/vim-material'
+
+" > Search
+" >> fzf + vim
+if isdirectory('/usr/local/opt/fzf')
+    " fzf installed by Homebrew
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+    if !executable('fzf')
+        " fzf not installed
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    endif
+    Plug 'junegunn/fzf.vim'
+endif
+
+" >> fzf + gitignore.io
+if has('nvim')
+    Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+endif
+
+" >> Vim motions on speed!
+Plug 'easymotion/vim-easymotion'
+" >> Improved incremental searching for Vim
+Plug 'haya14busa/incsearch.vim'
+" >> Incremantal fuzzy search extension for incsearch.vim
+Plug 'haya14busa/incsearch-fuzzy.vim'
+" >> Integration between haya14busa/incsearch.vim and easymotion/vim-easymotion
+Plug 'haya14busa/incsearch-easymotion.vim'
+" >> Find And Replace Vim plugin
+Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+" >> Vim search status.
+Plug 'osyo-manga/vim-anzu'
+
+" > Editor Enhancement
+" >> enable repeating supported plugin maps with '.'
+Plug 'tpope/vim-repeat'
+" >> quoting/parenthesizing made simple
+Plug 'tpope/vim-surround'
+" >> provides insert mode auto-completion for quotes, parens, brackets, etc.
+Plug 'Raimondi/delimitMate'
+" >> Better whitespace highlighting for Vim
+Plug 'ntpeters/vim-better-whitespace'
+" >> A vim plugin to display the indention levels with thin vertical lines
+Plug 'Yggdroot/indentLine'
+" >> Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
+Plug 'luochen1990/rainbow'
+" >> A Vim alignment plugin
+Plug 'junegunn/vim-easy-align'
+" >> Automatic input method switching for vim
+Plug 'rlue/vim-barbaric'
+" >> Smart selection of the closest text object
+Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
+" >> Vim script for text filtering and alignment
+Plug 'godlygeek/tabular'
+" >> Speed up Vim by updating folds only when called-for.
+Plug 'Konfekt/FastFold'
+" >> The undo history visualizer for VIM
+Plug 'mbbill/undotree'
+" >> Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+Plug 'junegunn/vim-peekaboo'
+
+" > Programming support
+" >> Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
+" >> A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
+" >> A (Neo)vim plugin for formatting code.
+Plug 'sbdchd/neoformat'
+" >> Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" >> Better JSON for VIM
+Plug 'elzr/vim-json'
+
+" > Plugins for Python
+" >> the Requirements File Format syntax support for Vim
+Plug 'raimon49/requirements.txt.vim', { 'for': 'requirements' }
+" >> Vim plugin for working with python virtualenvs
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+" >> Vim plugin for detecting & interacting with Pipenv
+Plug 'PieterjanMontens/vim-pipenv', { 'for': 'python' }
+" >> A nicer Python indentation style for vim.
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+" >> Text objects, folding, and more for Python and other indented languages.
+Plug 'tweekmonster/braceless.vim', { 'for': 'python' }
+" >> No-BS Python code folding for Vim
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+
+" > Plugins for C/C++
+" >> C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc.
+" Plug 'vim-scripts/c.vim', { 'for': 'c' }
+" >> Edit C/C++ programs in Vim/gVim. Insert code snippets, compile the code, run Make/CMake/... and look up help.
+Plug 'WolfgangMehner/c-support', { 'for': 'c' }
+" >> Additional Vim syntax highlighting for C++ (including C++11/14/17)
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+
+" > Plugins for Golang
+" >> Go development plugin for Vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+" >> A vim plugin that simplifies the transition between multiline and single-line code
+Plug 'AndrewRadev/splitjoin.vim'
+
+" > Plugins for Rust
+" >> Racer support for Vim
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+" >> Vim configuration for Rust.
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+let web_relate_filetypes = ['css', 'html', 'javascript']
+" > Plugins for Javascript
+" >> Vastly improved Javascript indentation and syntax support in Vim.
+Plug 'pangloss/vim-javascript', { 'for': ['css', 'html', 'javascript'] }
+" >> Syntax for JavaScript libraries. Default lib set is: jquery,underscore,backbone,react
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['css', 'html', 'javascript'] }
+
+" > Plugins for HTML/CSS
+" >> Genreal Highlighter
+Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
+" >> CSS3 syntax (and syntax defined in some foreign specifications) support for Vim's built-in syntax/css.vim
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html', 'javascript', 'vim-plug'] }
+" >> emmet for vim
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+
+" > Plugins for Markdown
+" >> Distraction-free writing in Vim.
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+" >> Hyperfocus-writing in Vim.
+Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
+" >> markdown preview plugin for (neo)vim
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown'] }
+" >> VIM Table Mode for instant table creation.
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': 'markdown' }
+
+" > useful utilities
+" >> Helpers for UNIX. Do stuff like :SudoWrite
+Plug 'tpope/vim-eunuch'
+" >> Plugin to toggle, display and navigate marks
+Plug 'kshenoy/vim-signature'
+" >> Filter and jump to quickfix list errors with fzf
+Plug 'fszymanski/fzf-quickfix', {'on': [ 'Quickfix', 'Quickfix!' ] }
+" >> View any man page in a split vim window
+Plug 'ludwig/split-manpage.vim' " Open man page split with :Man
+" >> capslock.vim: Software caps lock
+Plug 'tpope/vim-capslock'
+" >> The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
+Plug 'wakatime/vim-wakatime'
+" >> A vim plugin to access cheat.sh sheets
+Plug 'dbeniamine/cheat.sh-vim'
+
+let g:make = 'gmake'
+if exists('make')
+    let g:make = 'make'
+endif
+Plug 'Shougo/vimproc.vim', { 'do': g:make }
+if v:version >= 703
+    Plug 'Shougo/vimshell.vim'
+endif
+
+" > Vim-base Applications
+" >> Personal Wiki for Vim
+Plug 'vimwiki/vimwiki', { 'for': 'markdown' }
+" >> A calendar application for Vim
+Plug 'itchyny/calendar.vim', { 'on': 'Calendar' }
+
+" > include user's extra bundle
+if filereadable(expand("~/.vimrc.local.bundles"))
+    source ~/.vimrc.local.bundles
+endif
+
+call plug#end()
+
+" }}}
+
+" ================ Functions ================ {{{
+
+if !exists('*s:setupWrapping')
+    function s:setupWrapping()
+        set wrap
+        set wm=2
+        set textwidth=79
+    endfunction
+endif
+
+function! s:LoadConfigFileByName(name)
+    if filereadable(expand('~/.vim/' . a:name))
+        execute 'source ~/.vim/' . a:name
+    endif
+endfunction
+
+function! AutoRun()
+    exec "w"
+    if &ft == 'c'
+        exec 'gcc -Wall -g % -o %<'
+        exec '!time ./%<'
+    elseif &ft == 'sh'
+        :!time bash %
+    elseif &ft == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &ft == 'html'
+        silent! exec "!firefox % &"
+    elseif &ft == 'markdown'
+        :MarkdownPreview
+    elseif &ft == 'go'
+        :term go run %
+    elseif &ft == 'rust'
+        :Crun %
+    endif
+endfunction
+
+" }}}
+
+" ================ VIM settings ================ {{{
+
+" > enable file type recognize
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+
+" > map the leader key to ','
+let g:mapleader=","
+
+" > encoding and file format
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set bomb
+set binary
+set ttyfast
+set fileformats=unix,dos,mac
+
+" > use global shell
+if exists('$SHELL') && stridx($SHELL, 'fish') == -1
+    set shell=$SHELL
+else
+    set shell=/bin/bash
+endif
+
+" > visual settings
+" >> enable highlight
+syntax enable
+syntax on
+set number " enable line number
+set relativenumber " enable relative line number
+set ruler
+
+" >> cursor configs
+set cursorline " add a whole line underline follow the cursor
+set cursorlineopt=screenline,number
+set cursorcolumn
+
+let no_buffers_menu=1
+
+" >> support gui
+set mousemodel=popup
+set t_Co=256
+set guioptions=egmrti
+set gfn=FuraCode\ Nerd\ Font\ 14
+
+" >> vim color scheme
+if !exists('g:not_finish_vimplug')
+    if has('termguicolors')
+        set termguicolors
+    endif
+    set background=dark
+    colorscheme vim-material
+    hi CursorLine cterm=NONE term=NONE guibg=#505050
+    hi CursorColumn cterm=NONE term=NONE guibg=#505050
+endif
+
+if has("gui_running")
+    if has("gui_mac") || has("gui_macvim")
+        set guifont=Menlo:h12
+        set transparency=7
+    endif
+    hi Normal guifg=#f6f3e8 guibg=#242424
+else
+    " Set the terminal default background and foreground colors, thereby
+    " improving performance by not needing to set these colors on empty cells.
+    hi Normal guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
+    hi NonText guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
+    let &t_ti = &t_ti . "\033]10;#f6f3e8\007\033]11;#242424\007"
+    let &t_te = &t_te . "\033]110\007\033]111\007"
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+    let g:CSApprox_loaded = 1
+
+    " IndentLine
+    call s:LoadConfigFileByName('indentline.conf')
+
+    if $COLORTERM == 'gnome-terminal'
+        set term=gnome-256color
+    else
+        if $TERM == 'xterm'
+            set term=xterm-256color
+        endif
+    endif
+endif
+
+" >> prevent incorrect background rendering
+let &t_ut=''
+set t_ut=
+
+" >> disable the blinking cursor
+set gcr+=a:blinkon0
+set guicursor+=a:blinkon0
+
+" >> prevent auto wrap the long line
+set wrap
+set tw=0
+
+" >> use modeline overrides
+set modeline
+set modelines=10
+
+" >> set title
+set title
+set titleold="Terminal"
+set titlestring=%F
+
+" >> status line
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+if exists("*fugitive#statusline")
+    set statusline+=%{fugitive#statusline()}
+endif
+
+" >> use 4 spaces to expand tabs
+set expandtab
+set tabstop=4 " set <tab> length to 4
+set shiftwidth=4 " set movement width to 4 when using '<<' and '>>'
+set softtabstop=4 " enable <BS> delete 4 spaces one time
+set smartindent
+
+" >> show spaces in the end of line
+set list
+set listchars=tab:⇄\ ,trail:␣
+
+" >> fold codes
+set foldenable
+set foldcolumn=0
+set foldmethod=manual
+set foldlevel=99
+set foldclose=all
+
+set showtabline=2 " always show the tab line
+set laststatus=2 " always show the status line
+set autochdir " auto jump into the parent directory of editing file
+set scrolloff=5 " remain last five lines above/below the cursor
+
+" >> change cursor shape by vim mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+" > change default behavior when cover files
+set nobackup " disable backup
+set backupcopy=yes " change backup to cover
+set noswapfile
+
+" > search
+set hlsearch " highlight matched items
+" don't highlight the last matched items
+exec "nohlsearch"
+set incsearch " highlight while inputting search item
+set ignorecase " ignore case
+set smartcase " like `vimrc` can match `VIMRC` and `vimRC`, but `vimRC` only match `vimRC`
+
+" > no bells
+set t_vb=
+set noerrorbells
+set novisualbell
+
+" > misc
+set splitright
+set splitbelow
+set showcmd " enable to display the executed command
+set wildmenu " enable use <tab> to complete command
+set hidden " enable change buffer even have unsave modifactions
+set backspace=indent,eol,start " fix backspace indent
+
+" > Changes the effect of the ':mkview' command.
+set viewoptions=cursor,folds,slash,unix
+
+" > This is a sequence of letters which describes how automatic formatting is to be done. See ':help fo-table'
+set formatoptions-=tc
+
+" > If in Insert, Replace or Visual mode put a message on the last line.
+set noshowmode
+
+" > don't give |ins-completion-menu| messages.  For example, '-- XXX completion (YYY)', 'match 1 of 2', 'The only match', 'Pattern not found', 'Back at original', etc.
+set shortmess+=c
+
+" > make screen draw faster
+set ttyfast
+set lazyredraw
+
+set updatetime=1000
+set ttimeoutlen=0
+set notimeout
+
+" > auto read changed file
+set autoread
+
+" > for far.vim
+set regexpengine=1
+
+" > Copy/Paste/Cut
+" if has('unnamedplus')
+    " set clipboard=unnamed,unnamedplus
+" endif
+
+" Language relative variables
+let g:html_use_css=1
+let b:javascript_fold=1
+let g:javascript_enable_domhtmlcss=1
+" > syntax highlight
+let python_highlight_all = 1
+
+" }}}
+
+" ================ Plug settings ================ {{{
+
+" > vim-anzu
+set statusline=%{anzu#search_status()}
+
+" > vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xnoremap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nnoremap ga <Plug>(EasyAlign)
+
+" > rainbow
+let g:rainbow_active = 1
+
+" > split-manpage
+" Whether to disable the K key. Set this option to 0 to leave K alone. (default is 1)
+let g:split_manpage_disable_K = 0
+
+" > SimpylFold
+" enable docstring preview in fold text
+let g:SimpylFold_docstring_preview = 1
+
+" > Colorizer
+nnoremap <LEADER>ch :ColorToggle<CR>
+
+" > vim-startify
+nnoremap <silent> <LEADER>st :Startify<CR>
+
+" > Vista.vim
+call s:LoadConfigFileByName('vista-vim.conf')
+
+" > vim-gitgutter
+call s:LoadConfigFileByName('vim-gitgutter.conf')
+
+" > vim-session
+call s:LoadConfigFileByName('vim-session.conf')
+
+" > vim-airline
+call s:LoadConfigFileByName('vim-airline.conf')
+
+" > NERDTree + NERDTree-git
+" call s:LoadConfigFileByName('nerdtree.conf')
+
+" > ultisnips
+call s:LoadConfigFileByName('ultisnips.conf')
+
+" > nerdcommenter
+call s:LoadConfigFileByName('nerdcommenter.conf')
+
+" > incsearch + incsearch-fuzzy + incsearch-easymotion
+call s:LoadConfigFileByName('incsearch.conf')
+
+" >> vim-syntastic
+call s:LoadConfigFileByName('vim-syntastic.conf')
+
+" >> vim-signature
+call s:LoadConfigFileByName('vim-signature.conf')
+
+" > coc.nvim
+call s:LoadConfigFileByName('coc-nvim.conf')
+
+" > fzf.vim
+call s:LoadConfigFileByName('fzf-vim.conf')
+
+" > Goyo.vim + limelight.vim
+au BufRead,BufNewFile * if &ft == 'markdown' | call s:LoadConfigFileByName('zenmode.conf') | endif
+
+" > markdown-preview
+au BufRead,BufNewFile * if &ft == 'markdown' | call s:LoadConfigFileByName('markdown-preview.conf') | endif
+
+" > vim-table-mode
+au BufRead,BufNewFile * if &ft == 'markdown' | call s:LoadConfigFileByName('vim-table-mode.conf') | endif
+
+" > markdown snippets
+au BufRead,BufNewFile * if &ft == 'markdown' | call s:LoadConfigFileByName('md-snippets.vim') | endif
+
+" > ranger
+call s:LoadConfigFileByName('ranger.conf')
+
+" > vim-better-whitespace
+call s:LoadConfigFileByName('vim-better-whitespace.conf')
+
+" > vimshell
+call s:LoadConfigFileByName('vimshell.conf')
+
+" > vim-cpp-enhanced-highlight
+call s:LoadConfigFileByName('vim-cpp-enhanced-highlight.conf')
+
+" > vim-gutentags
+set statusline+=%{gutentags#statusline()}
+
+" > rust.vim
+let g:rustfmt_autosave = 1
+
+" > vim-racer
+call s:LoadConfigFileByName('vim-racer.conf')
+
+" > vim-go
+call s:LoadConfigFileByName('vim-go.conf')
+
+" > neoformat
+call s:LoadConfigFileByName('neoformat.conf')
+
+" > vim-javascript
+call s:LoadConfigFileByName('vim-javascript.conf')
+
+" > vim-barbaric
+call s:LoadConfigFileByName('vim-barbaric.conf')
+
+" > emmet-vim
+call s:LoadConfigFileByName('emmet-vim.conf')
+
+" > vim-capslock
+call s:LoadConfigFileByName('vim-capslock.conf')
+
+" > vimawesome.vim
+call s:LoadConfigFileByName('vimawesome.vim')
+
+" > braceless.vim
+autocmd FileType python BracelessEnable +indent +highlight +fold
+
+" > FastFold
+call s:LoadConfigFileByName('fastfold.conf')
+
+" > undotree
+call s:LoadConfigFileByName('undotree.conf')
+
+" > calendar.vim
+call s:LoadConfigFileByName('calendar.conf')
+
+" }}}
+
+" ================ Mappings ================ {{{
+
+call s:LoadConfigFileByName('map.conf')
+
+nnoremap \r :call AutoRun()<CR>
+
+" }}}
+
+" ================ Autocmd Rules ================ {{{
+
+" use vim syntax to highlight the conf file in the .vim directory
+autocmd BufRead,BufNewFile ~/.vim/*\.conf if &ft == '' | setfiletype vim | endif
+
+" get correct comment highlighting in json files
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" C/C++
+autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+
+" > The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+augroup vimrc-sync-fromstart
+    autocmd!
+    autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+" > remember cursor position
+augroup vimrc-remember-cursor-position
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+
+" > txt
+augroup vimrc-wrapping
+    autocmd!
+    autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+" > make/cmake
+augroup vimrc-make-cmake
+    autocmd!
+    autocmd FileType make setlocal noexpandtab
+    autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+" > markdown
+augroup vimrc-markdown
+    autocmd!
+    " >> press <Leader> twice to jump to the next placeholder '<~~>' and edit it
+    autocmd FileType markdown nnoremap <LEADER><LEADER> <Esc>/<\~\~><CR>:noh<CR>c4l
+    " >> insert placehoder quickly
+    autocmd FileType markdown nnoremap <LEADER>ph i<Space><~~><Space><Esc>
+    " >> auto spell
+    autocmd BufNewFile,BufRead *.md setlocal spell
+    " >> snippets
+    if filereadable(expand('~/.config/vim/md-snippets.vim'))
+        autocmd FileType markdown source ~/.config/vim/md-snippets.vim
+    endif
+augroup END
+
+" > html/css
+augroup vimrc-html-css
+    autocmd!
+    " >> for html files, 2 spaces
+    autocmd FileType html setlocal ts=2 sw=2 expandtab
+    autocmd FileType css set dictionary=$VIMFILES/dict/css.dict
+augroup END
+
+" > javascript
+" >> vim-javascript
+augroup vimrc-javascript
+    autocmd!
+    autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+    autocmd FileType javascript set dictionary=$VIMFILES/dict/javascript.dict
+augroup END
+
+" > python
+" >> vim-python
+augroup vimrc-python
+    autocmd!
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+        \ formatoptions+=croq softtabstop=4
+        \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+augroup END
+
+augroup completion_preview_close
+    autocmd!
+    if v:version > 703 || v:version == 703 && has('patch598')
+        autocmd CompleteDone * if !&previewwindow && &completeopt =~ 'preview' | silent! pclose | endif
+    endif
+augroup END
+
+" > Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
+
+" }}}
+

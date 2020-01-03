@@ -1,0 +1,65 @@
+{
+    "explorer.file.columns": [
+        "git",
+        "selection",
+        "clip",
+        "diagnosticError",
+        "indent",
+        "icon",
+        "filename",
+        "readonly"
+    ],
+    "explorer.file.column.filename.width": 24,
+    "explorer.file.column.filename.paddingEnd": true,
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.icon.collapsed": "",
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.enableVimDevions": true,
+    "explorer.icon.expanded": "",
+    "explorer.icon.hidden": "",
+    "explorer.icon.selected": "",
+    "explorer.file.column.clip.copy": "",
+    "explorer.openAction.changeDirectory": false,
+    "explorer.width": 28,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        },
+        "clangd": {
+            "command": "clangd",
+            "args": ["--background-index"],
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        },
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": ["dockerfile"],
+            "args": ["--stdio"]
+        },
+        "efm": {
+            "command": "efm-langserver",
+            "args": [],
+            // custom config path
+            // "args": ["-c", "/path/to/your/config.yaml"],
+            "filetypes": ["vim", "markdown", "yaml"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        },
+        "lua": {
+            "command": "~/.luarocks/bin/lua-lsp",
+            "filetypes": ["lua"]
+        }
+    },
+    "suggest.noselect": true,
+    "suggest.triggerAfterInsertEnter": true
+}
