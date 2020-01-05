@@ -673,7 +673,7 @@ nnoremap \r :call AutoRun()<CR>
 " ================ Autocmd Rules ================ {{{
 
 " use vim syntax to highlight the conf file in the .vim directory
-autocmd BufRead,BufNewFile ~/.vim/*\.conf if &ft == '' | setfiletype vim | endif
+autocmd BufRead,BufNewFile */\.vim/*\.conf if &ft == '' | setfiletype vim | endif
 
 " get correct comment highlighting in json files
 autocmd FileType json syntax match Comment +\/\/.\+$+

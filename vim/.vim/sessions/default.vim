@@ -336,9 +336,10 @@ nnoremap <silent> <Plug>(coc-explorer-action-n-*) :call coc#rpc#request('doKey
 nnoremap <silent> <Plug>(coc-explorer-action-n-j) :call coc#rpc#request('doKeymap', ['explorer-action-n-j'])
 nnoremap <silent> <Plug>(coc-explorer-action-n-k) :call coc#rpc#request('doKeymap', ['explorer-action-n-k'])
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
+nnoremap <SNR>181_: :=v:count ? v:count : ''
 snoremap <silent> <BS> "_c
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 nnoremap <silent> <Plug>(vimshell_create) :VimShellCreate
 nnoremap <silent> <Plug>(vimshell_switch) :VimShell
 xnoremap <Plug>ColorFgBg :ColorSwapFgBg
@@ -922,7 +923,7 @@ set mousemodel=popup
 set pyxversion=3
 set regexpengine=1
 set ruler
-set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/ranger.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-airline-themes,~/.vim/plugged/vim-misc,~/.vim/plugged/vim-session,~/.vim/plugged/vim-gitgutter,~/.vim/plugged/vim-fugitive,~/.vim/plugged/vim-gitignore,~/.vim/plugged/nerdcommenter,~/.vim/plugged/ultisnips,~/.vim/plugged/vim-snippets,~/.vim/plugged/vista.vim,~/.vim/plugged/vim-gutentags,~/.vim/plugged/vim-devicons,~/.vim/plugged/vim-startify,~/.vim/plugged/CSApprox,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-material,~/.vim/plugged/fzf.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/incsearch.vim,~/.vim/plugged/incsearch-fuzzy.vim,~/.vim/plugged/incsearch-easymotion.vim,~/.vim/plugged/vim-anzu,~/.vim/plugged/vim-repeat,~/.vim/plugged/vim-surround,~/.vim/plugged/delimitMate,~/.vim/plugged/vim-better-whitespace,~/.vim/plugged/indentLine,~/.vim/plugged/rainbow,~/.vim/plugged/vim-easy-align,~/.vim/plugged/vim-barbaric,~/.vim/plugged/wildfire.vim,~/.vim/plugged/tabular,~/.vim/plugged/FastFold,~/.vim/plugged/undotree,~/.vim/plugged/vim-peekaboo,~/.vim/plugged/syntastic,~/.vim/plugged/vim-polyglot,~/.vim/plugged/neoformat,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-json,~/.vim/plugged/vim-python-pep8-indent,~/.vim/plugged/vim-cpp-enhanced-highlight,~/.vim/plugged/splitjoin.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/javascript-libraries-syntax.vim,~/.vim/plugged/Colorizer,~/.vim/plugged/vim-css3-syntax,~/.vim/plugged/vim-eunuch,~/.vim/plugged/vim-signature,~/.vim/plugged/split-manpage.vim,~/.vim/plugged/vim-capslock,~/.vim/plugged/vim-wakatime,~/.vim/plugged/cheat.sh-vim,~/.vim/plugged/vimproc.vim,~/.vim/plugged/vimshell.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,~/.vim/plugged/ultisnips/after,~/.vim/plugged/CSApprox/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/indentLine/after,~/.vim/plugged/tabular/after,~/.vim/plugged/vim-polyglot/after,~/.vim/plugged/vim-cpp-enhanced-highlight/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/javascript-libraries-syntax.vim/after,~/.vim/plugged/vim-css3-syntax/after,~/.vim/plugged/vim-signature/after,~/.vim/after
+set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/ranger.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-airline-themes,~/.vim/plugged/vim-misc,~/.vim/plugged/vim-session,~/.vim/plugged/vim-gitgutter,~/.vim/plugged/vim-fugitive,~/.vim/plugged/vim-gitignore,~/.vim/plugged/nerdcommenter,~/.vim/plugged/ultisnips,~/.vim/plugged/vim-snippets,~/.vim/plugged/vista.vim,~/.vim/plugged/vim-gutentags,~/.vim/plugged/vim-devicons,~/.vim/plugged/vim-startify,~/.vim/plugged/CSApprox,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-material,~/.vim/plugged/fzf.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/incsearch.vim,~/.vim/plugged/incsearch-fuzzy.vim,~/.vim/plugged/incsearch-easymotion.vim,~/.vim/plugged/vim-anzu,~/.vim/plugged/vim-repeat,~/.vim/plugged/vim-surround,~/.vim/plugged/delimitMate,~/.vim/plugged/vim-better-whitespace,~/.vim/plugged/indentLine,~/.vim/plugged/rainbow,~/.vim/plugged/vim-easy-align,~/.vim/plugged/vim-barbaric,~/.vim/plugged/wildfire.vim,~/.vim/plugged/tabular,~/.vim/plugged/FastFold,~/.vim/plugged/undotree,~/.vim/plugged/vim-peekaboo,~/.vim/plugged/syntastic,~/.vim/plugged/vim-polyglot,~/.vim/plugged/neoformat,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-json,~/.vim/plugged/vim-python-pep8-indent,~/.vim/plugged/vim-cpp-enhanced-highlight,~/.vim/plugged/splitjoin.vim,~/.vim/plugged/vim-racer,~/.vim/plugged/vim-javascript,~/.vim/plugged/javascript-libraries-syntax.vim,~/.vim/plugged/Colorizer,~/.vim/plugged/vim-css3-syntax,~/.vim/plugged/vim-eunuch,~/.vim/plugged/vim-signature,~/.vim/plugged/split-manpage.vim,~/.vim/plugged/vim-capslock,~/.vim/plugged/vim-wakatime,~/.vim/plugged/cheat.sh-vim,~/.vim/plugged/vimproc.vim,~/.vim/plugged/vimshell.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/plugged/ultisnips/after,~/.vim/plugged/CSApprox/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/indentLine/after,~/.vim/plugged/tabular/after,~/.vim/plugged/vim-polyglot/after,~/.vim/plugged/vim-cpp-enhanced-highlight/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/javascript-libraries-syntax.vim/after,~/.vim/plugged/vim-css3-syntax/after,~/.vim/plugged/vim-signature/after,~/.vim/after
 set scrolloff=5
 set shiftwidth=4
 set shortmess=filnxtToOScI
@@ -956,13 +957,15 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/
+cd ~/dotfiles
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
+$argadd .gitignore
+edit ~/dotfiles/.gitignore
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -970,58 +973,26 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-enew
 let s:cpo_save=&cpo
 set cpo&vim
+imap <buffer> <expr> <C-R> peekaboo#peek(1, "\",  0)
 imap <buffer> <silent> <C-G>g <Plug>delimitMateJumpMany
 imap <buffer> <S-BS> <Plug>delimitMateS-BS
 imap <buffer> <BS> <Plug>delimitMateBS
-imap <buffer> <expr> <C-R> peekaboo#peek(1, "\",  0)
-nnoremap <buffer> <nowait> <silent>  :call startify#open_buffers()
 xmap <buffer> <expr> " peekaboo#peek(v:count1, '"',  1)
 nmap <buffer> <expr> " peekaboo#peek(v:count1, '"',  0)
-nnoremap <buffer> <nowait> <silent> 0 :call startify#open_buffers(20)
-nnoremap <buffer> <nowait> <silent> 19 :call startify#open_buffers(42)
-nnoremap <buffer> <nowait> <silent> 18 :call startify#open_buffers(41)
-nnoremap <buffer> <nowait> <silent> 17 :call startify#open_buffers(40)
-nnoremap <buffer> <nowait> <silent> 16 :call startify#open_buffers(39)
-nnoremap <buffer> <nowait> <silent> 15 :call startify#open_buffers(38)
-nnoremap <buffer> <nowait> <silent> 14 :call startify#open_buffers(37)
-nnoremap <buffer> <nowait> <silent> 13 :call startify#open_buffers(36)
-nnoremap <buffer> <nowait> <silent> 12 :call startify#open_buffers(35)
-nnoremap <buffer> <nowait> <silent> 11 :call startify#open_buffers(34)
-nnoremap <buffer> <nowait> <silent> 10 :call startify#open_buffers(33)
-nnoremap <buffer> <nowait> <silent> 1 :call startify#open_buffers(21)
-nnoremap <buffer> <nowait> <silent> 2 :call startify#open_buffers(22)
-nnoremap <buffer> <nowait> <silent> 3 :call startify#open_buffers(23)
-nnoremap <buffer> <nowait> <silent> 4 :call startify#open_buffers(24)
-nnoremap <buffer> <nowait> <silent> 5 :call startify#open_buffers(25)
-nnoremap <buffer> <nowait> <silent> 6 :call startify#open_buffers(26)
-nnoremap <buffer> <nowait> <silent> 7 :call startify#open_buffers(27)
-nnoremap <buffer> <nowait> <silent> 8 :call startify#open_buffers(28)
-nnoremap <buffer> <nowait> <silent> 9 :call startify#open_buffers(29)
 nmap <buffer> <expr> @ peekaboo#peek(v:count1, '@', 0)
-nnoremap <buffer> <nowait> <silent> B :call startify#set_batchmode('B')
-nnoremap <buffer> <expr> N 'j '[v:searchforward].'N'
-nnoremap <buffer> <nowait> <silent> S :call startify#set_batchmode('S')
-nnoremap <buffer> <nowait> <silent> T :call startify#set_batchmode('T')
-nnoremap <buffer> <nowait> <silent> V :call startify#set_batchmode('V')
-nnoremap <buffer> <nowait> <silent> b :call startify#set_mark('B')
-nnoremap <buffer> <nowait> <silent> e :call startify#open_buffers(16)
-nnoremap <buffer> <nowait> <silent> i :enew | startinsert
-nnoremap <buffer> <expr> n ' j'[v:searchforward].'n'
-nnoremap <buffer> <nowait> <silent> q :call startify#open_buffers(44)
-nnoremap <buffer> <nowait> <silent> s :call startify#set_mark('S')
-nnoremap <buffer> <nowait> <silent> t :call startify#set_mark('T')
-nnoremap <buffer> <nowait> <silent> v :call startify#set_mark('V')
-nnoremap <buffer> <nowait> <silent> <MiddleMouse> :enew | execute 'normal! "'.(v:register=='"'?'*':v:register).'gp'
-nnoremap <buffer> <nowait> <silent> <2-LeftMouse> :call startify#open_buffers()
-nnoremap <buffer> <nowait> <silent> <Insert> :enew | startinsert
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
 imap <buffer> <expr>  peekaboo#peek(1, "\",  0)
 imap <buffer> " <Plug>delimitMate"
 imap <buffer> ' <Plug>delimitMate'
+imap <buffer> ( <Plug>delimitMate(
+imap <buffer> ) <Plug>delimitMate)
+imap <buffer> [ <Plug>delimitMate[
+imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
+imap <buffer> { <Plug>delimitMate{
+imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
@@ -1032,8 +1003,8 @@ setlocal balloonexpr=
 setlocal binary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=wipe
-setlocal nobuflisted
+setlocal bufhidden=
+setlocal buflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
@@ -1041,19 +1012,19 @@ setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal commentstring=#%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 set conceallevel=1
-setlocal conceallevel=1
+setlocal conceallevel=2
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 set cursorcolumn
-setlocal nocursorcolumn
+setlocal cursorcolumn
 set cursorline
-setlocal nocursorline
+setlocal cursorline
 set cursorlineopt=screenline,number
 setlocal cursorlineopt=screenline,number
 setlocal define=
@@ -1062,8 +1033,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'startify'
-setlocal filetype=startify
+if &filetype != 'gitignore'
+setlocal filetype=gitignore
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -1086,7 +1057,7 @@ setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=
+setlocal indentexpr=GetGitignoreIndent()
 setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
@@ -1095,15 +1066,15 @@ setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 set list
-setlocal nolist
+setlocal list
 setlocal makeencoding=
 setlocal makeprg=
-setlocal matchpairs=
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
-setlocal nomodifiable
+setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
-setlocal nonumber
+setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=
 setlocal path=
@@ -1112,16 +1083,17 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 set relativenumber
-setlocal norelativenumber
+setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
 setlocal shiftwidth=4
 setlocal noshortname
+setlocal showbreak=
 setlocal sidescrolloff=-1
 set signcolumn=yes
-setlocal signcolumn=no
+setlocal signcolumn=yes
 setlocal smartindent
 setlocal softtabstop=4
 setlocal nospell
@@ -1132,13 +1104,13 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'startify'
-setlocal syntax=startify
+if &syntax != 'gitignore'
+setlocal syntax=gitignore
 endif
 setlocal tabstop=4
 setlocal tagcase=
 setlocal tagfunc=
-setlocal tags=
+setlocal tags=~/dotfiles/tags,./tags,./TAGS,tags,TAGS
 setlocal termwinkey=
 setlocal termwinscroll=10000
 setlocal termwinsize=
@@ -1153,7 +1125,15 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 4 - ((3 * winheight(0) + 15) / 31)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+4
+normal! 011|
 tabnext 1
+badd +0 ~/dotfiles/.gitignore
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
