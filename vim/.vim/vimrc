@@ -215,7 +215,6 @@ Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 " >> Vim configuration for Rust.
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
-let web_relate_filetypes = ['css', 'html', 'javascript']
 " > Plugins for Javascript
 " >> Vastly improved Javascript indentation and syntax support in Vim.
 Plug 'pangloss/vim-javascript', { 'for': ['css', 'html', 'javascript'] }
@@ -239,6 +238,8 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown'] }
 " >> VIM Table Mode for instant table creation.
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': 'markdown' }
+" >> Generate table of contents for MD files.
+Plug 'mzlogin/vim-markdown-toc'
 
 " > useful utilities
 " >> Helpers for UNIX. Do stuff like :SudoWrite
