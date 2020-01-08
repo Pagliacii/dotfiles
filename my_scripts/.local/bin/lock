@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+
+me="$(readlink -f "$0")"
+timeout=300
+notify=10
+
+configure() {
+    xset s $((timeout - notify)) $notify
+    xset dpms $((timeout * 3)) $((timeout * 4)) $((timeout * 5))
+}
+unconfigure() {
+    xset s 0
+    xset dpms 0 0 0
+}
+
+lock_with_blur() {
+    i3lock \
+        --nofork \
+        --tiling \
+        --ignore-empty-password \
+        --show-failed-attempts \
+        --blur=0x5 \
+        --pass-media-keys \
+        --indicator \
+        --keylayout 0 \
+        --clock \
+        --insidecolor=ffffff0f \
+        --timecolor=00ffffff \
+        --datecolor=00ffffff \
+        --ringcolor=009688ff \
+        --datestr="%A%n%Y-%m-%d"
+}
+
+lock_with_logo() {
+    i3lock \
+        --nofork \
+        --tiling \
+        --ignore-empty-password \
+        --show-failed-attempts \
+        --image=$HOME/Pictures/out.png \
+        --pass-media-keys \
+        --clock \
+        --insidecolor=ffffff0f \
+        --timecolor=00ffff80 \
+        --datecolor=00ffff80 \
+        --ringcolor=00968880 \
+        --datestr="%Y-%m-%d [%A]"
+}
+
+lock_with_screenshot() {
+    font="Terminess-(TTF)-Nerd-Font-Complete-Mono"
+    lockfont="Iosevka Term"
+    # lockfont="TerminessTTF Nerd Font Mono"
+    text="[ Unlock by Password ]"
+    icon=$HOME/Pictures/lock256.png
+    shot=/tmp/screenshot.jpg
+    img=/tmp/screenlock.jpg
+    scrot -z -o "$shot"
+    # convert "$shot" -blur 0x5 "$shot"
+    convert "$shot" -scale 10% -scale 1000% "$shot"
+    convert "$shot" \
+        -font "$font" \
+        -pointsize 48 \
+        -fill "cyan" \
+        -gravity center \
+        -annotate +0+240 "$text" \
+        "$icon" -gravity center -composite "$img"
+    i3lock \
+        --nofork \
+        --tiling \
+        --ignore-empty-password \
+        --image=$img \
+        --show-failed-attempts \
+        --pass-media-keys \
+        --clock \
+        --insidevercolor=4682bf40 \
+        --insidewrongcolor=5a0f6b40 \
+        --insidecolor=1d99ce40 \
+        --ringvercolor=62b3b240 \
+        --ringwrongcolor=ff111140 \
+        --ringcolor=00b7eb40 \
+        --line-uses-ring \
+        --keyhlcolor=00ffff40 \
+        --bshlcolor=80800040 \
+        --separatorcolor=1d99ce40 \
+        --verifcolor=90ee90f0 \
+        --wrongcolor=f07178f0 \
+        --timecolor=b7e8fbe0 \
+        --time-font=$lockfont \
+        --timesize=64 \
+        --timepos="ix:iy-128" \
+        --datecolor=00ffffa0 \
+        --date-font=$lockfont \
+        --datesize=16 \
+        --datestr="[ %a %Y-%m-%d ]" \
+        --datepos="tx:ty+24" \
+        --radius=96 \
+        --ring-width=4.0 \
+        --veriftext="Accessing" \
+        --verif-font=$lockfont \
+        --wrongtext="Access Denied" \
+        --wrong-font=$lockfont \
+        --noinputtext="No Input" \
+        --locktext="Locking" \
+        --lockfailedtext="Lock Failed" \
+        --layoutcolor=00000000
+}
+
+case "$1" in
+    start)
+        configure
+        exec xss-lock -n "$me notify" -l -- $me lock
+        ;;
+    dim|notify)
+        echo "$(date --rfc-3339=seconds) $me: notify: start"
+        trap 'exit 0' TERM INT
+        trap "kill %% ; wait" EXIT
+        notify-send "Lock screen" -t $((notify * 1000)) \
+            "Screen will be locked in 10 seconds..."
+        echo "$(date --rfc-3339=seconds) $me: notify: end"
+        sleep 2147483647 &
+        wait
+        ;;
+    lock)
+        # Something may have mendled with screensaver settings
+        unconfigure
+        # First, stop any music player
+        xdotool key XF86AudioStop
+        # Then, lock screen
+        echo "$(date --rfc-3339=seconds) $me: lock: lock screen"
+        lock_with_screenshot
+        echo "$(date --rfc-3339=seconds) $me: lock: unlock screen"
+        configure
+        ;;
+esac

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+function take-screenshot {
+    timestamp="$(date +%Y-%m-%dT%H:%M:%S)"
+    targetbase="$HOME/screenshots"
+    mkdir -p $targetbase
+    [ -d $targetbase ] || exit 1
+    scrot -z -o $targetbase/$timestamp.png
+}
+
+DELAY="0"
+for i in "$@"
+do
+    case $i in
+        -d=*|--delay=*)
+            DELAY="${i#*=}"
+            shift # past argument=value
+            ;;
+    esac
+done
+
+sleep $DELAY
+take-screenshot
