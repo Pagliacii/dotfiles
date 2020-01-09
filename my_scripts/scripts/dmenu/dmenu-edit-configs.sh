@@ -5,6 +5,7 @@ declare options=("autostart
 awesome
 awesome_theme
 bash
+feed
 kitty
 sxhkd
 variety
@@ -40,6 +41,9 @@ case "$choice" in
     ;;
     bash)
         choice="$HOME/.bashrc"
+    ;;
+    feed)
+        choice="$HOME/.config/newsboat/urls"
     ;;
     kitty)
         choice="$HOME/.config/kitty/kitty.conf"

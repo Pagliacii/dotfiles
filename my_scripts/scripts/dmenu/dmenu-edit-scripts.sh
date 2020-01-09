@@ -30,7 +30,7 @@ case "$script" in
     sysmon| \
     trading| \
     prompt)
-        script="$HOME/.dmenu/dmenu-${script}.sh"
+        script="$HOME/scripts/dmenu/dmenu-${script}.sh"
         ;;
     *)
         exit 1
