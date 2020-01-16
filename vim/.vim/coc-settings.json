@@ -61,5 +61,6 @@
         }
     },
     "suggest.noselect": true,
-    "suggest.triggerAfterInsertEnter": true
+    "suggest.triggerAfterInsertEnter": true,
+    "python.jediPath": "~/.local/lib/python3.8/site-packages"
 }
