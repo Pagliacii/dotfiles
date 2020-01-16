@@ -4,3 +4,4 @@ tags
 # VIM files
 vim/.vim/plugged
 vim/.vim/sessions
+vim/.vim/view
