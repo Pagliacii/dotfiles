@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Dmenu script for editing some of my more frequently edited config files.
 
-declare options=("autostart
+declare options=("alacritty
+autostart
 awesome
 awesome_theme
 bash
@@ -24,11 +25,14 @@ selforeground="#2f343f"
 selbackground="#64aeef"
 choice=$(echo -e "${options[@]}" | dmenu -i -p '⚙ Configs' -h 48 \
     -fn "$font" -nf "$foreground" -nb "$background" -sf "$selforeground" -sb "$selbackground")
-terminal="$(which kitty)"
+terminal="$(which alacritty)"
 
 case "$choice" in
     quit)
         echo "Program terminated." && exit 1
+    ;;
+    alacritty)
+        choice="$HOME/.config/alacritty/alacritty.yml"
     ;;
     autostart)
         choice="$HOME/.config/awesome/autorun.sh"
@@ -76,4 +80,4 @@ case "$choice" in
         exit 1
     ;;
 esac
-source /usr/share/nvm/init-nvm.sh && $terminal -e ${EDITOR:-vim} "$choice"
+source $HOME/.zshrc && $terminal -e ${EDITOR:-vim} "$choice"
