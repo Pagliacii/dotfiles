@@ -109,7 +109,7 @@ lock_with_screenshot() {
 case "$1" in
     start)
         configure
-        exec xss-lock -n "$me notify" -l -- $me lock
+        exec xss-lock -n "$me notify" -l --ignore-sleep -- $me lock
         ;;
     dim|notify)
         echo "$(date --rfc-3339=seconds) $me: notify: start"
