@@ -106,6 +106,53 @@ lock_with_screenshot() {
         --layoutcolor=00000000
 }
 
+lock_with_background() {
+    font="Terminess-(TTF)-Nerd-Font-Complete-Mono"
+    lockfont="Iosevka Term"
+    text="[ Unlock by Password ]"
+    icon=$HOME/Pictures/lock256.png
+    img="$(variety --current)"
+    i3lock \
+        --nofork \
+        --tiling \
+        --ignore-empty-password \
+        --image=$img \
+        --show-failed-attempts \
+        --pass-media-keys \
+        --clock \
+        --insidevercolor=4682bf40 \
+        --insidewrongcolor=5a0f6b40 \
+        --insidecolor=1d99ce40 \
+        --ringvercolor=62b3b240 \
+        --ringwrongcolor=ff111140 \
+        --ringcolor=00b7eb40 \
+        --line-uses-ring \
+        --keyhlcolor=00ffff40 \
+        --bshlcolor=80800040 \
+        --separatorcolor=1d99ce40 \
+        --verifcolor=90ee90f0 \
+        --wrongcolor=f07178f0 \
+        --timecolor=b7e8fbe0 \
+        --time-font=$lockfont \
+        --timesize=64 \
+        --timepos="ix:iy-128" \
+        --datecolor=00ffffa0 \
+        --date-font=$lockfont \
+        --datesize=16 \
+        --datestr="[ %a %Y-%m-%d ]" \
+        --datepos="tx:ty+24" \
+        --radius=96 \
+        --ring-width=4.0 \
+        --veriftext="Accessing" \
+        --verif-font=$lockfont \
+        --wrongtext="Access Denied" \
+        --wrong-font=$lockfont \
+        --noinputtext="No Input" \
+        --locktext="Locking" \
+        --lockfailedtext="Lock Failed" \
+        --layoutcolor=00000000
+}
+
 case "$1" in
     start)
         configure
