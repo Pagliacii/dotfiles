@@ -315,7 +315,7 @@ function! AutoRun()
     elseif &ft == 'go'
         :term go run %
     elseif &ft == 'rust'
-        :Crun %
+        :Crun
     endif
 endfunction
 
