@@ -70,7 +70,10 @@ ZSH_THEME="$theme"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump colored-man-pages git python vscode wakatime z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+    autojump colored-man-pages emoji git python vscode wakatime
+    z zsh-autosuggestions zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,6 +119,7 @@ alias hexdump="$(which hexyl)"
 alias objdump="$(which bingrep)"
 alias lc="$(which licensor)"
 alias http-server="$(which miniserve) -c ArchLinux"
+alias vi="$(which vim)"
 
 # export GPG_TTY="$(tty)"
 # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
