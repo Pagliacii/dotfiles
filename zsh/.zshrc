@@ -116,7 +116,6 @@ alias cat="$(which bat)"
 alias less="$(which bat)"
 alias nano="$(which kibi)"
 alias hexdump="$(which hexyl)"
-alias objdump="$(which bingrep)"
 alias lc="$(which licensor)"
 alias http-server="$(which miniserve) -c ArchLinux"
 alias vi="$(which vim)"
@@ -171,3 +170,5 @@ compinit
 eval "$(pipenv --completion)"
 # thefuck
 eval $(thefuck --alias)
+# starship
+eval "$(starship init zsh)"
