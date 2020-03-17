@@ -234,7 +234,7 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " >> markdown preview plugin for (neo)vim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown'] }
 " >> VIM Table Mode for instant table creation.
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['markdown'] }
 " >> Generate table of contents for MD files.
 Plug 'mzlogin/vim-markdown-toc'
 
