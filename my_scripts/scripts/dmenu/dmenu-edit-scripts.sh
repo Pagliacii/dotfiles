@@ -17,7 +17,7 @@ selforeground="#2f343f"
 selbackground="#64aeef"
 script=$(echo -e "${scripts[@]}" | dmenu -i -p '⚙ Dmenu Scripts' -h 48 \
     -fn "$font" -nf "$foreground" -nb "$background" -sf "$selforeground" -sb "$selbackground")
-terminal="$(which kitty)"
+terminal="${TERMINAL:-$(which alacritty)}"
 
 case "$script" in
     quit)

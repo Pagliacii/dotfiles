@@ -25,7 +25,7 @@ selforeground="#2f343f"
 selbackground="#64aeef"
 choice=$(echo -e "${options[@]}" | dmenu -i -p '⚙ Configs' -h 48 \
     -fn "$font" -nf "$foreground" -nb "$background" -sf "$selforeground" -sb "$selbackground")
-terminal="$(which alacritty)"
+terminal="${TERMINAL:-$(which alacritty)}"
 
 case "$choice" in
     quit)
@@ -80,4 +80,4 @@ case "$choice" in
         exit 1
     ;;
 esac
-source $HOME/.zshrc && $terminal -e ${EDITOR:-vim} "$choice"
+$terminal -e ${EDITOR:-vim} "$choice"

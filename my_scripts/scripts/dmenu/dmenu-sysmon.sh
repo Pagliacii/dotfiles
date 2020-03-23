@@ -1,12 +1,4 @@
 #!/bin/bash
-#  ____ _____
-# |  _ \_   _|  Derek Taylor (DistroTube)
-# | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/
-# |____/ |_|
-#
-# Dmenu script for launching system monitoring programs.
-
 
 declare -a options=("htop
 glances
@@ -18,8 +10,14 @@ nmon
 s-tui
 quit")
 
-choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'System monitors: ')
-terminal=$(which kitty)
+font="TerminessTTF Nerd Font Mono:style=Bold:pixelsize=32"
+foreground="#b7e8fb"
+background="#2f343f"
+selforeground="#2f343f"
+selbackground="#64aeef"
+choice=$(echo -e "${options[@]}" | dmenu -l -i -p '⚙ System monitors' -h 48 \
+    -fn "$font" -nf "$foreground" -nb "$background" -sf "$selforeground" -sb "$selbackground")
+terminal=${TERMINAL:-$(which alacritty)}
 
 case $choice in
 	quit)
