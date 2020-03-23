@@ -80,7 +80,7 @@ plugins=(
     vscode
     wakatime
     z
-    # zsh-autosuggestions
+    zsh-autosuggestions
     zsh-syntax-highlighting
 )
 
@@ -141,11 +141,6 @@ alias vi="$(which vim)"
 # else
 # 	eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
 # fi
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$GOBIN:$GOROOT/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 
 # FZF Options
 export FZF_DEFAULT_COMMAND='rg --files --no-messages --no-ignore-vcs --hidden --follow --glob "!{node_modules,.git,.cache}"'
