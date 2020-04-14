@@ -514,6 +514,9 @@ set autoread
 " > for far.vim
 set regexpengine=1
 
+" > allow edit anywhere
+set virtualedit=all
+
 " > Copy/Paste/Cut
 " if has('unnamedplus')
     " set clipboard=unnamed,unnamedplus
