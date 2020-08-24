@@ -142,10 +142,10 @@ alias vi="$(which vim)"
 # 	eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
 # fi
 
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$GOBIN:$GOROOT/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+# export GOPATH=$HOME/go
+# export GOBIN=$GOPATH/bin
+# export PATH=$GOBIN:$GOROOT/bin:$PATH
+# export PATH=$HOME/.local/bin:$PATH
 
 # FZF Options
 export FZF_DEFAULT_COMMAND='rg --files --no-messages --no-ignore-vcs --hidden --follow --glob "!{node_modules,.git,.cache}"'
@@ -154,22 +154,22 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || bat {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up"'
 export FZF_TMUX_HEIGHT='80%'
 export FZF_COMPLETION_TRIGGER='**'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Ranger
 alias ra=$(which ranger)
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # Rust
-# export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
-export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 
 export VISUAL="$(which vim)"
 export EDITOR=$VISUAL
 
 # node.js
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 fpath=(~/.zsh.d/ $fpath)
 fpath+=~/.zfunc
