@@ -335,7 +335,6 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
-set ttyfast
 set fileformats=unix,dos,mac
 
 " > use global shell
@@ -463,9 +462,9 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 " > change default behavior when cover files
-set nobackup " disable backup
+" set nobackup " disable backup
 set backupcopy=yes " change backup to cover
-set noswapfile
+" set noswapfile
 
 " > search
 set hlsearch " highlight matched items
@@ -505,8 +504,8 @@ set ttyfast
 set lazyredraw
 
 set updatetime=1000
-set ttimeoutlen=0
-set notimeout
+" set ttimeoutlen=0
+" set notimeout
 
 " > auto read changed file
 set autoread
