@@ -4,14 +4,46 @@
     "coc.preferences.snippetStatusText": "Ⓢ ",
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.messageLevel": "error",
+    "coc.preferences.formatOnSaveFiletypes": ["json"],
+    "codeLens.enable": true,
+    "diagnostic.signOffset": 1,
+    "diagnostic.errorSign": "\uf467",
+    "diagnostic.warningSign": "\uf071",
+    "diagnostic.infoSign": "\uf129",
+    "diagnostic.hintSign": "\uf864",
+    "diagnostic.displayByAle": false,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.refreshAfterSave": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+    "diagnostic.virtualText": true,
+    "explorer.buffer.showHiddenBuffers": false,
+    "explorer.file.column.clip.copy": "",
+    "explorer.file.column.git.showIgnored": true,
     "explorer.file.column.indent.indentLine": true,
+    "explorer.file.showHiddenFiles": true,
     "explorer.icon.collapsed": "",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.expanded": "",
     "explorer.icon.hidden": "",
     "explorer.icon.selected": "",
-    "explorer.file.column.clip.copy": "",
+    "explorer.quitOnOpen": true,
+    "explorer.sources": [
+        {
+            "name": "bookmark",
+            "expand": false
+        },
+        {
+            "name": "buffer",
+            "expand": false
+        },
+        {
+            "name": "file",
+            "expand": true
+        }
+    ],
     "explorer.width": 28,
+    "json.format.enable": true,
     "languageserver": {
         "golang": {
             "command": "gopls",
@@ -24,8 +56,14 @@
         },
         "clangd": {
             "command": "clangd",
-            "args": ["--background-index"],
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "args": ["--background-index", "--fallback-style=LLVM"],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
             "filetypes": ["c", "cpp", "objc", "objcpp"]
         },
         "dockerfile": {
@@ -51,6 +89,27 @@
             "filetypes": ["lua"]
         }
     },
+    "list.previewHighlightGroup": "Statement",
+    "list.nextKeymap": "<C-j>",
+    "list.previousKeymap": "<C-k>",
+    "prettier.disableLanguages": [],
+    "prettier.eslintIntegration": true,
+    "prettier.formatterPriority": 1,
+    "prettier.printWidth": 80,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
+    "python.autoComplete.addBrackets": true,
+    "python.jediEnabled": false,
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
+    ],
+    "snippets.ultisnips.enable": true,
+    "snippets.ultisnips.directories": [
+        "$HOME/.vim/plugged/ultisnips/",
+        "$HOME/.vim/plugged/vim-snippets/UltiSnips/"
+    ],
     "suggest.detailMaxLength": 60,
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
@@ -89,5 +148,6 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
-    "python.jediPath": "~/.local/lib/python3.8/site-packages"
+    "yaml.format.enable": true,
+    "yank.enableCompletion": true
 }

@@ -503,8 +503,9 @@ set shortmess+=c
 set ttyfast
 set lazyredraw
 
-set updatetime=1000
-" set ttimeoutlen=0
+set updatetime=750
+set timeoutlen=600
+set ttimeoutlen=0
 " set notimeout
 
 " > auto read changed file
