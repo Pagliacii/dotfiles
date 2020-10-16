@@ -354,7 +354,6 @@ set ruler
 
 " >> cursor configs
 set cursorline " add a whole line underline follow the cursor
-set cursorlineopt=screenline,number
 set cursorcolumn
 
 let no_buffers_menu=1
@@ -382,6 +381,7 @@ if has("gui_running")
         set transparency=7
     endif
     hi Normal guifg=#f6f3e8 guibg=#242424
+    set cursorlineopt=screenline,number
 else
     " Set the terminal default background and foreground colors, thereby
     " improving performance by not needing to set these colors on empty cells.
@@ -517,6 +517,12 @@ set regexpengine=1
 " > allow edit anywhere
 set virtualedit=all
 
+" > setup viminfo
+set viminfo='100,n$HOME/.vim/files/info/viminfo
+
+" change the foreground color of comments
+hi Comment cterm=None term=None guifg=#c0c0c0 guibg=#303030
+
 " > Copy/Paste/Cut
 " if has('unnamedplus')
     " set clipboard=unnamed,unnamedplus
@@ -590,6 +596,7 @@ call s:LoadConfigFileByName('vim-syntastic.conf')
 call s:LoadConfigFileByName('vim-signature.conf')
 
 " > coc.nvim
+let g:coc_disable_startup_warning = 1
 call s:LoadConfigFileByName('coc-nvim.conf')
 
 " > fzf.vim
