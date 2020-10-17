@@ -253,6 +253,8 @@ Plug 'tpope/vim-capslock'
 Plug 'wakatime/vim-wakatime'
 " >> A vim plugin to access cheat.sh sheets
 Plug 'dbeniamine/cheat.sh-vim'
+" >> :tulip: Vim plugin that shows keybindings in popup
+Plug 'liuchengxu/vim-which-key'
 
 let g:make = 'gmake'
 if exists('make')
@@ -667,6 +669,9 @@ call s:LoadConfigFileByName('undotree.conf')
 
 " > calendar.vim
 call s:LoadConfigFileByName('calendar.conf')
+
+" > vim-which-key
+call s:LoadConfigFileByName('vim-which-key.conf')
 
 " }}}
 
