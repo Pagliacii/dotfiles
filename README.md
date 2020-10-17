@@ -9,6 +9,6 @@ $ git clone https://github.com/Pagliacii/dotfiles
 $ cd dotfiles
 # link all
 $ stow
-# or link someone config, e.g. vim
+# or link some config, e.g. vim
 $ stow vim
 ```
