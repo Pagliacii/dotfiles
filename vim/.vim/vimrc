@@ -670,14 +670,13 @@ call s:LoadConfigFileByName('undotree.conf')
 " > calendar.vim
 call s:LoadConfigFileByName('calendar.conf')
 
-" > vim-which-key
-call s:LoadConfigFileByName('vim-which-key.conf')
-
 " }}}
 
 " ================ Mappings ================ {{{
 
 call s:LoadConfigFileByName('map.conf')
+" > vim-which-key
+call s:LoadConfigFileByName('vim-which-key.conf')
 
 nnoremap \r :call AutoRun()<CR>
 
