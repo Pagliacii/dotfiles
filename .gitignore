@@ -5,6 +5,3 @@ tags
 vim/.vim/plugged
 vim/.vim/sessions
 vim/.vim/view
-
-# Ranger plugins
-ranger/.config/ranger/plugins
