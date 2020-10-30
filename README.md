@@ -5,7 +5,7 @@ Here are some configuration files of my Linux environment. Link to home director
 ### Usage
 
 ```shell
-$ git clone https://github.com/Pagliacii/dotfiles
+$ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
 $ cd dotfiles
 # link all
 $ stow
