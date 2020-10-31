@@ -1,0 +1,13 @@
+# ~/.config/starship.toml
+
+[directory]
+format = "\\[[$path]($style)[$read_only]($read_only_style)\\] "
+truncation_length = 16
+truncation_symbol = "../"
+
+[hostname]
+ssh_only = true
+format = "@[$hostname](bold blue) "
+
+[username]
+format = "[$user]($style)"
