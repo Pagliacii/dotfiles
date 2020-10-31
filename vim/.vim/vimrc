@@ -523,7 +523,7 @@ set virtualedit=all
 set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 " change the foreground color of comments
-hi Comment cterm=None term=None guifg=#c0c0c0 guibg=NONE
+hi Comment cterm=None term=None guifg=DarkCyan guibg=NONE
 
 " > Copy/Paste/Cut
 " if has('unnamedplus')
