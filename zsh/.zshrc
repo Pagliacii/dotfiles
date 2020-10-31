@@ -2,19 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/pagliacii/.oh-my-zsh"
+export ZSH="/home/$(whoami)/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-theme="spaceship"
-[ "$theme" = "powerlevel9k/powerlevel9k" ] && [ -f "$HOME/.config/powerlevel9k/config" ] && source $HOME/.config/powerlevel9k/config
-ZSH_THEME="$theme"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -35,7 +33,7 @@ ZSH_THEME="$theme"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -66,23 +64,63 @@ ZSH_THEME="$theme"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    # autojump
+    alias-finder
+    autojump
+    branch
+    brew
+    cargo
     colored-man-pages
+    colorize
+    command-not-found
+    common-aliases
+    cp
+    emacs
     emoji
+    encode64
+    extract
+    fancy-ctrl-z
+    fd
     fzf-tab
     git
+    git-auto-fetch
+    gitignore
+    golang
+    httpie
+    npm
+    pip
+    pipenv
+    pyenv
     python
-    vscode
-    wakatime
-    z
+    ripgrep
+    rust
+    rustup
+    safe-paste
+    systemd
+    thefuck
+    ubuntu
+    ufw
+    urltools
+    yarn
+    zsh_reload
     zsh-autosuggestions
+    zsh-nvm
     zsh-syntax-highlighting
 )
+
+# Plugins configuration
+ZSH_COLORIZE_TOOL=pygmentize
+ZSH_COLORIZE_STYLE="monokai"
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
+
+if command -v pyenv 1> /dev/null 2>&1; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,10 +129,13 @@ source $ZSH/oh-my-zsh.sh
 # History command configurations
 HISTSIZE=10000000
 SAVEHIST=10000000
-setopt HIST_IGNORE_ALL_DUPS # ignore duplicated commands history list
-setopt SHARE_HISTORY        # share command history data
+## ignore duplicated commands history list
+setopt HIST_IGNORE_ALL_DUPS
+## share command history data
+setopt SHARE_HISTORY
 
-autoload -Uz zcalc          # load the zcalc, q for quit
+# Load the zcalc, q for quit
+autoload -Uz zcalc
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -117,67 +158,45 @@ autoload -Uz zcalc          # load the zcalc, q for quit
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+# alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias reload="source ~/.zshrc && clear"
-alias zshconfig="vim ~/.zshrc"
-alias ls="$(which lsd)"
-alias cat="$(which bat)"
-alias less="$(which bat)"
-alias nano="$(which kibi)"
-alias hexdump="$(which hexyl)"
-alias lc="$(which licensor)"
-alias http-server="$(which miniserve) -c ArchLinux"
-alias vi="$(which vim)"
 
-# export GPG_TTY="$(tty)"
-# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# gpgconf --launch gpg-agent
+# Custom environment variables
+export PYENV_ROOT="$HOME/.pyenv"
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+export RANGER_LOAD_DEFAULT_RC=false
+export GOPATH="$HOME/go"
 
-# if [ -f "${HOME}/.gpg-agent-info" ]; then
-# 	source "${HOME}/.gpg-agent-info"
-# 	export GPG_AGENT_INFO
-# 	export SSH_AUTH_SOCK
-# 	export SSH_AGENT_PIG
-# else
-# 	eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
-# fi
+# PATH
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
-# export GOPATH=$HOME/go
-# export GOBIN=$GOPATH/bin
-# export PATH=$GOBIN:$GOROOT/bin:$PATH
-# export PATH=$HOME/.local/bin:$PATH
+eval "$($(brew --prefix)/bin/starship init zsh)"
 
-# FZF Options
-export FZF_DEFAULT_COMMAND='rg --files --no-messages --no-ignore-vcs --hidden --follow --glob "!{node_modules,.git,.cache}"'
+# FZF configurations
+export FZF_DEFAULT_COMMAND='rg --files --no-messages --no-ignore-vcs --hidden --follow --glob "!{node_modules,.git,.cache,.vscode-server}"'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || bat {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up"'
+export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} 2> /dev/null || coderay {} || rougify {} || bat --theme=ansi-dark --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up"'
+export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200" --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up"'
 export FZF_TMUX_HEIGHT='80%'
 export FZF_COMPLETION_TRIGGER='**'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Ranger
-alias ra=$(which ranger)
-export RANGER_LOAD_DEFAULT_RC=FALSE
+# Custom aliases
+alias fd="$(brew --prefix)/bin/fd"
+alias hexdump="hexyl"
+alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
+alias lc="licensor"
+alias ra="ranger"
+## using lsd to replace the default ls
+alias ls="$(brew --prefix)/bin/lsd"
+alias l="ls -alFh"
+alias ll="ls -l"
+alias la="ls -a"
+alias lla="ls -la"
+alias lt="ls --tree"
 
-# Rust
-export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
-# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-
-export VISUAL="$(which vim)"
-export EDITOR=$VISUAL
-
-# node.js
-# source /usr/share/nvm/init-nvm.sh
-
-fpath=(~/.zsh.d/ $fpath)
-fpath+=~/.zfunc
-compinit
-
-# pipenv
-eval "$(pipenv --completion)"
-# thefuck
 eval $(thefuck --alias)
-# starship
-eval "$(starship init zsh)"
