@@ -110,6 +110,7 @@ plugins=(
     zsh-autosuggestions
     zsh-nvm
     zsh-syntax-highlighting
+    zsh-wakatime
 )
 
 # Plugins configuration
