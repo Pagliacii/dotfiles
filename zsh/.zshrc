@@ -201,6 +201,6 @@ alias la="ls -a"
 alias lla="ls -la"
 alias lt="ls --tree"
 ## improve git
-alias gcof='git checkout "$(git branch | fzf)"'
+alias gcof='git checkout $(git branch | fzf)'
 
 eval $(thefuck --alias)
