@@ -187,6 +187,10 @@ export FZF_TMUX_HEIGHT='80%'
 export FZF_COMPLETION_TRIGGER='**'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Editor
+export EDITOR="vim"
+export VISUAL='emacsclient -c -n -a ""'
+
 # Custom aliases
 alias checkemacs="ps aux | rg -i emacs"
 alias fd="$(brew --prefix)/bin/fd"
