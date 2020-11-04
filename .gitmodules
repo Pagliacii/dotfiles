@@ -10,3 +10,6 @@
 [submodule "zsh/.oh-my-zsh/custom/plugins/zsh-wakatime"]
 	path = zsh/.oh-my-zsh/custom/plugins/zsh-wakatime
 	url = https://github.com/wbingli/zsh-wakatime
+[submodule "zsh/.oh-my-zsh/custom/plugins/fzf-tab"]
+	path = zsh/.oh-my-zsh/custom/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
