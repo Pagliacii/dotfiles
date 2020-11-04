@@ -131,3 +131,20 @@
   :config
   (elfeed-org)
   (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org")))
+
+;; Evaluate Elisp expressions, from Derek Taylor
+(map! :leader
+      :desc "Evaluate elisp in buffer"
+      "e b" #'eval-buffer
+      :leader
+      :desc "Evaluate the defun containing or after point"
+      "e d" #'eval-defun
+      :leader
+      :desc "Evaluate an elisp expression"
+      "e e" #'eval-expression
+      :leader
+      :desc "Evaluate elisp expression before point"
+      "e l" #'eval-last-sexp
+      :leader
+      :desc "Evaluate elisp in region"
+      "e r" #'eval-region)
