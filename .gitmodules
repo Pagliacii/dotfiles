@@ -7,3 +7,6 @@
 [submodule "doom-emacs/.emacs.d"]
 	path = doom-emacs/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-wakatime"]
+	path = zsh/.oh-my-zsh/custom/plugins/zsh-wakatime
+	url = https://github.com/wbingli/zsh-wakatime
