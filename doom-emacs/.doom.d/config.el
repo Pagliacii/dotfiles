@@ -109,7 +109,7 @@
   ;; English font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "FuraCode NF" 24))
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "FuraCode Nerd Font" 24))
         ;; Chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
