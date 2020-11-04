@@ -6,8 +6,9 @@ truncation_length = 16
 truncation_symbol = "../"
 
 [hostname]
-ssh_only = true
+ssh_only = false
 format = "@[$hostname](bold blue) "
 
 [username]
 format = "[$user]($style)"
+show_always = true
