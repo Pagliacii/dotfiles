@@ -187,6 +187,7 @@ export FZF_COMPLETION_TRIGGER='**'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom aliases
+alias checkemacs="ps aux | rg -i emacs"
 alias fd="$(brew --prefix)/bin/fd"
 alias hexdump="hexyl"
 alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
