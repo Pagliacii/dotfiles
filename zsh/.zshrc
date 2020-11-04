@@ -92,6 +92,7 @@ plugins=(
     golang
     httpie
     npm
+    npx
     pip
     pipenv
     pyenv
