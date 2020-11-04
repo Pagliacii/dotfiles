@@ -28,5 +28,7 @@ $ ~/.emacs.d/bin/doom doctor
 # add `~/.emacs.d/bin` to your PATH envvar
 $ echo 'export PATH="$HOME/.emacs.d/bin:$PATH"' >> ~/.zshrc
 $ source ~/.zshrc
+# download some fonts to ~/.local/share/fonts and run command below
+$ fc-cache -vf ~/.local/share/fonts
 ```
 
