@@ -7,3 +7,18 @@
 [submodule "doom-emacs/.emacs.d"]
 	path = doom-emacs/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-wakatime"]
+	path = zsh/.oh-my-zsh/custom/plugins/zsh-wakatime
+	url = https://github.com/wbingli/zsh-wakatime
+[submodule "zsh/.oh-my-zsh/custom/plugins/fzf-tab"]
+	path = zsh/.oh-my-zsh/custom/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+	path = zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/.oh-my-zsh/custom/plugins/zsh-nvm"]
+	path = zsh/.oh-my-zsh/custom/plugins/zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm
