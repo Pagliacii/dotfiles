@@ -172,6 +172,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 eval "$($(brew --prefix)/bin/starship init zsh)"
 
@@ -186,6 +187,7 @@ export FZF_COMPLETION_TRIGGER='**'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom aliases
+alias checkemacs="ps aux | rg -i emacs"
 alias fd="$(brew --prefix)/bin/fd"
 alias hexdump="hexyl"
 alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
