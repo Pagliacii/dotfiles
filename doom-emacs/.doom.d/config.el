@@ -21,9 +21,9 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 24)
-      doom-big-font (font-spec :family "FuraCode Nerd Font" :size 47))
+(setq doom-font (font-spec :family "FuraCode Nerd Font" :size 32)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 32)
+      doom-big-font (font-spec :family "FuraCode Nerd Font" :size 64))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -109,7 +109,7 @@
   ;; English font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "FuraCode Nerd Font" 24))
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "FuraCode Nerd Font" 32))
         ;; Chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
@@ -148,3 +148,9 @@
       :leader
       :desc "Evaluate elisp in region"
       "e r" #'eval-region)
+
+(use-package! wakatime-mode
+  :init
+  (setq wakatime-cli-path (executable-find "wakatime"))
+  :config
+  (global-wakatime-mode))
