@@ -353,6 +353,7 @@ syntax on
 set number " enable line number
 set relativenumber " enable relative line number
 set ruler
+set showmatch " for highlighting matching parentheses
 
 " >> cursor configs
 set cursorline " add a whole line underline follow the cursor
