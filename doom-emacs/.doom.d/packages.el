@@ -52,3 +52,4 @@
 (package! evil-tutor)
 (package! rainbow-mode)
 (package! tldr)
+(package! wakatime-mode)
