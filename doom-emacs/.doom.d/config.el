@@ -154,3 +154,11 @@
   (setq wakatime-cli-path (executable-find "wakatime"))
   :config
   (global-wakatime-mode))
+
+;; LSP-mode with clangd
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
