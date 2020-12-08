@@ -2,55 +2,51 @@
 
 * root :elfeed:
 ** Programming :programming:
-*** [[https://blog.rust-lang.org/feed.xml][The Rust Blog]] :rust:
-*** [[https://this-week-in-rust.org/rss.xml][This Week in Rust]] :rust:
-*** [[https://blog.golang.org/feed.atom?format=xml][The Go Programming Language Blog]] :golang:
-** Reddit :reddit:
-*** [[https://www.reddit.com/r/rust.rss][The Rust Programming Language]] :rust:
-*** [[https://www.reddit.com/r/python.rss][Python]] :python:
-*** [[https://www.reddit.com/r/golang.rss][The Go Programming Language]] :golang:
-** Blog :blog:
-*** [[http://www.blog.pythonlibrary.org/feed/][The Mouse Vs. The Python]] :python:
-*** [[https://realpython.com/atom.xml?format=xml][Real Python]] :python:
-*** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]] :software_engineering:
-*** [[http://www.steves-internet-guide.com/feed/][Steve's Internet Guide]] :network:
+*** [[http://journal.stuffwithstuff.com/atom.xml][Bob Nystrom]] :blog:
 *** [[https://bootlin.com/feed/][Bootlin]] :linux:
+*** [[https://www.chrisatmachine.com/rss.xml][Chris@Machine]] :blog:
+*** [[https://blog.codinghorror.com/rss/][Coding Horror]] :blog:
+*** [[https://bruceeckel.com/index.xml][Computing Thoughts]] :blog:
+*** [[https://jlongster.com/atom.xml][James Long]] :blog:
+*** [[https://jvns.ca/atom.xml][Julia Evans]] :blog:
+*** [[https://julien.danjou.info/rss/][Julien Danjou]] :python:
+*** [[https://engineering.khanacademy.org/rss.xml][Khan Academy Engineering]] :blog:
+*** [[http://brooker.co.za/blog/atom.xml][Marc Brooker]] :blog:
+*** [[https://martinfowler.com/feed.atom][Martin Fowler]] :blog:
+*** [[https://martinheinz.dev/rss/][Martin Heinz]] :python:
+*** [[https://blog.miguelgrinberg.com/feed][Miguel Grinberg]] :python:
+*** [[http://www.blog.pythonlibrary.org/feed/][The Mouse Vs. The Python]] :python:
+*** [[https://hacks.mozilla.org/feed/][Mozilla Hacks]] :blog:
+*** [[http://www.aaronsw.com/2002/feeds/pgessays.rss][Paul Graham]] :blog:
+*** [[https://blog.ploeh.dk/rss.xml][ploeh blog]] :software_design:
+*** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]] :software_engineering:
+*** [[https://realpython.com/atom.xml?format=xml][Real Python]] :python:
+*** [[https://blog.sulami.xyz/atom.xml][sulami]] :blog:
+*** [[https://snarky.ca/rss/][Tall, Snarky Canadian]] :python:
+*** [[https://tkainrad.dev/posts/index.xml][Thomas Kainrad]] :blog:
+*** [[https://without.boats/index.xml][Without boats]] :rust:
+** News :news:
+*** [[https://news.ycombinator.com/rss][Hacker News]]
+*** [[https://lobste.rs/rss][Lobsters]]
+*** [[https://kerkour.fr/feed.xml][Open Source Weekly]] :open_source:
+*** [[https://pycoders.com/feed/YBsoaKWj][PyCoder's Weekly]] :python:
+*** [[https://this-week-in-rust.org/rss.xml][This Week in Rust]] :rust:
+** Network :network:
+*** [[http://www.steves-internet-guide.com/feed/][Steve's Internet Guide]] :network:
+** Design :design:
+*** [[https://anyway.fm/news/rss.xml][安妮薇时报 Anyway.News]] :design:
+** Language Blog :programming_language:
+*** [[https://blog.rust-lang.org/feed.xml][The Rust Blog]] :rust:
+*** [[https://blog.golang.org/feed.atom?format=xml][The Go Programming Language Blog]] :golang:
+** Chinese Blog :chinese_blog:
 *** [[http://www.ruanyifeng.com/blog/atom.xml][阮一峰的网络日志]] :blog:
 *** [[https://coolshell.cn/feed][酷 壳 - CoolShell]] :blog:
-*** [[https://blog.ploeh.dk/rss.xml][ploeh blog]] :software_design:
-*** [[https://jvns.ca/atom.xml][Julia Evans]] :blog:
-*** [[https://blog.miguelgrinberg.com/feed][Miguel Grinberg]] :python:
-*** [[https://engineering.khanacademy.org/rss.xml][Khan Academy Engineering]] :blog:
-*** [[https://tkainrad.dev/posts/index.xml][Thomas Kainrad]] :blog:
-*** [[https://jlongster.com/atom.xml][James Long]] :blog:
-*** [[http://brooker.co.za/blog/atom.xml][Marc Brooker]] :blog:
-*** [[http://journal.stuffwithstuff.com/atom.xml][Bob Nystrom]] :blog:
-*** [[https://martinfowler.com/feed.atom][Martin Fowler]] :blog:
-*** [[https://stjepang.github.io/feed.xml][Stjepan]] :blog:
-*** [[https://without.boats/index.xml][Without boats]] :rust:
-*** [[https://snarky.ca/rss/][Tall, Snarky Canadian]] :python:
-*** [[https://blog.sulami.xyz/atom.xml][sulami]] :blog:
 *** [[https://oldj.net/feed/][老杰的博客]] :blog:
-*** [[https://www.phodal.com/blog/feeds/rss/][Phodal :blog:]]
-*** [[https://julien.danjou.info/rss/][Julien Danjou]] :python:
-*** [[http://feed.cnblogs.com/blog/sitehome/rss][正交分解 | feilong's blog]] :blog:
+*** [[https://www.phodal.com/blog/feeds/rss/][Phodal]] :blog:
 *** [[https://fuckcloudnative.io/index.xml][云原生实验室]] :cloud:
-*** [[https://hacks.mozilla.org/feed/][Mozilla Hacks]] :blog:
-*** [[https://blog.codinghorror.com/rss/][Coding Horror]] :blog:
-*** [[https://martinheinz.dev/rss/][Martin Heinz]] :python:
 *** [[https://draveness.me/feed.xml][面向信仰编程]] :golang:
-*** [[https://www.chrisatmachine.com/rss.xml][Chris@Machine]] :blog:
 *** [[http://blog.jiayuanzhang.com/index.xml][Jiayuan Thoughts]] :blog:
-*** [[http://www.aaronsw.com/2002/feeds/pgessays.rss][Paul Graham]] :blog:
 *** [[https://dongwm.com/atom.xml][董伟明]] :python:
-** News :news:
-*** [[http://pyfound.blogspot.com/atom.xml][Python Software Foundation News]] :python:
-*** [[https://distrowatch.com/news/dwd.xml][DistroWatch]] :linux_distro:
-*** [[https://suckless.org/atom.xml][suckless.org News]] :software:
-*** [[https://www.williamlong.info/rss.xml][月光博客]] :tech:
-*** [[https://pycoders.com/feed/YBsoaKWj][PyCoder's Weekly]] :python:
-*** [[https://kerkour.fr/feed.xml][Open Source Weekly]] :open_source:
-*** [[https://www.archlinux.org/feeds/news/][Arch Linux: Recent news updates]] :linux:
-*** [[https://insights.thoughtworks.cn/feed/][ThoughtWorks洞见]] :tech:
-*** [[https://www.learncloudnative.com/rss.xml][Learn Cloud Native]] :cloud:
-*** [[https://anyway.fm/news/rss.xml][安妮薇时报 Anyway.News]] :design:
+*** [[https://cjting.me/index.xml][CJ Ting's Blog]] :blog:
+** Math :math:
+*** [https://fwjmath.wordpress.com/feed/][fwjmath] :blog:
