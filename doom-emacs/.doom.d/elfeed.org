@@ -25,6 +25,7 @@
 *** [[https://snarky.ca/rss/][Tall, Snarky Canadian]] :python:
 *** [[https://tkainrad.dev/posts/index.xml][Thomas Kainrad]] :blog:
 *** [[https://without.boats/index.xml][Without boats]] :rust:
+*** [[https://preslav.me/posts/rss/][Preslav Rachev]] :engineer:
 ** News :news:
 *** [[https://news.ycombinator.com/rss][Hacker News]]
 *** [[https://lobste.rs/rss][Lobsters]]
