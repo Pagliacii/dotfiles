@@ -7,7 +7,6 @@
 *** [[https://www.chrisatmachine.com/rss.xml][Chris@Machine]] :blog:
 *** [[https://blog.codinghorror.com/rss/][Coding Horror]] :blog:
 *** [[https://bruceeckel.com/index.xml][Computing Thoughts]] :blog:
-*** [[https://jlongster.com/atom.xml][James Long]] :blog:
 *** [[https://jvns.ca/atom.xml][Julia Evans]] :blog:
 *** [[https://julien.danjou.info/rss/][Julien Danjou]] :python:
 *** [[https://engineering.khanacademy.org/rss.xml][Khan Academy Engineering]] :blog:
@@ -15,7 +14,6 @@
 *** [[https://martinfowler.com/feed.atom][Martin Fowler]] :blog:
 *** [[https://martinheinz.dev/rss/][Martin Heinz]] :python:
 *** [[https://blog.miguelgrinberg.com/feed][Miguel Grinberg]] :python:
-*** [[http://www.blog.pythonlibrary.org/feed/][The Mouse Vs. The Python]] :python:
 *** [[https://hacks.mozilla.org/feed/][Mozilla Hacks]] :blog:
 *** [[http://www.aaronsw.com/2002/feeds/pgessays.rss][Paul Graham]] :blog:
 *** [[https://blog.ploeh.dk/rss.xml][ploeh blog]] :software_design:
@@ -26,12 +24,6 @@
 *** [[https://tkainrad.dev/posts/index.xml][Thomas Kainrad]] :blog:
 *** [[https://without.boats/index.xml][Without boats]] :rust:
 *** [[https://preslav.me/posts/rss/][Preslav Rachev]] :engineer:
-** News :news:
-*** [[https://news.ycombinator.com/rss][Hacker News]]
-*** [[https://lobste.rs/rss][Lobsters]]
-*** [[https://kerkour.fr/feed.xml][Open Source Weekly]] :open_source:
-*** [[https://pycoders.com/feed/YBsoaKWj][PyCoder's Weekly]] :python:
-*** [[https://this-week-in-rust.org/rss.xml][This Week in Rust]] :rust:
 ** Network :network:
 *** [[http://www.steves-internet-guide.com/feed/][Steve's Internet Guide]] :network:
 ** Design :design:
