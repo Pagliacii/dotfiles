@@ -94,6 +94,7 @@ plugins=(
     npm
     pip
     pipenv
+    poetry
     pyenv
     python
     ripgrep
@@ -174,6 +175,7 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 eval "$($(brew --prefix)/bin/starship init zsh)"
 
@@ -210,3 +212,11 @@ alias gcof='git checkout $(git branch | fzf)'
 alias code-changes="git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
 
 eval $(thefuck --alias)
+
+# Custom functions
+function c() {
+    curl -ks cht\.sh/$(
+        curl -ks cht\.sh/:list |\
+            IFS=+ fzf --preview 'curl -ks cht.sh/{}' -q "$*" \
+            --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up")
+}
