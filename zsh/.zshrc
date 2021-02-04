@@ -220,3 +220,12 @@ function c() {
             IFS=+ fzf --preview 'curl -ks cht.sh/{}' -q "$*" \
             --bind "ctrl-n:preview-down,ctrl-p:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up")
 }
+
+# Load the local rc file
+export LOCAL_ZSHRC_LOADED=false
+if [[ -f ~/.zshrc_local ]]
+then
+    export LOCAL_ZSHRC_LOADED=true
+    source ~/.zshrc_local
+fi
+
