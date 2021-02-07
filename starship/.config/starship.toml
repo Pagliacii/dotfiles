@@ -12,3 +12,7 @@ format = "@[$hostname](bold blue) "
 [username]
 format = "[$user]($style)"
 show_always = true
+
+[battery]
+disabled = true
+
