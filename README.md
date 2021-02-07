@@ -56,3 +56,22 @@ $ source ~/.zshrc
 $ fc-cache -vf ~/.local/share/fonts
 ```
 
+### Install useful tools
+
+```shell
+# Install fzf via homebrew or any way you like
+$ brew install fzf
+# To install useful key bindings and fuzzy completion
+$ $(brew --prefix)/opt/fzf/install
+# Install bat
+$ brew install bat
+# Install ripgrep
+$ brew install ripgrep
+# Install fd
+$ brew install fd
+# Install hyperfine
+$ brew install hyperfine
+# Install hexyl
+$ brew install hexyl
+```
+
