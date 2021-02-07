@@ -13,9 +13,33 @@ $ stow
 $ stow vim
 ```
 
+### Install Oh my zsh
+
+```shell
+# Make sure you have curl (or wget) and git installed
+# Install homebrew
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Install starship, thefuck and autojump
+$ brew install starship thefuck autojump
+# Use any way you like to install ZSH
+# Install Oh My ZSH
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+$ rm ~/.zshrc
+$ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
+# or
+# $ git clone https://github.com/Pagliacii/dotfiles
+# $ cd dotfiles
+# $ git submodule update --init
+$ cd dotfiles
+$ stow zsh
+$ stow starship
+$ source ~/.zshrc
+```
+
 ### Install Doom Emacs
 
 ```shell
+# Make sure you have emacs installed
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
 $ cd dotfiles
 # link
