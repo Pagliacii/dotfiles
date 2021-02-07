@@ -39,18 +39,24 @@ $ source ~/.zshrc
 ## Prepare Python Dev Env
 
 ```shell
-# Install pyenv
-$ brew install pyenv
+# Install pyenv and pyenv-virtualenv
+$ brew install pyenv pyenv-virtualenv
 # Install Python build dependencies before attempting to install a new Python version. See pyenv docs
 # Install the specific version of Python, replace <version> with the actual version
 $ pyenv install <version>
 # You can list all supported versions by `pyenv install --list`
+# Install the Python dev package like: python3-dev
 
 # link pip to replace the pypi source
 $ cd dotfiles && stow pip
 
 # Install poetry
 $ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+# If the last step was stuck at downloading the poetry package, you can download the package manually
+# See https://github.com/python-poetry/poetry/releases for more details.
+# And run commands below to install it manually
+$ wget https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+$ python get-poetry.py --file /path/to/poetry-<version>-<platform>.tar.gz
 # Verify
 $ poetry --version
 # Enable tab completion for Oh My Zsh
@@ -59,6 +65,10 @@ $ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
 
 # Install IPython
 $ pip install ipython
+# Install pipx
+$ brew install pipx
+$ pipx ensurepath
+$ pipx completions
 ```
 
 ## Install Doom Emacs
@@ -98,5 +108,9 @@ $ brew install fd
 $ brew install hyperfine
 # Install hexyl
 $ brew install hexyl
+# Install lsd
+$ brew install lsd
+# Install pygments for colorize
+$ brew install pygments
 ```
 
