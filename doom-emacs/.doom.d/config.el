@@ -162,3 +162,8 @@
                                 "--completion-style=detailed"
                                 "--header-insertion=never"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+(after! geiser
+  :config
+  (setq geiser-default-implementation 'racket)
+  (setq geiser-guile-binary (executable-find "racket")))
