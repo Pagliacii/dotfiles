@@ -214,6 +214,10 @@ alias code-changes="git log --format=format: --name-only | egrep -v '^$' | sort 
 
 eval $(thefuck --alias)
 
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
 # Custom functions
 function c() {
     curl -ks cht\.sh/$(
