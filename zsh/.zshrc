@@ -168,6 +168,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export RANGER_LOAD_DEFAULT_RC=false
 export GOPATH="$HOME/go"
+export BAT_THEME="Dracula"
 
 # PATH
 export PATH="$HOME/.local/bin:$PATH"

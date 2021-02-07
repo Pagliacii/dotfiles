@@ -1,8 +1,8 @@
-## Dotfiles
+# Dotfiles
 
 Here are some configuration files of my Linux environment. Link to home directory by [GNU Stow](https://www.gnu.org/software/stow/).
 
-### Usage
+## Usage
 
 ```shell
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
@@ -13,7 +13,7 @@ $ stow
 $ stow vim
 ```
 
-### Install Oh my zsh
+## Install Oh My Zsh
 
 ```shell
 # Make sure you have curl (or wget) and git installed
@@ -21,8 +21,8 @@ $ stow vim
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # Install starship, thefuck and autojump
 $ brew install starship thefuck autojump
-# Use any way you like to install ZSH
-# Install Oh My ZSH
+# Use any way you like to install Zsh
+# Install Oh My Zsh
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 $ rm ~/.zshrc
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
@@ -36,7 +36,32 @@ $ stow starship
 $ source ~/.zshrc
 ```
 
-### Install Doom Emacs
+## Prepare Python Dev Env
+
+```shell
+# Install pyenv
+$ brew install pyenv
+# Install Python build dependencies before attempting to install a new Python version. See pyenv docs
+# Install the specific version of Python, replace <version> with the actual version
+$ pyenv install <version>
+# You can list all supported versions by `pyenv install --list`
+
+# link pip to replace the pypi source
+$ cd dotfiles && stow pip
+
+# Install poetry
+$ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+# Verify
+$ poetry --version
+# Enable tab completion for Oh My Zsh
+$ md $ZSH_CUSTOM/plugins/poetry
+$ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
+
+# Install IPython
+$ pip install ipython
+```
+
+## Install Doom Emacs
 
 ```shell
 # Make sure you have emacs installed
@@ -56,7 +81,7 @@ $ source ~/.zshrc
 $ fc-cache -vf ~/.local/share/fonts
 ```
 
-### Install useful tools
+## Install useful tools
 
 ```shell
 # Install fzf via homebrew or any way you like
