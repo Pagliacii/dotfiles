@@ -94,12 +94,13 @@ $ fc-cache -vf ~/.local/share/fonts
 ## Install useful tools
 
 ```shell
-# Install fzf via homebrew or any way you like
+# Install fzf
 $ brew install fzf
 # To install useful key bindings and fuzzy completion
 $ $(brew --prefix)/opt/fzf/install
-# Install bat
-$ brew install bat
+# Install bat and bat-extras
+$ brew tap eth-p/software
+$ brew install bat bat-extras
 # Install ripgrep
 $ brew install ripgrep
 # Install fd
@@ -112,5 +113,23 @@ $ brew install hexyl
 $ brew install lsd
 # Install pygments for colorize
 $ brew install pygments
+# Install tree
+$ brew install tree
+# Install wakatime-cli, then copy and paste your API key into `~/.wakatime.cfg` file
+$ brew install wakatime-cli
+# Install glow
+$ brew install glow
+# Install htop
+$ brew install htop
+# Install bpytop
+$ pip install bpytop --upgrade
+# Install licensor
+$ brew install licensor
+# Install httpie
+$ brew install httpie
+# Install neofetch
+$ brew install neofetch
+# Install navi
+$ proxy brew install navi
 ```
 
