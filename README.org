@@ -1,16 +1,23 @@
-#+TITLE: Pagliacii's dotfiles README
-#+AUTHOR: Jason Huang (Pagliacii)
-#+EMAIL: huangmianrui0310@outlook.com
-#+DATE: <2021-02-10 Wed>
+#+TITLE:       Pagliacii's dotfiles README
+#+AUTHOR:      Jason Huang (Pagliacii)
+#+EMAIL:       huangmianrui0310@outlook.com
+#+DATE:        <2021-02-10 Wed>
 
 #+DESCRIPTION: Recording some installation notes.
-#+KEYWORDS: README, dotfiles
-#+LANGUAGE: en
-#+STARTUP: content
+#+KEYWORDS:    README, dotfiles
+#+LANGUAGE:    en
+#+STARTUP:     content
+
+* Table of Contents :TOC:
+- [[#usage][Usage]]
+- [[#install-oh-my-zsh][Install Oh My Zsh]]
+- [[#prepare-python-development-environment][Prepare Python Development Environment]]
+- [[#install-doom-emacs][Install Doom Emacs]]
+- [[#install-useful-tools][Install useful tools]]
 
 * Usage
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC bash
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
 $ cd dotfiles
 # link all
@@ -19,14 +26,13 @@ $ stow
 $ stow vim
 #+END_SRC
 
-
 * Install Oh My Zsh
 
 Make sure you have curl (or wget) and git installed.
 
 1. Install [[https://brew.sh/][homebrew]] to help you install others quickly.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    #+END_SRC
 
@@ -34,13 +40,13 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 
 3. Install [[https://github.com/ohmyzsh/ohmyzsh][Oh My Zsh]]
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
    #+END_SRC
 
 4. Remove the default ~.zshrc~ file and use stow to link my ~.zshrc~ file.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ rm ~/.zshrc
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
 # or
@@ -57,18 +63,17 @@ $ source ~/.zshrc
 
 5. (*Optional*) Install [[https://starship.rs/][starship]], [[https://github.com/nvbn/thefuck][thefuck]] and [[https://github.com/wting/autojump][autojump]]
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ brew install starship thefuck autojump
 $ stow starship
 $ source ~/.zshrc
    #+END_SRC
 
-
 * Prepare Python Development Environment
 
 1. Use [[https://github.com/pyenv/pyenv][pyenv]] can save your time if you will deal with multiple versions of Python.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ brew install pyenv pyenv-virtualenv
    #+END_SRC
 
@@ -76,7 +81,7 @@ $ brew install pyenv pyenv-virtualenv
 
 3. To install the specific version of Python, replace ~<version>~ with the actual version.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ pyenv install <version>
 # You can list all supported versions by `pyenv install --list`
 # Install the Python dev package like: python3-dev
@@ -84,14 +89,14 @@ $ pyenv install <version>
 
 4. Link to my pip configuration file.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # link pip to replace the pypi source
 $ cd dotfiles && stow pip
    #+END_SRC
 
 5. Use [[https://python-poetry.org][Poetry]] to manage Python dependencies.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # Install poetry
 $ curl -fsSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 # Verify
@@ -104,7 +109,7 @@ $ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
    If the last step is stuck at the poetry package downloading, you can download the package file manually. See the [[https://github.com/python-poetry/poetry/releases][releases page]] for more details. \\
    And run commands below to install it manually
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # Download get-poetry.py
 $ curl -fsSLO https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
 # Download Poetry package file
@@ -115,7 +120,7 @@ $ python get-poetry.py --file /path/to/poetry-<version>-<platform>.tar.gz
 
 6. (*Optional*) Install useful tools
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # Install IPython
 $ pip install ipython
 # Install pipx
@@ -124,12 +129,11 @@ $ pipx ensurepath
 $ pipx completions
    #+END_SRC
 
-
 * Install Doom Emacs
 
 1. Make sure you have emacs installed. Otherwise, you can use ~brew~ to install it.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ brew install emacs
 # Install Doom Emacs required dependencies
 $ brew install git ripgrep
@@ -139,7 +143,7 @@ $ brew install fd
 
 2. Link to my Doom Emacs configuration files.
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ git clone --recurse-submodules https://github.com/Pagliacii/dotfiles
 $ cd dotfiles
 # link
@@ -148,20 +152,20 @@ $ stow doom-emacs
 
 3. Install Doom Emacs
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 $ ~/.emacs.d/bin/doom install
    #+END_SRC
 
 4. Detect your environment
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # fix warnings showing up to improve your Doom Emacs running environment
 $ ~/.emacs.d/bin/doom doctor
    #+END_SRC
 
 5. (*Optional*) Extra works
 
-   #+BEGIN_SRC shell
+   #+BEGIN_SRC bash
 # add `~/.emacs.d/bin` to your PATH envvar
 $ echo 'export PATH="$HOME/.emacs.d/bin:$PATH"' >> ~/.zshrc
 $ source ~/.zshrc
@@ -171,7 +175,7 @@ $ fc-cache -vf ~/.local/share/fonts
 
 * Install useful tools
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC bash
 # Install fzf
 $ brew install fzf
 # To install useful key bindings and fuzzy completion
