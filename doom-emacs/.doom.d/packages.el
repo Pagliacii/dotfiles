@@ -50,6 +50,8 @@
 ;(unpin! t)
 
 (package! evil-tutor)
+(package! ob-mermaid)
+(package! ox-gfm)
 (package! rainbow-mode)
 (package! tldr)
 (package! wakatime-mode)
