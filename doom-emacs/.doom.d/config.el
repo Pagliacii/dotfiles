@@ -167,3 +167,13 @@
   :config
   (setq geiser-default-implementation 'racket)
   (setq geiser-guile-binary (executable-find "racket")))
+
+;; Use minted to highlight code in latex
+(after! ox-latex
+  :config
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-listings 'minted)
+  (setq org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
