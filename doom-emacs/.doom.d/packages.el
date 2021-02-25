@@ -50,6 +50,7 @@
 ;(unpin! t)
 
 (package! evil-tutor)
+(package! graphviz-dot-mode)
 (package! ob-mermaid)
 (package! ox-gfm)
 (package! rainbow-mode)
