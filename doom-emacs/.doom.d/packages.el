@@ -51,6 +51,7 @@
 
 (package! evil-tutor)
 (package! graphviz-dot-mode)
+(package! mermaid-mode)
 (package! ob-mermaid)
 (package! ox-gfm)
 (package! rainbow-mode)
