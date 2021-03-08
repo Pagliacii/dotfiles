@@ -192,6 +192,7 @@
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
+  (rime-user-data-dir (concat doom-emacs-dir "rime/"))
 
   :config
   (setq rime-disable-predicates
@@ -213,22 +214,19 @@
   (set-face-attribute 'rime-candidate-num-face nil :foreground "#5e81ac" :background nil)
   (set-face-attribute 'rime-comment-face       nil :foreground "#8fbcbb" :background nil)
 
-  :bind
-  (:map rime-mode-map
-   ("C-`" . 'rime-send-keybinding)))
-
-;; Fix the last candidate Chinese character disappearing.
-;; See details on https://github.com/DogLooksGood/emacs-rime
-(after! rime
-  (defun +rime--posframe-display-content-a (args)
+  ;; Fix the last candidate Chinese character disappearing.
+  ;; See details on https://github.com/DogLooksGood/emacs-rime
+  (defadvice! +rime--posframe-display-content-a (args)
+    :filter-args #'rime--posframe-display-content
     (cl-destructuring-bind (content) args
       (let ((newresult (if (string-blank-p content)
                            content
                          (concat content "　"))))
         (list newresult))))
 
-  (if (fboundp 'rime--posframe-display-content)
-      (advice-add 'rime--posframe-display-content
-                  :filter-args
-                  #'+rime--posframe-display-content-a)
-    (error "Function `rime--posframe-display-content' is not availabel.")))
+  :bind
+  (:map rime-mode-map
+   ("C-`" . 'rime-send-keybinding)))
+
+(if (file-exists-p! "local-configs.el" doom-private-dir)
+    (load! (concat doom-private-dir "local-configs.el")))
