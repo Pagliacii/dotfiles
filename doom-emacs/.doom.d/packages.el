@@ -55,5 +55,6 @@
 (package! ob-mermaid)
 (package! ox-gfm)
 (package! rainbow-mode)
+(package! rime)
 (package! tldr)
 (package! wakatime-mode)

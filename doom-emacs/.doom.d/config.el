@@ -184,6 +184,51 @@
 
 ;; Setting up graphviz-dot-mode
 (use-package! graphviz-dot-mode
-  :ensure t
   :config
   (setq graphviz-dot-indent-width 4))
+
+;; Use rime to input Chinese
+(use-package! rime
+  :custom
+  (default-input-method "rime")
+  (rime-show-candidate 'posframe)
+
+  :config
+  (setq rime-disable-predicates
+        '(rime-predicate-after-alphabet-char-p
+          rime-predicate-after-ascii-char-p
+          rime-predicate-evil-mode-p
+          rime-predicate-prog-in-code-p
+          rime-predicate-punctuation-after-ascii-p
+          rime-predicate-punctuation-after-space-cc-p
+          rime-predicate-punctuation-line-begin-p
+          rime-predicate-current-uppercase-letter-p
+          rime-predicate-tex-math-or-command-p))
+
+  (setq rime-posframe-properties
+        (list :font "sarasa mono sc"
+              :internal-border-width 1))
+  (set-face-attribute 'rime-default-face       nil :foreground "#81a1c1" :background "#3d424d")
+  (set-face-attribute 'rime-code-face          nil :foreground "#5e81ac" :background nil)
+  (set-face-attribute 'rime-candidate-num-face nil :foreground "#5e81ac" :background nil)
+  (set-face-attribute 'rime-comment-face       nil :foreground "#8fbcbb" :background nil)
+
+  :bind
+  (:map rime-mode-map
+   ("C-`" . 'rime-send-keybinding)))
+
+;; Fix the last candidate Chinese character disappearing.
+;; See details on https://github.com/DogLooksGood/emacs-rime
+(after! rime
+  (defun +rime--posframe-display-content-a (args)
+    (cl-destructuring-bind (content) args
+      (let ((newresult (if (string-blank-p content)
+                           content
+                         (concat content "　"))))
+        (list newresult))))
+
+  (if (fboundp 'rime--posframe-display-content)
+      (advice-add 'rime--posframe-display-content
+                  :filter-args
+                  #'+rime--posframe-display-content-a)
+    (error "Function `rime--posframe-display-content' is not availabel.")))
