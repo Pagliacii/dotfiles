@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; Use UTF-8 as default encoding
+(set-language-environment "UTF-8")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -227,6 +229,44 @@
   :bind
   (:map rime-mode-map
    ("C-`" . 'rime-send-keybinding)))
+
+(use-package! org-roam
+  :config
+  (setq org-roam-db-update-method 'immediate)
+  ;; Recommendation for Windows users for performance
+  ;; https://github.com/org-roam/org-roam/issues/1289#issuecomment-744046148
+  (cond
+    ((member system-type '(windows-nt ms-dos cygwin))
+     (setq org-roam-db-update-method 'immediate)))
+  (org-roam-mode +1)
+  (require 'org-roam-protocol))
+
+(use-package! org-roam-server
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 9090
+        org-roam-server-export-inline-images t
+        org-roam-server-authenticate nil
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf")
+        org-roam-server-network-poll t
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
+
+(defun org-roam-server-open ()
+  "Ensure the server is active, then open the roam graph."
+  (interactive)
+  (smartparens-global-mode -1)
+  (org-roam-server-mode 1)
+  (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))
+  (smartparens-global-mode 1))
+
+;; Automatically enable server-mode
+(after! org-roam
+  (smartparens-global-mode -1)
+  (org-roam-server-mode)
+  (smartparens-global-mode 1))
 
 (if (file-exists-p! "local-configs.el" doom-private-dir)
     (load! (concat doom-private-dir "local-configs.el")))
