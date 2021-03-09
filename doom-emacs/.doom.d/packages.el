@@ -53,6 +53,7 @@
 (package! graphviz-dot-mode)
 (package! mermaid-mode)
 (package! ob-mermaid)
+(package! org-roam-server)
 (package! ox-gfm)
 (package! rainbow-mode)
 (package! rime)
