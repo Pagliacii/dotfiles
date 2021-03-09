@@ -200,6 +200,7 @@ alias fd="$(brew --prefix)/bin/fd"
 alias hexdump="hexyl"
 alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
 alias lc="licensor"
+alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias ra="ranger"
 ## using lsd to replace the default ls
 alias ls="$(brew --prefix)/bin/lsd"
