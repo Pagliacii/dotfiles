@@ -211,10 +211,11 @@
   (setq rime-posframe-properties
         (list :font "sarasa mono sc"
               :internal-border-width 1))
-  (set-face-attribute 'rime-default-face       nil :foreground "#81a1c1" :background "#3d424d")
-  (set-face-attribute 'rime-code-face          nil :foreground "#5e81ac" :background nil)
-  (set-face-attribute 'rime-candidate-num-face nil :foreground "#5e81ac" :background nil)
-  (set-face-attribute 'rime-comment-face       nil :foreground "#8fbcbb" :background nil)
+  (set-face-attribute 'rime-default-face             nil :foreground "#81a1c1" :background "#3d424d")
+  (set-face-attribute 'rime-code-face                nil :foreground "#5e81ac" :background nil)
+  (set-face-attribute 'rime-candidate-num-face       nil :foreground "#5e81ac" :background nil)
+  ;; (set-face-attribute 'rime-comment-face             nil :foreground "#8fbcbb" :background nil)
+  (set-face-attribute 'rime-highlight-candidate-face nil :foreground "#8fbcbb" :background nil)
 
   ;; Fix the last candidate Chinese character disappearing.
   ;; See details on https://github.com/DogLooksGood/emacs-rime
