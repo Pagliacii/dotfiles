@@ -16,3 +16,11 @@ show_always = true
 [battery]
 disabled = true
 
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+vicmd_symbol = "[V](bold green)"
+
+[git_commit]
+only_detached = false
+tag_symbol = "🔖 "
