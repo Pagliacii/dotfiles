@@ -2,7 +2,7 @@
 
 [directory]
 format = "\\[[$path]($style)[$read_only]($read_only_style)\\] "
-truncation_length = 16
+truncation_length = 2
 truncation_symbol = "../"
 
 [hostname]
