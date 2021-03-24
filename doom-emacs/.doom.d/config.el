@@ -39,8 +39,10 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
-
+(setq display-line-numbers-type 'absolute)
+;; Auto-switch to relative line number if activating the visual mode
+(add-hook! 'evil-visual-state-entry-hook #'menu-bar--display-line-numbers-mode-relative)
+(add-hook! 'evil-visual-state-exit-hook #'menu-bar--display-line-numbers-mode-absolute)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -268,6 +270,9 @@
   (smartparens-global-mode -1)
   (org-roam-server-mode)
   (smartparens-global-mode 1))
+
+(add-hook! (gfm-mode markdown-mode) #'mixed-pitch-mode)
+(add-hook! (gfm-mode markdown-mode) #'visual-line-mode #'turn-off-auto-fill)
 
 (if (file-exists-p! "local-configs.el" doom-private-dir)
     (load! (concat doom-private-dir "local-configs.el")))
