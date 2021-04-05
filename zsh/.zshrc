@@ -211,6 +211,8 @@ alias lla="ls -la"
 alias lt="ls --tree"
 ## improve git
 alias gcof='git checkout $(git branch | fzf)'
+alias gbdf='git branch -d $(git branch | fzf)'
+alias gbDf='git branch -D $(git branch | fzf)'
 alias code-changes="git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
 
 eval $(thefuck --alias)
