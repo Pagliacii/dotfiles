@@ -106,7 +106,7 @@ $ md $ZSH_CUSTOM/plugins/poetry
 $ poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
    #+END_SRC
 
-   If the last step is stuck at the poetry package downloading, you can download the package file manually. See the [[https://github.com/python-poetry/poetry/releases][releases page]] for more details. \\
+   If the install step is stuck at the poetry package downloading, you can download the package file manually. See the [[https://github.com/python-poetry/poetry/releases][releases page]] for more details. \\
    And run commands below to install it manually
 
    #+BEGIN_SRC bash
