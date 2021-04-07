@@ -235,7 +235,6 @@
 
 (use-package! org-roam
   :config
-  (setq org-roam-db-update-method 'immediate)
   ;; Recommendation for Windows users for performance
   ;; https://github.com/org-roam/org-roam/issues/1289#issuecomment-744046148
   (cond
