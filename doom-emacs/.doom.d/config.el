@@ -273,5 +273,11 @@
 (add-hook! (gfm-mode markdown-mode) #'mixed-pitch-mode)
 (add-hook! (gfm-mode markdown-mode) #'visual-line-mode #'turn-off-auto-fill)
 
+;; Using imagemagick to render the tikz pictures
+(setq org-preview-latex-default-process 'imagemagick)
+(add-to-list 'org-latex-packages-alist '("" "tikz" t))
+(eval-after-load "preview"
+  '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}"))
+
 (if (file-exists-p! "local-configs.el" doom-private-dir)
     (load! (concat doom-private-dir "local-configs.el")))
