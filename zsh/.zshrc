@@ -121,7 +121,7 @@ ZSH_COLORIZE_STYLE="monokai"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 [ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
 
-if command -v pyenv 1> /dev/null 2>&1; then eval "$(pyenv init -)"; fi
+if command -v pyenv 1> /dev/null 2>&1; then eval "$(pyenv init --path)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 source $ZSH/oh-my-zsh.sh
@@ -192,7 +192,7 @@ export FZF_COMPLETION_TRIGGER='**'
 
 # Editor
 export EDITOR="vim"
-export VISUAL='emacsclient -c -n -a ""'
+export VISUAL='vim'
 
 # Custom aliases
 alias checkemacs="ps aux | rg -i emacs"
