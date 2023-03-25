@@ -8,6 +8,11 @@
 #+LANGUAGE:    en
 #+STARTUP:     content
 
+* Glance
+
+#+CAPTION: This is the WezTerm screenshot.
+[[./img/screenshot.png]]
+
 * Table of Contents :TOC:
 - [[#usage][Usage]]
 - [[#install-oh-my-zsh][Install Oh My Zsh]]
