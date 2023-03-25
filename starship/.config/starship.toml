@@ -1,5 +1,11 @@
 # ~/.config/starship.toml
 
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+# Disable the blank line at the start of the prompt
+add_newline = false
+format = '$time$all'
+
 [directory]
 format = "\\[[$path]($style)[$read_only]($read_only_style)\\] "
 truncation_length = 2
@@ -24,3 +30,9 @@ vicmd_symbol = "[V](bold green)"
 [git_commit]
 only_detached = false
 tag_symbol = "🔖 "
+
+[time]
+disabled = false
+format = '[$time](bright-green) '
+time_format = '%T'
+utc_time_offset = 'local'
