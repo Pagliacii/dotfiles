@@ -135,6 +135,41 @@ if string.find(wezterm.target_triple, "pc%-windows") then
         label = "pwsh",
         args = config.default_prog,
     }}
+    wezterm.on(
+        "gui-startup",
+        function(configs)
+            -- local tab, pane, window = mux.spawn_window(
+            local default_configs = {
+                width = 286,
+                height = 58,
+                position = {
+                    x = 20,
+                    y = 20,
+                    origin = "ActiveScreen",
+                },
+            }
+            mux.spawn_window(configs or default_configs)
+            -- local current_window = window:gui_window()
+            -- current_window:maximize()
+            -- local dimensions = current_window:get_dimensions()
+            -- wezterm.log_error(dimensions.pixel_width, dimensions.pixel_height)
+            -- local current_configs = current_window:effective_config()
+            -- wezterm.log_error(current_configs.initial_cols, current_configs.initial_rows)
+            -- local col_ratio = dimensions.pixel_width // current_configs.initial_cols
+            -- local row_ratio = dimensions.pixel_height // current_configs.initial_rows
+            -- local col_ratio = 20
+            -- local row_ratio = 55
+
+            -- local overrides = current_window:get_config_overrides() or {}
+            -- overrides.initial_cols = dimensions.pixel_width // col_ratio - 4
+            -- overrides.initial_rows = dimensions.pixel_height // row_ratio - 4
+            -- current_window:set_config_overrides(overrides)
+            -- current_window:restore()
+            -- current_window:set_inner_size(3800, 2000)
+            -- current_window:set_position(20, 20)
+            -- current_window:restore()
+        end
+    )
 end
 
 -- Domains for wezterm connect
@@ -308,41 +343,6 @@ wezterm.on(
     "window-config-reloaded",
     function(window, pane)
         window:toast_notification("wezterm", "configuration reloaded!", nil, 1000)
-    end
-)
-wezterm.on(
-    "gui-startup",
-    function(configs)
-        -- local tab, pane, window = mux.spawn_window(
-        local default_configs = {
-            width = 286,
-            height = 58,
-            position = {
-                x = 20,
-                y = 20,
-                origin = "ActiveScreen",
-            },
-        }
-        mux.spawn_window(configs or default_configs)
-        -- local current_window = window:gui_window()
-        -- current_window:maximize()
-        -- local dimensions = current_window:get_dimensions()
-        -- wezterm.log_error(dimensions.pixel_width, dimensions.pixel_height)
-        -- local current_configs = current_window:effective_config()
-        -- wezterm.log_error(current_configs.initial_cols, current_configs.initial_rows)
-        -- local col_ratio = dimensions.pixel_width // current_configs.initial_cols
-        -- local row_ratio = dimensions.pixel_height // current_configs.initial_rows
-        -- local col_ratio = 20
-        -- local row_ratio = 55
-
-        -- local overrides = current_window:get_config_overrides() or {}
-        -- overrides.initial_cols = dimensions.pixel_width // col_ratio - 4
-        -- overrides.initial_rows = dimensions.pixel_height // row_ratio - 4
-        -- current_window:set_config_overrides(overrides)
-        -- current_window:restore()
-        -- current_window:set_inner_size(3800, 2000)
-        -- current_window:set_position(20, 20)
-        -- current_window:restore()
     end
 )
 
