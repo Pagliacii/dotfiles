@@ -435,17 +435,22 @@ wezterm.on(
             local cwd = ""
             local hostname = ""
             if slash then
-            hostname = cwd_uri:sub(1, slash - 1)
-            -- Remove the domain name portion of the hostname
-            local dot = hostname:find "[.]"
-            if dot then
-                hostname = hostname:sub(1, dot - 1)
-            end
-            -- and extract the cwd from the uri
-            cwd = cwd_uri:sub(slash)
+                hostname = cwd_uri:sub(1, slash - 1)
+                -- Remove the domain name portion of the hostname
+                local dot = hostname:find "[.]"
+                if dot then
+                    hostname = hostname:sub(1, dot - 1)
+                end
+                -- and extract the cwd from the uri
+                cwd = cwd_uri:sub(slash)
+                if cwd:find "[:]" and cwd:sub(1, 1) == "/" then
+                    cwd = cwd:sub(2, #cwd)
+                end
 
-            table.insert(cells, cwd)
-            table.insert(cells, hostname)
+                table.insert(cells, cwd)
+                if hostname ~= "" then
+                    table.insert(cells, hostname)
+                end
             end
         end
 
