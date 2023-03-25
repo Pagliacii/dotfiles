@@ -108,6 +108,7 @@ config.window_frame = {
     border_bottom_color = "skyblue",
     border_top_color = "skyblue",
 }
+config.adjust_window_size_when_changing_font_size = false
 
 --- Styling inactive panes
 config.inactive_pane_hsb = {
@@ -150,7 +151,7 @@ config.ssh_domains = {
 }
 
 -- Shortcuts
-mouse_bindings = {
+config.mouse_bindings = {
     -- Right click pastes from the clipboard.
     {
         event = { Down = { streak = 1, button = "Right" } },
@@ -191,6 +192,107 @@ mouse_bindings = {
         event = { Down = { streak = 1, button = { WheelDown = 1 } } },
         mods = "CTRL",
         action = act.DecreaseFontSize,
+    },
+}
+config.keys = {
+    -- Splits the active pane in a particular direction.
+    {
+        key = "\\",
+        mods = "CTRL",
+        action = act.SplitPane {
+            direction = "Down",
+            size = { Percent = 50 },
+        },
+    },
+    {
+        key = "\\",
+        mods = "CTRL|ALT",
+        action = act.SplitPane {
+            direction = "Up",
+            size = { Percent = 50 },
+        },
+    },
+    {
+        key = "[",
+        mods = "CTRL",
+        action = act.SplitPane {
+            direction = "Right",
+            size = { Percent = 50 },
+        },
+    },
+    {
+        key = "[",
+        mods = "CTRL|ALT",
+        action = act.SplitPane {
+            direction = "Left",
+            size = { Percent = 50 },
+        },
+    },
+    -- Closes the current pane.
+    {
+        key = "q",
+        mods = "CTRL",
+        action = act.CloseCurrentPane {
+            confirm = false,
+        },
+    },
+    -- Activates the pane selection modal display.
+    {
+        key = ";",
+        mods = "CTRL",
+        action = act.PaneSelect {
+            alphabet = "0123456789",
+        },
+    },
+    {
+        key = "'",
+        mods = "CTRL",
+        action = act.PaneSelect {
+            alphabet = "0123456789",
+            mode = "SwapWithActive",
+        },
+    },
+    -- Rotates the sequence of panes within the active tab,
+    -- preserving the sizes based on the tab positions.
+    {
+        key = ",",
+        mods = "CTRL|ALT",
+        action = act.RotatePanes "CounterClockwise",
+    },
+    {
+        key = ".",
+        mods = "CTRL|ALT",
+        action = act.RotatePanes "Clockwise",
+    },
+    -- Adjusts the scroll position by the number of lines specified by the argument.
+    -- Negative values scroll upwards, while positive values scroll downwards.
+    {
+        key = "j",
+        mods = "CTRL",
+        action = act.ScrollByLine(1),
+    },
+    {
+        key = "k",
+        mods = "CTRL",
+        action = act.ScrollByLine(-1),
+    },
+    -- Toggles the zoom state of the current pane.
+    {
+        key = "Z",
+        mods = "CTRL",
+        action = act.TogglePaneZoomState,
+    },
+    -- Activate the Launcher Menu in the current tab.
+    {
+        key = "l",
+        mods = "ALT",
+        action = act.ShowLauncher,
+    },
+    -- Activate the tab navigator UI in the current tab.
+    {
+        key = "t",
+        mods = "ALT",
+        action = act.ShowTabNavigator,
     },
 }
 
