@@ -470,15 +470,15 @@ wezterm.on(
 
         -- Color palette for the backgrounds of each cell
         local colors = {
-            "#3377ff",
-            "#4d88ff",
-            "#6699ff",
             "#80aaff",
-            "#b3ccff",
+            "#6699ff",
+            "#4d88ff",
+            "#3377ff",
+            "#1a66ff",
         }
 
         -- Foreground color for the text across the fade
-        local text_fg = "#c0c0c0"
+        local text_fg = "#e0e0e0"
 
         -- The elements to be formatted
         local elements = {}
