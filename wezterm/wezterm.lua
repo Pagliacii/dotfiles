@@ -82,6 +82,10 @@ wezterm.on(
         -- and that we have room for the edges.
         -- local title = wezterm.truncate_right(tab.active_pane.title, max_width - 2)
         local title = tab.active_pane.title:gsub("%.exe", "")
+        title = wezterm.truncate_right(
+            string.format("%d:%s", tab.tab_id, title),
+            max_width - 2
+        )
 
         return {
             { Background = { Color = edge_background } },
@@ -89,7 +93,7 @@ wezterm.on(
             { Text = SOLID_LEFT_ARROW },
             { Background = { Color = background } },
             { Foreground = { Color = foreground } },
-            { Text = string.format("%d:%s", tab.tab_id, title) },
+            { Text = title },
             { Background = { Color = edge_background } },
             { Foreground = { Color = edge_foreground } },
             { Text = SOLID_RIGHT_ARROW },
