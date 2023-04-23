@@ -55,6 +55,10 @@ config.colors = {
             italic = false,
         },
     },
+    -- the foreground color of selected text
+    selection_fg = "black",
+    -- the background color of selected text
+    selection_bg = "#fffacd",
 }
 
 --- The filled in variant of the < symbol
@@ -218,7 +222,7 @@ end
 config.ssh_domains = {
     {
         -- This name identifies the domain
-        name = "manage.pve",
+        name = "pve",
         -- The hostname or address to connect to. Will be used to match settings
         -- from your ssh config file
         remote_address = "192.168.32.2",
