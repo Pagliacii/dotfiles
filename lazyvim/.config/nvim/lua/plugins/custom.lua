@@ -32,6 +32,7 @@ return {
         "markdown_inline",
         "python",
         "regex",
+        "rust",
         "toml",
         "vim",
         "yaml",
@@ -48,6 +49,17 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+      },
+    },
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
       },
     },
   },
