@@ -12,7 +12,7 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
+        ruff_lsp = {},
         rust_analyzer = {},
       },
     },
@@ -49,6 +49,7 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "ruff",
       },
     },
   },
@@ -59,6 +60,17 @@ return {
       filesystem = {
         filtered_items = {
           hide_dotfiles = false,
+        },
+      },
+    },
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        find_files = {
+          hidden = true,
         },
       },
     },
