@@ -377,18 +377,6 @@ config.keys = {
         mods = "ALT",
         action = act.ActivateTabRelative(1),  -- right
     },
-    -- Adjusts the scroll position by the number of lines specified by the argument.
-    -- Negative values scroll upwards, while positive values scroll downwards.
-    {
-        key = "j",
-        mods = "CTRL",
-        action = act.ScrollByLine(1),
-    },
-    {
-        key = "k",
-        mods = "CTRL",
-        action = act.ScrollByLine(-1),
-    },
     -- Toggles the zoom state of the current pane.
     {
         key = "Z",
