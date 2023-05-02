@@ -21,3 +21,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd("lcd %:p:h")
   end,
 })
+
+-- Telescope.nvim previewer wraps long lines
+vim.api.nvim_create_autocmd("User", {
+  group = augroup("telescope.nvim"),
+  pattern = "TelescopePreviewerLoaded",
+  callback = function()
+    vim.cmd("setlocal wrap")
+  end,
+})
