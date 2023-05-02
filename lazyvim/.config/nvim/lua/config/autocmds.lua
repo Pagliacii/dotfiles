@@ -13,3 +13,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- Auto change to opened directory
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup("BufEnter"),
+  callback = function()
+    vim.cmd("lcd %:p:h")
+  end,
+})
