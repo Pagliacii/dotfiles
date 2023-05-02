@@ -97,4 +97,9 @@ return {
       crates.show()
     end,
   },
+
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VeryLazy",
+  },
 }

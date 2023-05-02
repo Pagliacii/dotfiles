@@ -26,3 +26,11 @@ if vim.fn.executable("btop") == 1 then
     require("lazyvim.util").float_term({ "btop" })
   end, { desc = "btop" })
 end
+
+if vim.fn.executable("tmux") == 1 then
+  -- tmux
+  vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "window left" })
+  vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "window right" })
+  vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "window down" })
+  vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "window up" })
+end
