@@ -102,11 +102,19 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 	--- Windows specific configurations here
 	config.enable_tab_bar = true
 	config.tab_bar_at_bottom = true
-	--- The filled in variant of the < symbol
-	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-	--- The filled in variant of the > symbol
-	local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
-	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+
+	config.default_prog = { "pwsh.exe", "-NoLogo" }
+	config.launch_menu = { {
+		label = "pwsh",
+		args = config.default_prog,
+	} }
+
+	wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
+		--- The filled in variant of the < symbol
+		local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+		--- The filled in variant of the > symbol
+		local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+
 		local edge_background = "#282a36"
 		local background = "#0044cc"
 		local foreground = "#808080"
@@ -140,11 +148,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 			{ Text = SOLID_RIGHT_ARROW },
 		}
 	end)
-	config.default_prog = { "pwsh.exe", "-NoLogo" }
-	config.launch_menu = { {
-		label = "pwsh",
-		args = config.default_prog,
-	} }
+
 	wezterm.on("gui-startup", function(cmd)
 		-- allow `wezterm start -- something` to affect what we spawn
 		-- in our initial window
@@ -154,7 +158,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 		end
 
 		-- Set a workspace for coding
-		local tab, pane, window = mux.spawn_window({
+		mux.spawn_window({
 			width = 286,
 			height = 57,
 			position = {
@@ -167,6 +171,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 			args = args,
 		})
 
+		--[[
 		-- Split 4 panes
 		local top_pane = pane:split({
 			direction = "Top",
@@ -183,6 +188,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 			size = 0.5,
 			-- cwd = "path/to/your/project",
 		})
+    --]]
 
 		-- We want to startup in the coding workspace
 		mux.set_active_workspace("coding")
@@ -205,6 +211,94 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 		-- current_window:set_inner_size(3800, 2000)
 		-- current_window:set_position(20, 20)
 		-- current_window:restore()
+	end)
+
+	wezterm.on("update-right-status", function(window, pane)
+		-- Each element holds the text for a cell in a "powerline" style << fade
+		local cells = {}
+
+		-- Figure out the cwd and host of the current pane.
+		-- This will pick up the hostname for the remote host if your
+		-- shell is using OSC 7 on the remote host.
+		local cwd_uri = pane:get_current_working_dir()
+		if cwd_uri then
+			cwd_uri = cwd_uri:sub(8)
+			local slash = cwd_uri:find("/")
+			local cwd = ""
+			local hostname = ""
+			if slash then
+				hostname = cwd_uri:sub(1, slash - 1)
+				-- Remove the domain name portion of the hostname
+				local dot = hostname:find("[.]")
+				if dot then
+					hostname = hostname:sub(1, dot - 1)
+				end
+				-- and extract the cwd from the uri
+				cwd = cwd_uri:sub(slash)
+				if cwd:find("[:]") and cwd:sub(1, 1) == "/" then
+					cwd = cwd:sub(2, #cwd)
+				end
+
+				cwd = string.gsub(cwd, "/", "\\")
+				table.insert(cells, cwd)
+				if hostname ~= "" then
+					table.insert(cells, hostname)
+				end
+			end
+		end
+
+		-- I like my date/time in this style: "Wed Mar 3 08:14:25"
+		local date = wezterm.strftime("%a %b %-d %H:%M:%S")
+		table.insert(cells, date)
+
+		-- An entry for each battery (typically 0 or 1 battery)
+		for _, b in ipairs(wezterm.battery_info()) do
+			table.insert(cells, string.format("%.0f%%", b.state_of_charge * 100))
+		end
+
+		-- The filled in variant of the < symbol
+		local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+
+		-- Color palette for the backgrounds of each cell
+		local colors = {
+			"#80aaff",
+			"#6699ff",
+			"#4d88ff",
+			"#3377ff",
+			"#1a66ff",
+		}
+
+		-- Foreground color for the text across the fade
+		local text_fg = "#e0e0e0"
+
+		-- The elements to be formatted
+		local elements = {}
+		-- How many cells have been formatted
+		local num_cells = 0
+
+		-- Translate a cell into elements
+		local function push(text, is_last)
+			if num_cells == 0 then
+				table.insert(elements, { Foreground = { Color = colors[1] } })
+				table.insert(elements, { Text = SOLID_LEFT_ARROW })
+			end
+			local cell_no = num_cells + 1
+			table.insert(elements, { Foreground = { Color = text_fg } })
+			table.insert(elements, { Background = { Color = colors[cell_no] } })
+			table.insert(elements, { Text = " " .. text .. " " })
+			if not is_last then
+				table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
+				table.insert(elements, { Text = SOLID_LEFT_ARROW })
+			end
+			num_cells = num_cells + 1
+		end
+
+		while #cells > 0 do
+			local cell = table.remove(cells, 1)
+			push(cell, #cells == 0)
+		end
+
+		window:set_right_status(wezterm.format(elements))
 	end)
 end
 
@@ -268,34 +362,18 @@ config.mouse_bindings = {
 config.keys = {
 	-- Splits the active pane in a particular direction.
 	{
-		key = "\\",
-		mods = "CTRL",
+		key = "_",
+		mods = "ALT",
 		action = act.SplitPane({
 			direction = "Down",
 			size = { Percent = 50 },
 		}),
 	},
 	{
-		key = "\\",
-		mods = "CTRL|ALT",
-		action = act.SplitPane({
-			direction = "Up",
-			size = { Percent = 50 },
-		}),
-	},
-	{
-		key = "[",
-		mods = "CTRL",
+		key = "|",
+		mods = "ALT",
 		action = act.SplitPane({
 			direction = "Right",
-			size = { Percent = 50 },
-		}),
-	},
-	{
-		key = "[",
-		mods = "CTRL|ALT",
-		action = act.SplitPane({
-			direction = "Left",
 			size = { Percent = 50 },
 		}),
 	},
@@ -325,22 +403,22 @@ config.keys = {
 	},
 	-- Activate an adjacent pane in the specified direction.
 	{
-		key = "h",
+		key = "H",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Left"),
 	},
 	{
-		key = "l",
+		key = "L",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Right"),
 	},
 	{
-		key = "j",
+		key = "J",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Down"),
 	},
 	{
-		key = "k",
+		key = "K",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Up"),
 	},
@@ -375,13 +453,13 @@ config.keys = {
 	},
 	-- Activate the Launcher Menu in the current tab.
 	{
-		key = "L",
+		key = "1",
 		mods = "ALT",
 		action = act.ShowLauncher,
 	},
 	-- Activate the tab navigator UI in the current tab.
 	{
-		key = "T",
+		key = "2",
 		mods = "ALT",
 		action = act.ShowTabNavigator,
 	},
@@ -394,98 +472,5 @@ config.visual_bell = {
 	target = "CursorColor",
 }
 config.audible_bell = "Disabled"
-
-wezterm.on("window-config-reloaded", function(window, pane)
-	window:toast_notification("wezterm", "configuration reloaded!", nil, 1000)
-end)
-wezterm.on("update-right-status", function(window, pane)
-	-- Each element holds the text for a cell in a "powerline" style << fade
-	local cells = {}
-
-	-- Figure out the cwd and host of the current pane.
-	-- This will pick up the hostname for the remote host if your
-	-- shell is using OSC 7 on the remote host.
-	local cwd_uri = pane:get_current_working_dir()
-	if cwd_uri then
-		cwd_uri = cwd_uri:sub(8)
-		local slash = cwd_uri:find("/")
-		local cwd = ""
-		local hostname = ""
-		if slash then
-			hostname = cwd_uri:sub(1, slash - 1)
-			-- Remove the domain name portion of the hostname
-			local dot = hostname:find("[.]")
-			if dot then
-				hostname = hostname:sub(1, dot - 1)
-			end
-			-- and extract the cwd from the uri
-			cwd = cwd_uri:sub(slash)
-			if cwd:find("[:]") and cwd:sub(1, 1) == "/" then
-				cwd = cwd:sub(2, #cwd)
-			end
-
-			cwd = string.gsub(cwd, "/", "\\")
-			table.insert(cells, cwd)
-			if hostname ~= "" then
-				table.insert(cells, hostname)
-			end
-		end
-	end
-
-	-- I like my date/time in this style: "Wed Mar 3 08:14:25"
-	local date = wezterm.strftime("%a %b %-d %H:%M:%S")
-	table.insert(cells, date)
-
-	-- An entry for each battery (typically 0 or 1 battery)
-	for _, b in ipairs(wezterm.battery_info()) do
-		table.insert(cells, string.format("%.0f%%", b.state_of_charge * 100))
-	end
-
-	-- The powerline < symbol
-	local LEFT_ARROW = utf8.char(0xe0b3)
-	-- The filled in variant of the < symbol
-	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-
-	-- Color palette for the backgrounds of each cell
-	local colors = {
-		"#80aaff",
-		"#6699ff",
-		"#4d88ff",
-		"#3377ff",
-		"#1a66ff",
-	}
-
-	-- Foreground color for the text across the fade
-	local text_fg = "#e0e0e0"
-
-	-- The elements to be formatted
-	local elements = {}
-	-- How many cells have been formatted
-	local num_cells = 0
-
-	-- Translate a cell into elements
-	local function push(text, is_last)
-		if num_cells == 0 then
-			table.insert(elements, { Foreground = { Color = colors[1] } })
-			table.insert(elements, { Text = SOLID_LEFT_ARROW })
-		end
-		local cell_no = num_cells + 1
-		table.insert(elements, { Foreground = { Color = text_fg } })
-		table.insert(elements, { Background = { Color = colors[cell_no] } })
-		table.insert(elements, { Text = " " .. text .. " " })
-		if not is_last then
-			table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
-			table.insert(elements, { Text = SOLID_LEFT_ARROW })
-		end
-		num_cells = num_cells + 1
-	end
-
-	while #cells > 0 do
-		local cell = table.remove(cells, 1)
-		push(cell, #cells == 0)
-	end
-
-	window:set_right_status(wezterm.format(elements))
-end)
 
 return config
