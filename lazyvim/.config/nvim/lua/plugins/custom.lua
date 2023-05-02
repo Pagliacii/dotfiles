@@ -12,8 +12,20 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-        rust_analyzer = {},
+        pyright = {
+          filetypes = { "python" },
+        },
+        rust_analyzer = {
+          filetypes = { "rust" },
+          root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+            },
+          },
+        },
       },
     },
   },
@@ -74,5 +86,15 @@ return {
         },
       },
     },
+  },
+
+  {
+    "saecki/crates.nvim",
+    ft = { "rust", "toml" },
+    config = function(_, opts)
+      local crates = require("crates")
+      crates.setup(opts)
+      crates.show()
+    end,
   },
 }
