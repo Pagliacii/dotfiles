@@ -362,16 +362,16 @@ config.mouse_bindings = {
 config.keys = {
 	-- Splits the active pane in a particular direction.
 	{
-		key = "_",
-		mods = "ALT",
+		key = "-",
+		mods = "CTRL|ALT",
 		action = act.SplitPane({
 			direction = "Down",
 			size = { Percent = 50 },
 		}),
 	},
 	{
-		key = "|",
-		mods = "ALT",
+		key = "\\",
+		mods = "CTRL|ALT",
 		action = act.SplitPane({
 			direction = "Right",
 			size = { Percent = 50 },
