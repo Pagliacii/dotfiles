@@ -29,6 +29,8 @@ registerTrayMenuItems() {
     Tray.Insert(Tray.Default, "Edit via VSCode", editViaEditor)
     Tray.Insert(Tray.Default, "Edit via Sublime Text 3", editViaEditor)
     Tray.Insert(Tray.Default)
+    Tray.Insert(Tray.Default, "Open dotfiles folder", openDotfilesFolder)
+    Tray.Insert(Tray.Default)
     Tray.Default := "Edit via NeoVIM"
 }
 
@@ -68,6 +70,10 @@ runInWezterm(Command := "") {
     } else {
         Run(Format("{1} start -- {2}", getScoopAppPath("wezterm"), Command), , "Hide")
     }
+}
+
+openDotfilesFolder(ItemName, ItemPos, MyMenu) {
+    runInWezterm(Format("nvim E:\github\Pagliacii\dotfiles"))
 }
 
 ; Main
