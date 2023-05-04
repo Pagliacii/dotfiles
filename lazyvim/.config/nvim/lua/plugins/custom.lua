@@ -14,15 +14,77 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
           filetypes = { "python" },
+          settings = {
+            python = {
+              analysis = {
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = false,
+              },
+            },
+          },
         },
         rust_analyzer = {
           filetypes = { "rust" },
           root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
           settings = {
             ["rust-analyzer"] = {
-              cargo = {
-                allFeatures = true,
+              assist = {
+                emitMustUse = true,
               },
+              cargo = {
+                features = "all",
+              },
+              checkOnSave = true,
+              check = {
+                command = "clippy",
+                features = "all",
+              },
+              hover = {
+                actions = {
+                  references = {
+                    enable = true,
+                  },
+                },
+              },
+              inlayHints = {
+                bindingModeHints = {
+                  enable = true,
+                },
+                closureReturnTypeHints = {
+                  enable = "always",
+                },
+                closureStyle = "rust_analyzer",
+                lifetimeElisionHints = {
+                  enable = "always",
+                  useParameterNames = true,
+                },
+              },
+            },
+          },
+        },
+        gopls = {
+          filetypes = { "go" },
+          settings = {
+            analyses = {
+              nilness = true, -- check for redundant or impossible nil comparisons
+              shadow = true, -- check for possible unintended shadowing of variables
+              unusedparams = true, -- check for unused parameters of functions
+              unusedwrite = true, -- check for unused writes
+              useany = true, -- check for constraints that could be simplified to "any"
+              unusedvariable = true, -- check for unused variables
+            },
+            gofumpt = true, -- if we should run `gofumpt` formatting
+            usePlaceholders = true, -- enables placeholders for function parameters or struct fields in completion responses
+            hints = {
+              assignVariableTypes = true, -- inlay hints for variable types in assign statements
+              compositeLiteralFields = true, -- inlay hints for composite literal field names
+              compositeLiteralTypes = true, -- inlay hints for composite literal types
+              constantValues = true, -- inlay hints for constant values
+              functionTypeParameters = true, -- inlay hints for implicit type parameters on generic functions
+              parameterNames = true, -- inlay hints for parameter names
+              rangeVariableTypes = true, -- inlay hints for variable types in range statements
             },
           },
         },
@@ -42,6 +104,7 @@ return {
         "lua",
         "markdown",
         "markdown_inline",
+        "go",
         "python",
         "regex",
         "rust",
@@ -111,5 +174,22 @@ return {
       orgmode.setup_ts_grammar()
       orgmode.setup({})
     end,
+  },
+
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    ft = { "go" },
+    opts = {
+      inlay_hints = {
+        type_hints = { prefix = "=> " },
+      },
+    },
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
+    ft = { "rust" },
   },
 }
