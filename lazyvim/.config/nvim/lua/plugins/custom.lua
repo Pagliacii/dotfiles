@@ -10,6 +10,12 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
+      diagnostics = {
+        update_in_insert = true,
+      },
+      format = {
+        timeout_ms = 5000,
+      },
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
@@ -105,6 +111,8 @@ return {
         "markdown",
         "markdown_inline",
         "go",
+        "gomod",
+        "gosum",
         "python",
         "regex",
         "rust",
@@ -125,8 +133,16 @@ return {
         "shfmt",
         "flake8",
         "ruff",
+        "rust-analyzer",
       },
     },
+  },
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "codelldb" })
+    end,
   },
 
   {
@@ -153,12 +169,8 @@ return {
 
   {
     "saecki/crates.nvim",
-    ft = { "rust", "toml" },
-    config = function(_, opts)
-      local crates = require("crates")
-      crates.setup(opts)
-      crates.show()
-    end,
+    event = { "BufRead Cargo.toml" },
+    config = true,
   },
 
   {
@@ -180,9 +192,23 @@ return {
     "lvimuser/lsp-inlayhints.nvim",
     dependencies = "neovim/nvim-lspconfig",
     ft = { "go" },
+    event = { "BufReadPre" },
     opts = {
       inlay_hints = {
         type_hints = { prefix = "=> " },
+      },
+    },
+    config = function(_, opts)
+      require("lsp-inlayhints").setup(opts)
+    end,
+    keys = {
+      {
+        "<leader>ch",
+        function()
+          require("lsp-inlayhints").toggle()
+        end,
+        mode = "n",
+        desc = "inlay hints toggle",
       },
     },
   },
