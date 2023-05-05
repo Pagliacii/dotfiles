@@ -90,7 +90,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- Lsp inlay hints
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = augroup("LspAttach_inlayhints"),
+  group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
   callback = function(args)
     if not (args.data and args.data.client_id) then
       return
@@ -98,6 +98,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require("lsp-inlayhints").on_attach(client, bufnr)
+    if client.name == "rust_analyzer" then
+      return
+    end
+    require("lsp-inlayhints").on_attach(client, bufnr, true)
   end,
 })
