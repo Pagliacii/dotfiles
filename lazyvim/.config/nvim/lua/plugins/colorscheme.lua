@@ -3,7 +3,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
-      flavour = "mocha",
+      flavour = "frappe",
       term_colors = true,
       -- color_overrides = {
       --   mocha = {
