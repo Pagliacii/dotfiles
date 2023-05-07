@@ -34,3 +34,5 @@ if vim.fn.executable("tmux") == 1 then
   vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "window down" })
   vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "window up" })
 end
+
+vim.keymap.set("n", "<leader>uu", "<cmd> Telescope undo<CR>", { desc = "visualize undo tree" })
