@@ -13,7 +13,7 @@
 #+CAPTION: This is the WezTerm screenshot.
 [[./img/screenshot.png]]
 
-[[https://imgur.com/a/C5PaIhZ][My LazyVim]]
+LazyVim GIF: [[https://imgur.com/a/C5PaIhZ]]
 
 * Table of Contents :TOC:
 - [[#usage][Usage]]
