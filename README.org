@@ -13,6 +13,8 @@
 #+CAPTION: This is the WezTerm screenshot.
 [[./img/screenshot.png]]
 
+[[https://imgur.com/a/C5PaIhZ][My LazyVim]]
+
 * Table of Contents :TOC:
 - [[#usage][Usage]]
 - [[#install-oh-my-zsh][Install Oh My Zsh]]
