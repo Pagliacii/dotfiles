@@ -76,5 +76,6 @@ return {
     dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
     ft = { "rust" },
     config = true,
+    cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
   },
 }

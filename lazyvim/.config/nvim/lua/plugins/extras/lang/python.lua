@@ -11,6 +11,21 @@ return {
   },
 
   {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "debugpy" })
+    end,
+  },
+
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = { "python" },
+    config = function()
+      require("dap-python").setup("~/.virtualenvs/debugpy/Scripts/python")
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {

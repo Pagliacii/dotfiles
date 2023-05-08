@@ -39,8 +39,6 @@ return {
     },
   },
 
-  { "rcarriga/nvim-dap-ui", enabled = false },
-
   -- Core language specific extension modules
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.dap.nlua" },
