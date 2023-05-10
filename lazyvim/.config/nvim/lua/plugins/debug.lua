@@ -1,14 +1,7 @@
 return {
-  { "rcarriga/nvim-dap-ui", enabled = false },
-
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    event = "VeryLazy",
-    config = true,
-  },
-
   {
     "rcarriga/cmp-dap",
+    event = "UIEnter",
     config = function()
       local cmp = require("cmp")
       cmp.setup({

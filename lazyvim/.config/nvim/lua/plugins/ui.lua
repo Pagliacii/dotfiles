@@ -9,12 +9,15 @@ return {
   },
 
   {
-    "dstein64/nvim-scrollview",
-    event = "BufReadPre",
-    config = {
-      excluded_filetypes = { "alpha", "neo-tree" },
-      current_only = true,
-      winblend = 75,
+    "folke/zen-mode.nvim",
+    config = true,
+    keys = {
+      { "<leader>z", "<CMD> ZenMode<CR>", desc = "toggle zen mode" },
+    },
+    opts = {
+      plugins = {
+        wezterm = { enabled = true },
+      },
     },
   },
 

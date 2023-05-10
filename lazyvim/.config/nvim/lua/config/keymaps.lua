@@ -37,10 +37,14 @@ if vim.fn.executable("tmux") == 1 then
   vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "window up" })
 end
 
-vim.keymap.set("n", "<leader>uu", "<cmd> Telescope undo<CR>", { desc = "visualize undo tree" })
-vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<CR>", { desc = "open dashboard" })
+vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<CR>", { desc = "Open Dashboard" })
+vim.keymap.set("n", "<leader>ch", function()
+  require("lsp-inlayhints").toggle()
+end, { desc = "Toggle Inlay Hints" })
+vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+vim.keymap.set("n", "<leader>gd", "<cmd> DiffviewOpen<CR>", { desc = "Open Diffview" })
 
--- Telescope-dap
+-- Telescope
 wk.register({
   ["<leader>t"] = {
     name = "+telescope",
@@ -52,15 +56,11 @@ wk.register({
       s = { "<cmd> Telescope dap configurations<CR>", "configurations" },
       v = { "<cmd> Telescope dap variables<CR>", "variables" },
     },
+    u = { "<cmd> Telescope undo<CR>", "visualize undo tree" },
   },
 })
 
 -- Rust
 wk.register({
-  ["<leader>r"] = {
-    name = "+rust",
-    c = { "<cmd> RustOpenCargo<CR>", "open Cargo.toml" },
-    d = { "<cmd> RustDebuggables<CR>", "debuggable targets" },
-    r = { "<cmd> RustRunnables<CR>", "runnable targets" },
-  },
+  ["<leader>r"] = { name = "+rust" },
 })

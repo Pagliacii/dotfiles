@@ -17,13 +17,10 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
-    keys = {
-      { "<leader>gd", "<cmd> DiffviewOpen<CR>", desc = "open diff view" },
-    },
   },
 
   {
     "wakatime/vim-wakatime",
-    event = "VeryLazy",
+    event = "UIEnter",
   },
 }
