@@ -10,3 +10,6 @@ vim.g.loaded_perl_provider = 0
 
 -- fix newline: CRLF -> LF
 vim.opt.fileformat = "unix"
+
+-- wrap the long lines
+vim.opt.wrap = true

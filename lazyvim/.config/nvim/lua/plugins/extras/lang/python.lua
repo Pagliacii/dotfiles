@@ -21,7 +21,19 @@ return {
     "mfussenegger/nvim-dap-python",
     ft = { "python" },
     config = function()
-      require("dap-python").setup("~/.virtualenvs/debugpy/Scripts/python")
+      local path = require("mason-core.path")
+      local bin_folder = "bin"
+      local suffix = ""
+      if (jit and jit.os == "Windows") or vim.loop.os_uname().sysname == "Windows_NT" then
+        bin_folder = "Scripts"
+        suffix = ".exe"
+      end
+      require("dap-python").setup(path.concat({
+        path.package_prefix("debugpy"),
+        "venv",
+        bin_folder,
+        "python" .. suffix,
+      }))
     end,
   },
 

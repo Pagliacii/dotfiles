@@ -92,7 +92,6 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = function()
       local icons = require("lazyvim.config").icons
       require("symbols-outline").setup({

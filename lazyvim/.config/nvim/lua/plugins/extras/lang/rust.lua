@@ -73,9 +73,42 @@ return {
 
   {
     "simrat39/rust-tools.nvim",
-    dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-lua/plenary.nvim",
+      "jay-babu/mason-nvim-dap.nvim",
+    },
     ft = { "rust" },
-    config = true,
+    config = function()
+      local path = require("mason-core.path")
+      local codelldb_path = path.concat({
+        path.package_prefix("codelldb"),
+        "extension",
+        "adapter",
+        "codelldb" .. (vim.fn.has("win32") and ".exe" or ""),
+      })
+      local liblldb_path = path.concat({
+        path.package_prefix("codelldb"),
+        "extension",
+        "lldb",
+        "bin",
+        "liblldb" .. (vim.fn.has("win32") and ".dll" or ""),
+      })
+      require("mason-nvim-dap").setup({
+        handlers = {
+          codelldb = function(config)
+            config.adapters = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+            require("mason-nvim-dap").default_setup(config)
+          end,
+        },
+      })
+      return true
+    end,
     cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
+    keys = {
+      { "<leader>rc", "<cmd> RustOpenCargo<CR>", desc = "open Cargo.toml" },
+      { "<leader>rd", "<cmd> RustDebuggables<CR>", desc = "debuggable targets" },
+      { "<leader>rr", "<cmd> RustRunnables<CR>", desc = "runnable targets" },
+    },
   },
 }
