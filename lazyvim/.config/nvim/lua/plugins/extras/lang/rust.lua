@@ -10,6 +10,16 @@ return {
   },
 
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = { "rust" },
+    opts = {
+      sources = {
+        require("null-ls").builtins.formatting.rustfmt,
+      },
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
@@ -106,9 +116,9 @@ return {
     end,
     cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
     keys = {
-      { "<leader>rc", "<cmd> RustOpenCargo<CR>", desc = "Open Cargo.toml" },
+      { "<leader>rc", "<cmd> RustOpenCargo<CR>",   desc = "Open Cargo.toml" },
       { "<leader>rd", "<cmd> RustDebuggables<CR>", desc = "Debuggable targets" },
-      { "<leader>rr", "<cmd> RustRunnables<CR>", desc = "Runnable targets" },
+      { "<leader>rr", "<cmd> RustRunnables<CR>",   desc = "Runnable targets" },
     },
   },
 }

@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Fix Golang imports
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("fix_go_imports"),
+  desc = "Fix golang imports",
   pattern = "*.go",
   callback = function()
     -- ensure imports are sorted and grouped correctly
@@ -101,6 +102,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- Lsp inlay hints
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+  desc = "Lsp inlay hints",
   callback = function(args)
     if not (args.data and args.data.client_id) then
       return
@@ -114,3 +116,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
     require("lsp-inlayhints").on_attach(client, bufnr, true)
   end,
 })
+
+-- Python organize imports
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   group = augroup("LspFormatting"),
+--   pattern = { "*.py", "*.go", "*.rs" },
+--   desc = "Formatting on save",
+--   callback = function(event)
+--     -- vim.cmd("PyrightOrganizeImports")
+--     -- vim.lsp.buf.format({
+--     --   bufnr = event.buf,
+--     --   filter = function(client)
+--     --     return client.name == "null-ls"
+--     --   end,
+--     -- })
+--     print(vim.inspect(event))
+--     local params = vim.lsp.util.make_range_params()
+--     print(vim.inspect(params))
+--     params.context = {}
+--     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+--     print(vim.inspect(result))
+--   end,
+-- })
