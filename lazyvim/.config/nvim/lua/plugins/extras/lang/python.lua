@@ -57,6 +57,21 @@ return {
             },
           },
         },
+        ruff_lsp = {
+          filetypes = { "python" },
+          settings = {},
+        },
+      },
+    },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = { "python" },
+    opts = {
+      sources = {
+        require("null-ls").builtins.formatting.isort,
+        require("null-ls").builtins.formatting.ruff,
       },
     },
   },
