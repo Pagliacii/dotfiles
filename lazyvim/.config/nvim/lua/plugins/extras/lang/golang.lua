@@ -68,5 +68,14 @@ return {
       },
     },
     config = true,
+    keys = {
+      {
+        "<leader>ch",
+        function()
+          require("lsp-inlayhints").toggle()
+        end,
+        desc = "Toggle Inlay Hints",
+      },
+    },
   },
 }

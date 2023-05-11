@@ -1,7 +1,7 @@
 return {
   {
     "rcarriga/cmp-dap",
-    event = "UIEnter",
+    ft = { "dap-repl", "dapui_watches", "dapui_hover" },
     config = function()
       local cmp = require("cmp")
       cmp.setup({

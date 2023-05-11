@@ -17,12 +17,29 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      { "nvim-telescope/telescope-dap.nvim" },
+      {
+        "nvim-telescope/telescope-dap.nvim",
+        keys = {
+          { "<leader>tdc", "<cmd> Telescope dap commands<CR>", "Commands" },
+          { "<leader>tdf", "<cmd> Telescope dap frames<CR>", "Frames" },
+          { "<leader>tdl", "<cmd> Telescope dap list_breakpoints<CR>", "Breakpoints" },
+          { "<leader>tds", "<cmd> Telescope dap configurations<CR>", "Configurations" },
+          { "<leader>tdv", "<cmd> Telescope dap variables<CR>", "Variables" },
+        },
+      },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
-      { "debugloop/telescope-undo.nvim" },
+      {
+        "debugloop/telescope-undo.nvim",
+        keys = {
+          { "<leader>tu", "<cmd> Telescope undo<CR>", "Visualize undo tree" },
+        },
+      },
+    },
+    keys = {
+      { "<leader>tr", "<cmd> Telescope oldfiles<CR>", "Recent files" },
     },
     opts = {
       defaults = {
@@ -92,6 +109,9 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
+    keys = {
+      { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
+    },
     config = function()
       local icons = require("lazyvim.config").icons
       require("symbols-outline").setup({

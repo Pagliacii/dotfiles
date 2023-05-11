@@ -29,38 +29,13 @@ if vim.fn.executable("btop") == 1 then
   end, { desc = "btop" })
 end
 
-if vim.fn.executable("tmux") == 1 then
-  -- tmux
-  vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "window left" })
-  vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "window right" })
-  vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "window down" })
-  vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "window up" })
-end
-
 vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<CR>", { desc = "Open Dashboard" })
-vim.keymap.set("n", "<leader>ch", function()
-  require("lsp-inlayhints").toggle()
-end, { desc = "Toggle Inlay Hints" })
-vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
-vim.keymap.set("n", "<leader>gd", "<cmd> DiffviewOpen<CR>", { desc = "Open Diffview" })
 
--- Telescope
+-- Groups
 wk.register({
   ["<leader>t"] = {
     name = "+telescope",
-    d = {
-      name = "+dap",
-      c = { "<cmd> Telescope dap commands<CR>", "commands" },
-      f = { "<cmd> Telescope dap frames<CR>", "frames" },
-      l = { "<cmd> Telescope dap list_breakpoints<CR>", "breakpoints" },
-      s = { "<cmd> Telescope dap configurations<CR>", "configurations" },
-      v = { "<cmd> Telescope dap variables<CR>", "variables" },
-    },
-    u = { "<cmd> Telescope undo<CR>", "visualize undo tree" },
+    d = { name = "+dap" },
   },
-})
-
--- Rust
-wk.register({
   ["<leader>r"] = { name = "+rust" },
 })
