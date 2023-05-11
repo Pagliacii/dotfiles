@@ -66,6 +66,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>bdelete!<cr>", { buffer = event.buf, silent = true })
   end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("Diffview"),
+  pattern = {
+    "DiffviewFiles",
+  },
+  callback = function(event)
+    vim.diagnostic.disable(event.buf)
+    vim.keymap.set("n", "q", "<cmd>DiffviewClose<CR>", { buffer = event.buf, silent = true })
+  end,
+})
 
 -- Fix Golang imports
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {

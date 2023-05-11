@@ -106,9 +106,9 @@ return {
     end,
     cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
     keys = {
-      { "<leader>rc", "<cmd> RustOpenCargo<CR>", desc = "open Cargo.toml" },
-      { "<leader>rd", "<cmd> RustDebuggables<CR>", desc = "debuggable targets" },
-      { "<leader>rr", "<cmd> RustRunnables<CR>", desc = "runnable targets" },
+      { "<leader>rc", "<cmd> RustOpenCargo<CR>", desc = "Open Cargo.toml" },
+      { "<leader>rd", "<cmd> RustDebuggables<CR>", desc = "Debuggable targets" },
+      { "<leader>rr", "<cmd> RustRunnables<CR>", desc = "Runnable targets" },
     },
   },
 }
