@@ -16,4 +16,21 @@ return {
       })
     end,
   },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function(_, opts)
+      local dap, dapui = require("dap"), require("dapui")
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+      dapui.setup(opts)
+    end,
+    keys = {
+      { "<leader>du", function() require("dapui").toggle() end, desc = "Dap UI" },
+    },
+  },
 }
