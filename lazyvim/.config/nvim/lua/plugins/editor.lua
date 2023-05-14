@@ -20,11 +20,11 @@ return {
       {
         "nvim-telescope/telescope-dap.nvim",
         keys = {
-          { "<leader>tdc", "<cmd> Telescope dap commands<CR>",         "Commands" },
-          { "<leader>tdf", "<cmd> Telescope dap frames<CR>",           "Frames" },
-          { "<leader>tdl", "<cmd> Telescope dap list_breakpoints<CR>", "Breakpoints" },
-          { "<leader>tds", "<cmd> Telescope dap configurations<CR>",   "Configurations" },
-          { "<leader>tdv", "<cmd> Telescope dap variables<CR>",        "Variables" },
+          { "<leader>tdc", "<cmd> Telescope dap commands<cr>",         "Commands" },
+          { "<leader>tdf", "<cmd> Telescope dap frames<cr>",           "Frames" },
+          { "<leader>tdl", "<cmd> Telescope dap list_breakpoints<cr>", "Breakpoints" },
+          { "<leader>tds", "<cmd> Telescope dap configurations<cr>",   "Configurations" },
+          { "<leader>tdv", "<cmd> Telescope dap variables<cr>",        "Variables" },
         },
       },
       {
@@ -34,12 +34,12 @@ return {
       {
         "debugloop/telescope-undo.nvim",
         keys = {
-          { "<leader>tu", "<cmd> Telescope undo<CR>", "Visualize undo tree" },
+          { "<leader>tu", "<cmd> Telescope undo<cr>", "Visualize undo tree" },
         },
       },
     },
     keys = {
-      { "<leader>tr", "<cmd> Telescope oldfiles<CR>", "Recent files" },
+      { "<leader>tr", "<cmd> Telescope oldfiles<cr>", "Recent files" },
     },
     opts = {
       defaults = {
@@ -142,14 +142,39 @@ return {
   },
 
   {
-    "sindrets/winshift.nvim",
+    "akinsho/git-conflict.nvim",
+    event = "BufReadPre",
+    config = true,
+  },
+
+  -- disable mini.bufremove
+  { "echasnovski/mini.bufremove", enabled = false },
+
+  -- use bdelete instead
+  {
+    "famiu/bufdelete.nvim",
+    -- stylua: ignore
+    config = function()
+      -- switches to Alpha dashboard when last buffer is closed
+      local alpha_on_empty = vim.api.nvim_create_augroup("alpha_on_empty", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BDeletePost*",
+        group = alpha_on_empty,
+        callback = function(event)
+          local fallback_name = vim.api.nvim_buf_get_name(event.buf)
+          local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
+          local fallback_on_empty = fallback_name == "" and fallback_ft == ""
+          if fallback_on_empty then
+            require("neo-tree").close_all()
+            vim.cmd("Alpha")
+            vim.cmd(event.buf .. "bwipeout")
+          end
+        end,
+      })
+    end,
     keys = {
-      { "<leader>wm", "<cmd>WinShift<CR>",       desc = "Start Win-Move mode" },
-      { "<leader>wh", "<cmd>WinShift left<CR>",  desc = "Move current window to left" },
-      { "<leader>wl", "<cmd>WinShift right<CR>", desc = "Move current window to right" },
-      { "<leader>wk", "<cmd>WinShift up<CR>",    desc = "Move current window to top" },
-      { "<leader>wj", "<cmd>WinShift down<CR>",  desc = "Move current window to bottom" },
-      { "<leader>wx", "<cmd>WinShift swap<CR>",  desc = "Swap windows" },
+      { "<leader>bd", "<CMD>Bdelete<cr>",  desc = "Delete Buffer" },
+      { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
     },
   },
 }

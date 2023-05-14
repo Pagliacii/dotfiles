@@ -51,7 +51,7 @@ if vim.fn.executable("btop") == 1 then
   end, { desc = "btop" })
 end
 
-vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<CR>", { desc = "Open Dashboard" })
+vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", { desc = "Open Dashboard" })
 
 -- Groups
 wk.register({
@@ -61,4 +61,5 @@ wk.register({
   },
   ["<leader>r"] = { name = "+rust" },
   ["<leader>y"] = { name = "+dictionary" },
+  ["<leader>S"] = { name = "+focus" },
 })
