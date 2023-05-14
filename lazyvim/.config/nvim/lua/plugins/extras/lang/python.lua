@@ -28,12 +28,67 @@ return {
         bin_folder = "Scripts"
         suffix = ".exe"
       end
+      local interpreter = path.concat({ bin_folder, "python" .. suffix })
       require("dap-python").setup(path.concat({
         path.package_prefix("debugpy"),
         "venv",
-        bin_folder,
-        "python" .. suffix,
+        interpreter,
       }))
+
+      local dap = require("dap")
+      local job = require("plenary.job")
+      local function auto_detect()
+        local cwd = vim.fn.getcwd()
+        local venv_path = "python"
+        local local_venv_path = path.concat({
+          cwd,
+          "venv",
+          interpreter,
+        })
+        local dot_venv_path = path.concat({
+          cwd,
+          ".venv",
+          interpreter,
+        })
+        if vim.fn.executable(local_venv_path) == 1 then
+          venv_path = local_venv_path
+        elseif vim.fn.executable(dot_venv_path) == 1 then
+          venv_path = dot_venv_path
+        elseif vim.fn.executable("poetry") == 1 then
+          local poetry_interpreter = ""
+          job:new({
+            command = "poetry",
+            args = { "env", "info", "-p" },
+            cwd = cwd,
+            on_stdout = function(_, output)
+              poetry_interpreter = path.concat({
+                output,
+                interpreter,
+              })
+            end
+          }):sync()
+          venv_path = poetry_interpreter
+        end
+        return venv_path
+      end
+      dap.configurations.python = vim.list_extend(
+        {
+          {
+            type = "python",
+            request = "launch",
+            name = "Launch file (auto detect)",
+            program = "${file}",
+            pythonPath = auto_detect,
+          },
+          {
+            name = "Attach process",
+            type = "python",
+            request = "attach",
+            pid = require("dap.utils").pick_process,
+          },
+        },
+        dap.configurations.python
+      )
     end,
   },
 
@@ -68,11 +123,14 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     ft = { "python" },
-    opts = {
-      sources = {
-        require("null-ls").builtins.formatting.isort,
-        require("null-ls").builtins.formatting.ruff,
-      },
-    },
+    config = function()
+      require("null-ls").setup({
+        sources = {
+          require("null-ls").builtins.formatting.isort,
+          require("null-ls").builtins.formatting.ruff,
+        },
+      })
+      return true
+    end,
   },
 }

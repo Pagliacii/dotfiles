@@ -20,11 +20,11 @@ return {
       {
         "nvim-telescope/telescope-dap.nvim",
         keys = {
-          { "<leader>tdc", "<cmd> Telescope dap commands<CR>", "Commands" },
-          { "<leader>tdf", "<cmd> Telescope dap frames<CR>", "Frames" },
+          { "<leader>tdc", "<cmd> Telescope dap commands<CR>",         "Commands" },
+          { "<leader>tdf", "<cmd> Telescope dap frames<CR>",           "Frames" },
           { "<leader>tdl", "<cmd> Telescope dap list_breakpoints<CR>", "Breakpoints" },
-          { "<leader>tds", "<cmd> Telescope dap configurations<CR>", "Configurations" },
-          { "<leader>tdv", "<cmd> Telescope dap variables<CR>", "Variables" },
+          { "<leader>tds", "<cmd> Telescope dap configurations<CR>",   "Configurations" },
+          { "<leader>tdv", "<cmd> Telescope dap variables<CR>",        "Variables" },
         },
       },
       {
@@ -101,12 +101,6 @@ return {
   },
 
   {
-    "akinsho/git-conflict.nvim",
-    event = "BufReadPre",
-    config = true,
-  },
-
-  {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = {
@@ -145,5 +139,17 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "sindrets/winshift.nvim",
+    keys = {
+      { "<leader>wm", "<cmd>WinShift<CR>",       desc = "Start Win-Move mode" },
+      { "<leader>wh", "<cmd>WinShift left<CR>",  desc = "Move current window to left" },
+      { "<leader>wl", "<cmd>WinShift right<CR>", desc = "Move current window to right" },
+      { "<leader>wk", "<cmd>WinShift up<CR>",    desc = "Move current window to top" },
+      { "<leader>wj", "<cmd>WinShift down<CR>",  desc = "Move current window to bottom" },
+      { "<leader>wx", "<cmd>WinShift swap<CR>",  desc = "Swap windows" },
+    },
   },
 }

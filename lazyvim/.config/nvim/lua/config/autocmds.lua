@@ -48,7 +48,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- Close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("dap"),
   pattern = {
     "dap-float",
   },
@@ -58,7 +57,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("dap"),
   pattern = {
     "dap-terminal",
   },
@@ -116,25 +114,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     require("lsp-inlayhints").on_attach(client, bufnr, true)
   end,
 })
-
--- Python organize imports
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
---   group = augroup("LspFormatting"),
---   pattern = { "*.py", "*.go", "*.rs" },
---   desc = "Formatting on save",
---   callback = function(event)
---     -- vim.cmd("PyrightOrganizeImports")
---     -- vim.lsp.buf.format({
---     --   bufnr = event.buf,
---     --   filter = function(client)
---     --     return client.name == "null-ls"
---     --   end,
---     -- })
---     print(vim.inspect(event))
---     local params = vim.lsp.util.make_range_params()
---     print(vim.inspect(params))
---     params.context = {}
---     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
---     print(vim.inspect(result))
---   end,
--- })
