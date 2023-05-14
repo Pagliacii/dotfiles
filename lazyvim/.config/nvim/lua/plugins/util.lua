@@ -14,16 +14,6 @@ return {
   },
 
   {
-    "nvim-orgmode/orgmode",
-    ft = { "org" },
-    config = function()
-      local orgmode = require("orgmode")
-      orgmode.setup_ts_grammar()
-      orgmode.setup({})
-    end,
-  },
-
-  {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose" },
     keys = {

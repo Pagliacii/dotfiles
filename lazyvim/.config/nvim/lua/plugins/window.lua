@@ -10,20 +10,4 @@ return {
       { "<leader>wx", "<cmd>WinShift swap<cr>",  desc = "Swap windows" },
     },
   },
-
-  {
-    "beauwilliams/focus.nvim",
-    opts = {
-      hybridnumber = true,
-      excluded_filetypes = { "alpha", "neo-tree", "spectre_pannel" },
-    },
-    keys = {
-      { "<leader>Sn", "<cmd>FocusSplitNicely<cr>", desc = "Split nicely" },
-      { "<leader>Sc", "<cmd>FocusSplitCycle<cr>",  desc = "Split Cycle" },
-      { "<leader>Sh", "<cmd>FocusSplitLeft<cr>",   desc = "Split left" },
-      { "<leader>Sl", "<cmd>FocusSplitRight<cr>",  desc = "Split right" },
-      { "<leader>Sk", "<cmd>FocusSplitUp<cr>",     desc = "Split up" },
-      { "<leader>Sj", "<cmd>FocusSplitDown<cr>",   desc = "Split down" },
-    },
-  },
 }
