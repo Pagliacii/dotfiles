@@ -5,21 +5,43 @@
 local wk = require("which-key")
 
 if vim.fn.executable("gitui") == 1 then
-  vim.keymap.set("n", "<leader>gug", function()
-    require("lazyvim.util").float_term({ "gitui" })
-  end, { desc = "gitui (cwd)" })
-  vim.keymap.set("n", "<leader>guG", function()
-    require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
-  end, { desc = "gitui (root dir)" })
+  wk.register({
+    ["<leader>gu"] = {
+      name = "+gitui",
+      G = {
+        function()
+          require("lazyvim.util").float_term({ "gitui" })
+        end,
+        "gitui (cwd)",
+      },
+      g = {
+        function()
+          require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
+        end,
+        "gitui (root dir)",
+      }
+    },
+  })
 end
 
 if vim.fn.executable("verco") == 1 then
-  vim.keymap.set("n", "<leader>gvg", function()
-    require("lazyvim.util").float_term({ "verco" })
-  end, { desc = "verco (cwd)" })
-  vim.keymap.set("n", "<leader>gvG", function()
-    require("lazyvim.util").float_term({ "verco" }, { cwd = require("lazyvim.util").get_root() })
-  end, { desc = "verco (root dir)" })
+  wk.register({
+    ["<leader>gv"] = {
+      name = "+verco",
+      G = {
+        function()
+          require("lazyvim.util").float_term({ "verco" })
+        end,
+        "verco (cwd)",
+      },
+      g = {
+        function()
+          require("lazyvim.util").float_term({ "verco" }, { cwd = require("lazyvim.util").get_root() })
+        end,
+        "verco (root dir)",
+      }
+    },
+  })
 end
 
 if vim.fn.executable("btop") == 1 then
@@ -38,4 +60,5 @@ wk.register({
     d = { name = "+dap" },
   },
   ["<leader>r"] = { name = "+rust" },
+  ["<leader>y"] = { name = "+dictionary" },
 })
