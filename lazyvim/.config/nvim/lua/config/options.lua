@@ -13,3 +13,12 @@ vim.opt.fileformat = "unix"
 
 -- wrap the long lines
 vim.opt.wrap = true
+
+vim.opt.autochdir = true
+
+-- disable some fanzy UI stuff when run in Neovide
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_floating_blur = 0
+  vim.g.neovide_floating_opacity = 90
+end
