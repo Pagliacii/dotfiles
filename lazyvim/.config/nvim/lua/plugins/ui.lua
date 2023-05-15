@@ -63,12 +63,12 @@ return {
         max_name_length = 30,
         max_prefix_length = 30,              -- prefix used when a buffer is de-duplicated
         show_buffer_icons = true,
-        show_buffer_close_icons = true,
-        show_close_icon = true,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
         show_tab_indicators = true,
         separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
         color_icons = true,
-        diagnostics = true,
+        diagnostics = false,
         highlights = {
           buffer_selected = {
             gui = "none",
@@ -100,6 +100,22 @@ return {
       excluded_filetypes = { "alpha", "neo-tree" },
       current_only = true,
       winblend = 75,
+    },
+  },
+
+  {
+    "karb94/neoscroll.nvim",
+    config = true,
+    keys = {
+      "<C-u>",
+      "<C-d>",
+      "<C-b>",
+      "<C-f>",
+      "<C-y>",
+      "<C-e>",
+      "zt",
+      "zz",
+      "zb",
     },
   },
 }

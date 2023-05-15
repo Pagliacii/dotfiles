@@ -4,6 +4,7 @@ return {
     opts = {
       ensure_installed = {
         "flake8",
+        "isort",
         "pyright",
         "ruff",
       },

@@ -61,7 +61,7 @@ return {
     "lvimuser/lsp-inlayhints.nvim",
     dependencies = "neovim/nvim-lspconfig",
     ft = { "go", "gomod", "gosum" },
-    event = { "BufReadPre" },
+    event = { "BufReadPre *.go" },
     opts = {
       inlay_hints = {
         type_hints = { prefix = "=> " },
