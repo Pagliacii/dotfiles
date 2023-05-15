@@ -95,6 +95,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
   desc = "Lsp inlay hints",
+  pattern = { "*.go" },
   callback = function(args)
     if not (args.data and args.data.client_id) then
       return

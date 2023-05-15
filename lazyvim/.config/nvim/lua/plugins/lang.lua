@@ -30,6 +30,7 @@ return {
         "markdown",
         "markdown_inline",
         "regex",
+        "selene",
         "stylua",
         "shellcheck",
         "shfmt",
@@ -37,6 +38,11 @@ return {
         "yaml",
       },
     },
+  },
+
+  {
+    "gennaro-tedesco/nvim-jqx",
+    ft = { "json", "yaml" },
   },
 
   -- Core language specific extension modules

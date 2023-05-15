@@ -46,11 +46,6 @@ return {
   },
 
   {
-    "gennaro-tedesco/nvim-jqx",
-    ft = { "json", "yaml" },
-  },
-
-  {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = { use_default_keymaps = false, max_join_length = 150 },
@@ -67,18 +62,46 @@ return {
   },
 
   {
-    "karb94/neoscroll.nvim",
-    config = true,
+    "ziontee113/icon-picker.nvim",
+    opts = {
+      disable_legacy_commands = true,
+    },
     keys = {
-      "<C-u>",
-      "<C-d>",
-      "<C-b>",
-      "<C-f>",
-      "<C-y>",
-      "<C-e>",
-      "zt",
-      "zz",
-      "zb",
+      {
+        "<leader>pin",
+        "<cmd>IconPickerNormal nerd_font<cr>",
+        desc = "Pick nerd_font",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader>pie",
+        "<cmd>IconPickerNormal emoji<cr>",
+        desc = "Pick emoji",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader>pih",
+        "<cmd>IconPickerNormal html_colors<cr>",
+        desc = "Pick html_colors",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader>pis",
+        "<cmd>IconPickerNormal symbols<cr>",
+        desc = "Pick symbols",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader>piy",
+        "<cmd>IconPickerYank nerd_font emoji symbols html_colors<cr>",
+        desc = "Yank icon",
+        noremap = true,
+        silent = true
+      },
     },
   },
 }
