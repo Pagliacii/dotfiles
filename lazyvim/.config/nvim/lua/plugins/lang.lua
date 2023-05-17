@@ -4,6 +4,8 @@
 -- * add extra plugins
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
+local formatting_group = vim.api.nvim_create_augroup("LspFormatting", {})
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -14,7 +16,7 @@ return {
         update_in_insert = true,
       },
       format = {
-        timeout_ms = 5000,
+        timeout_ms = 10000,
       },
       servers = {},
     },
@@ -25,18 +27,47 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "lua-language-server",
+        "bash-language-server",
+        "shellcheck",
+        "shfmt",
+      },
+    },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      indent = { enable = false },
+      ensure_installed = {
         "json",
         "markdown",
         "markdown_inline",
         "regex",
-        "selene",
-        "stylua",
-        "shellcheck",
-        "shfmt",
         "vim",
+        "vimdoc",
         "yaml",
       },
+    },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = {
+      on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+          vim.api.nvim_clear_autocmds({
+            group = formatting_group,
+            buffer = bufnr,
+          })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = formatting_group,
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = bufnr })
+            end,
+          })
+        end
+      end,
     },
   },
 
@@ -53,4 +84,5 @@ return {
   { import = "plugins.extras.lang.golang" },
   { import = "plugins.extras.lang.python" },
   { import = "plugins.extras.lang.rust" },
+  { import = "plugins.extras.lang.lua" },
 }

@@ -1,14 +1,15 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "flake8",
         "isort",
         "pyright",
         "ruff",
-      },
-    },
+        "mypy",
+      })
+    end,
   },
 
   {
@@ -16,6 +17,13 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "debugpy" })
     end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "python" })
+    end
   },
 
   {
@@ -96,9 +104,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = {
+    opts = function(_, opts)
       ---@type lspconfig.options
-      servers = {
+      vim.list_extend(opts.servers, {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
           filetypes = { "python" },
@@ -117,21 +125,18 @@ return {
           filetypes = { "python" },
           settings = {},
         },
-      },
-    },
+      })
+    end,
   },
 
   {
     "jose-elias-alvarez/null-ls.nvim",
     ft = { "python" },
-    config = function()
-      require("null-ls").setup({
-        sources = {
-          require("null-ls").builtins.formatting.isort,
-          require("null-ls").builtins.formatting.ruff,
-        },
+    opts = function(_, opts)
+      vim.list_extend(opts.sources, {
+        require("null-ls").builtins.formatting.isort,
+        require("null-ls").builtins.formatting.ruff,
       })
-      return true
     end,
   },
 }

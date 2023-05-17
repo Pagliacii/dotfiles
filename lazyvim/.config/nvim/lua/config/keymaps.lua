@@ -19,7 +19,7 @@ if vim.fn.executable("gitui") == 1 then
           require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
         end,
         "gitui (root dir)",
-      }
+      },
     },
   })
 end
@@ -39,7 +39,7 @@ if vim.fn.executable("verco") == 1 then
           require("lazyvim.util").float_term({ "verco" }, { cwd = require("lazyvim.util").get_root() })
         end,
         "verco (root dir)",
-      }
+      },
     },
   })
 end
@@ -61,7 +61,6 @@ wk.register({
   },
   ["<leader>r"] = { name = "+rust" },
   ["<leader>y"] = { name = "+dictionary" },
-  ["<leader>S"] = { name = "+focus" },
   ["<leader>p"] = {
     name = "+picker",
     i = { name = "+icon" },

@@ -22,3 +22,7 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur = 0
   vim.g.neovide_floating_opacity = 90
 end
+
+vim.opt.colorcolumn = "80"
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

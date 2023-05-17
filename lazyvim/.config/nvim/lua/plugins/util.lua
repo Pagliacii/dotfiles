@@ -4,10 +4,10 @@ return {
     keys = function(_, keys)
       if vim.fn.executable("tmux") == 1 then
         vim.list_extend(keys, {
-          { "<C-h>", "<cmd> TmuxNavigateLeft<cr>",  desc = "Window left" },
+          { "<C-h>", "<cmd> TmuxNavigateLeft<cr>", desc = "Window left" },
           { "<C-l>", "<cmd> TmuxNavigateRight<cr>", desc = "Window right" },
-          { "<C-j>", "<cmd> TmuxNavigateDown<cr>",  desc = "Window down" },
-          { "<C-k>", "<cmd> TmuxNavigateUp<cr>",    desc = "Window up" },
+          { "<C-j>", "<cmd> TmuxNavigateDown<cr>", desc = "Window down" },
+          { "<C-k>", "<cmd> TmuxNavigateUp<cr>", desc = "Window up" },
         })
       end
     end,
@@ -24,6 +24,7 @@ return {
   {
     "wakatime/vim-wakatime",
     event = "VeryLazy",
+    enabled = vim.fn.executable("wakatime") == 1,
   },
 
   {
@@ -31,18 +32,24 @@ return {
     opts = {
       init = function()
         require("hover.providers.dictionary")
-      end
+      end,
     },
     keys = {
-      { "<leader>yd", function() require("hover").hover() end, desc = "Lookup word under cursor in dictionary" }
-    }
+      {
+        "<leader>yd",
+        function()
+          require("hover").hover()
+        end,
+        desc = "Lookup word under cursor in dictionary",
+      },
+    },
   },
 
   {
     "voldikss/vim-translator",
     keys = {
       { "<leader>yw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
-    }
+    },
   },
 
   {
@@ -72,35 +79,35 @@ return {
         "<cmd>IconPickerNormal nerd_font<cr>",
         desc = "Pick nerd_font",
         noremap = true,
-        silent = true
+        silent = true,
       },
       {
         "<leader>pie",
         "<cmd>IconPickerNormal emoji<cr>",
         desc = "Pick emoji",
         noremap = true,
-        silent = true
+        silent = true,
       },
       {
         "<leader>pih",
         "<cmd>IconPickerNormal html_colors<cr>",
         desc = "Pick html_colors",
         noremap = true,
-        silent = true
+        silent = true,
       },
       {
         "<leader>pis",
         "<cmd>IconPickerNormal symbols<cr>",
         desc = "Pick symbols",
         noremap = true,
-        silent = true
+        silent = true,
       },
       {
         "<leader>piy",
         "<cmd>IconPickerYank nerd_font emoji symbols html_colors<cr>",
         desc = "Yank icon",
         noremap = true,
-        silent = true
+        silent = true,
       },
     },
   },
