@@ -61,9 +61,10 @@ wk.register({
   },
   ["<leader>r"] = { name = "+rust" },
   ["<leader>y"] = { name = "+dictionary" },
-  ["<leader>p"] = {
+  ["<leader>P"] = {
     name = "+picker",
     i = { name = "+icon" },
   },
   ["<leader>m"] = { name = "+markdown" },
+  ["<leader>G"] = { name = "+go" },
 })

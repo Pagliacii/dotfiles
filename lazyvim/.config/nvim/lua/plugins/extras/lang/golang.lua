@@ -1,3 +1,22 @@
+local function go_mod_init()
+  local mod_name = vim.fn.input("Please enter the module name: ")
+  if #mod_name ~= 0 then
+    vim.cmd([[ GoMod init ]] .. mod_name)
+  end
+end
+local function go_impl()
+  local interface_name = vim.fn.input("Which interface to implement: ")
+  if #interface_name ~= 0 then
+    vim.cmd([[ GoImpl ]] .. interface_name)
+  end
+end
+local function go_get()
+  local link = vim.fn.input("Where to get the package: ")
+  if #link ~= 0 then
+    vim.cmd([[ GoGet ]] .. link)
+  end
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -6,6 +25,10 @@ return {
         "gopls",
         "goimports-reviser",
         "golines",
+        "gomodifytags",
+        "gotests",
+        "iferr",
+        "impl",
       })
     end,
   },
@@ -33,6 +56,34 @@ return {
     "leoluz/nvim-dap-go",
     ft = { "go" },
     config = true,
+  },
+
+  {
+    "olexsmir/gopher.nvim",
+    ft = { "go" },
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+    keys = {
+      { "<leader>Ga", "<cmd>GoTestAdd<cr>", desc = "Add one test", silent = true },
+      { "<leader>GA", "<cmd>GoTestsAll<cr>", desc = "Add all tests", silent = true },
+      { "<leader>Gj", "<cmd>GoTagAdd json<cr>", desc = "Add json tag", silent = true },
+      { "<leader>GJ", "<cmd>GoTagRm json<cr>", desc = "Remove json tag", silent = true },
+      { "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", desc = "Add yaml tag", silent = true },
+      { "<leader>GY", "<cmd>GoTagRm yaml<cr>", desc = "Remove yaml tag", silent = true },
+      { "<leader>Gm", go_mod_init, desc = "go mod init", silent = true },
+      { "<leader>Gi", go_impl, desc = "Interface implementation", silent = true },
+      { "<leader>Gg", go_get, desc = "go get", silent = true },
+      { "<leader>Gc", "<cmd>GoGenerate<cr>", desc = "go generate (cwd)", silent = true },
+      { "<leader>GC", "<cmd>GoGenerate %<cr>", desc = "go generate (current file)", silent = true },
+      { "<leader>Gd", "<cmd>GoCmt<cr>", desc = "Doc comment", silent = true },
+      { "<leader>Ge", "<cmd>GoIfErr<cr>", desc = "Insert iferr", silent = true },
+    },
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("gopher.dap").setup()
+    end,
   },
 
   {
