@@ -1,32 +1,37 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "rust-analyzer",
         "rustfmt",
-      },
-    },
+      })
+    end,
   },
 
   {
     "jose-elias-alvarez/null-ls.nvim",
     ft = { "rust" },
-    config = function()
-      require("null-ls").setup({
-        sources = {
-          require("null-ls").builtins.formatting.rustfmt,
-        },
+    opts = function(_, opts)
+      vim.list_extend(opts.sources, {
+        require("null-ls").builtins.formatting.rustfmt,
       })
-    end
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "rust" })
+    end,
   },
 
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = {
+    opts = function(_, opts)
       ---@type lspconfig.options
-      servers = {
+      vim.list_extend(opts.servers, {
         rust_analyzer = {
           filetypes = { "rust" },
           root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
@@ -66,8 +71,8 @@ return {
             },
           },
         },
-      },
-    },
+      })
+    end,
   },
 
   {
@@ -116,11 +121,13 @@ return {
           cwd = "${workspaceFolder}",
           program = function()
             local job = require("plenary.job")
-            job:new({
-              command = "cargo",
-              args = { "build" },
-              cwd = vim.fn.getcwd(),
-            }):sync()
+            job
+              :new({
+                command = "cargo",
+                args = { "build" },
+                cwd = vim.fn.getcwd(),
+              })
+              :sync()
             return path.concat({ "${workspaceFolder}", "target", "debug", "${workspaceFolderBasename}" })
           end,
         },
@@ -146,16 +153,16 @@ return {
       local opts = {
         dap = {
           adapter = adapter,
-        }
+        },
       }
       require("rust-tools").setup(opts)
       return true
     end,
     cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
     keys = {
-      { "<leader>rc", "<cmd> RustOpenCargo<cr>",   desc = "Open Cargo.toml" },
+      { "<leader>rc", "<cmd> RustOpenCargo<cr>", desc = "Open Cargo.toml" },
       { "<leader>rd", "<cmd> RustDebuggables<cr>", desc = "Debuggable targets" },
-      { "<leader>rr", "<cmd> RustRunnables<cr>",   desc = "Runnable targets" },
+      { "<leader>rr", "<cmd> RustRunnables<cr>", desc = "Runnable targets" },
     },
   },
 }

@@ -11,12 +11,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Auto change to opened directory
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
-  callback = function(event)
-    if vim.bo[event.buf].filetype ~= "spectre_panel" then
-      vim.cmd("lcd %:p:h")
-    end
+  callback = function()
+    vim.cmd("lcd %:p:h")
   end,
 })
 
@@ -67,27 +65,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.diagnostic.disable(event.buf)
     vim.keymap.set("n", "q", "<cmd>DiffviewClose<cr>", { buffer = event.buf, silent = true })
-  end,
-})
-
--- Fix Golang imports
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  desc = "Fix golang imports",
-  pattern = "*.go",
-  callback = function()
-    -- ensure imports are sorted and grouped correctly
-    local wait_ms = 1000
-    local params = vim.lsp.util.make_range_params()
-    params.context = { only = { "source.organizeImports" } }
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-    for cid, res in pairs(result or {}) do
-      for _, r in pairs(res.result or {}) do
-        if r.edit then
-          local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-8"
-          vim.lsp.util.apply_workspace_edit(r.edit, enc)
-        end
-      end
-    end
   end,
 })
 
