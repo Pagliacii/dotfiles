@@ -23,7 +23,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "python" })
-    end
+    end,
   },
 
   {
@@ -65,57 +65,58 @@ return {
           venv_path = dot_venv_path
         elseif vim.fn.executable("poetry") == 1 then
           local poetry_interpreter = ""
-          job:new({
-            command = "poetry",
-            args = { "env", "info", "-p" },
-            cwd = cwd,
-            on_stdout = function(_, output)
-              poetry_interpreter = path.concat({
-                output,
-                interpreter,
-              })
-            end
-          }):sync()
+          job
+            :new({
+              command = "poetry",
+              args = { "env", "info", "-p" },
+              cwd = cwd,
+              on_stdout = function(_, output)
+                poetry_interpreter = path.concat({
+                  output,
+                  interpreter,
+                })
+              end,
+            })
+            :sync()
           venv_path = poetry_interpreter
         end
         return venv_path
       end
-      dap.configurations.python = vim.list_extend(
+      dap.configurations.python = vim.list_extend({
         {
-          {
-            type = "python",
-            request = "launch",
-            name = "Launch file (auto detect)",
-            program = "${file}",
-            pythonPath = auto_detect,
-          },
-          {
-            name = "Attach process",
-            type = "python",
-            request = "attach",
-            pid = require("dap.utils").pick_process,
-          },
+          type = "python",
+          request = "launch",
+          name = "Launch file (auto detect)",
+          program = "${file}",
+          pythonPath = auto_detect,
         },
-        dap.configurations.python
-      )
+        {
+          name = "Attach process",
+          type = "python",
+          request = "attach",
+          pid = require("dap.utils").pick_process,
+        },
+      }, dap.configurations.python)
     end,
   },
 
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = function(_, opts)
+    opts = {
       ---@type lspconfig.options
-      vim.list_extend(opts.servers, {
+      servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
           filetypes = { "python" },
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
           settings = {
             python = {
               analysis = {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "basic",
                 useLibraryCodeForTypes = false,
               },
             },
@@ -123,10 +124,11 @@ return {
         },
         ruff_lsp = {
           filetypes = { "python" },
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
           settings = {},
         },
-      })
-    end,
+      },
+    },
   },
 
   {

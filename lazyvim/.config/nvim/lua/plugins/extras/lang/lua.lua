@@ -35,9 +35,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = function(_, opts)
+    opts = {
       ---@type lspconfig.options
-      vim.list_extend(opts.servers, {
+      servers = {
         lua_ls = {
           settings = {
             Lua = {
@@ -47,12 +47,20 @@ return {
               },
               diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
+                globals = { "vim", "jit" },
+                neededFileStatus = { "Opened" },
+                groupFileStatus = { "Opened" },
+                libraryFiles = "Disable",
+                ignoredFiles = "Disable",
+              },
+              workspace = {
+                maxPreload = 100,
+                checkThirdParty = false,
               },
             },
           },
         },
-      })
-    end,
+      },
+    },
   },
 }

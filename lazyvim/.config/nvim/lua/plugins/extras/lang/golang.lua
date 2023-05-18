@@ -23,6 +23,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "gopls",
+        "gofumpt",
         "goimports-reviser",
         "golines",
         "gomodifytags",
@@ -89,9 +90,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = function(_, opts)
+    opts = {
       ---@type lspconfig.options
-      vim.list_extend(opts.servers, {
+      servers = {
         gopls = {
           filetypes = { "go", "gomod", "gosum", "gowork", "gotmpl" },
           root_dir = require("lspconfig.util").root_pattern(".git", "go.work", "go.mod"),
@@ -119,8 +120,8 @@ return {
             },
           },
         },
-      })
-    end,
+      },
+    },
   },
 
   {
@@ -151,7 +152,9 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.sources, {
         require("null-ls").builtins.formatting.gofumpt,
-        require("null-ls").builtins.formatting.goimports_reviser,
+        require("null-ls").builtins.formatting.goimports_reviser.with({
+          args = { "-rm-unused", "$FILENAME" },
+        }),
         require("null-ls").builtins.formatting.golines,
       })
     end,
