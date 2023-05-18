@@ -29,9 +29,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
-    opts = function(_, opts)
+    opts = {
       ---@type lspconfig.options
-      vim.list_extend(opts.servers, {
+      servers = {
         rust_analyzer = {
           filetypes = { "rust" },
           root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
@@ -71,8 +71,8 @@ return {
             },
           },
         },
-      })
-    end,
+      },
+    },
   },
 
   {
