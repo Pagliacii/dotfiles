@@ -66,5 +66,16 @@ wk.register({
     i = { name = "+icon" },
   },
   ["<leader>m"] = { name = "+markdown" },
+  ["<leader>n"] = {
+    name = "+note",
+    c = { name = "+cwd" },
+    g = { name = "+global" },
+    l = { name = "+line" },
+    j = { name = "+jump" },
+    C = { name = "+count" },
+    E = { name = "+export" },
+    I = { name = "+import" },
+    L = { name = "+list" },
+  },
   ["<leader>G"] = { name = "+go" },
 })
