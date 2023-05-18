@@ -12,7 +12,7 @@ return {
     "folke/zen-mode.nvim",
     config = true,
     keys = {
-      { "<leader>z", "<CMD> ZenMode<cr>", desc = "toggle zen mode" },
+      { "<leader>z", "<cmd> ZenMode<cr>", desc = "toggle zen mode" },
     },
     opts = {
       plugins = {
@@ -93,13 +93,31 @@ return {
   },
 
   -- scrollbar for Neovim
+  -- {
+  --   "dstein64/nvim-scrollview",
+  --   event = "BufReadPre",
+  --   config = {
+  --     excluded_filetypes = { "alpha", "neo-tree" },
+  --     current_only = true,
+  --     winblend = 75,
+  --   },
+  -- },
   {
-    "dstein64/nvim-scrollview",
+    "petertriho/nvim-scrollbar",
+    dependencies = {
+      "kevinhwang91/nvim-hlslens",
+      "lewis6991/gitsigns.nvim",
+    },
     event = "BufReadPre",
-    config = {
-      excluded_filetypes = { "alpha", "neo-tree" },
-      current_only = true,
-      winblend = 75,
+    opts = {
+      excluded_filetypes = {
+        "alpha",
+        "neo-tree",
+      },
+      handlers = {
+        gitsigns = true,
+        search = true,
+      },
     },
   },
 
@@ -117,5 +135,23 @@ return {
       "zz",
       "zb",
     },
+  },
+
+  {
+    "HiPhish/nvim-ts-rainbow2",
+    event = "BufReadPre",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        rainbow = {
+          enable = true,
+          -- list of languages you want to disable the plugin for
+          disable = {},
+          -- Which query to use for finding delimiters
+          query = "rainbow-parens",
+          -- Highlight the entire buffer all at once
+          strategy = require("ts-rainbow").strategy.global,
+        },
+      })
+    end,
   },
 }

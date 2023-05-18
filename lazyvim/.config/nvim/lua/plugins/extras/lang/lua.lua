@@ -39,6 +39,8 @@ return {
       ---@type lspconfig.options
       servers = {
         lua_ls = {
+          filetypes = { "lua" },
+          root_dir = require("lspconfig.util").root_pattern("stylua.toml", "selene.toml"),
           settings = {
             Lua = {
               runtime = {
@@ -54,8 +56,13 @@ return {
                 ignoredFiles = "Disable",
               },
               workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
                 maxPreload = 100,
                 checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
               },
             },
           },
