@@ -327,4 +327,5 @@ zsdoc/data
 vim/.vim/plugged
 vim/.vim/sessions
 vim/.vim/view
+.quicknote/
 

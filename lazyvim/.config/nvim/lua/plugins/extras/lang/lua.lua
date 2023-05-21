@@ -1,6 +1,8 @@
+local filetypes = { "lua" }
 return {
   {
     "williamboman/mason.nvim",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "lua-language-server",
@@ -12,6 +14,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "lua",
@@ -23,7 +26,7 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "lua" },
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.sources, {
         require("null-ls").builtins.diagnostics.selene,
@@ -34,12 +37,13 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    ft = filetypes,
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
         lua_ls = {
-          filetypes = { "lua" },
+          filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("stylua.toml", "selene.toml"),
           settings = {
             Lua = {

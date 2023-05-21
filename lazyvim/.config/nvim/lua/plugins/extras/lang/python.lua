@@ -1,6 +1,9 @@
+local filetypes = { "python" }
+
 return {
   {
     "williamboman/mason.nvim",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "flake8",
@@ -14,6 +17,7 @@ return {
 
   {
     "jay-babu/mason-nvim-dap.nvim",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "debugpy" })
     end,
@@ -21,6 +25,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "python" })
     end,
@@ -28,7 +33,7 @@ return {
 
   {
     "mfussenegger/nvim-dap-python",
-    ft = { "python" },
+    ft = filetypes,
     config = function()
       local path = require("mason-core.path")
       local bin_folder = "bin"
@@ -66,18 +71,18 @@ return {
         elseif vim.fn.executable("poetry") == 1 then
           local poetry_interpreter = ""
           job
-            :new({
-              command = "poetry",
-              args = { "env", "info", "-p" },
-              cwd = cwd,
-              on_stdout = function(_, output)
-                poetry_interpreter = path.concat({
-                  output,
-                  interpreter,
-                })
-              end,
-            })
-            :sync()
+              :new({
+                command = "poetry",
+                args = { "env", "info", "-p" },
+                cwd = cwd,
+                on_stdout = function(_, output)
+                  poetry_interpreter = path.concat({
+                    output,
+                    interpreter,
+                  })
+                end,
+              })
+              :sync()
           venv_path = poetry_interpreter
         end
         return venv_path
@@ -102,13 +107,14 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    ft = filetypes,
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
-          filetypes = { "python" },
+          filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
           settings = {
             python = {
@@ -123,7 +129,7 @@ return {
           },
         },
         ruff_lsp = {
-          filetypes = { "python" },
+          filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
           settings = {},
         },
@@ -133,7 +139,7 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "python" },
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.sources, {
         require("null-ls").builtins.formatting.isort,
