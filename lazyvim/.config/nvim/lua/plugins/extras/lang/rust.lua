@@ -1,6 +1,9 @@
+local filetypes = { "rust" }
+
 return {
   {
     "williamboman/mason.nvim",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "rust-analyzer",
@@ -11,7 +14,7 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "rust" },
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.sources, {
         require("null-ls").builtins.formatting.rustfmt,
@@ -21,6 +24,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "rust" })
     end,
@@ -28,12 +32,13 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    ft = filetypes,
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
         rust_analyzer = {
-          filetypes = { "rust" },
+          filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
           settings = {
             ["rust-analyzer"] = {
@@ -77,6 +82,7 @@ return {
 
   {
     "jay-babu/mason-nvim-dap.nvim",
+    ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "codelldb" })
     end,
@@ -84,6 +90,7 @@ return {
 
   {
     "saecki/crates.nvim",
+    ft = filetypes,
     event = { "BufRead Cargo.toml" },
     config = true,
   },
@@ -95,7 +102,7 @@ return {
       { "nvim-lua/plenary.nvim" },
       { "jay-babu/mason-nvim-dap.nvim" },
     },
-    ft = { "rust" },
+    ft = filetypes,
     config = function()
       local path = require("mason-core.path")
       local codelldb_path = path.concat({

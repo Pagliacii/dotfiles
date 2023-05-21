@@ -18,7 +18,7 @@ require("lazy").setup({
     -- LazyVim dap core extension modules
     { import = "lazyvim.plugins.extras.dap.core" },
     -- LazyVim editor extension modules
-    { import = "lazyvim.plugins.extras.util.project" },
+    -- { import = "lazyvim.plugins.extras.util.project" },
     -- import/override with your plugins
     { import = "plugins" },
   },

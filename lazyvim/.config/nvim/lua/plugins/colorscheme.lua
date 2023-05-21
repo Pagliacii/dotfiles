@@ -4,6 +4,10 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "frappe",
+      background = {
+        light = "latte",
+        dark = "frappe",
+      },
       term_colors = true,
       -- color_overrides = {
       --   mocha = {

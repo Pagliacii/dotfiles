@@ -52,15 +52,13 @@ if vim.fn.executable("btop") == 1 then
 end
 
 vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", { desc = "Open Dashboard" })
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del("n", "<leader>fT")
 
 -- Groups
 wk.register({
-  ["<leader>t"] = {
-    name = "+telescope",
-    d = { name = "+dap" },
-  },
   ["<leader>r"] = { name = "+rust" },
-  ["<leader>y"] = { name = "+dictionary" },
+  ["<leader>y"] = { name = "+dictionary", mode = { "n", "v" } },
   ["<leader>P"] = {
     name = "+picker",
     i = { name = "+icon" },
@@ -78,4 +76,6 @@ wk.register({
     L = { name = "+list" },
   },
   ["<leader>G"] = { name = "+go" },
+  ["<leader>D"] = { name = "+database" },
+  ["<leader>du"] = { name = "+ui" },
 })

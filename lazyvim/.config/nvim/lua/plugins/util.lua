@@ -1,19 +1,5 @@
 return {
   {
-    "christoomey/vim-tmux-navigator",
-    keys = function(_, keys)
-      if vim.fn.executable("tmux") == 1 then
-        vim.list_extend(keys, {
-          { "<C-h>", "<cmd> TmuxNavigateLeft<cr>", desc = "Window left" },
-          { "<C-l>", "<cmd> TmuxNavigateRight<cr>", desc = "Window right" },
-          { "<C-j>", "<cmd> TmuxNavigateDown<cr>", desc = "Window down" },
-          { "<C-k>", "<cmd> TmuxNavigateUp<cr>", desc = "Window up" },
-        })
-      end
-    end,
-  },
-
-  {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose" },
     keys = {
@@ -23,7 +9,7 @@ return {
 
   {
     "wakatime/vim-wakatime",
-    event = "VeryLazy",
+    event = "BufReadPre",
     enabled = vim.fn.executable("wakatime") == 1,
   },
 
@@ -37,8 +23,8 @@ return {
     keys = {
       {
         "<leader>yd",
-        function()
-          require("hover").hover()
+        function(...)
+          require("hover").hover(...)
         end,
         desc = "Lookup word under cursor in dictionary",
       },
@@ -74,12 +60,15 @@ return {
       {
         "NvChad/nvim-colorizer.lua",
         cmd = { "ColorizerToggle" },
+        keys = {
+          { "<leader>u;", "<cmd> ColorizerToggle<cr>", desc = "Toggle colorizer" },
+        },
         opts = {
           filetyps = { "*" },
           user_default_options = {
             RGB = true, -- #RGB hex codes
             RRGGBB = true, -- #RRGGBB hex codes
-            names = true, -- "Name" codes like Blue or blue
+            names = false, -- "Name" codes like Blue or blue
             RRGGBBAA = true, -- #RRGGBBAA hex codes
             AARRGGBB = true, -- 0xAARRGGBB hex codes
             rgb_fn = true, -- CSS rgb() and rgba() functions
@@ -139,6 +128,38 @@ return {
         noremap = true,
         silent = true,
       },
+    },
+  },
+
+  {
+    "max397574/better-escape.nvim",
+    config = true,
+    keys = {
+      { "jj", mode = "i" },
+      { "jk", mode = "i" },
+    },
+  },
+
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true,
+    cmd = { "Octo" },
+  },
+
+  {
+    "sudormrfbin/cheatsheet.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/popup.nvim",
+    },
+    cmd = { "Cheatsheet", "CheatsheetEdit" },
+    keys = {
+      { "<leader>?", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
     },
   },
 }

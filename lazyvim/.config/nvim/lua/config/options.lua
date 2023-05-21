@@ -11,10 +11,15 @@ vim.g.loaded_perl_provider = 0
 -- fix newline: CRLF -> LF
 vim.opt.fileformat = "unix"
 
--- wrap the long lines
-vim.opt.wrap = true
-
-vim.opt.autochdir = true
+if vim.loop.os_uname().version:match("Windows") then
+  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag =
+  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
+end
 
 -- disable some fanzy UI stuff when run in Neovide
 if vim.g.neovide then

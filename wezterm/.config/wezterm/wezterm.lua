@@ -28,15 +28,16 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 wezterm.on("update-status", function(window, _)
 	local overrides = window:get_config_overrides() or {}
 	local appearance = wezterm.gui.get_appearance()
-	if window:is_focused() then
-		overrides.color_scheme = scheme_for_appearance(appearance)
-	else
-		if appearance:find("Dark") then
-			overrides.color_scheme = "Grayscale Dark (base16)"
-		else
-			overrides.color_scheme = "Builtin Solarized Dark"
-		end
-	end
+	overrides.color_scheme = scheme_for_appearance(appearance)
+	-- if window:is_focused() then
+	-- 	overrides.color_scheme = scheme_for_appearance(appearance)
+	-- else
+	-- 	if appearance:find("Dark") then
+	-- 		overrides.color_scheme = "Grayscale Dark (base16)"
+	-- 	else
+	-- 		overrides.color_scheme = "Builtin Solarized Dark"
+	-- 	end
+	-- end
 	window:set_config_overrides(overrides)
 end)
 
@@ -189,7 +190,6 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 			-- cwd = "path/to/your/project",
 		})
     --]]
-
 		-- We want to startup in the coding workspace
 		mux.set_active_workspace("coding")
 		-- local current_window = window:gui_window()
@@ -359,6 +359,47 @@ config.mouse_bindings = {
 		action = act.DecreaseFontSize,
 	},
 }
+
+--[[ smart-splits.nvim integrations
+local function is_vim(pane)
+	-- this is set by the plugin, and unset on ExitPre in Neovim
+	return pane:get_user_vars().IS_NVIM == "true"
+end
+local direction_keys = {
+	Left = "h",
+	Right = "l",
+	Up = "k",
+	Down = "j",
+	-- reverse lookup
+	h = "Left",
+	l = "Right",
+	k = "Up",
+	j = "Down",
+}
+local function split_nav(resize_or_move, key)
+	local resize = resize_or_move == "resize"
+	local mod_key = resize and "META|SHIFT" or "CTRL"
+	return {
+		key = key,
+		mods = mod_key,
+		action = wezterm.action_callback(function(win, pane)
+			print(is_vim(pane))
+			if is_vim(pane) then
+				-- pass the keys through to vim/nvim
+				win:perform_action({
+					SendKey = { key = key, mods = mod_key },
+				}, pane)
+			else
+				if resize then
+					win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+				else
+					win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+				end
+			end
+		end),
+	}
+end
+--]]
 config.keys = {
 	-- Splits the active pane in a particular direction.
 	{
@@ -422,6 +463,16 @@ config.keys = {
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Up"),
 	},
+	-- move between split panes
+	-- split_nav("move", "h"),
+	-- split_nav("move", "j"),
+	-- split_nav("move", "k"),
+	-- split_nav("move", "l"),
+	-- -- resize panes
+	-- split_nav("resize", "h"),
+	-- split_nav("resize", "j"),
+	-- split_nav("resize", "k"),
+	-- split_nav("resize", "l"),
 	-- Rotates the sequence of panes within the active tab,
 	-- preserving the sizes based on the tab positions.
 	{

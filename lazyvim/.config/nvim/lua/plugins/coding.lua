@@ -26,9 +26,8 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
+    opts = function()
       local cmp = require("cmp")
       table.insert(cmp.mapping.preset, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -36,7 +35,7 @@ return {
       table.insert(cmp.mapping.preset, {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       })
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      table.insert(cmp.sources, { name = "crates" })
     end,
   },
 }
