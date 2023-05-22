@@ -27,7 +27,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
-    opts = function()
+    opts = function(_, opts)
       local cmp = require("cmp")
       table.insert(cmp.mapping.preset, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -35,7 +35,25 @@ return {
       table.insert(cmp.mapping.preset, {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       })
-      table.insert(cmp.sources, { name = "crates" })
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "crates" } }))
+    end,
+  },
+
+  {
+    "rmagatti/goto-preview",
+    config = true,
+    keys = function(_, keys)
+      local wk = require("which-key")
+      wk.register({ ["gp"] = { name = "+preview" } })
+      local preview = require("goto-preview")
+      vim.list_extend(keys, {
+        { "gpd", preview.goto_preview_definition, desc = "Preview definition", noremap = true },
+        { "gpt", preview.goto_preview_type_definition, desc = "Preview type definition", noremap = true },
+        { "gpi", preview.goto_preview_implementation, desc = "Preview implementation", noremap = true },
+        { "gpr", preview.goto_preview_references, desc = "Preview references", noremap = true },
+        { "gpp", preview.close_all_win, desc = "Close preview window", noremap = true },
+      })
+      return keys
     end,
   },
 }
