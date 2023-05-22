@@ -33,10 +33,10 @@ return {
         end
       end
       vim.list_extend(keys, {
-        { "<leader>dus", toggle_sidebar("scopes"), desc = "Scopes", noremap = true },
-        { "<leader>duf", toggle_sidebar("frames"), desc = "Frames", noremap = true },
-        { "<leader>duS", toggle_sidebar("sessions"), desc = "Sessions", noremap = true },
-        { "<leader>dut", toggle_sidebar("threads"), desc = "Threads", noremap = true },
+        { "<leader>dus", toggle_sidebar("scopes"),     desc = "Scopes",     noremap = true },
+        { "<leader>duf", toggle_sidebar("frames"),     desc = "Frames",     noremap = true },
+        { "<leader>duS", toggle_sidebar("sessions"),   desc = "Sessions",   noremap = true },
+        { "<leader>dut", toggle_sidebar("threads"),    desc = "Threads",    noremap = true },
         { "<leader>due", toggle_sidebar("expression"), desc = "Expression", noremap = true },
       })
       return keys
@@ -68,14 +68,16 @@ return {
 
   {
     "LiadOz/nvim-dap-repl-highlights",
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    config = function(_, opts)
-      require("nvim-dap-repl-highlights").setup(opts)
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
-        ensure_installed = { "dap_repl" },
-      })
-    end,
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+        opts = function(_, opts)
+          opts.highlight = { enable = true }
+          table.insert(opts.ensure_installed, "dap_repl")
+        end,
+      },
+    },
+    config = true,
     ft = { "dap-repl" },
   },
 }
