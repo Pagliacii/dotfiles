@@ -22,7 +22,7 @@ return {
     },
     keys = {
       {
-        "<leader>yd",
+        "<leader>Td",
         function(...)
           require("hover").hover(...)
         end,
@@ -34,7 +34,7 @@ return {
   {
     "voldikss/vim-translator",
     keys = {
-      { "<leader>yw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
+      { "<leader>Tw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
     },
   },
 
@@ -60,9 +60,22 @@ return {
       {
         "NvChad/nvim-colorizer.lua",
         cmd = { "ColorizerToggle" },
-        keys = {
-          { "<leader>u;", "<cmd> ColorizerToggle<cr>", desc = "Toggle colorizer" },
-        },
+        keys = function(_, keys)
+          local toggle = function()
+            local enabled = false
+            return function()
+              vim.cmd([[ColorizerToggle]])
+              enabled = not enabled
+              if enabled then
+                vim.notify("Colorizer enabled")
+              else
+                vim.notify("Colorizer disabled")
+              end
+            end
+          end
+          table.insert(keys, { "<leader>u;", toggle(), desc = "Toggle colorizer" })
+          return keys
+        end,
         opts = {
           filetyps = { "*" },
           user_default_options = {

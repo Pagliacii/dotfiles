@@ -4,14 +4,14 @@ return {
     cmd = { "DB" },
     keys = {
       {
-        "<leader>Dc",
+        "<leader>Tc",
         function()
           local url = vim.fn.input("DB URL: ")
           if #url > 0 then
             vim.cmd(string.format("DB %s", url))
           end
         end,
-        desc = "Connect",
+        desc = "DB connect",
       },
     },
   },
@@ -21,7 +21,7 @@ return {
     dependencies = { "tpope/vim-dadbod" },
     cmd = { "DBUI" },
     keys = {
-      { "<leader>Du", "<cmd>DBUI<cr>", desc = "Open DBUI" },
+      { "<leader>Tu", "<cmd>DBUI<cr>", desc = "Open DBUI" },
     },
   },
 }

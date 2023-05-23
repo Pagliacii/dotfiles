@@ -139,7 +139,7 @@ return {
     config = true,
     keys = {
       {
-        "<leader>ch",
+        "<leader>Gh",
         function()
           require("lsp-inlayhints").toggle()
         end,

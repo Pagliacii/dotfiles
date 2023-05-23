@@ -46,7 +46,7 @@ end
 
 if vim.fn.executable("btop") == 1 then
   -- btop
-  vim.keymap.set("n", "<leader>xb", function()
+  vim.keymap.set("n", "<leader>Tb", function()
     require("lazyvim.util").float_term({ "btop" })
   end, { desc = "btop" })
 end
@@ -58,7 +58,6 @@ vim.keymap.del("n", "<leader>fT")
 -- Groups
 wk.register({
   ["<leader>r"] = { name = "+rust" },
-  ["<leader>y"] = { name = "+dictionary", mode = { "n", "v" } },
   ["<leader>P"] = {
     name = "+picker",
     i = { name = "+icon" },
@@ -76,6 +75,9 @@ wk.register({
     L = { name = "+list" },
   },
   ["<leader>G"] = { name = "+go" },
-  ["<leader>D"] = { name = "+database" },
   ["<leader>du"] = { name = "+ui" },
+  ["<leader>T"] = {
+    name = "+tool",
+    mode = { "n", "v" },
+  },
 })
