@@ -89,6 +89,8 @@ return {
       size = function(t)
         if t.direction == "vertical" then
           return vim.o.columns * 0.3
+        elseif t.direction == "horizontal" then
+          return 15
         end
       end,
       ---@param t Terminal
