@@ -59,6 +59,7 @@ return {
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       { "nvim-treesitter/nvim-treesitter" },
+      { "neovim/nvim-lspconfig" },
     },
     opts = {
       symbol_in_winbar = {
@@ -68,7 +69,7 @@ return {
     keys = function(_, keys)
       local wk = require("which-key")
       wk.register({
-        ["<leader>D"] = { name = "+diagnostics" },
+        ["<leader>k"] = { name = "+lspsaga" },
       })
       local cmd = function(name, ...)
         local cmd_str = string.format("<cmd>Lspsaga %s", name)
@@ -81,28 +82,33 @@ return {
       vim.list_extend(keys, {
         { "gh", cmd("lsp_finder"), desc = "Lsp finder", noremap = true },
         {
-          "<leader>ca",
+          "<leader>ka",
           cmd("code_action"),
           mode = { "n", "v" },
           desc = "Code action",
           noremap = true,
         },
-        { "<leader>cr", cmd("rename", "++project"), desc = "Rename (project)", noremap = true },
-        { "<leader>cR", cmd("rename"), desc = "Rename (file)", noremap = true },
-        { "<leader>co", cmd("outline"), desc = "Toggle outline", noremap = true },
-        { "K", cmd("hover_doc"), desc = "Hover doc", noremap = true },
-        { "<leader>k", cmd("hover_doc", "++keep"), desc = "Hover doc (keep)", noremap = true },
-        { "<leader>cI", cmd("incoming_calls"), desc = "Incoming calls", noremap = true },
-        { "<leader>cO", cmd("outgoing_calls"), desc = "Outgoing calls", noremap = true },
-        ---diagnostics
-        { "<leader>Dc", cmd("show_cursor_diagnostics"), desc = "Cursor diagnostics", noremap = true },
-        { "<leader>Dl", cmd("show_line_diagnostics"), desc = "Line diagnostics", noremap = true },
-        { "<leader>Db", cmd("show_buf_diagnostics"), desc = "Buffer diagnostics", noremap = true },
-        { "<leader>Dw", cmd("show_workspace_diagnostics"), desc = "Workspace diagnostics", noremap = true },
-        { "[d", cmd("diagnostics_jump_prev"), desc = "Prev diagnostics", noremap = true },
-        { "]d", cmd("diagnostics_jump_next"), desc = "Next diagnostics", noremap = true },
         {
-          "[e",
+          "<leader>kr",
+          cmd("rename", "++project"),
+          desc = "Rename (project)",
+          noremap = true,
+        },
+        { "<leader>kR", cmd("rename"), desc = "Rename (file)", noremap = true },
+        { "<leader>ko", cmd("outline"), desc = "Toggle outline", noremap = true },
+        { "<leader>kh", cmd("hover_doc"), desc = "Hover doc", noremap = true },
+        { "<leader>kk", cmd("hover_doc", "++keep"), desc = "Hover doc (keep)", noremap = true },
+        { "<leader>kI", cmd("incoming_calls"), desc = "Incoming calls", noremap = true },
+        { "<leader>kO", cmd("outgoing_calls"), desc = "Outgoing calls", noremap = true },
+        ---diagnostics
+        { "<leader>kc", cmd("show_cursor_diagnostics"), desc = "Cursor diagnostics", noremap = true },
+        { "<leader>kl", cmd("show_line_diagnostics"), desc = "Line diagnostics", noremap = true },
+        { "<leader>kb", cmd("show_buf_diagnostics"), desc = "Buffer diagnostics", noremap = true },
+        { "<leader>kw", cmd("show_workspace_diagnostics"), desc = "Workspace diagnostics", noremap = true },
+        { "<leader>k[", cmd("diagnostics_jump_prev"), desc = "Prev diagnostics", noremap = true },
+        { "<leader>k]", cmd("diagnostics_jump_next"), desc = "Next diagnostics", noremap = true },
+        {
+          "<leader>kE",
           function()
             require("lspsaga.diagnostics"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
           end,
@@ -110,7 +116,7 @@ return {
           noremap = true,
         },
         {
-          "]e",
+          "<leader>ke",
           function()
             require("lspsaga.diagnostics"):goto_next({ severity = vim.diagnostic.severity.ERROR })
           end,
@@ -118,12 +124,11 @@ return {
           noremap = true,
         },
         ---goto
-        { "gd", cmd("goto_definition"), desc = "Goto definition", noremap = true },
-        { "gt", cmd("goto_type_definition"), desc = "Goto type definition", noremap = true },
-        { "gy", false },
+        { "<leader>kd", cmd("goto_definition"), desc = "Goto definition", noremap = true },
+        { "<leader>kt", cmd("goto_type_definition"), desc = "Goto type definition", noremap = true },
         ---peek
-        { "gpd", cmd("peek_definition"), desc = "Peek definition", noremap = true },
-        { "gpt", cmd("peek_type_definition"), desc = "Peek type definition", noremap = true },
+        { "<leader>kp", cmd("peek_definition"), desc = "Peek definition", noremap = true },
+        { "<leader>ky", cmd("peek_type_definition"), desc = "Peek t[y]pe definition", noremap = true },
       })
       return keys
     end,
