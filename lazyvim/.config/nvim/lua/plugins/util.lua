@@ -175,4 +175,13 @@ return {
       { "<leader>?", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
     },
   },
+
+  {
+    "chrisgrieser/nvim-recorder",
+    opts = {
+      slots = { "a", "b", "c", "d", "e", "f" },
+      lessNotifications = false,
+    },
+    keys = { "q", "Q", "<C-q>", "cq", "yq" },
+  },
 }

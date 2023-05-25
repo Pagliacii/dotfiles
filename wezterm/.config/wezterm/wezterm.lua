@@ -29,15 +29,15 @@ wezterm.on("update-status", function(window, _)
 	local overrides = window:get_config_overrides() or {}
 	local appearance = wezterm.gui.get_appearance()
 	overrides.color_scheme = scheme_for_appearance(appearance)
-	-- if window:is_focused() then
-	-- 	overrides.color_scheme = scheme_for_appearance(appearance)
-	-- else
-	-- 	if appearance:find("Dark") then
-	-- 		overrides.color_scheme = "Grayscale Dark (base16)"
-	-- 	else
-	-- 		overrides.color_scheme = "Builtin Solarized Dark"
-	-- 	end
-	-- end
+	if window:is_focused() then
+		overrides.color_scheme = scheme_for_appearance(appearance)
+	else
+		if appearance:find("Dark") then
+			overrides.color_scheme = "Grayscale Dark (base16)"
+		else
+			overrides.color_scheme = "Builtin Solarized Dark"
+		end
+	end
 	window:set_config_overrides(overrides)
 end)
 
@@ -420,7 +420,7 @@ config.keys = {
 	},
 	-- Closes the current pane.
 	{
-		key = "q",
+		key = "Q",
 		mods = "CTRL",
 		action = act.CloseCurrentPane({
 			confirm = false,
