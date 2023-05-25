@@ -421,7 +421,7 @@ config.keys = {
 	-- Closes the current pane.
 	{
 		key = "Q",
-		mods = "CTRL",
+		mods = "ALT",
 		action = act.CloseCurrentPane({
 			confirm = false,
 		}),
