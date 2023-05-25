@@ -55,6 +55,16 @@ vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", 
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 
+-- Keey your register clean from `dd`
+vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("n", "dd", function()
+  if vim.fn.getline(".") == "" then
+    return '"_dd'
+  else
+    return "dd"
+  end
+end, { expr = true })
+
 -- Groups
 wk.register({
   ["<leader>r"] = { name = "+rust" },

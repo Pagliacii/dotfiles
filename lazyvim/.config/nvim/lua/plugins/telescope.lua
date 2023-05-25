@@ -221,6 +221,7 @@ local config = function(_, opts)
   telescope.load_extension("changes")
   telescope.load_extension("emoji")
   telescope.load_extension("glyph")
+  telescope.load_extension("notify")
 end
 
 local buffer_previewer_maker = function(filepath, bufnr, opts)
@@ -257,5 +258,8 @@ return {
     dependencies = dependencies,
     opts = opts,
     config = config,
+    keys = {
+      { "<leader>fN", "<cmd>Telescope notify<cr>", desc = "Notify", noremap = true },
+    },
   },
 }
