@@ -62,9 +62,8 @@ return {
       { "neovim/nvim-lspconfig" },
     },
     opts = {
-      symbol_in_winbar = {
-        show_file = false,
-      },
+      symbol_in_winbar = { enable = false },
+      beacon = { enable = true },
     },
     keys = function(_, keys)
       local wk = require("which-key")

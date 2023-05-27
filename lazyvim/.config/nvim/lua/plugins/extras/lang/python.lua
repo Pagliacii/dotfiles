@@ -51,7 +51,7 @@ return {
 
       local dap = require("dap")
       local job = require("plenary.job")
-      local function auto_detect()
+      local function auto_detect(...)
         local cwd = vim.fn.getcwd()
         local venv_path = "python"
         local local_venv_path = path.concat({
@@ -71,18 +71,18 @@ return {
         elseif vim.fn.executable("poetry") == 1 then
           local poetry_interpreter = ""
           job
-              :new({
-                command = "poetry",
-                args = { "env", "info", "-p" },
-                cwd = cwd,
-                on_stdout = function(_, output)
-                  poetry_interpreter = path.concat({
-                    output,
-                    interpreter,
-                  })
-                end,
-              })
-              :sync()
+            :new({
+              command = "poetry",
+              args = { "env", "info", "-p" },
+              cwd = cwd,
+              on_stdout = function(_, output)
+                poetry_interpreter = path.concat({
+                  output,
+                  interpreter,
+                })
+              end,
+            })
+            :sync()
           venv_path = poetry_interpreter
         end
         return venv_path

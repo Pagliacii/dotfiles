@@ -114,30 +114,30 @@ return {
     keys = function(_, keys)
       local wk = require("which-key")
       wk.register({
-        ["<leader>t"] = {
+        ["<leader>T"] = {
           name = "+terminal",
           mode = { "n", "v" },
           S = { name = "+send" },
         },
       })
       vim.list_extend(keys, {
-        { "<leader>tt", init_or_toggle, desc = "Toggle or init" },
-        { "<leader>tn", new_terminal, desc = "New terminal" },
-        { "<leader>te", exec_command, desc = "New terminal" },
-        { "<leader>ts", "<cmd> TermSelect<cr>", desc = "Select" },
-        { "<leader>th", toggle_terminal("horizontal"), desc = "Toggle horizontal" },
-        { "<leader>tv", toggle_terminal("vertical"), desc = "Toggle vertical" },
-        { "<leader>tT", toggle_terminal("tab"), desc = "Toggle tab" },
-        { "<leader>tf", toggle_terminal("float"), desc = "Toggle float" },
-        { "<leader>tSc", "<cmd> ToggleTermSendCurrentLine<cr>", desc = "Line under cursor" },
+        { "<leader>Tt", init_or_toggle, desc = "Toggle or init" },
+        { "<leader>Tn", new_terminal, desc = "New terminal" },
+        { "<leader>Te", exec_command, desc = "Execute command" },
+        { "<leader>Ts", "<cmd> TermSelect<cr>", desc = "Select" },
+        { "<leader>Th", toggle_terminal("horizontal"), desc = "Toggle horizontal" },
+        { "<leader>Tv", toggle_terminal("vertical"), desc = "Toggle vertical" },
+        { "<leader>TT", toggle_terminal("tab"), desc = "Toggle tab" },
+        { "<leader>Tf", toggle_terminal("float"), desc = "Toggle float" },
+        { "<leader>TSc", "<cmd> ToggleTermSendCurrentLine<cr>", desc = "Line under cursor" },
         {
-          "<leader>tSv",
+          "<leader>TSv",
           "<cmd> ToggleTermSendVisualLines<cr>",
           mode = "v",
           desc = "Lines in seletion",
         },
         {
-          "<leader>tSs",
+          "<leader>TSs",
           "<cmd> ToggleTermSendVisualSelection<cr>",
           mode = "v",
           desc = "Text in selection",

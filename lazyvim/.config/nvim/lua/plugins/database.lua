@@ -4,7 +4,7 @@ return {
     cmd = { "DB" },
     keys = {
       {
-        "<leader>Tc",
+        "<leader>Uc",
         function()
           local url = vim.fn.input("DB URL: ")
           if #url > 0 then
@@ -21,7 +21,7 @@ return {
     dependencies = { "tpope/vim-dadbod" },
     cmd = { "DBUI" },
     keys = {
-      { "<leader>Tu", "<cmd>DBUI<cr>", desc = "Open DBUI" },
+      { "<leader>Uu", "<cmd>DBUI<cr>", desc = "Open DBUI" },
     },
   },
 }

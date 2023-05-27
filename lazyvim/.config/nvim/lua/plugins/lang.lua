@@ -54,4 +54,5 @@ return {
   { import = "plugins.extras.lang.python" },
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.lua" },
+  { import = "plugins.extras.game" },
 }
