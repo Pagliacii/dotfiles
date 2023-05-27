@@ -80,4 +80,12 @@ return {
     config = true,
     ft = { "dap-repl" },
   },
+
+  {
+    "mfussenegger/nvim-dap",
+    keys = {
+      { "<leader>dO", false },
+      { "<leader>dn", "<cmd>lua require('dap').step_over()<cr>", desc = "Next", noremap = true },
+    },
+  },
 }

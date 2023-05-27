@@ -1,15 +1,7 @@
 return {
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose" },
-    keys = {
-      { "<leader>gd", "<cmd> DiffviewOpen<cr>", desc = "Open Diffview" },
-    },
-  },
-
-  {
     "wakatime/vim-wakatime",
-    event = "BufReadPre",
+    event = "InsertEnter",
     enabled = vim.fn.executable("wakatime") == 1,
   },
 
@@ -22,7 +14,7 @@ return {
     },
     keys = {
       {
-        "<leader>Td",
+        "<leader>Ud",
         function(...)
           require("hover").hover(...)
         end,
@@ -34,7 +26,7 @@ return {
   {
     "voldikss/vim-translator",
     keys = {
-      { "<leader>Tw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
+      { "<leader>Uw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
     },
   },
 
@@ -154,16 +146,6 @@ return {
   },
 
   {
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = true,
-    cmd = { "Octo" },
-  },
-
-  {
     "sudormrfbin/cheatsheet.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -183,5 +165,17 @@ return {
       lessNotifications = false,
     },
     keys = { "q", "Q", "<C-q>", "cq", "yq" },
+  },
+
+  {
+    "anuvyklack/fold-preview.nvim",
+    dependencies = {
+      { "anuvyklack/keymap-amend.nvim" },
+    },
+    event = "BufReadPost",
+    opts = {
+      auto = 400,
+      border = "rounded",
+    },
   },
 }

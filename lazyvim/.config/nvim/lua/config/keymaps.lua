@@ -4,6 +4,10 @@
 
 local wk = require("which-key")
 
+-- Unset LazyVim's default bindings
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del("n", "<leader>fT")
+
 if vim.fn.executable("gitui") == 1 then
   wk.register({
     ["<leader>gu"] = {
@@ -46,14 +50,12 @@ end
 
 if vim.fn.executable("btop") == 1 then
   -- btop
-  vim.keymap.set("n", "<leader>Tb", function()
+  vim.keymap.set("n", "<leader>Ub", function()
     require("lazyvim.util").float_term({ "btop" })
   end, { desc = "btop" })
 end
 
 vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", { desc = "Open Dashboard" })
-vim.keymap.del("n", "<leader>ft")
-vim.keymap.del("n", "<leader>fT")
 
 -- Keey your register clean from `dd`
 vim.keymap.set("n", "x", '"_x')
@@ -72,8 +74,8 @@ wk.register({
     name = "+picker",
     i = { name = "+icon" },
   },
-  ["<leader>m"] = { name = "+markdown" },
-  ["<leader>n"] = {
+  ["<leader>M"] = { name = "+markdown" },
+  ["<leader>N"] = {
     name = "+note",
     c = { name = "+cwd" },
     g = { name = "+global" },
@@ -86,8 +88,9 @@ wk.register({
   },
   ["<leader>G"] = { name = "+go" },
   ["<leader>du"] = { name = "+ui" },
-  ["<leader>T"] = {
-    name = "+tool",
+  ["<leader>U"] = {
+    name = "+util",
     mode = { "n", "v" },
   },
+  ["<leader>t"] = { name = "+telescope" },
 })

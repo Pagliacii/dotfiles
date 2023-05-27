@@ -15,12 +15,6 @@ return {
     },
   },
 
-  {
-    "akinsho/git-conflict.nvim",
-    event = "BufReadPre",
-    config = true,
-  },
-
   -- disable mini.bufremove
   { "echasnovski/mini.bufremove", enabled = false },
 
@@ -49,18 +43,6 @@ return {
     keys = {
       { "<leader>bd", "<CMD>Bdelete<cr>", desc = "Delete Buffer" },
       { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
-    },
-  },
-
-  {
-    "anuvyklack/fold-preview.nvim",
-    dependencies = {
-      { "anuvyklack/keymap-amend.nvim" },
-    },
-    event = "BufReadPre",
-    opts = {
-      auto = 400,
-      border = "rounded",
     },
   },
 }

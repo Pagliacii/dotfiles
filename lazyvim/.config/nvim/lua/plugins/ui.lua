@@ -10,20 +10,31 @@ return {
 
   {
     "folke/zen-mode.nvim",
-    config = true,
+    dependencies = {
+      { "folke/twilight.nvim" },
+    },
     keys = {
-      { "<leader>z", "<cmd> ZenMode<cr>", desc = "toggle zen mode" },
+      { "<leader>z", "<cmd> ZenMode<cr>", desc = "Zen mode" },
     },
     opts = {
       plugins = {
         wezterm = { enabled = true },
       },
+      on_open = function()
+        vim.keymap.set("n", "q", "<cmd>ZenMode<cr>", { noremap = true, buffer = 0 })
+        vim.keymap.set("n", "<esc>", "<cmd>ZenMode<cr>", { noremap = true, buffer = 0 })
+      end,
+      on_close = function()
+        vim.keymap.del("n", "q", { buffer = 0 })
+        vim.keymap.del("n", "<esc>", { buffer = 0 })
+      end,
     },
   },
 
   {
     "goolord/alpha-nvim",
-    opts = function(_, dashboard)
+    opts = function()
+      local dashboard = require("alpha.themes.dashboard")
       local logo = [[
 ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
 ██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║
@@ -34,6 +45,7 @@ return {
                   [ github.com/Pagliacii ]
       ]]
       dashboard.section.header.val = vim.split(logo, "\n", {})
+
       dashboard.config.opts.setup = function()
         vim.api.nvim_create_autocmd("User", {
           pattern = "AlphaReady",
@@ -50,6 +62,8 @@ return {
           end,
         })
       end
+
+      return dashboard
     end,
   },
 
@@ -58,11 +72,11 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+        numbers = "none",                    -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+        close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+        max_prefix_length = 30,              -- prefix used when a buffer is de-duplicated
         show_buffer_icons = true,
         show_buffer_close_icons = false,
         show_close_icon = false,
@@ -169,12 +183,11 @@ return {
     end,
   },
 
-  -- statusline
   {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      opts.sections.lualine_c[#opts.sections.lualine_c] = nil
-    end,
+    "xiyaowong/transparent.nvim",
+    cmd = { "TransparentToggle" },
+    keys = {
+      { "<leader>ut", "<cmd>TransparentToggle<cr>", desc = "Transparent background", noremap = true },
+    },
   },
 }
