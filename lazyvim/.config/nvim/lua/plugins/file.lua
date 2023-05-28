@@ -41,7 +41,6 @@ return {
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
-    config = true,
     opts = {
       excluded_filetypes = {
         "harpoon",

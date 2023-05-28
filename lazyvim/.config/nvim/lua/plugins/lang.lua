@@ -24,8 +24,6 @@ return {
       indent = { enable = false },
       ensure_installed = {
         "json",
-        "markdown",
-        "markdown_inline",
         "regex",
         "vim",
         "vimdoc",

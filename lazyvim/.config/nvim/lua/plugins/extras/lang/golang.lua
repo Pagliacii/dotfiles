@@ -67,18 +67,18 @@ return {
       end
 
       vim.list_extend(keys, {
-        { "<leader>Ga", "<cmd>GoTestAdd<cr>", desc = "Add one test", silent = true },
-        { "<leader>GA", "<cmd>GoTestsAll<cr>", desc = "Add all tests", silent = true },
-        { "<leader>Gj", "<cmd>GoTagAdd json<cr>", desc = "Add json tag", silent = true },
-        { "<leader>GJ", "<cmd>GoTagRm json<cr>", desc = "Remove json tag", silent = true },
-        { "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", desc = "Add yaml tag", silent = true },
-        { "<leader>GY", "<cmd>GoTagRm yaml<cr>", desc = "Remove yaml tag", silent = true },
-        { "<leader>Gm", go_mod_init, desc = "go mod init", silent = true },
-        { "<leader>Gg", go_get, desc = "go get", silent = true },
-        { "<leader>Gc", "<cmd>GoGenerate<cr>", desc = "go generate (cwd)", silent = true },
-        { "<leader>GC", "<cmd>GoGenerate %<cr>", desc = "go generate (current file)", silent = true },
-        { "<leader>Gd", "<cmd>GoCmt<cr>", desc = "Doc comment", silent = true },
-        { "<leader>Ge", "<cmd>GoIfErr<cr>", desc = "Insert iferr", silent = true },
+        { "<leader>Ga", "<cmd>GoTestAdd<cr>",     desc = "Add one test",               silent = true },
+        { "<leader>GA", "<cmd>GoTestsAll<cr>",    desc = "Add all tests",              silent = true },
+        { "<leader>Gj", "<cmd>GoTagAdd json<cr>", desc = "Add json tag",               silent = true },
+        { "<leader>GJ", "<cmd>GoTagRm json<cr>",  desc = "Remove json tag",            silent = true },
+        { "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", desc = "Add yaml tag",               silent = true },
+        { "<leader>GY", "<cmd>GoTagRm yaml<cr>",  desc = "Remove yaml tag",            silent = true },
+        { "<leader>Gm", go_mod_init,              desc = "go mod init",                silent = true },
+        { "<leader>Gg", go_get,                   desc = "go get",                     silent = true },
+        { "<leader>Gc", "<cmd>GoGenerate<cr>",    desc = "go generate (cwd)",          silent = true },
+        { "<leader>GC", "<cmd>GoGenerate %<cr>",  desc = "go generate (current file)", silent = true },
+        { "<leader>Gd", "<cmd>GoCmt<cr>",         desc = "Doc comment",                silent = true },
+        { "<leader>Ge", "<cmd>GoIfErr<cr>",       desc = "Insert iferr",               silent = true },
       })
       return keys
     end,
@@ -101,23 +101,23 @@ return {
           settings = {
             gopls = {
               analyses = {
-                nilness = true, -- check for redundant or impossible nil comparisons
-                shadow = true, -- check for possible unintended shadowing of variables
-                unusedparams = true, -- check for unused parameters of functions
-                unusedwrite = true, -- check for unused writes
-                useany = true, -- check for constraints that could be simplified to "any"
-                unusedvariable = true, -- check for unused variables
+                nilness = true,                -- check for redundant or impossible nil comparisons
+                shadow = true,                 -- check for possible unintended shadowing of variables
+                unusedparams = true,           -- check for unused parameters of functions
+                unusedwrite = true,            -- check for unused writes
+                useany = true,                 -- check for constraints that could be simplified to "any"
+                unusedvariable = true,         -- check for unused variables
               },
-              gofumpt = true, -- if we should run `gofumpt` formatting
-              usePlaceholders = true, -- enables placeholders for function parameters or struct fields in completion responses
+              gofumpt = true,                  -- if we should run `gofumpt` formatting
+              usePlaceholders = true,          -- enables placeholders for function parameters or struct fields in completion responses
               hints = {
-                assignVariableTypes = true, -- inlay hints for variable types in assign statements
+                assignVariableTypes = true,    -- inlay hints for variable types in assign statements
                 compositeLiteralFields = true, -- inlay hints for composite literal field names
-                compositeLiteralTypes = true, -- inlay hints for composite literal types
-                constantValues = true, -- inlay hints for constant values
+                compositeLiteralTypes = true,  -- inlay hints for composite literal types
+                constantValues = true,         -- inlay hints for constant values
                 functionTypeParameters = true, -- inlay hints for implicit type parameters on generic functions
-                parameterNames = true, -- inlay hints for parameter names
-                rangeVariableTypes = true, -- inlay hints for variable types in range statements
+                parameterNames = true,         -- inlay hints for parameter names
+                rangeVariableTypes = true,     -- inlay hints for variable types in range statements
               },
             },
           },
@@ -136,7 +136,6 @@ return {
         type_hints = { prefix = "=> " },
       },
     },
-    config = true,
     keys = {
       {
         "<leader>Gh",

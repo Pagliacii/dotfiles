@@ -6,11 +6,9 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "flake8",
-        "isort",
         "pyright",
         "ruff",
-        "mypy",
+        "usort",
       })
     end,
   },
@@ -71,18 +69,18 @@ return {
         elseif vim.fn.executable("poetry") == 1 then
           local poetry_interpreter = ""
           job
-            :new({
-              command = "poetry",
-              args = { "env", "info", "-p" },
-              cwd = cwd,
-              on_stdout = function(_, output)
-                poetry_interpreter = path.concat({
-                  output,
-                  interpreter,
-                })
-              end,
-            })
-            :sync()
+              :new({
+                command = "poetry",
+                args = { "env", "info", "-p" },
+                cwd = cwd,
+                on_stdout = function(_, output)
+                  poetry_interpreter = path.concat({
+                    output,
+                    interpreter,
+                  })
+                end,
+              })
+              :sync()
           venv_path = poetry_interpreter
         end
         return venv_path
@@ -128,11 +126,6 @@ return {
             },
           },
         },
-        ruff_lsp = {
-          filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
-          settings = {},
-        },
       },
     },
   },
@@ -141,9 +134,10 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)
+      local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
-        require("null-ls").builtins.formatting.isort,
-        require("null-ls").builtins.formatting.ruff,
+        null_ls.builtins.diagnostics.ruff,
+        null_ls.builtins.formatting.usort,
       })
     end,
   },
