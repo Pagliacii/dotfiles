@@ -31,7 +31,6 @@ return {
     dependencies = {
       { "nvim-treesitter/nvim-treesitter" },
     },
-    config = true,
     opts = {
       ensure_newline = function()
         return true
@@ -46,5 +45,49 @@ return {
     keys = {
       { "<leader>Mf", "<cmd>FeMaco<cr>", desc = "Edit code block", noremap = true },
     },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = filetypes,
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.code_actions.proselint,
+        null_ls.builtins.diagnostics.alex,
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.proselint,
+        null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.formatting.markdown_toc,
+        null_ls.builtins.formatting.prettierd,
+      })
+    end,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    ft = filetypes,
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "alex",
+        "glow",
+        "markdownlint",
+        "markdown-toc",
+        "prettierd",
+        "proselint",
+        "write-good",
+      })
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- add tsx and treesitter
+      vim.list_extend(opts.ensure_installed, {
+        "markdown",
+        "markdown_inline",
+      })
+    end,
   },
 }

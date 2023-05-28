@@ -41,8 +41,20 @@ return {
       })
     end,
     keys = {
-      { "<leader>bd", "<CMD>Bdelete<cr>", desc = "Delete Buffer" },
+      { "<leader>bd", "<CMD>Bdelete<cr>",  desc = "Delete Buffer" },
       { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
     },
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = true,
+  },
+
+  {
+    "echasnovski/mini.surround",
+    enabled = false,
   },
 }

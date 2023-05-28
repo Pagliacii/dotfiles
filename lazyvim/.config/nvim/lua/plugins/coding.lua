@@ -8,16 +8,7 @@ return {
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
         "bash",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "go",
-        "gomod",
-        "gosum",
-        "python",
         "regex",
-        "rust",
-        "toml",
         "vim",
         "yaml",
       })
@@ -49,13 +40,24 @@ return {
         return string.format("<cmd>lua require('goto-preview').%s()<cr>", cmd)
       end
       vim.list_extend(keys, {
-        { "gpd", cmd_factory("goto_preview_definition"), desc = "Preview definition", noremap = true },
+        { "gpd", cmd_factory("goto_preview_definition"),      desc = "Preview definition",      noremap = true },
         { "gpt", cmd_factory("goto_preview_type_definition"), desc = "Preview type definition", noremap = true },
-        { "gpi", cmd_factory("goto_preview_implementation"), desc = "Preview implementation", noremap = true },
-        { "gpr", cmd_factory("goto_preview_references"), desc = "Preview references", noremap = true },
-        { "gpp", cmd_factory("close_all_win"), desc = "Close preview window", noremap = true },
+        { "gpi", cmd_factory("goto_preview_implementation"),  desc = "Preview implementation",  noremap = true },
+        { "gpr", cmd_factory("goto_preview_references"),      desc = "Preview references",      noremap = true },
+        { "gpp", cmd_factory("close_all_win"),                desc = "Close preview window",    noremap = true },
       })
       return keys
+    end,
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.shellcheck,
+      })
     end,
   },
 }

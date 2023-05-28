@@ -45,11 +45,11 @@ local dependencies = {
   {
     "nvim-telescope/telescope-dap.nvim",
     keys = {
-      { "<leader>d1", "<cmd> Telescope dap commands<cr>", desc = "Commands" },
-      { "<leader>d2", "<cmd> Telescope dap frames<cr>", desc = "Frames" },
+      { "<leader>d1", "<cmd> Telescope dap commands<cr>",         desc = "Commands" },
+      { "<leader>d2", "<cmd> Telescope dap frames<cr>",           desc = "Frames" },
       { "<leader>d3", "<cmd> Telescope dap list_breakpoints<cr>", desc = "Breakpoints" },
-      { "<leader>d4", "<cmd> Telescope dap configurations<cr>", desc = "Configurations" },
-      { "<leader>d5", "<cmd> Telescope dap variables<cr>", desc = "Variables" },
+      { "<leader>d4", "<cmd> Telescope dap configurations<cr>",   desc = "Configurations" },
+      { "<leader>d5", "<cmd> Telescope dap variables<cr>",        desc = "Variables" },
     },
   },
 
@@ -143,7 +143,6 @@ local dependencies = {
 
   {
     "LukasPietzschmann/telescope-tabs",
-    config = true,
     opts = {
       show_preview = false,
     },

@@ -4,6 +4,35 @@
 
 local wk = require("which-key")
 
+-- Groups
+wk.register({
+  ["<leader>r"] = { name = "+rust" },
+  ["<leader>P"] = {
+    name = "+picker",
+    i = { name = "+icon" },
+  },
+  ["<leader>M"] = { name = "+markdown" },
+  ["<leader>N"] = {
+    name = "+note",
+    c = { name = "+cwd" },
+    g = { name = "+global" },
+    l = { name = "+line" },
+    j = { name = "+jump" },
+    C = { name = "+count" },
+    E = { name = "+export" },
+    I = { name = "+import" },
+    L = { name = "+list" },
+  },
+  ["<leader>G"] = { name = "+go" },
+  ["<leader>du"] = { name = "+ui" },
+  ["<leader>U"] = {
+    name = "+util",
+    mode = { "n", "v" },
+  },
+  ["<leader>t"] = { name = "+telescope" },
+  ["gz"] = "which_key_ignore",
+})
+
 -- Unset LazyVim's default bindings
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
@@ -67,30 +96,14 @@ vim.keymap.set("n", "dd", function()
   end
 end, { expr = true })
 
--- Groups
-wk.register({
-  ["<leader>r"] = { name = "+rust" },
-  ["<leader>P"] = {
-    name = "+picker",
-    i = { name = "+icon" },
-  },
-  ["<leader>M"] = { name = "+markdown" },
-  ["<leader>N"] = {
-    name = "+note",
-    c = { name = "+cwd" },
-    g = { name = "+global" },
-    l = { name = "+line" },
-    j = { name = "+jump" },
-    C = { name = "+count" },
-    E = { name = "+export" },
-    I = { name = "+import" },
-    L = { name = "+list" },
-  },
-  ["<leader>G"] = { name = "+go" },
-  ["<leader>du"] = { name = "+ui" },
-  ["<leader>U"] = {
-    name = "+util",
-    mode = { "n", "v" },
-  },
-  ["<leader>t"] = { name = "+telescope" },
-})
+-- When creating a new line with o, make sure there is a trailing comma on the current line
+vim.keymap.set("n", "o", function()
+  local line = vim.api.nvim_get_current_line()
+
+  local should_add_comman = string.find(line, "[^,{[]$")
+  if should_add_comman then
+    return "A,<cr>"
+  else
+    return "o"
+  end
+end, { buffer = true, expr = true })
