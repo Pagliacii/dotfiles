@@ -1,9 +1,48 @@
 return {
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose" },
+    "Pagliacii/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+    opts = function(_, opts)
+      local actions = require("diffview.actions")
+      opts.keymaps = {
+        view = {
+          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
+          { "n", "<leader>gB", actions.toggle_files, { desc = "Toggle the file panel" } },
+          { "n", "<leader>b", false },
+        },
+        file_panel = {
+          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
+        },
+        file_history_panel = {
+          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
+        },
+      }
+      opts.hooks = {
+        diff_buf_read = function(bufnr)
+          vim.diagnostic.disable(bufnr)
+        end,
+      }
+      return opts
+    end,
     keys = {
-      { "<leader>gd", "<cmd> DiffviewOpen<cr>", desc = "Open Diffview" },
+      { "<leader>gD", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview", noremap = true },
+      { "<leader>gC", "<cmd>DiffviewClose<cr>", desc = "Close Diffview", noremap = true },
+      {
+        "<leader>gF",
+        "<cmd>DiffviewFileHistory %<cr>",
+        desc = "Current file history",
+        noremap = true,
+      },
+      {
+        "<leader>gF",
+        "<cmd>DiffviewFileHistory<cr>",
+        mode = "v",
+        desc = "File history",
+        noremap = true,
+      },
     },
   },
 
@@ -26,7 +65,7 @@ return {
   {
     "aaronhallaert/advanced-git-search.nvim",
     dependencies = {
-      { "sindrets/diffview.nvim" },
+      { "Pagliacii/diffview.nvim" },
     },
     cmd = { "AdvancedGitSearch" },
     keys = {

@@ -55,7 +55,6 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
-        null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.shellcheck,
       })
     end,

@@ -11,6 +11,17 @@ return {
         filtered_items = {
           hide_dotfiles = false,
         },
+        hide_by_name = {
+          "node_modules",
+          "__pycache__",
+        },
+        hide_by_pattern = {
+          "*.pyc",
+          "*.orig",
+        },
+        never_show = {
+          ".DS_Store",
+        },
       },
     },
   },
@@ -41,7 +52,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>bd", "<CMD>Bdelete<cr>",  desc = "Delete Buffer" },
+      { "<leader>bd", "<CMD>Bdelete<cr>", desc = "Delete Buffer" },
       { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
     },
   },

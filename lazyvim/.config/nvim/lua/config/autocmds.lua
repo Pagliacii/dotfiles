@@ -11,10 +11,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Auto change to opened directory
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("TabNewEntered", {
   pattern = "*",
   callback = function()
-    vim.cmd("lcd %:p:h")
+    vim.cmd("tcd %:p:h")
   end,
 })
 
@@ -59,15 +59,6 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.keymap.set("n", "q", "<cmd>bdelete!<cr>", { buffer = event.buf, silent = true })
-  end,
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "DiffviewFiles",
-  },
-  callback = function(event)
-    vim.diagnostic.disable(event.buf)
-    vim.keymap.set("n", "q", "<cmd>DiffviewClose<cr>", { buffer = event.buf, silent = true })
   end,
 })
 vim.api.nvim_create_autocmd("FileType", {
@@ -151,5 +142,14 @@ vim.api.nvim_create_autocmd("FileType", {
         return "o"
       end
     end, { buffer = event.buf, expr = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "sql",
+  },
+  callback = function(event)
+    vim.keymap.set("n", "<cr>", "<cmd>write<cr>", { buffer = event.buf })
   end,
 })
