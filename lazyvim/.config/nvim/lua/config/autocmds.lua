@@ -153,3 +153,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<cr>", "<cmd>write<cr>", { buffer = event.buf })
   end,
 })
+
+vim.cmd([[
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+augroup END
+]])

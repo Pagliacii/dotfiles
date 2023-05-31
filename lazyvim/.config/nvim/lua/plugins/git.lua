@@ -6,17 +6,17 @@ return {
       local actions = require("diffview.actions")
       opts.keymaps = {
         view = {
-          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "q",          "<cmd>DiffviewClose<cr>" },
           { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
-          { "n", "<leader>gB", actions.toggle_files, { desc = "Toggle the file panel" } },
-          { "n", "<leader>b", false },
+          { "n", "<leader>gB", actions.toggle_files,       { desc = "Toggle the file panel" } },
+          { "n", "<leader>b",  false },
         },
         file_panel = {
-          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "q",          "<cmd>DiffviewClose<cr>" },
           { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
         },
         file_history_panel = {
-          { "n", "q", "<cmd>DiffviewClose<cr>" },
+          { "n", "q",          "<cmd>DiffviewClose<cr>" },
           { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
         },
       }
@@ -28,8 +28,8 @@ return {
       return opts
     end,
     keys = {
-      { "<leader>gD", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview", noremap = true },
-      { "<leader>gC", "<cmd>DiffviewClose<cr>", desc = "Close Diffview", noremap = true },
+      { "<leader>gD", "<cmd>DiffviewOpen -uno<cr>", desc = "Open Diffview",  noremap = true },
+      { "<leader>gC", "<cmd>DiffviewClose<cr>",     desc = "Close Diffview", noremap = true },
       {
         "<leader>gF",
         "<cmd>DiffviewFileHistory %<cr>",
