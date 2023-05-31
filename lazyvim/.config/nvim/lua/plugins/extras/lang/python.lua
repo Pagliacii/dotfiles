@@ -120,8 +120,6 @@ return {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
-                typeCheckingMode = "basic",
-                useLibraryCodeForTypes = false,
               },
             },
           },

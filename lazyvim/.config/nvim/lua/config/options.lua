@@ -35,3 +35,4 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.genghis_disable_commands = true
 
 vim.opt.redrawtime = 5000
+vim.opt.autochdir = true

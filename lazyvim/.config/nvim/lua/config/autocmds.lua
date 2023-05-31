@@ -154,10 +154,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.cmd([[
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent! loadview
-augroup END
-]])
+local persisted_folds = vim.api.nvim_create_augroup("PersistedFolds", { clear = false })
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = persisted_folds,
+  pattern = "*.*",
+  callback = function()
+    vim.cmd([[mkview]])
+  end,
+})
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = persisted_folds,
+  pattern = "*.*",
+  callback = function()
+    vim.cmd([[silent! loadview]])
+  end,
+})
