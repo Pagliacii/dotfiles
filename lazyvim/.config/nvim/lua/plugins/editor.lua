@@ -10,17 +10,18 @@ return {
         hijack_netrw_behavior = "open_default",
         filtered_items = {
           hide_dotfiles = false,
-        },
-        hide_by_name = {
-          "node_modules",
-          "__pycache__",
-        },
-        hide_by_pattern = {
-          "*.pyc",
-          "*.orig",
-        },
-        never_show = {
-          ".DS_Store",
+          hide_by_name = {
+            "node_modules",
+            "__pycache__",
+          },
+          hide_by_pattern = {
+            "*.pyc",
+            "*.orig",
+            "*.rej",
+          },
+          never_show = {
+            ".DS_Store",
+          },
         },
       },
     },
