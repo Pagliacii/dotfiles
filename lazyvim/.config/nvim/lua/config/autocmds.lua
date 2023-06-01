@@ -11,7 +11,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Auto change to opened directory
+local set_working_dir = vim.api.nvim_create_augroup("SetWorkingDirectory", { clear = false })
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = set_working_dir,
+  pattern = "*",
+  callback = function()
+    vim.cmd("lcd %:p:h")
+  end,
+})
 vim.api.nvim_create_autocmd("TabNewEntered", {
+  group = set_working_dir,
   pattern = "*",
   callback = function()
     vim.cmd("tcd %:p:h")

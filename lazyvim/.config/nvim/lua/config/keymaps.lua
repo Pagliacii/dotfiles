@@ -87,7 +87,6 @@ end
 vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", { desc = "Open Dashboard" })
 
 -- Keey your register clean from `dd`
-vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "dd", function()
   if vim.fn.getline(".") == "" then
     return '"_dd'
