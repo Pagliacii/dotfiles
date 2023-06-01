@@ -1,6 +1,7 @@
 return {
   {
     "catppuccin/nvim",
+    enabled = false,
     name = "catppuccin",
     opts = {
       flavour = "frappe",
@@ -18,10 +19,13 @@ return {
       -- },
     },
   },
+
+  { "EdenEast/nightfox.nvim" },
+
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "nightfox",
     },
   },
 }
