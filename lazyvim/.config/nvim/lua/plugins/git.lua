@@ -1,6 +1,6 @@
 return {
   {
-    "Pagliacii/diffview.nvim",
+    "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
     opts = function(_, opts)
       local actions = require("diffview.actions")
@@ -65,7 +65,7 @@ return {
   {
     "aaronhallaert/advanced-git-search.nvim",
     dependencies = {
-      { "Pagliacii/diffview.nvim" },
+      { "sindrets/diffview.nvim" },
     },
     cmd = { "AdvancedGitSearch" },
     keys = {
