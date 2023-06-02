@@ -3,7 +3,7 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       stages = "fade_in_slide_out",
-      timeout = 3000,
+      timeout = 1500,
       render = "compact",
     },
   },
@@ -20,14 +20,6 @@ return {
       plugins = {
         wezterm = { enabled = true },
       },
-      on_open = function()
-        vim.keymap.set("n", "q", "<cmd>ZenMode<cr>", { noremap = true, buffer = 0 })
-        vim.keymap.set("n", "<esc>", "<cmd>ZenMode<cr>", { noremap = true, buffer = 0 })
-      end,
-      on_close = function()
-        vim.keymap.del("n", "q", { buffer = 0 })
-        vim.keymap.del("n", "<esc>", { buffer = 0 })
-      end,
     },
   },
 
@@ -72,11 +64,11 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        numbers = "none",                    -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
+        numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+        close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         max_name_length = 30,
-        max_prefix_length = 30,              -- prefix used when a buffer is de-duplicated
+        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
         show_buffer_icons = true,
         show_buffer_close_icons = false,
         show_close_icon = false,

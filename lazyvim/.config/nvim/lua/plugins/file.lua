@@ -68,5 +68,8 @@ return {
       default_file_explorer = false,
     },
     cmd = { "Oil" },
+    keys = {
+      { "<leader>Uo", "<cmd>Oil<cr>", desc = "Oil", noremap = true }
+    },
   },
 }
