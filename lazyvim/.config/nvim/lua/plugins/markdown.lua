@@ -54,9 +54,6 @@ return {
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
         null_ls.builtins.code_actions.proselint,
-        null_ls.builtins.diagnostics.alex,
-        null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.diagnostics.proselint,
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.formatting.markdown_toc,
         null_ls.builtins.formatting.prettierd,

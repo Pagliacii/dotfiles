@@ -53,7 +53,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>bd", "<CMD>Bdelete<cr>", desc = "Delete Buffer" },
+      { "<leader>bd", "<CMD>Bdelete<cr>",  desc = "Delete Buffer" },
       { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
     },
   },
@@ -68,5 +68,55 @@ return {
   {
     "echasnovski/mini.surround",
     enabled = false,
+  },
+
+  {
+    "folke/edgy.nvim",
+    event = "VeryLazy",
+    opts = {
+      animate = { enabled = false },
+      bottom = {
+        "Trouble",
+        { ft = "qf",            title = "QuickFix" },
+        { ft = "help",          size = { height = 20 } },
+        { ft = "spectre_panel", size = { height = 0.4 } },
+      },
+      left = {
+        -- Neo-tree filesystem always takes half the screen height
+        {
+          title = "Neo-Tree",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "filesystem"
+          end,
+          size = { height = 0.5 },
+        },
+        {
+          title = "Neo-Tree Git",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "git_status"
+          end,
+          pinned = true,
+          open = "Neotree position=right git_status",
+        },
+        {
+          title = "Neo-Tree Buffers",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "buffers"
+          end,
+          pinned = true,
+          open = "Neotree position=top buffers",
+        },
+        {
+          ft = "Outline",
+          pinned = true,
+          open = "SymbolsOutline",
+        },
+        -- any other neo-tree windows
+        "neo-tree",
+      },
+    },
   },
 }
