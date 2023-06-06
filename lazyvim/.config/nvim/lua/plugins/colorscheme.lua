@@ -20,12 +20,12 @@ return {
     },
   },
 
-  { "EdenEast/nightfox.nvim" },
+  { "EdenEast/nightfox.nvim", enabled = false },
 
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "nordfox",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "nordfox",
+  --   },
+  -- },
 }

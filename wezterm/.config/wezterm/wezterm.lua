@@ -89,6 +89,7 @@ config.inactive_pane_hsb = {
 
 --- Fallback font
 config.font = wezterm.font_with_fallback({
+	"JetBrainsMono Nerd Font",
 	"JetBrains Mono",
 	"Fira Code",
 })
