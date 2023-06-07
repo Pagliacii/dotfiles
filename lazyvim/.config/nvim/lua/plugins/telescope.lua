@@ -31,7 +31,27 @@ local mappings = {
 
 local pickers = {
   find_files = {
+    hidden = true,
     previewer = false,
+    find_command = {
+      "rg",
+      "--files",
+      "--hidden",
+      "--glob",
+      "!**/.git/*",
+      "--glob",
+      "!**/.hg/*",
+    },
+    mappings = {
+      n = {
+        ["cd"] = function(prompt_bufnr)
+          local selection = require("telescope.actions.state").get_selected_entry()
+          local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+          require("telescope.actions").close(prompt_bufnr)
+          vim.cmd(string.format("silent tcd %s", dir))
+        end,
+      },
+    },
   },
   git_files = {
     previewer = false,
@@ -249,11 +269,25 @@ end
 
 local opts = {
   defaults = {
-    find_files = {
-      hidden = true,
-    },
+    previewer = false,
     mappings = mappings,
     buffer_previewer_maker = buffer_previewer_maker,
+    prompt_prefix = "🔍",
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "-C=0",
+      "--hidden",
+      "--glob",
+      "!**/.git/*",
+      "--glob",
+      "!**/.hg/*",
+    },
   },
   pickers = pickers,
   extensions = extensions,

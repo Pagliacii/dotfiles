@@ -22,6 +22,14 @@ return {
 
   { "EdenEast/nightfox.nvim", enabled = false },
 
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      on_colors = function(colors)
+        colors.border = "#86abdc"
+      end,
+    },
+  },
   -- {
   --   "LazyVim/LazyVim",
   --   opts = {

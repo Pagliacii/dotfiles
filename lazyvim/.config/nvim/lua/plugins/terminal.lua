@@ -35,7 +35,8 @@ local function new_terminal(dir, direction)
   end
   dir = dir or "%"
   direction = direction or "horizontal"
-  vim.cmd(string.format('exe 1. "%dToggleTerm dir=%s direction=%s"', #Terms + 1, dir, direction))
+  local cmd = string.format([[%dToggleTerm dir=%s direction=%s]], #Terms + 1, dir, direction)
+  vim.cmd(cmd)
 end
 
 ---Execute a command in terminal
@@ -120,14 +121,14 @@ return {
         },
       })
       vim.list_extend(keys, {
-        { "<leader>Tt",  init_or_toggle,                        desc = "Toggle or init" },
-        { "<leader>Tn",  new_terminal,                          desc = "New terminal" },
-        { "<leader>Te",  exec_command,                          desc = "Execute command" },
-        { "<leader>Ts",  "<cmd> TermSelect<cr>",                desc = "Select" },
-        { "<leader>Th",  toggle_terminal("horizontal"),         desc = "Toggle horizontal" },
-        { "<leader>Tv",  toggle_terminal("vertical"),           desc = "Toggle vertical" },
-        { "<leader>TT",  toggle_terminal("tab"),                desc = "Toggle tab" },
-        { "<leader>Tf",  toggle_terminal("float"),              desc = "Toggle float" },
+        { "<leader>Tt", init_or_toggle, desc = "Toggle or init" },
+        { "<leader>Tn", new_terminal, desc = "New terminal" },
+        { "<leader>Te", exec_command, desc = "Execute command" },
+        { "<leader>Ts", "<cmd> TermSelect<cr>", desc = "Select" },
+        { "<leader>Th", toggle_terminal("horizontal"), desc = "Toggle horizontal" },
+        { "<leader>Tv", toggle_terminal("vertical"), desc = "Toggle vertical" },
+        { "<leader>TT", toggle_terminal("tab"), desc = "Toggle tab" },
+        { "<leader>Tf", toggle_terminal("float"), desc = "Toggle float" },
         { "<leader>TSc", "<cmd> ToggleTermSendCurrentLine<cr>", desc = "Line under cursor" },
         {
           "<leader>TSv",
