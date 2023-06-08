@@ -44,7 +44,11 @@ return {
             group = formatting_group,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 10000 })
+              vim.lsp.buf.format({
+                bufnr = bufnr,
+                timeout_ms = 10000,
+                async = false,
+              })
             end,
           })
         end
@@ -78,7 +82,7 @@ return {
         return cmd_str .. "<cr>"
       end
       vim.list_extend(keys, {
-        { "gh", cmd("lsp_finder"), desc = "Lsp finder", noremap = true },
+        { "gh",         cmd("lsp_finder"),                 desc = "Lsp finder",            noremap = true },
         {
           "<leader>ka",
           cmd("code_action"),
@@ -92,19 +96,19 @@ return {
           desc = "Rename (project)",
           noremap = true,
         },
-        { "<leader>kR", cmd("rename"), desc = "Rename (file)", noremap = true },
-        { "<leader>ko", cmd("outline"), desc = "Toggle outline", noremap = true },
-        { "<leader>kh", cmd("hover_doc"), desc = "Hover doc", noremap = true },
-        { "<leader>kk", cmd("hover_doc", "++keep"), desc = "Hover doc (keep)", noremap = true },
-        { "<leader>kI", cmd("incoming_calls"), desc = "Incoming calls", noremap = true },
-        { "<leader>kO", cmd("outgoing_calls"), desc = "Outgoing calls", noremap = true },
+        { "<leader>kR", cmd("rename"),                     desc = "Rename (file)",         noremap = true },
+        { "<leader>ko", cmd("outline"),                    desc = "Toggle outline",        noremap = true },
+        { "<leader>kh", cmd("hover_doc"),                  desc = "Hover doc",             noremap = true },
+        { "<leader>kk", cmd("hover_doc", "++keep"),        desc = "Hover doc (keep)",      noremap = true },
+        { "<leader>kI", cmd("incoming_calls"),             desc = "Incoming calls",        noremap = true },
+        { "<leader>kO", cmd("outgoing_calls"),             desc = "Outgoing calls",        noremap = true },
         ---diagnostics
-        { "<leader>kc", cmd("show_cursor_diagnostics"), desc = "Cursor diagnostics", noremap = true },
-        { "<leader>kl", cmd("show_line_diagnostics"), desc = "Line diagnostics", noremap = true },
-        { "<leader>kb", cmd("show_buf_diagnostics"), desc = "Buffer diagnostics", noremap = true },
+        { "<leader>kc", cmd("show_cursor_diagnostics"),    desc = "Cursor diagnostics",    noremap = true },
+        { "<leader>kl", cmd("show_line_diagnostics"),      desc = "Line diagnostics",      noremap = true },
+        { "<leader>kb", cmd("show_buf_diagnostics"),       desc = "Buffer diagnostics",    noremap = true },
         { "<leader>kw", cmd("show_workspace_diagnostics"), desc = "Workspace diagnostics", noremap = true },
-        { "<leader>k[", cmd("diagnostics_jump_prev"), desc = "Prev diagnostics", noremap = true },
-        { "<leader>k]", cmd("diagnostics_jump_next"), desc = "Next diagnostics", noremap = true },
+        { "<leader>k[", cmd("diagnostics_jump_prev"),      desc = "Prev diagnostics",      noremap = true },
+        { "<leader>k]", cmd("diagnostics_jump_next"),      desc = "Next diagnostics",      noremap = true },
         {
           "<leader>kE",
           function()
@@ -122,10 +126,10 @@ return {
           noremap = true,
         },
         ---goto
-        { "<leader>kd", cmd("goto_definition"), desc = "Goto definition", noremap = true },
-        { "<leader>kt", cmd("goto_type_definition"), desc = "Goto type definition", noremap = true },
+        { "<leader>kd", cmd("goto_definition"),      desc = "Goto definition",        noremap = true },
+        { "<leader>kt", cmd("goto_type_definition"), desc = "Goto type definition",   noremap = true },
         ---peek
-        { "<leader>kp", cmd("peek_definition"), desc = "Peek definition", noremap = true },
+        { "<leader>kp", cmd("peek_definition"),      desc = "Peek definition",        noremap = true },
         { "<leader>ky", cmd("peek_type_definition"), desc = "Peek t[y]pe definition", noremap = true },
       })
       return keys

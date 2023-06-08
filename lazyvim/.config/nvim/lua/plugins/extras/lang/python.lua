@@ -6,9 +6,8 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "pyright",
         "ruff",
-        "usort",
+        "ruff-lsp",
       })
     end,
   },
@@ -69,18 +68,18 @@ return {
         elseif vim.fn.executable("poetry") == 1 then
           local poetry_interpreter = ""
           job
-              :new({
-                command = "poetry",
-                args = { "env", "info", "-p" },
-                cwd = cwd,
-                on_stdout = function(_, output)
-                  poetry_interpreter = path.concat({
-                    output,
-                    interpreter,
-                  })
-                end,
-              })
-              :sync()
+            :new({
+              command = "poetry",
+              args = { "env", "info", "-p" },
+              cwd = cwd,
+              on_stdout = function(_, output)
+                poetry_interpreter = path.concat({
+                  output,
+                  interpreter,
+                })
+              end,
+            })
+            :sync()
           venv_path = poetry_interpreter
         end
         return venv_path
@@ -111,17 +110,24 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {
+        -- pyright = {
+        --   filetypes = filetypes,
+        --   root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
+        --   settings = {
+        --     python = {
+        --       analysis = {
+        --         autoImportCompletions = true,
+        --         autoSearchPaths = true,
+        --         diagnosticMode = "openFilesOnly",
+        --       },
+        --     },
+        --   },
+        -- },
+        ruff_lsp = {
           filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
           settings = {
-            python = {
-              analysis = {
-                autoImportCompletions = true,
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-              },
-            },
+            args = {},
           },
         },
       },
@@ -133,9 +139,29 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       local null_ls = require("null-ls")
+      -- ref: https://beta.ruff.rs/docs/rules
+      local rules = {
+        "A", -- flake8-builtins
+        "ANN", -- flake8-annotations
+        "ARG", -- flake8-unused-arguments
+        "COM", -- flake8-commas
+        "FA", -- flake8-future-annotations
+        "RET", -- flake8-return
+        "SLF", -- flake8-self
+        "I", -- isort
+        "N", -- pep8-naming
+        "W", -- pycodestyle
+      }
+      local unfixable = { "ANN204" }
       vim.list_extend(opts.sources, {
-        null_ls.builtins.diagnostics.ruff,
-        null_ls.builtins.formatting.usort,
+        null_ls.builtins.formatting.ruff.with({
+          extra_args = {
+            "--select",
+            table.concat(rules, ","),
+            "--unfixable",
+            table.concat(unfixable, ","),
+          },
+        }),
       })
     end,
   },

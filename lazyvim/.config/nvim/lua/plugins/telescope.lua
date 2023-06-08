@@ -272,7 +272,6 @@ local opts = {
     previewer = false,
     mappings = mappings,
     buffer_previewer_maker = buffer_previewer_maker,
-    prompt_prefix = "🔍",
     vimgrep_arguments = {
       "rg",
       "--color=never",

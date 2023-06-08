@@ -53,10 +53,12 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
-        null_ls.builtins.code_actions.proselint,
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.formatting.markdown_toc,
-        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.formatting.prettierd.with({
+          filetypes = filetypes,
+        }),
+        null_ls.builtins.hover.dictionary,
       })
     end,
   },
@@ -69,7 +71,6 @@ return {
         "glow",
         "markdown-toc",
         "prettierd",
-        "proselint",
         "write-good",
       })
     end,
