@@ -1,11 +1,33 @@
 local filetypes = { "python" }
 
+-- ref: https://beta.ruff.rs/docs/rules
+local rules = {
+  "A", -- flake8-builtins
+  "ANN", -- flake8-annotations
+  "ARG", -- flake8-unused-arguments
+  "B", -- flake8-bugbear
+  "COM", -- flake8-commas
+  "C4", -- flake8-comprehensions
+  "FA", -- flake8-future-annotations
+  "RET", -- flake8-return
+  "SLF", -- flake8-self
+  "E", -- pycodestyle error
+  "F", -- pyflakes
+  "I", -- isort
+  "N", -- pep8-naming
+  "W", -- pycodestyle warning
+}
+local unfixable = {
+  "ANN204", -- missing-return-type-special-method
+}
+
 return {
   {
     "williamboman/mason.nvim",
     ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
+        "pyright",
         "ruff",
         "ruff-lsp",
       })
@@ -110,24 +132,43 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        -- pyright = {
-        --   filetypes = filetypes,
-        --   root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
-        --   settings = {
-        --     python = {
-        --       analysis = {
-        --         autoImportCompletions = true,
-        --         autoSearchPaths = true,
-        --         diagnosticMode = "openFilesOnly",
-        --       },
-        --     },
-        --   },
-        -- },
+        pyright = {
+          filetypes = filetypes,
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
+          capabilities = (function()
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+            return capabilities
+          end)(),
+          on_attach = function(client, _)
+            client.server_capabilities.codeActionProvider = false
+          end,
+          settings = {
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              indexing = true,
+              analysis = {
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+              },
+            },
+          },
+        },
         ruff_lsp = {
           filetypes = filetypes,
           root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
+          on_attach = function(client, _)
+            client.server_capabilities.hoverProvider = false
+          end,
           settings = {
-            args = {},
+            -- Any extra CLI arguments for `ruff` go here.
+            args = {
+              "--select",
+              table.concat(rules, ","),
+            },
           },
         },
       },
@@ -139,20 +180,6 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      -- ref: https://beta.ruff.rs/docs/rules
-      local rules = {
-        "A", -- flake8-builtins
-        "ANN", -- flake8-annotations
-        "ARG", -- flake8-unused-arguments
-        "COM", -- flake8-commas
-        "FA", -- flake8-future-annotations
-        "RET", -- flake8-return
-        "SLF", -- flake8-self
-        "I", -- isort
-        "N", -- pep8-naming
-        "W", -- pycodestyle
-      }
-      local unfixable = { "ANN204" }
       vim.list_extend(opts.sources, {
         null_ls.builtins.formatting.ruff.with({
           extra_args = {
