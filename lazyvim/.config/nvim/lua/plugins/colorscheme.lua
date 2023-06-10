@@ -30,10 +30,11 @@ return {
       end,
     },
   },
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "nordfox",
-  --   },
-  -- },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "tokyonight-storm",
+    },
+  },
 }

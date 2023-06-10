@@ -19,7 +19,9 @@ config.default_cursor_style = "BlinkingBlock"
 
 local function scheme_for_appearance(appearance)
   if appearance:find("Dark") then
-    return "Dracula (Official)" -- "Desert"
+    -- return "Dracula (Official)"
+    -- return "Desert"
+    return "Tokyo Night Storm"
   else
     return "Builtin Solarized Light"
   end

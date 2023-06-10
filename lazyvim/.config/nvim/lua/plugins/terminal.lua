@@ -55,19 +55,25 @@ end
 ---@return function
 local function toggle_terminal(direction)
   return function()
-    local is_opened = last_term and last_term:is_open()
-    if not is_opened then
+    if not last_term then
       new_terminal(nil, direction)
       return
     end
 
-    if last_term.direction == direction then
+    local is_opened = last_term:is_open()
+    if last_term.direction ~= direction then
+      if is_opened then
+        last_term:close()
+      end
+      last_term:toggle(nil, direction)
+      last_term:set_mode(require("toggleterm.terminal").mode.INSERT)
       return
     end
 
-    last_term:close()
-    last_term:open(nil, direction)
-    last_term:set_mode(require("toggleterm.terminal").mode.INSERT)
+    last_term:toggle(nil, direction)
+    if last_term:is_open() then
+      last_term:set_mode(require("toggleterm.terminal").mode.INSERT)
+    end
   end
 end
 
