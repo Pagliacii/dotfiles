@@ -71,19 +71,19 @@ return {
         opts = {
           filetyps = { "*" },
           user_default_options = {
-            RGB = true, -- #RGB hex codes
-            RRGGBB = true, -- #RRGGBB hex codes
-            names = false, -- "Name" codes like Blue or blue
+            RGB = true,      -- #RGB hex codes
+            RRGGBB = true,   -- #RRGGBB hex codes
+            names = false,   -- "Name" codes like Blue or blue
             RRGGBBAA = true, -- #RRGGBBAA hex codes
             AARRGGBB = true, -- 0xAARRGGBB hex codes
-            rgb_fn = true, -- CSS rgb() and rgba() functions
-            hsl_fn = true, -- CSS hsl() and hsla() functions
-            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+            rgb_fn = true,   -- CSS rgb() and rgba() functions
+            hsl_fn = true,   -- CSS hsl() and hsla() functions
+            css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+            css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
             -- Available modes for `mode`: foreground, background,  virtualtext
             mode = "background",
             -- True is same as normal
-            tailwind = false, -- Enable tailwind colors
+            tailwind = false,                               -- Enable tailwind colors
             -- parsers can contain values used in |user_default_options|
             sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
             virtualtext = "■",
@@ -177,5 +177,57 @@ return {
       auto = 400,
       border = "rounded",
     },
+  },
+
+  {
+    "jackMort/ChatGPT.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true,
+    keys = function(_, keys)
+      local wk = require("which-key")
+      wk.register({
+        ["<leader>C"] = { name = "+ChatGPT", mode = { "n", "v" } },
+      })
+      vim.list_extend(keys, {
+        { "<leader>Ca", "<cmd>ChatGPTActAs<cr>", desc = "Open a prompt selection" },
+        { "<leader>Cc", "<cmd>ChatGPT<cr>",      desc = "Open an interactive window" },
+        {
+          "<leader>Ce",
+          function()
+            local chatgpt = require("chatgpt")
+            chatgpt.edit_with_instructions()
+          end,
+          mode = "v",
+          desc = "Edit with instructions",
+        },
+        {
+          "<leader>Cr",
+          function()
+            vim.ui.select({
+              "grammar_correction",
+              "translate",
+              "keywords",
+              "docstring",
+              "add_tests",
+              "optimize_code",
+              "summarize",
+              "fix_bugs",
+              "explain_code",
+              "roxygen_edit",
+              "code_readability_analysis",
+            }, { prompt = "actions" }, function(selected)
+              vim.cmd(string.format("ChatGPTRun %s", selected))
+            end)
+          end,
+          mode = "v",
+          desc = "Run actions",
+        },
+      })
+      return keys
+    end,
   },
 }
