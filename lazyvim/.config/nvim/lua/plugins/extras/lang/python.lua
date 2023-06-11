@@ -144,15 +144,14 @@ return {
             client.server_capabilities.codeActionProvider = false
           end,
           settings = {
-            pyright = {
-              disableOrganizeImports = true,
-            },
             python = {
-              indexing = true,
+              disableOrganizeImports = true,
               analysis = {
+                indexing = true,
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true,
               },
             },
           },

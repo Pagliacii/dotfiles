@@ -115,21 +115,41 @@ return {
       "kevinhwang91/nvim-hlslens",
       "lewis6991/gitsigns.nvim",
     },
-    event = "BufReadPre",
-    opts = {
-      hide_if_all_visible = true,
-      excluded_filetypes = {
-        "alpha",
-        "neo-tree",
-        "lazy",
-        "mason",
-        "noice",
-      },
-      handlers = {
-        gitsigns = true,
-        search = true,
-      },
-    },
+    event = "BufReadPost",
+    config = function()
+      local scrollbar = require("scrollbar")
+      local colors = require("tokyonight.colors").setup()
+      scrollbar.setup({
+        handle = {
+          color = colors.bg_highlight,
+          gitsigns = true,
+          search = true,
+        },
+        excluded_filetypes = {
+          "alpha",
+          "neo-tree",
+          "lazy",
+          "mason",
+          "noice",
+          "prompt",
+          "TelescopePrompt",
+          "notify",
+        },
+        marks = {
+          Search = { color = colors.orange },
+          Error = { color = colors.error },
+          Warn = { color = colors.warning },
+          Info = { color = colors.info },
+          Hint = { color = colors.hint },
+          Misc = { color = colors.purple },
+        },
+        hide_if_all_visible = true,
+      })
+
+      require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+      require("scrollbar.handlers.search").setup()
+    end,
   },
 
   {

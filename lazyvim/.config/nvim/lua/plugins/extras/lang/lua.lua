@@ -7,7 +7,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "lua-language-server",
         "selene",
-        "stylua",
+        -- "stylua",
       })
     end,
   },
@@ -30,7 +30,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.sources, {
         require("null-ls").builtins.diagnostics.selene,
-        require("null-ls").builtins.formatting.stylua,
+        -- require("null-ls").builtins.formatting.stylua,
       })
     end,
   },
