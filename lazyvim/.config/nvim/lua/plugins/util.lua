@@ -187,47 +187,11 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     config = true,
-    keys = function(_, keys)
-      local wk = require("which-key")
-      wk.register({
-        ["<leader>C"] = { name = "+ChatGPT", mode = { "n", "v" } },
-      })
-      vim.list_extend(keys, {
-        { "<leader>Ca", "<cmd>ChatGPTActAs<cr>", desc = "Open a prompt selection" },
-        { "<leader>Cc", "<cmd>ChatGPT<cr>",      desc = "Open an interactive window" },
-        {
-          "<leader>Ce",
-          function()
-            local chatgpt = require("chatgpt")
-            chatgpt.edit_with_instructions()
-          end,
-          mode = "v",
-          desc = "Edit with instructions",
-        },
-        {
-          "<leader>Cr",
-          function()
-            vim.ui.select({
-              "grammar_correction",
-              "translate",
-              "keywords",
-              "docstring",
-              "add_tests",
-              "optimize_code",
-              "summarize",
-              "fix_bugs",
-              "explain_code",
-              "roxygen_edit",
-              "code_readability_analysis",
-            }, { prompt = "actions" }, function(selected)
-              vim.cmd(string.format("ChatGPTRun %s", selected))
-            end)
-          end,
-          mode = "v",
-          desc = "Run actions",
-        },
-      })
-      return keys
-    end,
+    cmd = {
+      "ChatGPT",
+      "ChatGPTActAs",
+      "ChatGPTRun",
+      "ChatGPTEditWithInstructions",
+    },
   },
 }
