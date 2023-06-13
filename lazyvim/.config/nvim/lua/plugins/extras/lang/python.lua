@@ -88,21 +88,19 @@ return {
         elseif vim.fn.executable(dot_venv_path) == 1 then
           venv_path = dot_venv_path
         elseif vim.fn.executable("poetry") == 1 then
-          local poetry_interpreter = ""
           job
             :new({
               command = "poetry",
               args = { "env", "info", "-p" },
               cwd = cwd,
               on_stdout = function(_, output)
-                poetry_interpreter = path.concat({
+                venv_path = path.concat({
                   output,
                   interpreter,
                 })
               end,
             })
             :sync()
-          venv_path = poetry_interpreter
         end
         return venv_path
       end
@@ -134,7 +132,13 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
           filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ruff.toml", "venv", ".git"),
+          root_dir = require("lspconfig.util").root_pattern(
+            "pyproject.toml",
+            "pyrightconfig.json",
+            "ruff.toml",
+            "venv",
+            ".git"
+          ),
           capabilities = (function()
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
@@ -144,8 +148,10 @@ return {
             client.server_capabilities.codeActionProvider = false
           end,
           settings = {
-            python = {
+            pyright = {
               disableOrganizeImports = true,
+            },
+            python = {
               analysis = {
                 indexing = true,
                 autoImportCompletions = true,
@@ -158,7 +164,13 @@ return {
         },
         ruff_lsp = {
           filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ruff.toml", "venv", ".git"),
+          root_dir = require("lspconfig.util").root_pattern(
+            "pyproject.toml",
+            "pyrightconfig.json",
+            "ruff.toml",
+            "venv",
+            ".git"
+          ),
           on_attach = function(client, _)
             client.server_capabilities.hoverProvider = false
           end,
