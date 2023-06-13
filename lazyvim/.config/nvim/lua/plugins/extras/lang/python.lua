@@ -134,7 +134,7 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {
           filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ruff.toml", "venv", ".git"),
           capabilities = (function()
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
@@ -158,7 +158,7 @@ return {
         },
         ruff_lsp = {
           filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "venv", ".git"),
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "ruff.toml", "venv", ".git"),
           on_attach = function(client, _)
             client.server_capabilities.hoverProvider = false
           end,
