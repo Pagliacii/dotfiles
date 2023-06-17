@@ -33,10 +33,10 @@ return {
         end
       end
       vim.list_extend(keys, {
-        { "<leader>dus", toggle_sidebar("scopes"),     desc = "Scopes",     noremap = true },
-        { "<leader>duf", toggle_sidebar("frames"),     desc = "Frames",     noremap = true },
-        { "<leader>duS", toggle_sidebar("sessions"),   desc = "Sessions",   noremap = true },
-        { "<leader>dut", toggle_sidebar("threads"),    desc = "Threads",    noremap = true },
+        { "<leader>dus", toggle_sidebar("scopes"), desc = "Scopes", noremap = true },
+        { "<leader>duf", toggle_sidebar("frames"), desc = "Frames", noremap = true },
+        { "<leader>duS", toggle_sidebar("sessions"), desc = "Sessions", noremap = true },
+        { "<leader>dut", toggle_sidebar("threads"), desc = "Threads", noremap = true },
         { "<leader>due", toggle_sidebar("expression"), desc = "Expression", noremap = true },
       })
       return keys
@@ -45,19 +45,9 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
-    config = function(_, opts)
-      local dap, dapui = require("dap"), require("dapui")
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-      dapui.setup(opts)
-    end,
     keys = {
       {
-        "<leader>duu",
+        "<leader>dui",
         function()
           require("dapui").toggle()
         end,
