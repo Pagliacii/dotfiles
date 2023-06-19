@@ -202,6 +202,7 @@ return {
     },
     opts = {
       post_behavior = "yank",
+      ssh_args = { "-T" },
     },
     keys = {
       { "<leader>S", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
