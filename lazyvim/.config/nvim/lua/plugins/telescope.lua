@@ -65,11 +65,11 @@ local dependencies = {
   {
     "nvim-telescope/telescope-dap.nvim",
     keys = {
-      { "<leader>d1", "<cmd> Telescope dap commands<cr>",         desc = "Commands" },
-      { "<leader>d2", "<cmd> Telescope dap frames<cr>",           desc = "Frames" },
+      { "<leader>d1", "<cmd> Telescope dap commands<cr>", desc = "Commands" },
+      { "<leader>d2", "<cmd> Telescope dap frames<cr>", desc = "Frames" },
       { "<leader>d3", "<cmd> Telescope dap list_breakpoints<cr>", desc = "Breakpoints" },
-      { "<leader>d4", "<cmd> Telescope dap configurations<cr>",   desc = "Configurations" },
-      { "<leader>d5", "<cmd> Telescope dap variables<cr>",        desc = "Variables" },
+      { "<leader>d4", "<cmd> Telescope dap configurations<cr>", desc = "Configurations" },
+      { "<leader>d5", "<cmd> Telescope dap variables<cr>", desc = "Variables" },
     },
   },
 
@@ -186,6 +186,8 @@ local dependencies = {
   },
 
   { "aaronhallaert/advanced-git-search.nvim" },
+
+  { "nvim-telescope/telescope-symbols.nvim" },
 }
 
 local extensions = {
@@ -299,7 +301,13 @@ return {
     opts = opts,
     config = config,
     keys = {
+      { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
       { "<leader>tN", "<cmd>Telescope notify<cr>", desc = "Notify", noremap = true },
+      { "<leader>tT", "<cmd>Telescope treesitter<cr>", desc = "Treesitter", noremap = true },
+      { "<leader>tj", "<cmd>Telescope jumplist<cr>", desc = "Jump list", noremap = true },
+      { "<leader>tl", "<cmd>Telescope loclist<cr>", desc = "Location list", noremap = true },
+      { "<leader>tr", "<cmd>Telescope registers<cr>", desc = "Location list", noremap = true },
+      { "<leader>tx", "<cmd>Telescope quickfix<cr>", desc = "Quickfix", noremap = true },
     },
   },
 }
