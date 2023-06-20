@@ -196,7 +196,7 @@ return {
   },
 
   {
-    "Pagliacii/snips.nvim",
+    "Sanix-Darker/snips.nvim",
     cmd = {
       "SnipsCreate",
     },

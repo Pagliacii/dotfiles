@@ -94,7 +94,7 @@
   "rust-tools.nvim": { "branch": "master", "commit": "71d2cf67b5ed120a0e31b2c8adb210dd2834242f" },
   "shenzhen-solitaire.nvim": { "branch": "master", "commit": "4d647cb19bffc83ce218da3c00b062678567471f" },
   "smart-splits.nvim": { "branch": "master", "commit": "87b0f3374b5c4dd0ff601558a247a2dc78dc7b4e" },
-  "snips.nvim": { "branch": "master", "commit": "679fee0246490efa5778b91e6426fd1f1c26f7e8" },
+  "snips.nvim": { "branch": "master", "commit": "967e7db0275298721e15a0f17fcb6fe0a85d19fe" },
   "sudoku.nvim": { "branch": "main", "commit": "cb01171ed746003dd9f508e7a08a5bae2c396ef0" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
