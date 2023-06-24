@@ -192,6 +192,7 @@ return {
       "ChatGPTActAs",
       "ChatGPTRun",
       "ChatGPTEditWithInstructions",
+      "ChatGPTCompleteCode",
     },
   },
 
@@ -199,9 +200,11 @@ return {
     "Sanix-Darker/snips.nvim",
     cmd = {
       "SnipsCreate",
+      "SnipsCreateFromRegister",
+      "SnipsList",
     },
     opts = {
-      post_behavior = "yank",
+      post_behavior = "echo_and_yank",
       ssh_cmd = "ssh -T",
     },
     keys = {
