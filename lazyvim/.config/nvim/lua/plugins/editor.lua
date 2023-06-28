@@ -53,7 +53,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>bd", "<CMD>Bdelete<cr>",  desc = "Delete Buffer" },
+      { "<leader>bd", "<CMD>Bdelete<cr>", desc = "Delete Buffer" },
       { "<leader>bD", "<CMD>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
     },
   },

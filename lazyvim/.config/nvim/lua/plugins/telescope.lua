@@ -1,12 +1,6 @@
 local mappings = {
   i = {
-    ["<C-j>"] = function(...)
-      return require("telescope.actions").move_selection_next(...)
-    end,
-    ["<C-k>"] = function(...)
-      return require("telescope.actions").move_selection_previous(...)
-    end,
-    ["<C-p>"] = function(...)
+    ["<M-p>"] = function(...)
       return require("telescope.actions.layout").toggle_preview(...)
     end,
   },
@@ -23,7 +17,7 @@ local mappings = {
     ["G"] = function(...)
       return require("telescope.actions").move_to_bottom(...)
     end,
-    ["<C-p>"] = function(...)
+    ["<M-p>"] = function(...)
       return require("telescope.actions.layout").toggle_preview(...)
     end,
   },
