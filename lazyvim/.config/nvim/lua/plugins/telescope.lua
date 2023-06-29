@@ -35,6 +35,10 @@ local pickers = {
       "!**/.git/*",
       "--glob",
       "!**/.hg/*",
+      "--ignore-file",
+      ".gitignore",
+      "--ignore-file",
+      ".hgignore",
     },
     mappings = {
       n = {
@@ -282,6 +286,10 @@ local opts = {
       "!**/.git/*",
       "--glob",
       "!**/.hg/*",
+      "--ignore-file",
+      ".gitignore",
+      "--ignore-file",
+      ".hgignore",
     },
   },
   pickers = pickers,

@@ -43,11 +43,11 @@ return {
         return string.format("<cmd>lua require('goto-preview').%s()<cr>", cmd)
       end
       vim.list_extend(keys, {
-        { "gpd", cmd_factory("goto_preview_definition"),      desc = "Preview definition",      noremap = true },
+        { "gpd", cmd_factory("goto_preview_definition"), desc = "Preview definition", noremap = true },
         { "gpt", cmd_factory("goto_preview_type_definition"), desc = "Preview type definition", noremap = true },
-        { "gpi", cmd_factory("goto_preview_implementation"),  desc = "Preview implementation",  noremap = true },
-        { "gpr", cmd_factory("goto_preview_references"),      desc = "Preview references",      noremap = true },
-        { "gpp", cmd_factory("close_all_win"),                desc = "Close preview window",    noremap = true },
+        { "gpi", cmd_factory("goto_preview_implementation"), desc = "Preview implementation", noremap = true },
+        { "gpr", cmd_factory("goto_preview_references"), desc = "Preview references", noremap = true },
+        { "gpp", cmd_factory("close_all_win"), desc = "Close preview window", noremap = true },
       })
       return keys
     end,
@@ -65,6 +65,7 @@ return {
 
   {
     "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline" },
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = function()
       require("symbols-outline").setup({
