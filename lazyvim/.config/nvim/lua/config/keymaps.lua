@@ -2,79 +2,61 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local wk = require("which-key")
+local ok, wk = pcall(require, "which-key")
 
 -- Groups
-wk.register({
-  ["<leader>r"] = { name = "+rust" },
-  ["<leader>P"] = {
-    name = "+picker",
-    i = { name = "+icon" },
-  },
-  ["<leader>M"] = { name = "+markdown" },
-  ["<leader>N"] = {
-    name = "+note",
-    c = { name = "+cwd" },
-    g = { name = "+global" },
-    l = { name = "+line" },
-    j = { name = "+jump" },
-    C = { name = "+count" },
-    E = { name = "+export" },
-    I = { name = "+import" },
-    L = { name = "+list" },
-  },
-  ["<leader>G"] = { name = "+go" },
-  ["<leader>du"] = { name = "+ui" },
-  ["<leader>U"] = {
-    name = "+util",
-    mode = { "n", "v" },
-  },
-  ["<leader>t"] = { name = "+telescope" },
-  ["gz"] = "which_key_ignore",
-})
+if ok then
+  wk.register({
+    ["<leader>r"] = { name = "+rust" },
+    ["<leader>P"] = {
+      name = "+picker",
+      i = { name = "+icon" },
+    },
+    ["<leader>M"] = { name = "+markdown" },
+    ["<leader>N"] = {
+      name = "+note",
+      c = { name = "+cwd" },
+      g = { name = "+global" },
+      l = { name = "+line" },
+      j = { name = "+jump" },
+      C = { name = "+count" },
+      E = { name = "+export" },
+      I = { name = "+import" },
+      L = { name = "+list" },
+    },
+    ["<leader>G"] = { name = "+go" },
+    ["<leader>du"] = { name = "+ui" },
+    ["<leader>U"] = {
+      name = "+util",
+      mode = { "n", "v" },
+    },
+    ["<leader>t"] = { name = "+telescope" },
+    ["gz"] = "which_key_ignore",
+    ["<leader>gu"] = { name = "+gitui" },
+    ["<leader>gv"] = { name = "+verco" },
+  })
+end
 
 -- Unset LazyVim's default bindings
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 
 if vim.fn.executable("gitui") == 1 then
-  wk.register({
-    ["<leader>gu"] = {
-      name = "+gitui",
-      G = {
-        function()
-          require("lazyvim.util").float_term({ "gitui" })
-        end,
-        "gitui (cwd)",
-      },
-      g = {
-        function()
-          require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
-        end,
-        "gitui (root dir)",
-      },
-    },
-  })
+  vim.keymap.set("n", "<leader>guG", function()
+    require("lazyvim.util").float_term({ "gitui" })
+  end, { desc = "gitui (cwd)" })
+  vim.keymap.set("n", "<leader>gug", function()
+    require("lazyvim.util").float_term({ "gitui" }, { cwd = require("lazyvim.util").get_root() })
+  end, { desc = "gitui (root dir)" })
 end
 
 if vim.fn.executable("verco") == 1 then
-  wk.register({
-    ["<leader>gv"] = {
-      name = "+verco",
-      G = {
-        function()
-          require("lazyvim.util").float_term({ "verco" })
-        end,
-        "verco (cwd)",
-      },
-      g = {
-        function()
-          require("lazyvim.util").float_term({ "verco" }, { cwd = require("lazyvim.util").get_root() })
-        end,
-        "verco (root dir)",
-      },
-    },
-  })
+  vim.keymap.set("n", "<leader>gvG", function()
+    require("lazyvim.util").float_term({ "verco" })
+  end, { desc = "verco (cwd)" })
+  vim.keymap.set("n", "<leader>gvg", function()
+    require("lazyvim.util").float_term({ "verco" }, { cwd = require("lazyvim.util").get_root() })
+  end, { desc = "verco (root dir)" })
 end
 
 if vim.fn.executable("btop") == 1 then

@@ -20,10 +20,10 @@ return {
       ---@param name string
       ---@return function
       local function toggle_sidebar(name)
-        local widgets = require("dap.ui.widgets")
-        local sidebar = widgets.sidebar(widgets[name], { width = 40 })
-        local is_opened = false
         return function(...)
+          local widgets = require("dap.ui.widgets")
+          local sidebar = widgets.sidebar(widgets[name], { width = 40 })
+          local is_opened = false
           if is_opened then
             sidebar.close(...)
           else
