@@ -118,14 +118,6 @@ return {
       },
     },
     keys = function(_, keys)
-      local wk = require("which-key")
-      wk.register({
-        ["<leader>T"] = {
-          name = "+terminal",
-          mode = { "n", "v" },
-          S = { name = "+send" },
-        },
-      })
       vim.list_extend(keys, {
         { "<leader>Tt", init_or_toggle, desc = "Toggle or init" },
         { "<leader>Tn", new_terminal, desc = "New terminal" },

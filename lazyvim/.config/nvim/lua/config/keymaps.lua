@@ -34,6 +34,13 @@ if ok then
     ["gz"] = "which_key_ignore",
     ["<leader>gu"] = { name = "+gitui" },
     ["<leader>gv"] = { name = "+verco" },
+    ["<leader>T"] = {
+      name = "+terminal",
+      mode = { "n", "v" },
+      S = { name = "+send" },
+    },
+    ["<leader>k"] = { name = "+lspsaga" },
+    ["gp"] = { name = "+preview" },
   })
 end
 

@@ -37,8 +37,6 @@ return {
     "rmagatti/goto-preview",
     config = true,
     keys = function(_, keys)
-      local wk = require("which-key")
-      wk.register({ ["gp"] = { name = "+preview" } })
       local cmd_factory = function(cmd)
         return string.format("<cmd>lua require('goto-preview').%s()<cr>", cmd)
       end

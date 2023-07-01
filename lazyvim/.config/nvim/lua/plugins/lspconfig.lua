@@ -42,10 +42,6 @@ return {
       beacon = { enable = true },
     },
     keys = function(_, keys)
-      local wk = require("which-key")
-      wk.register({
-        ["<leader>k"] = { name = "+lspsaga" },
-      })
       local cmd = function(name, ...)
         local cmd_str = string.format("<cmd>Lspsaga %s", name)
         local args = { ... }
