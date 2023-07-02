@@ -85,6 +85,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf, silent = true })
   end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "OverseerList",
+  },
+  callback = function(event)
+    vim.keymap.set("n", "q", "<cmd>OverseerClose<cr>", { buffer = event.buf, noremap = true, silent = true })
+    vim.keymap.del("n", "<C-l>", { buffer = event.buf })
+    vim.keymap.del("n", "<C-h>", { buffer = event.buf })
+  end,
+})
 
 --- Fix Golang imports
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {

@@ -27,7 +27,6 @@ return {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       })
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "crates" },
         { name = "emoji" },
       }))
     end,
@@ -85,5 +84,42 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "stevearc/overseer.nvim",
+    opts = {
+      templates = { "builtin", "user" },
+    },
+    cmd = {
+      "OverseerRun",
+      "OverseerRunCmd",
+      "OverseerToggle",
+      "OverseerInfo",
+      "OverseerBuild",
+      "OverseerQuickAction",
+      "OverseerTaskAction",
+      "OverseerClearCache",
+    },
+    keys = {
+      { "<leader>R", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
+      { "<leader>L", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
+    },
+  },
+
+  {
+    "michaelb/sniprun",
+    enabled = not jit.os:find("Windows"),
+    build = "bash install.sh 1",
+    cmd = { "SnipRun", "SnipClose", "SnipReset", "SnipInfo" },
+    opts = {
+      display = {
+        "VirtualTextOk",
+        "VirtualTextError",
+      },
+    },
+    keys = {
+      { "<leader>S", "<cmd>SnipRun<cr>", desc = "SnipRun", noremap = true },
+    },
   },
 }

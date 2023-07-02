@@ -59,13 +59,7 @@ return {
   {
     "LiadOz/nvim-dap-repl-highlights",
     dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-          opts.highlight = { enable = true }
-          table.insert(opts.ensure_installed, "dap_repl")
-        end,
-      },
+      "nvim-treesitter/nvim-treesitter",
     },
     config = true,
     ft = { "dap-repl" },
@@ -77,5 +71,15 @@ return {
       { "<leader>dO", false },
       { "<leader>dn", "<cmd>lua require('dap').step_over()<cr>", desc = "Next", noremap = true },
     },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.highlight = { enable = true }
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "dap_repl" })
+      end
+    end,
   },
 }
