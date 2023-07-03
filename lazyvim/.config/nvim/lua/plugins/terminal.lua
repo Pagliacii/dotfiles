@@ -105,6 +105,18 @@ return {
         vim.opt.signcolumn = "no"
         Terms[t.id] = { name = t.name, previous = last_term }
         last_term = t
+
+        -- keybindings
+        local opts = { buffer = t.bufnr, silent = true }
+        vim.keymap.set("n", "q", "<cmd>ToggleTerm<cr>", opts)
+        vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+        vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+        vim.keymap.set("t", "<C-h>", function()
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-h>", true, true, true), "n")
+        end, opts)
+        vim.keymap.set("t", "<C-l>", function()
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-l>", true, true, true), "n")
+        end, opts)
       end,
       ---@param t Terminal
       on_exit = function(t)

@@ -40,6 +40,10 @@ return {
     opts = {
       symbol_in_winbar = { enable = false },
       beacon = { enable = true },
+      lightbulb = {
+        enable_in_insert = false,
+        virtual_text = false,
+      },
     },
     keys = function(_, keys)
       local cmd = function(name, ...)

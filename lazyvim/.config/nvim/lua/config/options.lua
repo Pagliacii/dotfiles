@@ -14,7 +14,7 @@ vim.opt.fileformat = "unix"
 if vim.loop.os_uname().version:match("Windows") then
   vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
   vim.opt.shellcmdflag =
-  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
   vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
   vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
   vim.opt.shellquote = ""
@@ -37,3 +37,11 @@ vim.g.genghis_disable_commands = true
 vim.opt.redrawtime = 5000
 
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#86abdc" })
+
+-- fix python default indents, see :help ft-python-indent
+vim.g.python_indent = {
+  open_paren = "shiftwidth()",
+  continue = "shiftwidth()",
+  closed_paren_align_last_line = false,
+  searchpair_timeout = 500,
+}

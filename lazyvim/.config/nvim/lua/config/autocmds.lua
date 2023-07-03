@@ -94,6 +94,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.del("n", "<C-l>", { buffer = event.buf })
     vim.keymap.del("n", "<C-h>", { buffer = event.buf })
   end,
+  once = true,
 })
 
 --- Fix Golang imports
@@ -133,21 +134,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "TermOpen", "FileType" }, {
-  pattern = { "term://*", "toggleterm" },
-  callback = function(event)
-    local opts = { buffer = event.buf, silent = true }
-    vim.keymap.set("n", "q", "<cmd>ToggleTerm<cr>", opts)
-    vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-    vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "json",
@@ -173,21 +159,5 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.keymap.set("n", "<cr>", "<cmd>write<cr>", { buffer = event.buf })
-  end,
-})
-
-local persisted_folds = vim.api.nvim_create_augroup("PersistedFolds", { clear = false })
-vim.api.nvim_create_autocmd("BufWinLeave", {
-  group = persisted_folds,
-  pattern = "*.*",
-  callback = function()
-    vim.cmd([[mkview]])
-  end,
-})
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  group = persisted_folds,
-  pattern = "*.*",
-  callback = function()
-    vim.cmd([[silent! loadview]])
   end,
 })

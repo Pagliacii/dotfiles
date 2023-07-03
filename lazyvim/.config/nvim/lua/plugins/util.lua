@@ -208,7 +208,7 @@ return {
       ssh_cmd = "ssh -T",
     },
     keys = {
-      { "<leader>S", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
+      { "<leader>C", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
     },
   },
 }

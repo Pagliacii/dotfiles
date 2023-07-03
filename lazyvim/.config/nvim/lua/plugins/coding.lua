@@ -119,7 +119,7 @@ return {
       },
     },
     keys = {
-      { "<leader>S", "<cmd>SnipRun<cr>", desc = "SnipRun", noremap = true },
+      { "<leader>S", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
     },
   },
 }

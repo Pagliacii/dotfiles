@@ -126,7 +126,7 @@ local dependencies = {
   {
     "LinArcX/telescope-command-palette.nvim",
     keys = {
-      { "<leader>C", "<cmd>Telescope command_palette<cr>", desc = "Command palette", noremap = true },
+      { "<leader>tC", "<cmd>Telescope command_palette<cr>", desc = "Command palette", noremap = true },
     },
   },
 
