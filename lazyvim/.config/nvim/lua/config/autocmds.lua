@@ -161,3 +161,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<cr>", "<cmd>write<cr>", { buffer = event.buf })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "noice" },
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end,
+})

@@ -201,4 +201,11 @@ return {
       { "<leader>ut", "<cmd>TransparentToggle<cr>", desc = "Transparent background", noremap = true },
     },
   },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      filetype_exclude = { "noice" },
+    },
+  },
 }
