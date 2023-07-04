@@ -26,7 +26,6 @@ local mappings = {
 local pickers = {
   find_files = {
     hidden = true,
-    previewer = false,
     find_command = {
       "rg",
       "--files",
@@ -50,12 +49,6 @@ local pickers = {
         end,
       },
     },
-  },
-  git_files = {
-    previewer = false,
-  },
-  oldfiles = {
-    previewer = false,
   },
 }
 
@@ -105,7 +98,7 @@ local dependencies = {
   {
     "nvim-telescope/telescope-project.nvim",
     keys = {
-      { "<leader>tP", "<cmd>Telescope project<cr>", desc = "Projects", noremap = true },
+      { "<leader>tp", "<cmd>Telescope project<cr>", desc = "Projects", noremap = true },
     },
   },
 
@@ -190,7 +183,6 @@ local dependencies = {
 
 local extensions = {
   file_browser = {
-    previewer = false,
     hidden = {
       file_browser = true,
       folder_browser = true,
@@ -203,7 +195,6 @@ local extensions = {
   },
   luasnip = {
     theme = "dropdown",
-    previewer = false,
   },
   project = {
     hidden_files = true,

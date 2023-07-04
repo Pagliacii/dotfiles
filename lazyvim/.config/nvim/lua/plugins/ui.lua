@@ -55,6 +55,12 @@ return {
         })
       end
 
+      local button = dashboard.button("p", " " .. " Projects", ":Telescope project<cr>")
+      button.opts.hl = "AlphaButtons"
+      button.opts.hl_shortcut = "AlphaShortcut"
+      dashboard.section.buttons.val[6] = nil
+      table.insert(dashboard.section.buttons.val, 4, button)
+
       return dashboard
     end,
   },
@@ -99,16 +105,6 @@ return {
     },
   },
 
-  -- scrollbar for Neovim
-  -- {
-  --   "dstein64/nvim-scrollview",
-  --   event = "BufReadPre",
-  --   config = {
-  --     excluded_filetypes = { "alpha", "neo-tree" },
-  --     current_only = true,
-  --     winblend = 75,
-  --   },
-  -- },
   {
     "petertriho/nvim-scrollbar",
     dependencies = {
@@ -204,8 +200,10 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      filetype_exclude = { "noice" },
-    },
+    opts = function(_, opts)
+      if type(opts.filetype_exclude) == "table" then
+        vim.list_extend(opts.filetype_exclude, { "noice" })
+      end
+    end,
   },
 }
