@@ -32,6 +32,11 @@ config.use_fancy_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
 config.colors = {
 	tab_bar = {
+		-- The new tab button that let you create new tabs
+		new_tab = {
+			bg_color = "#11111b",
+			fg_color = "#cdd6f4",
+		},
 		new_tab_hover = {
 			bg_color = "#99ccff",
 			fg_color = "#0c0c0c",
@@ -90,7 +95,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 		--- The filled in variant of the > symbol
 		local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
-		local edge_background = "#282a36"
+		local edge_background = "#11111b"
 		local background = "#0044cc"
 		local foreground = "#808080"
 

@@ -18,13 +18,13 @@ return {
       end
 
       vim.list_extend(keys, {
-        { "<leader>fp", cmd_factory("copyFilepath"),      desc = "Copy file path",  noremap = true },
-        { "<leader>fy", cmd_factory("copyFilename"),      desc = "Copy file name",  noremap = true },
-        { "<leader>fc", cmd_factory("createNewFile"),     desc = "Create new file", noremap = true },
-        { "<leader>fX", cmd_factory("chmodx"),            desc = "Chmod",           noremap = true },
-        { "<leader>fm", cmd_factory("moveAndRenameFile"), desc = "Mv & Rn",         noremap = true },
-        { "<leader>fd", cmd_factory("duplicateFile"),     desc = "Duplicate",       noremap = true },
-        { "<leader>fD", cmd_factory("trashFile"),         desc = "Move to trash",   noremap = true },
+        { "<leader>fp", cmd_factory("copyFilepath"), desc = "Copy file path", noremap = true },
+        { "<leader>fy", cmd_factory("copyFilename"), desc = "Copy file name", noremap = true },
+        { "<leader>fc", cmd_factory("createNewFile"), desc = "Create new file", noremap = true },
+        { "<leader>fX", cmd_factory("chmodx"), desc = "Chmod", noremap = true },
+        { "<leader>fm", cmd_factory("moveAndRenameFile"), desc = "Mv & Rn", noremap = true },
+        { "<leader>fd", cmd_factory("duplicateFile"), desc = "Duplicate", noremap = true },
+        { "<leader>fD", cmd_factory("trashFile"), desc = "Move to trash", noremap = true },
         {
           "<leader>fx",
           cmd_factory("moveSelectionToNewFile"),
@@ -53,11 +53,11 @@ return {
       },
     },
     keys = {
-      { "<leader>tm", "<cmd>Telescope harpoon marks<cr>",                       desc = "Marks",       noremap = true },
-      { "<leader>f;", "<cmd>lua require('harpoon.mark').toggle_file()<cr>",     desc = "Toggle mark", noremap = true },
-      { "<leader>ft", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick menu",  noremap = true },
-      { "<leader>fk", "<cmd>lua require('harpoon.ui').nav_prev()<cr>",          desc = "Prev mark",   noremap = true },
-      { "<leader>fj", "<cmd>lua require('harpoon.ui').nav_next()<cr>",          desc = "Next mark",   noremap = true },
+      { "<leader>tm", "<cmd>Telescope harpoon marks<cr>", desc = "Marks", noremap = true },
+      { "<leader>f;", "<cmd>lua require('harpoon.mark').toggle_file()<cr>", desc = "Toggle mark", noremap = true },
+      { "<leader>ft", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick menu", noremap = true },
+      { "<leader>fk", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", desc = "Prev mark", noremap = true },
+      { "<leader>fj", "<cmd>lua require('harpoon.ui').nav_next()<cr>", desc = "Next mark", noremap = true },
     },
   },
 
@@ -69,7 +69,60 @@ return {
     },
     cmd = { "Oil" },
     keys = {
-      { "<leader>Uo", "<cmd>Oil<cr>", desc = "Oil", noremap = true }
+      { "<leader>Uo", "<cmd>Oil<cr>", desc = "Oil", noremap = true },
+    },
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "FzfLua" },
+    opts = {
+      "telescope",
+      global_resume = true,
+      global_resume_query = true,
+      winopts = {
+        preview = {
+          default = "bat",
+          layout = "vertical",
+          scrollbar = "float",
+        },
+        fullscreen = false,
+        vertical = "down:45%",
+        horizontal = "right:60%",
+        hidden = "nohidden",
+      },
+      keymap = {
+        builtin = {
+          ["ctrl-/"] = "toggle-help",
+          ["ctrl-f"] = "toggle-fullscreen",
+          ["ctrl-w"] = "toggle-preview-wrap",
+          ["ctrl-p"] = "toggle-preview",
+          ["ctrl-h"] = "preview-page-up",
+          ["ctrl-l"] = "preview-page-down",
+          ["ctrl-r"] = "preview-page-reset",
+        },
+        fzf = {
+          ["ctrl-c"] = "abort",
+          ["ctrl-w"] = "toggle-preview-wrap",
+          ["ctrl-p"] = "toggle-preview",
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>fz",
+        "<cmd>lua require('fzf-lua').live_grep_native()<cr>",
+        desc = "Fzf",
+        noremap = true,
+      },
+      {
+        "<leader>fz",
+        "<cmd>lua require('fzf-lua').grep_visual({ fzf_opts = { ['--layout'] = 'default' } })<cr>",
+        mode = "v",
+        desc = "Fzf",
+        noremap = true,
+      },
     },
   },
 }
