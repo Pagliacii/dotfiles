@@ -140,6 +140,7 @@ return {
           Misc = { color = colors.purple },
         },
         hide_if_all_visible = true,
+        show_in_active_only = true,
       })
 
       require("gitsigns").setup()

@@ -91,6 +91,10 @@ return {
         vertical = "down:45%",
         horizontal = "right:60%",
         hidden = "nohidden",
+        on_create = function()
+          vim.keymap.set("t", "<C-j>", "<Down>", { silent = true, buffer = true })
+          vim.keymap.set("t", "<C-k>", "<Up>", { silent = true, buffer = true })
+        end,
       },
       keymap = {
         builtin = {
