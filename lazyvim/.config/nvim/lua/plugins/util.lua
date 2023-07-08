@@ -215,6 +215,7 @@ return {
   {
     "Pagliacii/sys-open.nvim",
     config = true,
+    cmd = { "SysOpen" },
     keys = {
       { "gx", "<cmd>SysOpen<cr>" },
     },
