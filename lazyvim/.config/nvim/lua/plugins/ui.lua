@@ -219,6 +219,8 @@ return {
     event = "UIEnter",
     config = function(_, opts)
       opts.create_autocmd = false -- prevent barbecue from updating itself auto
+      opts.show_dirname = false
+      opts.show_basename = false
       require("barbecue").setup(opts)
       vim.api.nvim_create_autocmd({
         "WinResized",
@@ -241,7 +243,6 @@ return {
     event = "VeryLazy",
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- nvim-navic
-      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filename
     end,
   },
 }
