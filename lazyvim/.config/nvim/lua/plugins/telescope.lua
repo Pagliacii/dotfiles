@@ -56,10 +56,10 @@ local dependencies = {
   {
     "nvim-telescope/telescope-dap.nvim",
     keys = {
-      { "<leader>d1", "<cmd> Telescope dap commands<cr>", desc = "Commands" },
+      { "<leader>d1", "<cmd> Telescope dap commands theme=dropdown<cr>", desc = "Commands" },
       { "<leader>d2", "<cmd> Telescope dap frames<cr>", desc = "Frames" },
       { "<leader>d3", "<cmd> Telescope dap list_breakpoints<cr>", desc = "Breakpoints" },
-      { "<leader>d4", "<cmd> Telescope dap configurations<cr>", desc = "Configurations" },
+      { "<leader>d4", "<cmd> Telescope dap configurations theme=dropdown<cr>", desc = "Configurations" },
       { "<leader>d5", "<cmd> Telescope dap variables<cr>", desc = "Variables" },
     },
   },
@@ -72,7 +72,7 @@ local dependencies = {
   {
     "debugloop/telescope-undo.nvim",
     keys = {
-      { "<leader>tu", "<cmd> Telescope undo<cr>", desc = "Undo tree" },
+      { "<leader>tu", "<cmd>Telescope undo<cr>", desc = "Undo tree" },
     },
   },
 
@@ -98,14 +98,14 @@ local dependencies = {
   {
     "nvim-telescope/telescope-project.nvim",
     keys = {
-      { "<leader>tp", "<cmd>Telescope project<cr>", desc = "Projects", noremap = true },
+      { "<leader>tp", "<cmd>Telescope project theme=dropdown<cr>", desc = "Projects", noremap = true },
     },
   },
 
   {
     "benfowler/telescope-luasnip.nvim",
     keys = {
-      { "<leader>tS", "<cmd>Telescope luasnip<cr>", desc = "Snippets", noremap = true },
+      { "<leader>tS", "<cmd>Telescope luasnip theme=ivy<cr>", desc = "Snippets", noremap = true },
     },
   },
 
@@ -126,7 +126,7 @@ local dependencies = {
   {
     "LinArcX/telescope-scriptnames.nvim",
     keys = {
-      { "<leader>ts", "<cmd>Telescope scriptnames<cr>", desc = "Scriptnames", noremap = true },
+      { "<leader>ta", "<cmd>Telescope scriptnames<cr>", desc = "Scriptnames", noremap = true },
     },
   },
 
@@ -141,14 +141,14 @@ local dependencies = {
     "AckslD/nvim-neoclip.lua",
     config = true,
     keys = {
-      { "<leader>ty", "<cmd>Telescope neoclip<cr>", desc = "Yanks", noremap = true },
+      { "<leader>ty", "<cmd>Telescope neoclip theme=dropdown<cr>", desc = "Yanks", noremap = true },
     },
   },
 
   {
     "crispgm/telescope-heading.nvim",
     keys = {
-      { "<leader>th", "<cmd>Telescope heading<cr>", desc = "Headings", noremap = true },
+      { "<leader>th", "<cmd>Telescope heading theme=dropdown<cr>", desc = "Headings", noremap = true },
     },
   },
 
@@ -158,27 +158,46 @@ local dependencies = {
       show_preview = false,
     },
     keys = {
-      { "<leader>tt", "<cmd>Telescope telescope-tabs list_tabs<cr>", desc = "Tabs", noremap = true },
+      { "<leader>tT", "<cmd>Telescope telescope-tabs list_tabs theme=dropdown<cr>", desc = "Tabs", noremap = true },
     },
   },
 
   {
     "xiyaowong/telescope-emoji.nvim",
     keys = {
-      { "<leader>tJ", "<cmd>Telescope emoji<cr>", desc = "Emoji", noremap = true },
+      { "<leader>te", "<cmd>Telescope emoji theme=ivy<cr>", desc = "Emoji", noremap = true },
     },
   },
 
   {
     "ghassan0/telescope-glyph.nvim",
     keys = {
-      { "<leader>tG", "<cmd>Telescope glyph<cr>", desc = "Glyph", noremap = true },
+      { "<leader>tG", "<cmd>Telescope glyph theme=dropdown<cr>", desc = "Glyph", noremap = true },
     },
   },
 
   { "aaronhallaert/advanced-git-search.nvim" },
 
-  { "nvim-telescope/telescope-symbols.nvim" },
+  {
+    "nvim-telescope/telescope-symbols.nvim",
+    keys = {
+      { "<leader>ts", "<cmd>Telescope symbols theme=dropdown<cr>", desc = "Symbols", noremap = true },
+    },
+  },
+
+  {
+    "olimorris/persisted.nvim",
+    opts = {
+      should_autosave = function()
+        -- do not autosave if the alpha dashboard is the current filetype
+        return vim.bo.filetype ~= "alpha"
+      end,
+      use_git_branch = true,
+    },
+    keys = {
+      { "<leader>tP", "<cmd>Telescope persisted theme=dropdown<cr>", desc = "Sessions", noremap = true },
+    },
+  },
 }
 
 local extensions = {
@@ -240,6 +259,7 @@ local config = function(_, opts)
   telescope.load_extension("notify")
   telescope.load_extension("harpoon")
   telescope.load_extension("advanced_git_search")
+  telescope.load_extension("persisted")
 end
 
 local buffer_previewer_maker = function(filepath, bufnr, opts)
@@ -295,11 +315,11 @@ return {
     config = config,
     keys = {
       { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
-      { "<leader>tN", "<cmd>Telescope notify<cr>", desc = "Notify", noremap = true },
-      { "<leader>tT", "<cmd>Telescope treesitter<cr>", desc = "Treesitter", noremap = true },
-      { "<leader>tj", "<cmd>Telescope jumplist<cr>", desc = "Jump list", noremap = true },
+      { "<leader>tn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notify", noremap = true },
+      { "<leader>tt", "<cmd>Telescope treesitter<cr>", desc = "Treesitter", noremap = true },
+      { "<leader>tj", "<cmd>Telescope jumplist theme=dropdown<cr>", desc = "Jump list", noremap = true },
       { "<leader>tl", "<cmd>Telescope loclist<cr>", desc = "Location list", noremap = true },
-      { "<leader>tr", "<cmd>Telescope registers<cr>", desc = "Location list", noremap = true },
+      { "<leader>tr", "<cmd>Telescope registers theme=dropdown<cr>", desc = "Registers", noremap = true },
       { "<leader>tx", "<cmd>Telescope quickfix<cr>", desc = "Quickfix", noremap = true },
     },
   },
