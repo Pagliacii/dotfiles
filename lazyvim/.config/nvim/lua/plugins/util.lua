@@ -211,4 +211,12 @@ return {
       { "<leader>C", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
     },
   },
+
+  {
+    "Pagliacii/sys-open.nvim",
+    config = true,
+    keys = {
+      { "gx", "<cmd>SysOpen<cr>" },
+    },
+  },
 }
