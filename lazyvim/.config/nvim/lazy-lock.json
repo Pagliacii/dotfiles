@@ -103,7 +103,7 @@
   "snips.nvim": { "branch": "master", "commit": "cdbf6b2da9d07087667a889813b4070b68c15d57" },
   "sudoku.nvim": { "branch": "main", "commit": "cb01171ed746003dd9f508e7a08a5bae2c396ef0" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
-  "sys-open.nvim": { "branch": "main", "commit": "0b4cb0ccea1a697ff7346c9142cc3713a8d96061" },
+  "sys-open.nvim": { "branch": "main", "commit": "35f5ac7e131f0fee5ed69831db6e403fdd24e388" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-command-palette.nvim": { "branch": "master", "commit": "9ce81be757b71785bde9272c947e76b4743dceeb" },
   "telescope-dap.nvim": { "branch": "master", "commit": "313d2ea12ae59a1ca51b62bf01fc941a983d9c9c" },
