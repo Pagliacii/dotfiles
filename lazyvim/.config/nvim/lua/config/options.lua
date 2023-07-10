@@ -45,3 +45,5 @@ vim.g.python_indent = {
   closed_paren_align_last_line = false,
   searchpair_timeout = 500,
 }
+
+vim.o.mousemoveevent = true

@@ -209,40 +209,13 @@ return {
   },
 
   {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
-    },
-    event = "UIEnter",
-    config = function(_, opts)
-      opts.create_autocmd = false -- prevent barbecue from updating itself auto
-      opts.show_dirname = false
-      opts.show_basename = false
-      require("barbecue").setup(opts)
-      vim.api.nvim_create_autocmd({
-        "WinResized",
-        "BufWinEnter",
-        "CursorHold",
-        "InsertLeave",
-        "BufModifiedSet",
-      }, {
-        group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-        callback = function()
-          require("barbecue.ui").update()
-        end,
-      })
-      return true
-    end,
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- nvim-navic
+      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filename
     end,
   },
+
+  { "Bekaboo/dropbar.nvim" },
 }

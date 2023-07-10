@@ -69,4 +69,10 @@ return {
     "echasnovski/mini.surround",
     enabled = false,
   },
+
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    event = { "BufReadPost" },
+    opts = { useDefaultKeymaps = true },
+  },
 }
