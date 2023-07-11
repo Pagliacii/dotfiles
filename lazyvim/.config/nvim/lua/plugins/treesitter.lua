@@ -63,7 +63,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = false,
+    event = "BufReadPost",
     keys = {
       {
         "[c",
@@ -81,5 +81,12 @@ return {
     "nvim-treesitter/playground",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },
+  },
+
+  {
+    "m-demare/hlargs.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPost",
+    config = true,
   },
 }

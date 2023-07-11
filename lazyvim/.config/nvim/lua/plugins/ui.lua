@@ -211,6 +211,7 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPost",
     opts = function(_, opts)
       if type(opts.filetype_exclude) == "table" then
         vim.list_extend(opts.filetype_exclude, { "noice" })
@@ -227,5 +228,8 @@ return {
     end,
   },
 
-  { "Bekaboo/dropbar.nvim" },
+  {
+    "Bekaboo/dropbar.nvim",
+    event = "BufReadPost",
+  },
 }
