@@ -174,20 +174,30 @@ return {
   },
 
   {
-    "HiPhish/nvim-ts-rainbow2",
-    event = "BufReadPre",
+    "hiphish/rainbow-delimiters.nvim",
+    event = "BufReadPost",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        rainbow = {
-          enable = true,
-          -- list of languages you want to disable the plugin for
-          disable = {},
-          -- Which query to use for finding delimiters
-          query = "rainbow-parens",
-          -- Highlight the entire buffer all at once
-          strategy = require("ts-rainbow").strategy.global,
-        },
-      })
+      local rd = require("rainbow-delimiters")
+      local opts = {}
+      opts.strategy = {
+        [""] = rd.strategy["global"],
+        vim = rd.strategy["local"],
+      }
+      opts.query = {
+        [""] = "rainbow-delimiters",
+        lua = "rainbow-delimiters",
+      }
+      opts.highlight = {
+        "RainbowDelimiterRed",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterBlue",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterViolet",
+        "RainbowDelimiterCyan",
+      }
+      require("rainbow-delimiters.setup")(opts)
+      return true
     end,
   },
 

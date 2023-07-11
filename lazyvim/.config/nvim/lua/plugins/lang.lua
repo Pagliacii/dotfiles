@@ -19,26 +19,6 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      indent = { enable = false },
-      ensure_installed = {
-        "json",
-        "regex",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
-      highlight = {
-        disable = function(_, bufnr)
-          local line_nr_thresh = 1000
-          return vim.api.nvim_buf_line_count(bufnr) > line_nr_thresh
-        end,
-      },
-    },
-  },
-
-  {
     "gennaro-tedesco/nvim-jqx",
     ft = { "json", "yaml" },
   },

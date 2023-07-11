@@ -13,18 +13,6 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    ft = filetypes,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "lua",
-        "luadoc",
-        "luap",
-      })
-    end,
-  },
-
-  {
     "jose-elias-alvarez/null-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)

@@ -41,6 +41,7 @@ if ok then
     },
     ["<leader>k"] = { name = "+lspsaga" },
     ["gp"] = { name = "+preview" },
+    ["<leader>p"] = { name = "+python" },
   })
 end
 

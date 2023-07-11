@@ -43,14 +43,6 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    ft = filetypes,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "python" })
-    end,
-  },
-
-  {
     "mfussenegger/nvim-dap-python",
     ft = filetypes,
     config = function()
@@ -202,5 +194,21 @@ return {
         }),
       })
     end,
+  },
+
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+      "mfussenegger/nvim-dap-python",
+    },
+    cmd = "VenvSelect",
+    opts = {
+      dap_enabled = true,
+    },
+    keys = {
+      { "<leader>pv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", noremap = true },
+    },
   },
 }

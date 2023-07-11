@@ -31,15 +31,6 @@ return {
   },
 
   {
-    "Wansmer/treesj",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = { use_default_keymaps = false, max_join_length = 150 },
-    keys = {
-      { "J", "<cmd>TSJToggle<cr>", desc = "Join toggle" },
-    },
-  },
-
-  {
     "monaqa/dial.nvim",
     -- lazy-load on keys
     -- mode is `n` by default. For more advanced options, check the section on key mappings
