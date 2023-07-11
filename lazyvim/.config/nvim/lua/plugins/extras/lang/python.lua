@@ -204,11 +204,22 @@ return {
       "mfussenegger/nvim-dap-python",
     },
     cmd = "VenvSelect",
-    opts = {
-      dap_enabled = true,
-    },
+    opts = function(_, opts)
+      opts.dap_enabled = true
+      opts.changed_venv_hooks = {
+        require("venv-selector").hooks.pyright,
+      }
+    end,
     keys = {
       { "<leader>pv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", noremap = true },
+      {
+        "<leader>pV",
+        function()
+          vim.print(require("venv-selector").get_active_venv())
+        end,
+        desc = "Show VirtualEnv",
+        noremap = true,
+      },
     },
   },
 }
