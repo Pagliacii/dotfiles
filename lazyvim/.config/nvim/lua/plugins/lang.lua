@@ -30,7 +30,6 @@ return {
   { import = "lazyvim.plugins.extras.lang.go" },
   { import = "lazyvim.plugins.extras.lang.rust" },
   { import = "lazyvim.plugins.extras.ui.edgy" },
-  { import = "lazyvim.plugins.extras.editor.flash" },
 
   -- Custom language specific extension modules
   { import = "plugins.extras.lang.golang" },
