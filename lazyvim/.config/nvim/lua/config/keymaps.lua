@@ -42,6 +42,16 @@ if ok then
     ["<leader>k"] = { name = "+lspsaga" },
     ["gp"] = { name = "+preview" },
     ["<leader>p"] = { name = "+python" },
+    ["<leader>F"] = {
+      name = "+fzf",
+      mode = { "n", "v" },
+      d = { name = "+dap" },
+      g = { name = "+git" },
+      l = { name = "+lsp" },
+      m = { name = "+misc" },
+      s = { name = "+search" },
+      t = { name = "+tags" },
+    },
   })
 end
 
