@@ -57,11 +57,15 @@ getScoopAppPath(AppName, ExecutableFile := "") {
     if ExecutableFile = "" {
         ExecutableFile := AppName ".exe"
     }
-    FilePath := Format("{1}\apps\{2}\current\bin\{3}", Scoop, AppName, ExecutableFile)
-    if !FileExist(FilePath) {
-        FilePath := Format("{1}\apps\{2}\current\{3}", Scoop, AppName, ExecutableFile)
+    FilePath := Format("{1}\shims\{2}", Scoop, ExecutableFile)
+    if FileExist(FilePath) {
+        return FilePath
     }
-    return FilePath
+    FilePath := Format("{1}\apps\{2}\current\bin\{3}", Scoop, AppName, ExecutableFile)
+    if FileExist(FilePath) {
+        return FilePath
+    }
+    return Format("{1}\apps\{2}\current\{3}", Scoop, AppName, ExecutableFile)
 }
 
 runInWezterm(Command := "") {

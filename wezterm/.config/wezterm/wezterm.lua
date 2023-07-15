@@ -53,6 +53,7 @@ config.colors = {
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.window_background_opacity = 0.8
+config.text_background_opacity = 0.8
 config.window_frame = {
 	border_left_width = "0.25cell",
 	border_right_width = "0.25cell",
