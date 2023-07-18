@@ -7,6 +7,18 @@ return {
       "telescope",
       global_resume = true,
       global_resume_query = true,
+      grep = {
+        rg_opts = table.concat({
+          "--column",
+          "--line-number",
+          "--no-heading",
+          "--color=always",
+          "--smart-case",
+          "--max-columns=4096",
+          "--hidden",
+          "-e",
+        }, " "),
+      },
       winopts = {
         preview = {
           default = "bat",
