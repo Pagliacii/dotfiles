@@ -23,13 +23,14 @@ return {
     ft = { "json", "yaml" },
   },
 
-  -- Core language specific extension modules
-  { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.dap.core" },
   { import = "lazyvim.plugins.extras.dap.nlua" },
+  { import = "lazyvim.plugins.extras.ui.edgy" },
+
+  -- Core language specific extension modules
+  { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.go" },
   { import = "lazyvim.plugins.extras.lang.rust" },
-  { import = "lazyvim.plugins.extras.ui.edgy" },
 
   -- Custom language specific extension modules
   { import = "plugins.extras.lang.golang" },

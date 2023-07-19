@@ -129,4 +129,14 @@ return {
       vim.keymap.set("x", "<A-k>", "<cmd>STSSwapPrevVisual<cr>", opts)
     end,
   },
+
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^\\].", register = { cr = false } },
+      },
+    },
+  },
 }
