@@ -237,6 +237,26 @@ local extensions = {
     diff_plugin = "diffview",
     show_builtin_git_pickers = false,
   },
+  command_palette = {
+    {
+      "CommentBox",
+      { "Left aligned box of fixed size with Left aligned text", [[:lua require("comment-box").llbox()]] },
+      { "Left aligned box of fixed size with Centered text", [[:lua require("comment-box").lcbox()]] },
+      { "Left aligned box of fixed size with Right aligned text", [[:lua require("comment-box").lrbox()]] },
+      { "Centered box of fixed size with Left aligned text", [[:lua require("comment-box").clbox()]] },
+      { "Centered box of fixed size with Centered text", [[:lua require("comment-box").ccbox()]] },
+      { "Centered box of fixed size with Right aligned text", [[:lua require("comment-box").crbox()]] },
+      { "Right aligned box of fixed size with Left aligned text", [[:lua require("comment-box").rlbox()]] },
+      { "Right aligned box of fixed size with Centered text", [[:lua require("comment-box").rcbox()]] },
+      { "Right aligned box of fixed size with Right aligned text", [[:lua require("comment-box").rrbox()]] },
+      { "Left aligned adapted box", [[:lua require("comment-box").albox()]] },
+      { "Centered adapted box", [[:lua require("comment-box").acbox()]] },
+      { "Right aligned adapted box", [[:lua require("comment-box").arbox()]] },
+      { "Left aligned line", [[:lua require("comment-box").line()]] },
+      { "Centered line", [[:lua require("comment-box").cline()]] },
+      { "Right aligned line", [[:lua require("comment-box").rline()]] },
+    },
+  },
 }
 
 local config = function(_, opts)

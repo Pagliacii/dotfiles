@@ -211,4 +211,25 @@ return {
       { "gx", "<cmd>SysOpen<cr>" },
     },
   },
+
+  {
+    "LudoPinelli/comment-box.nvim",
+    cmd = {
+      "CBllbox",
+      "CBlcbox",
+      "CBlrbox",
+      "CBclbox",
+      "CBccbox",
+      "CBcrbox",
+      "CBrlbox",
+      "CBrcbox",
+      "CBrrbox",
+      "CBalbox",
+      "CBacbox",
+      "CBarbox",
+      "CBline",
+      "CBcline",
+      "CBrline",
+    },
+  },
 }
