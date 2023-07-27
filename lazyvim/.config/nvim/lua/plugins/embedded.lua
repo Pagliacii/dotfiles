@@ -11,9 +11,8 @@ return {
       "Spawn",
       "Start",
     },
-    opts = function(_, opts)
+    config = function()
       vim.g.dispatch_no_maps = 1
-      return opts
     end,
   },
 

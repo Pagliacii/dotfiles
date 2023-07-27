@@ -5,6 +5,8 @@ return {
       indent = { enable = false },
       ensure_installed = {
         "bash",
+        "c",
+        "cpp",
         "dap_repl",
         "json",
         "lua",
