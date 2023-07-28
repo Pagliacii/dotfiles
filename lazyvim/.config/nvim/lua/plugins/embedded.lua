@@ -28,4 +28,15 @@ return {
       "PIORemoveLibrary",
     },
   },
+
+  {
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    ft = { "c", "cpp" },
+    opts = {
+      extensions = {
+        inlay_hints = vim.fn.has("nvim-0.10") == 1,
+      },
+    },
+  },
 }
