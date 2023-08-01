@@ -126,7 +126,7 @@ local dependencies = {
   {
     "LinArcX/telescope-scriptnames.nvim",
     keys = {
-      { "<leader>ta", "<cmd>Telescope scriptnames<cr>", desc = "Scriptnames", noremap = true },
+      { "<leader>tA", "<cmd>Telescope scriptnames<cr>", desc = "Scriptnames", noremap = true },
     },
   },
 
@@ -198,6 +198,13 @@ local dependencies = {
       { "<leader>tP", "<cmd>Telescope persisted theme=dropdown<cr>", desc = "Sessions", noremap = true },
     },
   },
+
+  {
+    "Marskey/telescope-sg",
+    keys = {
+      { "<leader>ta", "<cmd>Telescope ast_grep<cr>", desc = "AST grep", noremap = true },
+    },
+  },
 }
 
 local extensions = {
@@ -257,6 +264,15 @@ local extensions = {
       { "Right aligned line", [[:lua require("comment-box").rline()]] },
     },
   },
+  ast_grep = {
+    command = {
+      "sg",
+      "--json=stream",
+      "-p",
+    }, -- must have --json and -p
+    grep_open_files = false, -- search in opened files
+    lang = nil, -- string value, specify language for ast-grep `nil` for default
+  },
 }
 
 local config = function(_, opts)
@@ -280,6 +296,7 @@ local config = function(_, opts)
   telescope.load_extension("harpoon")
   telescope.load_extension("advanced_git_search")
   telescope.load_extension("persisted")
+  telescope.load_extension("ast_grep")
 end
 
 local buffer_previewer_maker = function(filepath, bufnr, opts)
