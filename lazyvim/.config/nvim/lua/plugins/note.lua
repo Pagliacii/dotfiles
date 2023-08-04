@@ -58,47 +58,6 @@ return {
   },
 
   {
-    "nvim-neorg/neorg",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-neorg/neorg-telescope",
-    },
-    build = ":Neorg sync-parsers",
-    config = function(_, opts)
-      require("neorg").setup(opts)
-      require("neorg.callbacks").on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
-        -- Map all the below keybinds only when the "norg" mode is active
-        keybinds.map_event_to_mode("norg", {
-          n = {
-            { "<C-s>", "core.integrations.telescope.find_linkable" },
-          },
-          i = {
-            { "<C-l>", "core.integrations.telescope.insert_link" },
-          },
-        }, {
-          silent = true,
-          noremap = true,
-        })
-      end)
-    end,
-    opts = {
-      load = {
-        ["core.defaults"] = {}, -- Loads default behaviour
-        ["core.concealer"] = {}, -- Adds pretty icons to your documents
-        ["core.dirman"] = { -- Manages Neorg workspaces
-          config = {
-            workspaces = {
-              notes = "~/notes",
-            },
-          },
-        },
-        ["core.integrations.telescope"] = {},
-      },
-    },
-    ft = { "norg" },
-  },
-
-  {
     "jbyuki/venn.nvim",
     cmd = { "VBox" },
     keys = {

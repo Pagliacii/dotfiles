@@ -139,4 +139,10 @@ return {
       },
     },
   },
+
+  {
+    "johmsalas/text-case.nvim",
+    event = "BufReadPost",
+    config = true,
+  },
 }
