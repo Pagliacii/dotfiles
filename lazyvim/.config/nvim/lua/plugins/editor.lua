@@ -145,4 +145,24 @@ return {
     event = "BufReadPost",
     config = true,
   },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = "BufReadPost",
+    config = function()
+      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+      vim.o.foldcolumn = "1" -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      require("ufo").setup({})
+    end,
+    keys = {
+      { "zR", [[<cmd>lua require("ufo").openAllFolds()<cr>]], desc = "Open all folds" },
+      { "zM", [[<cmd>lua require("ufo").closeAllFolds()<cr>]], desc = "Close all folds" },
+      { "zr", [[<cmd>lua require("ufo").openFoldsExceptKinds()<cr>]], desc = "Fold less" },
+      { "zm", [[<cmd>lua require("ufo").closeFoldsWith()<cr>]], desc = "Fold more" },
+    },
+  },
 }

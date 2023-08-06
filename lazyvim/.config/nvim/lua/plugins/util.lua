@@ -167,6 +167,7 @@ return {
     opts = {
       auto = 400,
       border = "rounded",
+      default_keybindings = false,
     },
   },
 
