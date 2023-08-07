@@ -233,4 +233,11 @@ return {
       "CBrline",
     },
   },
+
+  {
+    "jokajak/keyseer.nvim",
+    version = false,
+    config = true,
+    cmd = { "KeySeer" },
+  },
 }
