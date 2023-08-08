@@ -165,4 +165,26 @@ return {
       { "zm", [[<cmd>lua require("ufo").closeFoldsWith()<cr>]], desc = "Fold more" },
     },
   },
+
+  {
+    "Wansmer/binary-swap.nvim",
+    keys = {
+      {
+        "<leader>co",
+        function()
+          require("binary-swap").swap_operands()
+        end,
+        desc = "Binary swap operands",
+        noremap = true,
+      },
+      {
+        "<leader>cO",
+        function()
+          require("binary-swap").swap_operands_with_operator()
+        end,
+        desc = "Binary swap operands with operator",
+        noremap = true,
+      },
+    },
+  },
 }

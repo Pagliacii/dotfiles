@@ -79,4 +79,20 @@ return {
       },
     },
   },
+
+  {
+    "f-person/git-blame.nvim",
+    event = "BufReadPost",
+    cmd = {
+      "GitBlameToggle",
+      "GitBlameCopySHA",
+      "GitBlameCopyCommitURL",
+      "GitBlameOpenCommitURL",
+      "GitBlameCopyFileURL",
+      "GitBlameOpenFileURL",
+    },
+    config = function()
+      vim.g.gitblame_display_virtual_text = 0
+    end,
+  },
 }

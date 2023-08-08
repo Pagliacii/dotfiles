@@ -225,6 +225,13 @@ return {
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- nvim-navic
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filename
+      local ok, git_blame = pcall(require, "gitblame")
+      if ok then
+        opts.sections.lualine_c[#opts.sections.lualine_c + 1] = {
+          git_blame.get_current_blame_text,
+          cond = git_blame.is_blame_text_available,
+        }
+      end
     end,
   },
 
