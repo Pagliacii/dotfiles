@@ -167,6 +167,15 @@ return {
   },
 
   {
+    "chrisgrieser/nvim-origami",
+    event = "BufReadPost", -- later or on keypress would prevent saving folds
+    config = function()
+      vim.o.startofline = true
+      require("origami").setup({})
+    end,
+  },
+
+  {
     "Wansmer/binary-swap.nvim",
     keys = {
       {
