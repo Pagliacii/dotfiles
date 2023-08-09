@@ -124,4 +124,25 @@ return {
       scope = "cursor", -- 'cursor', 'line'
     },
   },
+
+  {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+    keys = {
+      { "<leader>cM", "<cmd>CodeActionMenu<cr>", desc = "Code action menu", noremap = true },
+    },
+  },
+
+  {
+    "aznhe21/actions-preview.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      {
+        "<leader>cp",
+        [[<cmd>lua require("actions-preview").code_actions()<cr>]],
+        desc = "Code actions preview",
+        noremap = true,
+      },
+    },
+  },
 }
