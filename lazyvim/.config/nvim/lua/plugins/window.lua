@@ -14,12 +14,38 @@ return {
   {
     "s1n7ax/nvim-window-picker",
     opts = {
-      use_winbar = "smart",
+      hint = "floating-big-letter",
       show_prompt = false,
-      include_current_win = true,
-      fg_color = "#232634",
-      current_win_hl_color = "#a6d189",
-      other_win_hl_color = "#99d1db",
+      filter_rules = {
+        include_current_win = true,
+      },
+      highlights = {
+        statusline = {
+          focused = {
+            fg = "#232634",
+            bg = "#a6d189",
+          },
+          unfocused = {
+            fg = "#232634",
+            bg = "#99d1db",
+          },
+        },
+        winbar = {
+          focused = {
+            fg = "#232634",
+            bg = "#a6d189",
+          },
+          unfocused = {
+            fg = "#232634",
+            bg = "#99d1db",
+          },
+        },
+      },
+      picker_config = {
+        statusline_winbar_picker = {
+          use_winbar = true,
+        },
+      },
     },
     keys = function(_, keys)
       local function window_picker()
