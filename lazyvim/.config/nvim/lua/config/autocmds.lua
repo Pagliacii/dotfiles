@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd("TabNewEntered", {
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
   callback = function()
+    vim.wo.foldlevel = 99 -- fix foldlevel for nvim-ufo
     vim.cmd("set fo-=c fo-=r fo-=o")
   end,
 })

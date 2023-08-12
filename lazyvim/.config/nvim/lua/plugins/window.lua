@@ -18,6 +18,10 @@ return {
       show_prompt = false,
       filter_rules = {
         include_current_win = true,
+        bo = {
+          filetype = { "NvimTree", "neo-tree", "notify", "Outline", "noice", "edgy" },
+          buftype = { "terminal" },
+        },
       },
       highlights = {
         statusline = {
@@ -43,7 +47,7 @@ return {
       },
       picker_config = {
         statusline_winbar_picker = {
-          use_winbar = true,
+          use_winbar = "smart",
         },
       },
     },
