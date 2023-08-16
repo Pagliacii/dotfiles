@@ -52,6 +52,9 @@ if ok then
       s = { name = "+search" },
       t = { name = "+tags" },
     },
+    ["<leader>B"] = {
+      name = "+browse",
+    },
   })
 end
 
