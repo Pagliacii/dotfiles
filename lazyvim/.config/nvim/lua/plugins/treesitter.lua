@@ -48,7 +48,6 @@ return {
         use_virtual_text = true,
         lint_events = { "BufWrite", "CursorHold" },
       },
-      tree_setter = { enable = true },
     },
   },
 
@@ -92,8 +91,10 @@ return {
   },
 
   {
-    "filNaj/tree-setter",
+    "haringsrob/nvim_context_vt",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufReadPost",
+    opts = {
+      disable_ft = { "markdown", "lazy" },
+    },
   },
 }
