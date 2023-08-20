@@ -122,6 +122,10 @@ return {
       },
       gap_size = 1,
       scope = "cursor", -- 'cursor', 'line'
+      toggle_event = { "InsertEnter" },
+      format = function(diagnostic)
+        return "[LSP] " .. diagnostic.message
+      end,
     },
   },
 
