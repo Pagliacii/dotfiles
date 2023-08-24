@@ -222,4 +222,13 @@ return {
       },
     },
   },
+
+  {
+    "roobert/f-string-toggle.nvim",
+    url = "https://github.com/Pagliacii/f-string-toggle.nvim",
+    ft = filetypes,
+    opts = {
+      key_binding = "<leader>pf",
+    },
+  },
 }

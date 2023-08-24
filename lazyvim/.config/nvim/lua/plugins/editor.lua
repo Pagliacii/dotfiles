@@ -141,6 +141,20 @@ return {
   },
 
   {
+    "echasnovski/mini.operators",
+    version = false,
+    event = "VeryLazy",
+    opts = {
+      exchange = {
+        prefix = "go",
+      },
+      replace = {
+        prefix = "gq",
+      },
+    },
+  },
+
+  {
     "johmsalas/text-case.nvim",
     event = "BufReadPost",
     config = true,
