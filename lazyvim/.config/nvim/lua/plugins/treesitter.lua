@@ -7,6 +7,7 @@ return {
         "bash",
         "dap_repl",
         "json",
+        "html", -- for devdocs
         "lua",
         "luadoc",
         "luap",
