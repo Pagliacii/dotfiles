@@ -6,7 +6,11 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    config = true,
+    opts = {
+      previewer_cmd = "glow",
+      cmd_args = { "-s", "dark", "-w", "80" },
+      picker_cmd = true,
+    },
     cmd = {
       "DevdocsFetch",
       "DevdocsInstall",
