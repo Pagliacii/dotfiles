@@ -23,11 +23,18 @@ return {
       "DevdocsUpdateAll",
     },
     keys = {
-      { "<leader>Di", "<cmd>DevdocsInstall<cr>", desc = "Install docs" },
-      { "<leader>Du", "<cmd>DevdocsUninstall<cr>", desc = "Uninstall docs" },
-      { "<leader>Do", "<cmd>DevdocsOpenCurrentFloat<cr>", desc = "Open docs (current)" },
-      { "<leader>DO", "<cmd>DevdocsOpenFloat<cr>", desc = "Open docs (all)" },
-      { "<leader>DU", "<cmd>DevdocsUpdate<cr>", desc = "Update docs" },
+      { "<leader>Di", "<cmd>DevdocsInstall<cr>", desc = "Install docs", noremap = true, silent = true },
+      { "<leader>Du", "<cmd>DevdocsUninstall<cr>", desc = "Uninstall docs", noremap = true, silent = true },
+      {
+        "<leader>Do",
+        "<cmd>DevdocsOpenCurrentFloat<cr>",
+        desc = "Open docs (current)",
+        noremap = true,
+        silent = true,
+      },
+      { "<leader>DO", "<cmd>DevdocsOpenFloat<cr>", desc = "Open docs (all)", noremap = true, silent = true },
+      { "<leader>DU", "<cmd>DevdocsUpdate<cr>", desc = "Update docs", noremap = true, silent = true },
+      { "<leader>DF", "<cmd>DevdocsFetch<cr>", desc = "Fetch metadata", noremap = true, silent = true },
     },
   },
 }

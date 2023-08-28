@@ -238,7 +238,7 @@ default_layout "compact"
 //   - true (default)
 //   - false
 //
-mouse_mode false
+// mouse_mode false
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -257,6 +257,7 @@ mouse_mode false
 // copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
+copy_command "cb copy"
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.

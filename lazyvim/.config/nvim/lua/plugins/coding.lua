@@ -40,6 +40,7 @@ return {
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
         null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.codespell,
       })
     end,
   },
