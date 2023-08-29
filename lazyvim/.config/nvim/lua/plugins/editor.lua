@@ -241,6 +241,16 @@ return {
       search = {
         incremental = true,
       },
+      label = {
+        rainbow = {
+          enabled = true,
+        },
+      },
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
     },
   },
 }

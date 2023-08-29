@@ -356,8 +356,9 @@ return {
       { "<leader>tt", "<cmd>Telescope treesitter<cr>", desc = "Treesitter", noremap = true },
       { "<leader>tj", "<cmd>Telescope jumplist theme=dropdown<cr>", desc = "Jump list", noremap = true },
       { "<leader>tl", "<cmd>Telescope loclist<cr>", desc = "Location list", noremap = true },
-      { "<leader>tr", "<cmd>Telescope registers theme=dropdown<cr>", desc = "Registers", noremap = true },
+      { "<leader>tR", "<cmd>Telescope registers theme=dropdown<cr>", desc = "Registers", noremap = true },
       { "<leader>tx", "<cmd>Telescope quickfix<cr>", desc = "Quickfix", noremap = true },
+      { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", noremap = true },
     },
   },
 }
