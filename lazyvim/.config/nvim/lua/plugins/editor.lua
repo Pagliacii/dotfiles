@@ -238,9 +238,6 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
-      search = {
-        incremental = true,
-      },
       label = {
         rainbow = {
           enabled = true,
