@@ -111,6 +111,7 @@ return {
 
   {
     "dgagn/diagflow.nvim",
+    enabled = false,
     event = "LspAttach",
     opts = {
       max_width = 80, -- The maximum width of the diagnostic messages
@@ -127,6 +128,21 @@ return {
         return "[LSP] " .. diagnostic.message
       end,
     },
+  },
+
+  {
+    "RaafatTurki/corn.nvim",
+    event = "LspAttach",
+    config = function()
+      -- ensure virtual_text diags are disabled
+      vim.diagnostic.config({ virtual_text = false })
+      -- toggle virtual_text diags when corn is toggled
+      require("corn").setup({
+        on_toggle = function(...)
+          vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+        end,
+      })
+    end,
   },
 
   {
