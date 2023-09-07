@@ -120,4 +120,30 @@ return {
       },
     },
   },
+
+  {
+    "levouh/tint.nvim",
+    event = "VeryLazy",
+    opts = {
+      tint = -45,
+      saturation = 0.1,
+      window_ignore_function = function(winid)
+        local bufid = vim.api.nvim_win_get_buf(winid)
+        local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")
+        local filetype = vim.api.nvim_buf_get_option(bufid, "filetype")
+        local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+
+        -- Do not tint `terminal` or floating windows, tint everything else
+        if floating then
+          return true
+        end
+        local excluded_buftypes = { "terminal" }
+        if vim.tbl_contains(excluded_buftypes, buftype) then
+          return true
+        end
+        local excluded_filetypes = { "alpha" }
+        return vim.tbl_contains(excluded_filetypes, filetype)
+      end,
+    },
+  },
 }

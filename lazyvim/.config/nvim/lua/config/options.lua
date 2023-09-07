@@ -47,3 +47,4 @@ vim.g.python_indent = {
 }
 
 vim.o.mousemoveevent = true
+vim.o.hidden = false
