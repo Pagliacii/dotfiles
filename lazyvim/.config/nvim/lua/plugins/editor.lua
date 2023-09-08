@@ -261,4 +261,22 @@ return {
       { "ge", [[<cmd>lua require("spider").motion("ge")<cr>]], mode = { "n", "o", "x" }, desc = "Spider-ge" },
     },
   },
+
+  {
+    "m4xshen/smartcolumn.nvim",
+    event = "BufReadPost",
+    opts = {
+      disabled_filetypes = {
+        "help",
+        "text",
+        "markdown",
+        "nofile",
+        "NvimTree",
+        "lazy",
+        "mason",
+        "alpha",
+        "neo-tree",
+      },
+    },
+  },
 }
