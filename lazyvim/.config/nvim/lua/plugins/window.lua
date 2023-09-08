@@ -146,4 +146,10 @@ return {
       end,
     },
   },
+
+  {
+    "stevearc/stickybuf.nvim",
+    event = "WinEnter",
+    opts = {},
+  },
 }
