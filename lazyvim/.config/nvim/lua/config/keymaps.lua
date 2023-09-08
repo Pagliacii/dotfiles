@@ -100,3 +100,6 @@ vim.keymap.set("n", "dd", function()
     return "dd"
   end
 end, { expr = true })
+
+vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })

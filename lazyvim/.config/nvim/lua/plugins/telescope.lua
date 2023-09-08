@@ -158,7 +158,7 @@ local dependencies = {
       show_preview = false,
     },
     keys = {
-      { "<leader>tT", "<cmd>Telescope telescope-tabs list_tabs theme=dropdown<cr>", desc = "Tabs", noremap = true },
+      { "<leader><tab>,", "<cmd>Telescope telescope-tabs list_tabs theme=dropdown<cr>", desc = "Tabs", noremap = true },
     },
   },
 
