@@ -118,6 +118,38 @@ return {
         desc = "Move cursor to up",
         noremap = true,
       },
+      {
+        "<A-h>",
+        function(...)
+          require("smart-splits").resize_left(...)
+        end,
+        desc = "Resize left",
+        noremap = true,
+      },
+      {
+        "<A-j>",
+        function(...)
+          require("smart-splits").resize_down(...)
+        end,
+        desc = "Resize down",
+        noremap = true,
+      },
+      {
+        "<A-k>",
+        function(...)
+          require("smart-splits").resize_up(...)
+        end,
+        desc = "Resize up",
+        noremap = true,
+      },
+      {
+        "<A-l>",
+        function(...)
+          require("smart-splits").resize_right(...)
+        end,
+        desc = "Resize right",
+        noremap = true,
+      },
     },
   },
 
