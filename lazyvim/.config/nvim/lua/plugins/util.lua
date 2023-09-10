@@ -262,7 +262,7 @@ return {
 
   {
     "stefanlogue/hydrate.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       -- The interval between notifications in minutes
       minute_interval = 15,
