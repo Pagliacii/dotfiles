@@ -90,8 +90,6 @@ if vim.fn.executable("btop") == 1 then
   end, { desc = "btop" })
 end
 
-vim.keymap.set("n", "<leader>a", "<cmd> lua require('alpha').start(false)<cr>", { desc = "Open Dashboard" })
-
 -- Keey your register clean from `dd`
 vim.keymap.set("n", "dd", function()
   if vim.fn.getline(".") == "" then

@@ -285,4 +285,17 @@ return {
       { "<leader>h", "<cmd>HydrateNow<cr>", desc = "Drink water", noremap = true, silent = true },
     },
   },
+
+  {
+    "roobert/activate.nvim",
+    keys = {
+      {
+        "<leader>a",
+        [[<cmd>lua require("activate").list_plugins()<cr>]],
+        desc = "Awesome plugins",
+        noremap = true,
+        silent = true,
+      },
+    },
+  },
 }

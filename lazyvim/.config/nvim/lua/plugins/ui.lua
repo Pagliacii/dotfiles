@@ -63,6 +63,15 @@ return {
 
       return dashboard
     end,
+    keys = {
+      {
+        "<leader>o",
+        [[<cmd>lua require("alpha").start(false)<cr>]],
+        desc = "Open Dashboard",
+        noremap = true,
+        silent = true,
+      },
+    },
   },
 
   {

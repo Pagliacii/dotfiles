@@ -155,7 +155,7 @@ return {
 
   {
     "levouh/tint.nvim",
-    event = "VeryLazy",
+    event = "WinNew",
     opts = {
       tint = -45,
       saturation = 0.1,
@@ -181,7 +181,7 @@ return {
 
   {
     "stevearc/stickybuf.nvim",
-    event = "WinEnter",
+    event = "WinNew",
     opts = {},
   },
 }

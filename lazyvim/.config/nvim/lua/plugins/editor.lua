@@ -63,7 +63,7 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = true,
   },
 
@@ -131,19 +131,9 @@ return {
   },
 
   {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    opts = {
-      mappings = {
-        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^\\].", register = { cr = false } },
-      },
-    },
-  },
-
-  {
     "echasnovski/mini.operators",
     version = false,
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
       exchange = {
         prefix = "go",
