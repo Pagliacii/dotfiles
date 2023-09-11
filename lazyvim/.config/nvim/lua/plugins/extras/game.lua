@@ -19,4 +19,11 @@ return {
     "rktjmp/shenzhen-solitaire.nvim",
     cmd = { "ShenzhenSolitaireNewGame", "ShenzhenSolitaireNextGame" },
   },
+
+  {
+    "NStefan002/speedtyper.nvim",
+    branch = "main",
+    cmd = "Speedtyper",
+    opts = {},
+  },
 }
