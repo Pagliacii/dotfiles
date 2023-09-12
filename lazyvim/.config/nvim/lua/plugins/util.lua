@@ -272,7 +272,7 @@ return {
       -- Loads time of last drink on startup
       -- Useful if you don't have long-running neovim instances
       -- or if you tend to have multiple instances running at a time
-      persist_timer = true,
+      persist_timer = false,
     },
     cmd = {
       "HydrateWhen",
