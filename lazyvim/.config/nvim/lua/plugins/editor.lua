@@ -239,6 +239,9 @@ return {
         },
       },
     },
+    keys = {
+      { "s", false }, -- avoid to conflict with nvim-surround
+    },
   },
 
   {

@@ -24,6 +24,10 @@ return {
     "NStefan002/speedtyper.nvim",
     branch = "main",
     cmd = "Speedtyper",
-    opts = {},
+    opts = {
+      game_modes = {
+        countdown = { time = 60 },
+      },
+    },
   },
 }
