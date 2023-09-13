@@ -107,4 +107,28 @@ return {
       { "<leader>S", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
     },
   },
+
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {},
+    keys = {
+      {
+        "gw",
+        function()
+          require("wtf").search()
+        end,
+        desc = "Search diagnostic with Google",
+      },
+      {
+        "gW",
+        function()
+          require("wtf").ai()
+        end,
+        desc = "Search diagnostic with AI",
+      },
+    },
+  },
 }

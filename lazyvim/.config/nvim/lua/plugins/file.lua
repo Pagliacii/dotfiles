@@ -72,4 +72,17 @@ return {
       { "<leader>Uo", "<cmd>Oil<cr>", desc = "Oil", noremap = true },
     },
   },
+
+  {
+    "kevinhwang91/nvim-fundo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = { "BufReadPost" },
+    build = function()
+      require("fundo").install()
+    end,
+    config = function(_, opts)
+      vim.o.undofile = true
+      require("fundo").setup(opts)
+    end,
+  },
 }
