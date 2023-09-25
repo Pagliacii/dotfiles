@@ -144,7 +144,7 @@ return {
           "<leader>TSv",
           "<cmd> ToggleTermSendVisualLines<cr>",
           mode = "v",
-          desc = "Lines in seletion",
+          desc = "Lines in selection",
         },
         {
           "<leader>TSs",

@@ -58,6 +58,9 @@ if ok then
     ["<leader>D"] = {
       name = "+devdocs",
     },
+    ["<leader>W"] = {
+      name = "+wezterm",
+    },
   })
 end
 
