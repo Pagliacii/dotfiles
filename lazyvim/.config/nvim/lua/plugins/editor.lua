@@ -77,7 +77,7 @@ return {
     event = { "BufReadPost" },
     opts = {
       useDefaultKeymaps = true,
-      disabledKeymaps = { "r", "R" },
+      disabledKeymaps = { "r", "R", "gw" },
     },
   },
 

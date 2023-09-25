@@ -116,14 +116,14 @@ return {
     opts = {},
     keys = {
       {
-        "gw",
+        "gj",
         function()
           require("wtf").search()
         end,
         desc = "Search diagnostic with Google",
       },
       {
-        "gW",
+        "gk",
         function()
           require("wtf").ai()
         end,
