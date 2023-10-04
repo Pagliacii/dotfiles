@@ -13,16 +13,6 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = filetypes,
-    opts = function(_, opts)
-      vim.list_extend(opts.sources, {
-        require("null-ls").builtins.formatting.rustfmt,
-      })
-    end,
-  },
-
-  {
     "neovim/nvim-lspconfig",
     ft = filetypes,
     ---@class PluginLspOpts

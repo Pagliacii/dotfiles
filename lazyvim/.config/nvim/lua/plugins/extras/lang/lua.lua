@@ -13,7 +13,7 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)
       vim.list_extend(opts.sources, {

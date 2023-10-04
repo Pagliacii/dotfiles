@@ -35,17 +35,6 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-      vim.list_extend(opts.sources, {
-        null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.diagnostics.codespell,
-      })
-    end,
-  },
-
-  {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline" },
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
@@ -128,6 +117,31 @@ return {
           require("wtf").ai()
         end,
         desc = "Search diagnostic with AI",
+      },
+    },
+  },
+
+  {
+    "trimclain/builder.nvim",
+    cmd = "Build",
+    keys = {
+      {
+        "<leader>cb",
+        function()
+          require("builder").build()
+        end,
+        desc = "Build",
+      },
+    },
+    opts = {
+      commands = {
+        -- add your commands
+        c = "clang % -o $basename.o && ./$basename.o",
+        cpp = "clang++ % -o $basename.o && ./$basename.o",
+        go = "go run %",
+        markdown = "glow %",
+        python = "python %",
+        rust = "cargo run",
       },
     },
   },

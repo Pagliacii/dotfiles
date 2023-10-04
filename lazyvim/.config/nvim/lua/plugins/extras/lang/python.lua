@@ -17,9 +17,6 @@ local rules = {
   "N", -- pep8-naming
   "W", -- pycodestyle warning
 }
-local unfixable = {
-  "ANN204", -- missing-return-type-special-method
-}
 
 return {
   {
@@ -176,24 +173,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = filetypes,
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-      vim.list_extend(opts.sources, {
-        null_ls.builtins.formatting.ruff.with({
-          extra_args = {
-            "--select",
-            table.concat(rules, ","),
-            "--unfixable",
-            table.concat(unfixable, ","),
-          },
-        }),
-      })
-    end,
   },
 
   {
