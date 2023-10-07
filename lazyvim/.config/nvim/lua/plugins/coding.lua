@@ -35,6 +35,16 @@ return {
   },
 
   {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.diagnostics.codespell,
+      })
+    end,
+  },
+
+  {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline" },
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
