@@ -232,12 +232,24 @@ return {
     event = "VeryLazy",
     opts = {
       label = {
+        -- add any labels with the correct case here, that you want to exclude
+        exclude = "p",
+        -- Enable this to use rainbow colors to highlight labels
+        -- Can be useful for visualizing Treesitter ranges.
         rainbow = {
           enabled = true,
+          -- number between 1 and 9
+          shade = 5,
         },
       },
+      -- You can override the default options for a specific mode.
+      -- Use it with `require("flash").jump({mode = "forward"})`
+      ---@type table<string, Flash.Config>
       modes = {
+        -- options used when flash is activated through
+        -- `f`, `F`, `t`, `T`, `;` and `,` motions
         char = {
+          -- show jump labels
           jump_labels = true,
         },
       },

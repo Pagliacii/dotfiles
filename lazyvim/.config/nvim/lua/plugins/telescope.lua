@@ -205,6 +205,15 @@ local dependencies = {
       { "<leader>ta", "<cmd>Telescope ast_grep<cr>", desc = "AST grep", noremap = true },
     },
   },
+
+  {
+    "2kabhishek/nerdy.nvim",
+    dependencies = { "stevearc/dressing.nvim" },
+    cmd = "Nerdy",
+    keys = {
+      { "<leader>tN", "<cmd>Nerdy<cr>", desc = "NF glyphs", noremap = true },
+    },
+  },
 }
 
 local extensions = {
