@@ -65,8 +65,12 @@ return {
   {
     "aaronhallaert/advanced-git-search.nvim",
     dependencies = {
+      { "tpope/vim-fugitive" },
       { "sindrets/diffview.nvim" },
     },
+    config = function()
+      require("telescope").load_extension("advanced_git_search")
+    end,
     cmd = { "AdvancedGitSearch" },
     keys = {
       { "<leader>ga", "<cmd>AdvancedGitSearch<cr>", desc = "Advanced search", noremap = true },

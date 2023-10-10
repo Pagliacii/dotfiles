@@ -72,4 +72,19 @@ return {
       { "<leader>dn", "<cmd>lua require('dap').step_over()<cr>", desc = "Next", noremap = true },
     },
   },
+
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("dap")
+    end,
+    keys = {
+      { "<leader>d1", "<cmd> Telescope dap commands theme=dropdown<cr>", desc = "Commands" },
+      { "<leader>d2", "<cmd> Telescope dap frames<cr>", desc = "Frames" },
+      { "<leader>d3", "<cmd> Telescope dap list_breakpoints<cr>", desc = "Breakpoints" },
+      { "<leader>d4", "<cmd> Telescope dap configurations theme=dropdown<cr>", desc = "Configurations" },
+      { "<leader>d5", "<cmd> Telescope dap variables<cr>", desc = "Variables" },
+    },
+  },
 }

@@ -52,15 +52,9 @@ if ok then
       s = { name = "+search" },
       t = { name = "+tags" },
     },
-    ["<leader>B"] = {
-      name = "+browse",
-    },
-    ["<leader>D"] = {
-      name = "+devdocs",
-    },
-    ["<leader>W"] = {
-      name = "+wezterm",
-    },
+    ["<leader>B"] = { name = "+browse" },
+    ["<leader>D"] = { name = "+devdocs" },
+    ["<leader>W"] = { name = "+wezterm" },
   })
 end
 

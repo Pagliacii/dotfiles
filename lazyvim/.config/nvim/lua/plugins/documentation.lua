@@ -41,4 +41,15 @@ return {
       { "<leader>DF", "<cmd>DevdocsFetch<cr>", desc = "Fetch metadata", noremap = true, silent = true },
     },
   },
+
+  {
+    "crispgm/telescope-heading.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("heading")
+    end,
+    keys = {
+      { "<leader>th", "<cmd>Telescope heading theme=dropdown<cr>", desc = "Headings", noremap = true },
+    },
+  },
 }

@@ -234,12 +234,20 @@ return {
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- nvim-navic
       table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filename
-      local ok, git_blame = pcall(require, "gitblame")
-      if ok then
-        opts.sections.lualine_c[#opts.sections.lualine_c + 1] = {
-          git_blame.get_current_blame_text,
-          cond = git_blame.is_blame_text_available,
-        }
+      local git = vim.fs.find(".git", {
+        upward = true,
+        stop = vim.uv.os_homedir(),
+        path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+        type = "directory",
+      })
+      if #git > 0 then
+        local ok, git_blame = pcall(require, "gitblame")
+        if ok then
+          opts.sections.lualine_c[#opts.sections.lualine_c + 1] = {
+            git_blame.get_current_blame_text,
+            cond = git_blame.is_blame_text_available,
+          }
+        end
       end
     end,
   },

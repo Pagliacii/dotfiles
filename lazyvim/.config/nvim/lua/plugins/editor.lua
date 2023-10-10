@@ -232,8 +232,6 @@ return {
     event = "VeryLazy",
     opts = {
       label = {
-        -- add any labels with the correct case here, that you want to exclude
-        exclude = "p",
         -- Enable this to use rainbow colors to highlight labels
         -- Can be useful for visualizing Treesitter ranges.
         rainbow = {
@@ -251,6 +249,9 @@ return {
         char = {
           -- show jump labels
           jump_labels = true,
+          -- When using jump labels, don't use these keys
+          -- This allows using those keys directly after the motion
+          label = { exclude = "hjkliardcpx" },
         },
       },
     },
@@ -285,6 +286,20 @@ return {
         "alpha",
         "neo-tree",
       },
+    },
+  },
+
+  {
+    "LukasPietzschmann/telescope-tabs",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function(_, opts)
+      require("telescope-tabs").setup(opts)
+    end,
+    opts = {
+      show_preview = false,
+    },
+    keys = {
+      { "<leader><tab>,", "<cmd>Telescope telescope-tabs list_tabs theme=dropdown<cr>", desc = "Tabs", noremap = true },
     },
   },
 }

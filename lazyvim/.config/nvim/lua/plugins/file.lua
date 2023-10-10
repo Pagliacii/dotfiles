@@ -39,8 +39,13 @@ return {
   {
     "ThePrimeagen/harpoon",
     dependencies = {
+      { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
+    config = function(_, opts)
+      require("harpoon").setup(opts)
+      require("telescope").load_extension("harpoon")
+    end,
     opts = {
       excluded_filetypes = {
         "harpoon",
@@ -84,5 +89,27 @@ return {
       vim.o.undofile = true
       require("fundo").setup(opts)
     end,
+  },
+
+  {
+    "debugloop/telescope-undo.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("undo")
+    end,
+    keys = {
+      { "<leader>tu", "<cmd>Telescope undo<cr>", desc = "Undo tree" },
+    },
+  },
+
+  {
+    "LinArcX/telescope-changes.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("changes")
+    end,
+    keys = {
+      { "<leader>tc", "<cmd>Telescope changes<cr>", desc = "Changes", noremap = true },
+    },
   },
 }

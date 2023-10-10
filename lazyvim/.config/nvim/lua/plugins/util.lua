@@ -214,27 +214,6 @@ return {
   },
 
   {
-    "LudoPinelli/comment-box.nvim",
-    cmd = {
-      "CBllbox",
-      "CBlcbox",
-      "CBlrbox",
-      "CBclbox",
-      "CBccbox",
-      "CBcrbox",
-      "CBrlbox",
-      "CBrcbox",
-      "CBrrbox",
-      "CBalbox",
-      "CBacbox",
-      "CBarbox",
-      "CBline",
-      "CBcline",
-      "CBrline",
-    },
-  },
-
-  {
     "jokajak/keyseer.nvim",
     version = false,
     config = true,
