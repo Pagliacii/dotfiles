@@ -1,21 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      {
-        "SmiteshP/nvim-navbuddy",
-        dependencies = {
-          "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim",
-          "nvim-telescope/telescope.nvim",
-        },
-        opts = { lsp = { auto_attach = true } },
-        cmd = { "Navbuddy" },
-        keys = {
-          { "gb", "<cmd>Navbuddy<cr>", desc = "Open Nav[b]uddy", noremap = true },
-        },
-      },
-    },
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
@@ -26,6 +11,22 @@ return {
         timeout_ms = 10000,
       },
       servers = {},
+    },
+  },
+
+  {
+    "SmiteshP/nvim-navbuddy",
+    event = "LspAttach",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = { lsp = { auto_attach = true } },
+    cmd = { "Navbuddy" },
+    keys = {
+      { "gb", "<cmd>Navbuddy<cr>", desc = "Open Nav[b]uddy", noremap = true },
     },
   },
 
