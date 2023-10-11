@@ -269,7 +269,7 @@ return {
     "roobert/activate.nvim",
     keys = {
       {
-        "<leader>a",
+        "<leader>Ua",
         [[<cmd>lua require("activate").list_plugins()<cr>]],
         desc = "Awesome plugins",
         noremap = true,

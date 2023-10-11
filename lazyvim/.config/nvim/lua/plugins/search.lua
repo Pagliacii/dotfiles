@@ -9,7 +9,7 @@ return {
           require("ssr").open()
         end,
         mode = { "n", "x" },
-        desc = "Structural search and replace",
+        desc = "Search and replace",
         noremap = true,
       },
     },

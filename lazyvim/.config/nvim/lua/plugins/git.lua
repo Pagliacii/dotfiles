@@ -99,4 +99,18 @@ return {
       vim.g.gitblame_display_virtual_text = 0
     end,
   },
+
+  {
+    "niuiic/git-log.nvim",
+    dependencies = { "niuiic/core.nvim" },
+    keys = {
+      {
+        "<leader>gl",
+        [[:lua require("git-log").check_log()<cr>]],
+        mode = { "n", "v" },
+        desc = "Log of selected",
+        silent = true,
+      },
+    },
+  },
 }
