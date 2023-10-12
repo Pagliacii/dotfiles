@@ -51,26 +51,24 @@ return {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline" },
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = function()
-      require("symbols-outline").setup({
-        symbols = {
-          File = { icon = "󰈔", hl = "@text.uri" },
-          Module = { icon = "󰆧", hl = "@namespace" },
-          Namespace = { icon = "󱃖", hl = "@namespace" },
-          Package = { icon = "󰏗", hl = "@namespace" },
-          Field = { icon = "󰮄", hl = "@field" },
-          Interface = { icon = "󰜰", hl = "@type" },
-          Array = { icon = "󰅪", hl = "@constant" },
-          Component = { icon = "󰡀", hl = "@function" },
-          Fragment = { icon = "󰅴", hl = "@constant" },
-          Class = { icon = "", hl = "@type" },
-          String = { icon = "", hl = "@string" },
-          Struct = { icon = "", hl = "@type" },
-          Event = { icon = "", hl = "@type" },
-          TypeParameter = { icon = "", hl = "@parameter" },
-        },
-      })
-    end,
+    opts = {
+      symbols = {
+        File = { icon = "󰈔", hl = "@text.uri" },
+        Module = { icon = "󰆧", hl = "@namespace" },
+        Namespace = { icon = "󱃖", hl = "@namespace" },
+        Package = { icon = "󰏗", hl = "@namespace" },
+        Field = { icon = "󰮄", hl = "@field" },
+        Interface = { icon = "󰜰", hl = "@type" },
+        Array = { icon = "󰅪", hl = "@constant" },
+        Component = { icon = "󰡀", hl = "@function" },
+        Fragment = { icon = "󰅴", hl = "@constant" },
+        Class = { icon = "", hl = "@type" },
+        String = { icon = "", hl = "@string" },
+        Struct = { icon = "", hl = "@type" },
+        Event = { icon = "", hl = "@type" },
+        TypeParameter = { icon = "", hl = "@parameter" },
+      },
+    },
   },
 
   {

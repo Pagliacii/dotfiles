@@ -25,18 +25,6 @@ return {
     ft = { "json", "yaml" },
   },
 
-  { import = "lazyvim.plugins.extras.dap.core" },
-  { import = "lazyvim.plugins.extras.dap.nlua" },
-
-  -- Core language specific extension modules
-  { import = "lazyvim.plugins.extras.lsp.none-ls" },
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.go" },
-  { import = "lazyvim.plugins.extras.lang.rust" },
-  { import = "lazyvim.plugins.extras.lang.yaml" },
-  { import = "lazyvim.plugins.extras.lang.clangd" },
-  { import = "lazyvim.plugins.extras.lang.cmake" },
-
   -- Custom language specific extension modules
   { import = "plugins.extras.lang.golang" },
   { import = "plugins.extras.lang.python" },

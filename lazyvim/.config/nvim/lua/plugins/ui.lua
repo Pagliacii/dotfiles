@@ -35,7 +35,7 @@ return {
  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝
   [ github.com/Pagliacii ]
       ]]
-      logo = string.rep("\n", 5) .. logo .. "\n\n"
+      logo = string.rep("\n", 5) .. logo .. "\n"
 
       local opts = {
         theme = "doom",
