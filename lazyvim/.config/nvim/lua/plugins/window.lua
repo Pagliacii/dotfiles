@@ -173,7 +173,7 @@ return {
         if vim.tbl_contains(excluded_buftypes, buftype) then
           return true
         end
-        local excluded_filetypes = { "alpha" }
+        local excluded_filetypes = { "alpha", "dashboard" }
         return vim.tbl_contains(excluded_filetypes, filetype)
       end,
     },

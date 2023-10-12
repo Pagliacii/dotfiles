@@ -38,6 +38,9 @@ return {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
+      if not opts.sources then
+        opts.sources = {}
+      end
       vim.list_extend(opts.sources, {
         null_ls.builtins.diagnostics.codespell,
       })

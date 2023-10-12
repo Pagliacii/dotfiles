@@ -81,14 +81,6 @@ return {
           "ANN204", -- missing-return-type-special-method
         }, ","),
       })
-      opts.formatters = opts.formatters or {}
-      for f, o in pairs(opts.formatters) do
-        local ok, formatter = pcall(require, "conform.formatters." .. f)
-        if ok and type(formatter) == "function" then
-          formatter = formatter()
-        end
-        opts.formatters[f] = vim.tbl_deep_extend("force", {}, ok and formatter or {}, o)
-      end
       require("conform").setup(opts)
     end,
   },

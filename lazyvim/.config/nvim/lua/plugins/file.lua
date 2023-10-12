@@ -55,6 +55,7 @@ return {
         "terminal",
         "toggleterm",
         "alpha",
+        "dashboard",
       },
     },
     keys = {

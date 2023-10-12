@@ -24,49 +24,70 @@ return {
   },
 
   {
-    "goolord/alpha-nvim",
+    "glepnir/dashboard-nvim",
     opts = function()
-      local dashboard = require("alpha.themes.dashboard")
       local logo = [[
-██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
-██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║
-██████╔╝███████║██║  ███╗██║     ██║███████║██║     ██║██║
-██╔═══╝ ██╔══██║██║   ██║██║     ██║██╔══██║██║     ██║██║
-██║     ██║  ██║╚██████╔╝███████╗██║██║  ██║╚██████╗██║██║
-╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝
-                  [ github.com/Pagliacii ]
+ ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
+ ██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║
+ ██████╔╝███████║██║  ███╗██║     ██║███████║██║     ██║██║
+ ██╔═══╝ ██╔══██║██║   ██║██║     ██║██╔══██║██║     ██║██║
+ ██║     ██║  ██║╚██████╔╝███████╗██║██║  ██║╚██████╗██║██║
+ ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝
+  [ github.com/Pagliacii ]
       ]]
-      dashboard.section.header.val = vim.split(logo, "\n", {})
+      logo = string.rep("\n", 5) .. logo .. "\n\n"
 
-      dashboard.config.opts.setup = function()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "AlphaReady",
-          desc = "disable tabline for alpha",
-          callback = function()
-            vim.opt.showtabline = 0
+      local opts = {
+        theme = "doom",
+        hide = {
+          -- this is taken care of by lualine
+          -- enabling this messes up the actual laststatus setting after loading a file
+          statusline = false,
+        },
+        config = {
+          header = vim.split(logo, "\n"),
+          -- stylua: ignore
+          center = {
+            { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+            { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+            { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
+            { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+            { action = "Telescope project", desc = " Projects", icon = " ", key = "p" },
+            { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
+            { action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "e" },
+            { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+            { action = "e $MYVIMRC", desc = " Config", icon = " ", key = "c" },
+            { action = "qa", desc = " Quit", icon = " ", key = "q" },
+          },
+          footer = function()
+            local stats = require("lazy").stats()
+            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+            return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
           end,
-        })
-        vim.api.nvim_create_autocmd("BufUnload", {
-          buffer = 0,
-          desc = "enable tabline after alpha",
+        },
+      }
+
+      for _, button in ipairs(opts.config.center) do
+        button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+      end
+
+      -- close Lazy and re-open when the dashboard is ready
+      if vim.o.filetype == "lazy" then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd("User", {
+          pattern = "DashboardLoaded",
           callback = function()
-            vim.opt.showtabline = 2
+            require("lazy").show()
           end,
         })
       end
 
-      local button = dashboard.button("p", " " .. " Projects", ":Telescope project<cr>")
-      button.opts.hl = "AlphaButtons"
-      button.opts.hl_shortcut = "AlphaShortcut"
-      dashboard.section.buttons.val[6] = nil
-      table.insert(dashboard.section.buttons.val, 4, button)
-
-      return dashboard
+      return opts
     end,
     keys = {
       {
         "<leader>o",
-        [[<cmd>lua require("alpha").start(false)<cr>]],
+        "<cmd>Dashboard<cr>",
         desc = "Open Dashboard",
         noremap = true,
         silent = true,
@@ -132,6 +153,7 @@ return {
         },
         excluded_filetypes = {
           "alpha",
+          "dashboard",
           "neo-tree",
           "lazy",
           "mason",

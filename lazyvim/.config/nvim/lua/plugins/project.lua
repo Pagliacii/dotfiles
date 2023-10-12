@@ -34,7 +34,7 @@ return {
     opts = {
       should_autosave = function()
         -- do not autosave if the alpha dashboard is the current filetype
-        return vim.bo.filetype ~= "alpha"
+        return not vim.list_contains({ "alpha", "dashboard" }, vim.bo.filetype)
       end,
       use_git_branch = true,
     },
