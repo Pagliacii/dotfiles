@@ -100,12 +100,6 @@ local extensions = {
   },
 }
 
-local config = function(_, opts)
-  local telescope = require("telescope")
-  telescope.setup(opts)
-  telescope.load_extension("fzf")
-end
-
 local buffer_previewer_maker = function(filepath, bufnr, opts)
   opts = opts or {}
 
@@ -158,10 +152,12 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
       },
     },
     opts = opts,
-    config = config,
     keys = {
       { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
       { "<leader>tn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notify", noremap = true },

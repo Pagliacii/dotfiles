@@ -10,4 +10,17 @@ return {
       end,
     },
   },
+
+  {
+    "stevedylandev/flexoki-nvim",
+    name = "flexoki",
+    enabled = false,
+  },
+
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "flexoki",
+  --   },
+  -- },
 }

@@ -254,8 +254,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
-      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- nvim-navic
-      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filename
+      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filepath
       local git = vim.fs.find(".git", {
         upward = true,
         stop = vim.uv.os_homedir(),

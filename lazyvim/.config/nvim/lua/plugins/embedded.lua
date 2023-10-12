@@ -32,7 +32,6 @@ return {
   {
     "p00f/clangd_extensions.nvim",
     lazy = true,
-    commit = "f677c48a2d90670d47adc05aede72a3bd9a12bcd",
     ft = { "c", "cpp" },
     opts = {
       extensions = {
