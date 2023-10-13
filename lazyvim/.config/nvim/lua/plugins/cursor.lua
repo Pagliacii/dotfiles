@@ -7,6 +7,8 @@ return {
         filetypes = {
           "alpha",
           "dashboard",
+          "lazy",
+          "TelescopePrompt",
         },
         buftypes = {
           "terminal",

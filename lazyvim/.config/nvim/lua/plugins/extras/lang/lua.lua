@@ -50,11 +50,14 @@ return {
               workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
-                maxPreload = 100,
+                maxPreload = 16,
                 checkThirdParty = false,
               },
               telemetry = {
                 enable = false,
+              },
+              completion = {
+                callSnippet = "Replace",
               },
             },
           },

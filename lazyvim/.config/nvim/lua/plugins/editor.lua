@@ -188,7 +188,7 @@ return {
         vim.cmd.normal({ cmdStr, bang = true })
       end
       local origami = require("origami")
-      local excluded_filetypes = { "neo-tree" }
+      local excluded_filetypes = { "mason", "neo-tree" }
       vim.keymap.set("n", "h", function()
         if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
           normal("h")

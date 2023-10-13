@@ -77,7 +77,7 @@ return {
     end,
     keys = {
       {
-        "<leader>fB",
+        "<leader>fb",
         "<cmd>Telescope file_browser<cr>",
         desc = "File browser",
         noremap = true,
