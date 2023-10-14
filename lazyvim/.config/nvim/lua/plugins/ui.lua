@@ -254,7 +254,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
-      table.remove(opts.sections.lualine_c, #opts.sections.lualine_c) -- filepath
+      table.remove(opts.sections.lualine_c, 3) -- filepath
       local git = vim.fs.find(".git", {
         upward = true,
         stop = vim.uv.os_homedir(),
@@ -264,10 +264,10 @@ return {
       if #git > 0 then
         local ok, git_blame = pcall(require, "gitblame")
         if ok then
-          opts.sections.lualine_c[#opts.sections.lualine_c + 1] = {
+          table.insert(opts.sections.lualine_c, {
             git_blame.get_current_blame_text,
             cond = git_blame.is_blame_text_available,
-          }
+          })
         end
       end
     end,
