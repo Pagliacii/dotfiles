@@ -22,10 +22,6 @@ return {
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        timeout_ms = 500,
-      },
       -- LazyVim will merge the options you set here with builtin formatters.
       -- You can also define any custom formatters here.
       ---@type table<string, table>
@@ -54,34 +50,30 @@ return {
             end,
           }
         end,
+        ruff_format = {
+          "--select",
+          table.concat({
+            "A", -- flake8-builtins
+            "ANN", -- flake8-annotations
+            "ARG", -- flake8-unused-arguments
+            "B", -- flake8-bugbear
+            "COM", -- flake8-commas
+            "C4", -- flake8-comprehensions
+            "FA", -- flake8-future-annotations
+            "RET", -- flake8-return
+            "SLF", -- flake8-self
+            "E", -- pycodestyle error
+            "F", -- pyflakes
+            "I", -- isort
+            "N", -- pep8-naming
+            "W", -- pycodestyle warning
+          }, ","),
+          "--unfixable",
+          table.concat({
+            "ANN204", -- missing-return-type-special-method
+          }, ","),
+        },
       },
     },
-    config = function(_, opts)
-      local util = require("conform.util")
-      util.add_formatter_args(require("conform.formatters.ruff_fix"), {
-        "--select",
-        table.concat({
-          "A", -- flake8-builtins
-          "ANN", -- flake8-annotations
-          "ARG", -- flake8-unused-arguments
-          "B", -- flake8-bugbear
-          "COM", -- flake8-commas
-          "C4", -- flake8-comprehensions
-          "FA", -- flake8-future-annotations
-          "RET", -- flake8-return
-          "SLF", -- flake8-self
-          "E", -- pycodestyle error
-          "F", -- pyflakes
-          "I", -- isort
-          "N", -- pep8-naming
-          "W", -- pycodestyle warning
-        }, ","),
-        "--unfixable",
-        table.concat({
-          "ANN204", -- missing-return-type-special-method
-        }, ","),
-      })
-      require("conform").setup(opts)
-    end,
   },
 }

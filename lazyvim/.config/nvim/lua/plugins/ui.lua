@@ -24,7 +24,7 @@ return {
   },
 
   {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     opts = function()
       local logo = [[
  ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
@@ -227,7 +227,7 @@ return {
         "RainbowDelimiterViolet",
         "RainbowDelimiterCyan",
       }
-      require("rainbow-delimiters.setup")(opts)
+      require("rainbow-delimiters.setup").setup(opts)
       return true
     end,
   },
