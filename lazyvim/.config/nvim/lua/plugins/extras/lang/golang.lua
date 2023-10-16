@@ -114,27 +114,6 @@ return {
   },
 
   {
-    "lvimuser/lsp-inlayhints.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    ft = filetypes,
-    event = { "BufReadPre *.go" },
-    opts = {
-      inlay_hints = {
-        type_hints = { prefix = "=> " },
-      },
-    },
-    keys = {
-      {
-        "<leader>Gh",
-        function()
-          require("lsp-inlayhints").toggle()
-        end,
-        desc = "Toggle Inlay Hints",
-      },
-    },
-  },
-
-  {
     "edolphin-ydf/goimpl.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",

@@ -119,22 +119,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
--- Lsp inlay hints
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(args)
-    if not (args.data and args.data.client_id) then
-      return
-    end
-
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.name ~= "rust_analyzer" then
-      require("lsp-inlayhints").on_attach(client, bufnr, true)
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "json",

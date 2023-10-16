@@ -48,7 +48,7 @@ return {
           header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "Telescope file_browser", desc = " Browse files", icon = " ", key = "b" },
+            { action = "Telescope file_browser", desc = " Browse files", icon = "󰥩 ", key = "b" },
             { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
             { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
             { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
