@@ -16,6 +16,9 @@ return {
         rust = { "rustfmt" },
         toml = { "taplo" },
         json = { "jq" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
+        cmake = { "cmake_format" },
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
@@ -44,10 +47,6 @@ return {
             cwd = require("conform.util").root_file({ ".git", "go.work", "go.mod" }),
             -- When cwd is not found, don't run the formatter (default false)
             require_cwd = true,
-            -- When returns false, the formatter will not be used
-            condition = function(ctx)
-              return vim.fs.basename(ctx.filename):match("^.+(%..+)$") == "go"
-            end,
           }
         end,
         ruff_format = {

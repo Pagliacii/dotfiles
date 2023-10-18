@@ -15,6 +15,8 @@ return {
           "bash-language-server",
           "shellcheck",
           "shfmt",
+          "clang-format",
+          "cmakelint",
         })
       end
     end,
