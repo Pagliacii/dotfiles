@@ -9,6 +9,7 @@ return {
           "dashboard",
           "lazy",
           "TelescopePrompt",
+          "noice",
         },
         buftypes = {
           "terminal",

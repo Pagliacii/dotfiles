@@ -3,7 +3,6 @@ return {
   {
     "ellisonleao/glow.nvim",
     config = true,
-    ft = filetypes,
     cmd = { "Glow" },
     keys = function(_, keys)
       if vim.fn.executable("glow") == 1 then
@@ -16,12 +15,9 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-    ft = filetypes,
     cmd = { "MarkdownPreviewToggle" },
     keys = {
+      { "<leader>cp", false },
       { "<leader>Mb", "<cmd>MarkdownPreviewToggle<cr>", desc = "Preview in browser", silent = true },
     },
   },
@@ -40,7 +36,6 @@ return {
         vim.keymap.set("n", "q", "<C-w><C-q>", { buffer = 0, silent = true })
       end,
     },
-    ft = filetypes,
     cmd = { "FeMaco" },
     keys = {
       { "<leader>Mf", "<cmd>FeMaco<cr>", desc = "Edit code block", noremap = true },
@@ -66,6 +61,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "glow",
         "markdown-toc",
+        "markdownlint",
         "prettierd",
         "write-good",
       })
@@ -74,7 +70,6 @@ return {
 
   {
     "richardbizik/nvim-toc",
-    ft = filetypes,
     config = true,
     cmd = { "TOC" },
   },
