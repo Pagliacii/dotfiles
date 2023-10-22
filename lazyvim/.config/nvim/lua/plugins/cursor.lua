@@ -10,6 +10,7 @@ return {
           "lazy",
           "TelescopePrompt",
           "noice",
+          "glow",
         },
         buftypes = {
           "terminal",

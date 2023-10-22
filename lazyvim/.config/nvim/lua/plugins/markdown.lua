@@ -15,10 +15,19 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     cmd = { "MarkdownPreviewToggle" },
     keys = {
-      { "<leader>cp", false },
-      { "<leader>Mb", "<cmd>MarkdownPreviewToggle<cr>", desc = "Preview in browser", silent = true },
+      {
+        "<leader>Mb",
+        function()
+          vim.fn["mkdp#util#toggle_preview"]()
+        end,
+        desc = "Preview in browser",
+        silent = true,
+      },
     },
   },
 

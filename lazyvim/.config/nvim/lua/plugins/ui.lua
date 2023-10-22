@@ -242,11 +242,38 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
-    opts = function(_, opts)
-      if type(opts.filetype_exclude) == "table" then
-        vim.list_extend(opts.filetype_exclude, { "noice" })
-      end
+    opts = {
+      exclude = {
+        filetypes = {
+          "aerial",
+          "noice",
+        },
+      },
+    },
+  },
+
+  {
+    "echasnovski/mini.indentscope",
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+          "aerial",
+          "noice",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
     end,
   },
 
