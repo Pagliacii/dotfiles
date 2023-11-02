@@ -157,4 +157,30 @@ return {
       },
     },
   },
+
+  {
+    "gbprod/yanky.nvim",
+    keys = {
+      { "<leader>p", false },
+      {
+        "<leader>ty",
+        function()
+          require("telescope").extensions.yank_history.yank_history({})
+        end,
+        desc = "Yank history",
+      },
+    },
+  },
+
+  {
+    "chrisgrieser/cmp_yanky",
+    event = "InsertEnter",
+    config = function()
+      require("cmp").setup({
+        sources = {
+          name = "cmp_yanky",
+        },
+      })
+    end,
+  },
 }

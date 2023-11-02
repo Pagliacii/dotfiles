@@ -126,14 +126,16 @@ return {
 
   {
     "AckslD/nvim-neoclip.lua",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") },
+    },
     config = function()
       require("neoclip").setup()
       require("telescope").load_extension("neoclip")
     end,
     keys = {
       { "<leader>tQ", "<cmd>Telescope macroscope<cr>", desc = "Macros", noremap = true },
-      { "<leader>ty", "<cmd>Telescope neoclip theme=dropdown<cr>", desc = "Yanks", noremap = true },
     },
   },
 
