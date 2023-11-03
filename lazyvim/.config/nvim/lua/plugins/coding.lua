@@ -173,12 +173,15 @@ return {
   },
 
   {
-    "chrisgrieser/cmp_yanky",
+    "lukas-reineke/cmp-rg",
     event = "InsertEnter",
     config = function()
       require("cmp").setup({
         sources = {
-          name = "cmp_yanky",
+          {
+            name = "rg",
+            keyword_length = 3,
+          },
         },
       })
     end,
