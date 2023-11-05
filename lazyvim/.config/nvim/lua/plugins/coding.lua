@@ -2,6 +2,9 @@ return {
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
+    dependencies = {
+      { "lukas-reineke/cmp-rg" },
+    },
     opts = function(_, opts)
       local cmp = require("cmp")
       table.insert(cmp.mapping.preset, {
@@ -12,6 +15,10 @@ return {
       })
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
         { name = "emoji" },
+        {
+          name = "rg",
+          keyword_length = 3,
+        },
       }))
     end,
   },
@@ -170,20 +177,5 @@ return {
         desc = "Yank history",
       },
     },
-  },
-
-  {
-    "lukas-reineke/cmp-rg",
-    event = "InsertEnter",
-    config = function()
-      require("cmp").setup({
-        sources = {
-          {
-            name = "rg",
-            keyword_length = 3,
-          },
-        },
-      })
-    end,
   },
 }
