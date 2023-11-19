@@ -159,32 +159,26 @@ return {
   },
 
   {
-    "anuvyklack/fold-preview.nvim",
-    dependencies = {
-      { "anuvyklack/keymap-amend.nvim" },
-    },
-    event = "BufReadPost",
-    opts = {
-      auto = 400,
-      border = "rounded",
-      default_keybindings = false,
-    },
-  },
-
-  {
     "jackMort/ChatGPT.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
-    config = true,
     cmd = {
       "ChatGPT",
       "ChatGPTActAs",
       "ChatGPTRun",
       "ChatGPTEditWithInstructions",
       "ChatGPTCompleteCode",
+    },
+    opts = {
+      openai_params = {
+        model = "gpt-4",
+      },
+      openai_edit_params = {
+        model = "gpt-4",
+      },
     },
   },
 
