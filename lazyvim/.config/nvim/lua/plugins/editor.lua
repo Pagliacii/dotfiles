@@ -175,38 +175,6 @@ return {
   },
 
   {
-    "chrisgrieser/nvim-origami",
-    event = "BufReadPost", -- later or on keypress would prevent saving folds
-    config = function()
-      vim.o.startofline = true
-      require("origami").setup({
-        setupFoldKeymaps = false,
-      })
-    end,
-    keys = function()
-      local function normal(cmdStr)
-        vim.cmd.normal({ cmdStr, bang = true })
-      end
-      local origami = require("origami")
-      local excluded_filetypes = { "mason", "neo-tree" }
-      vim.keymap.set("n", "h", function()
-        if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
-          normal("h")
-        else
-          origami.h()
-        end
-      end)
-      vim.keymap.set("n", "l", function()
-        if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
-          normal("l")
-        else
-          origami.l()
-        end
-      end)
-    end,
-  },
-
-  {
     "Wansmer/binary-swap.nvim",
     keys = {
       {
