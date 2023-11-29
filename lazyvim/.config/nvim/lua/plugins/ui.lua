@@ -260,6 +260,7 @@ return {
           "help",
           "alpha",
           "dashboard",
+          "dropbar_menu",
           "neo-tree",
           "Trouble",
           "lazy",

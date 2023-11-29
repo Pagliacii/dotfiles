@@ -178,4 +178,12 @@ return {
       },
     },
   },
+
+  {
+    "Exafunction/codeium.nvim",
+    commit = "822e762567a0bf50b1a4e733c8c93691934d7606",
+    cmd = "Codeium",
+    build = ":Codeium Auth",
+    opts = {},
+  },
 }
