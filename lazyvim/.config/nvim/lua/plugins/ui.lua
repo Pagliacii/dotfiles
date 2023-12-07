@@ -304,20 +304,9 @@ return {
     "Bekaboo/dropbar.nvim",
     event = "BufReadPost",
     opts = function(_, opts)
-      local api = require("dropbar.api")
-      local confirm = function()
-        local menu = api.get_current_dropbar_menu()
-        if not menu then
-          return
-        end
-        local cursor = vim.api.nvim_win_get_cursor(menu.win)
-        local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
-        if component then
-          menu:click_on(component, nil, 1, "l")
-        end
-      end
+      local utils = require("dropbar.utils")
       local quit = function()
-        local menu = api.get_current_dropbar_menu()
+        local menu = utils.menu.get_current()
         if menu then
           menu:close()
         end
@@ -325,9 +314,7 @@ return {
       local menu = opts.menu or { quick_navigation = true }
       local keymaps = menu.keymaps or {}
       menu.keymaps = vim.tbl_extend("force", keymaps, {
-        ["i"] = confirm,
         ["<ESC>"] = quit,
-        ["q"] = quit,
       })
       opts.menu = menu
       return opts
