@@ -65,4 +65,9 @@ return {
       },
     },
   },
+
+  {
+    "RRethy/nvim-treesitter-endwise",
+    ft = filetypes,
+  },
 }

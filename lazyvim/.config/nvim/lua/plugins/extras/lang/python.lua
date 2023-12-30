@@ -201,12 +201,4 @@ return {
       },
     },
   },
-
-  {
-    "roobert/f-string-toggle.nvim",
-    ft = filetypes,
-    opts = {
-      key_binding = "<leader>pf",
-    },
-  },
 }

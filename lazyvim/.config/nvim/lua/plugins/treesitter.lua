@@ -49,6 +49,7 @@ return {
         use_virtual_text = true,
         lint_events = { "BufWrite", "CursorHold" },
       },
+      endwise = { enable = true },
     },
   },
 
@@ -100,6 +101,38 @@ return {
     event = "BufReadPost",
     opts = {
       disable_ft = { "markdown", "lazy" },
+    },
+  },
+
+  {
+    "Wansmer/sibling-swap.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function(_, opts)
+      require("sibling-swap").setup(opts)
+    end,
+    opts = {
+      use_default_keymaps = false,
+      allowed_separators = { "..", "*" }, -- add multiplication & lua string concatenation
+      highlight_node_at_cursor = true,
+      ignore_injected_langs = true,
+      allow_interline_swaps = true,
+      interline_swaps_without_separator = false,
+    },
+    keys = {
+      {
+        "<leader>cw",
+        function()
+          require("sibling-swap").swap_with_right()
+        end,
+        desc = "Swap with right",
+      },
+      {
+        "<leader>cW",
+        function()
+          require("sibling-swap").swap_with_left()
+        end,
+        desc = "Swap with left",
+      },
     },
   },
 }

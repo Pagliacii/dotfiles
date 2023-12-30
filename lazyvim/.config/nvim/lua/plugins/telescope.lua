@@ -64,6 +64,9 @@ local extensions = {
   heading = {
     treesitter = true,
   },
+  import = {
+    insert_at_top = true,
+  },
   luasnip = {
     theme = "dropdown",
   },

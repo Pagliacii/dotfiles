@@ -4,7 +4,7 @@ return {
     name = "ssr",
     keys = {
       {
-        "<leader>S",
+        "<leader>se",
         function()
           require("ssr").open()
         end,

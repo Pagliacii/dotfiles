@@ -95,8 +95,8 @@ return {
       "OverseerClearCache",
     },
     keys = {
-      { "<leader>R", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
-      { "<leader>L", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
+      { "<leader>Rr", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
+      { "<leader>Rl", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
     },
   },
 
@@ -112,7 +112,7 @@ return {
       },
     },
     keys = {
-      { "<leader>S", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
+      { "<leader>Rs", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
     },
   },
 
@@ -180,10 +180,41 @@ return {
   },
 
   {
-    "Exafunction/codeium.nvim",
-    commit = "822e762567a0bf50b1a4e733c8c93691934d7606",
-    cmd = "Codeium",
-    build = ":Codeium Auth",
-    opts = {},
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+      -- load refactoring Telescope extension
+      require("telescope").load_extension("refactoring")
+    end,
+    cmd = { "Refactor" },
+    keys = {
+      {
+        "<leader>cR",
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
+        desc = "Refactor",
+      },
+    },
+  },
+
+  {
+    "chrisgrieser/nvim-puppeteer",
+    lazy = false, -- plugin lazy-loads itself.
+  },
+
+  {
+    "piersolenski/telescope-import.nvim",
+    dependencies = "nvim-telescope/telescope.nvim",
+    config = function()
+      require("telescope").load_extension("import")
+    end,
+    keys = {
+      { "<leader>ti", "<cmd>Telescope import<cr>", desc = "Import modules", noremap = true, silent = true },
+    },
   },
 }

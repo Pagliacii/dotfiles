@@ -56,6 +56,8 @@ if ok then
     ["<leader>D"] = { name = "+devdocs" },
     ["<leader>W"] = { name = "+wezterm" },
     ["<leader>y"] = { name = "+yank" },
+    ["<leader>R"] = { name = "+run" },
+    ["<leader>S"] = { name = "+snippet" },
   })
 end
 
