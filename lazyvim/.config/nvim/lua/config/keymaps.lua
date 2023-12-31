@@ -58,6 +58,7 @@ if ok then
     ["<leader>y"] = { name = "+yank" },
     ["<leader>R"] = { name = "+run" },
     ["<leader>S"] = { name = "+snippet" },
+    ["<leader>dL"] = { name = "+log" },
   })
 end
 

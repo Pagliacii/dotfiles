@@ -87,4 +87,84 @@ return {
       { "<leader>d5", "<cmd> Telescope dap variables<cr>", desc = "Variables" },
     },
   },
+
+  {
+    "chrisgrieser/nvim-chainsaw",
+    opts = {},
+    keys = {
+      {
+        "<leader>dLm",
+        function()
+          require("chainsaw").messageLog()
+        end,
+        desc = "Message",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLv",
+        function()
+          require("chainsaw").variableLog()
+        end,
+        mode = { "n", "v" },
+        desc = "Variable",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLo",
+        function()
+          require("chainsaw").objectLog()
+        end,
+        desc = "Object",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLa",
+        function()
+          require("chainsaw").assertLog()
+        end,
+        desc = "Assert",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLb",
+        function()
+          require("chainsaw").beepLog()
+        end,
+        desc = "Beep",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLt",
+        function()
+          require("chainsaw").timeLog()
+        end,
+        desc = "Time",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLd",
+        function()
+          require("chainsaw").debugLog()
+        end,
+        desc = "Debug",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "<leader>dLr",
+        function()
+          require("chainsaw").removeLogs()
+        end,
+        desc = "Remove",
+        noremap = true,
+        silent = true,
+      },
+    },
+  },
 }

@@ -160,6 +160,9 @@ window_rules:
   - commands: ["move to workspace 1", "move right", "set width 30%"]
     match_process_name: "Telegram"
 
+  - command: "move to workspace 2"
+    match_process_name: "wezterm-gui"
+
 binding_modes:
   - name: "resize"
     keybindings:
