@@ -249,7 +249,7 @@ keybindings:
 
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
-  - command: "exec %SCOOP%/shims/wezterm-gui.exe"
+  - command: "exec %SCOOP%/apps/wezterm-nightly/current/wezterm-gui.exe"
     binding: "Alt+Enter"
 
   # Focus the workspace that last had focus.
