@@ -328,4 +328,5 @@ vim/.vim/plugged
 vim/.vim/sessions
 vim/.vim/view
 .quicknote/
+scratch_config.json
 

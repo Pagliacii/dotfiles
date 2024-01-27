@@ -113,4 +113,22 @@ return {
       { "<leader>tc", "<cmd>Telescope changes<cr>", desc = "Changes", noremap = true },
     },
   },
+
+  {
+    "LintaoAmons/scratch.nvim",
+    event = "VeryLazy",
+    cmd = {
+      "Scratch",
+      "ScratchWithName",
+      "ScratchOpen",
+      "ScratchOpenFzf",
+      "ScratchCheckConfig",
+      "ScratchEditConfig",
+      "ScratchPad",
+    },
+    keys = {
+      { "<M-C-n>", "<cmd>Scratch<cr>", desc = "Scratch" },
+      { "<M-C-o>", "<cmd>ScratchOpenFzf<cr>", desc = "ScratchOpenFzf" },
+    },
+  },
 }
