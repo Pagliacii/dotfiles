@@ -155,6 +155,7 @@
   "sys-open.nvim": { "branch": "main", "commit": "35f5ac7e131f0fee5ed69831db6e403fdd24e388" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-dap.nvim": { "branch": "master", "commit": "8c88d9716c91eaef1cdea13cb9390d8ef447dbfe" },
+  "telescope-egrepify.nvim": { "branch": "master", "commit": "728dc1b7f31297876c3a3254fc6108108b6a9e9d" },
   "telescope-emoji.nvim": { "branch": "master", "commit": "86248d97be84a1ce83f0541500ef9edc99ea2aa1" },
   "telescope-env.nvim": { "branch": "master", "commit": "00a703cc7b713cdda0a981d88fddf3ce25502af5" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "6dd6522bc1a4cbe5883eb0272f5cc7a54ae3858b" },

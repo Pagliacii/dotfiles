@@ -6,7 +6,7 @@ return {
       require("telescope").load_extension("emoji")
     end,
     keys = {
-      { "<leader>te", "<cmd>Telescope emoji theme=ivy<cr>", desc = "Emoji", noremap = true },
+      { "<leader>tE", "<cmd>Telescope emoji theme=ivy<cr>", desc = "Emoji", noremap = true },
     },
   },
 

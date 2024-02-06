@@ -149,4 +149,15 @@ return {
       { "<leader>ta", "<cmd>Telescope ast_grep<cr>", desc = "AST grep", noremap = true },
     },
   },
+
+  {
+    "fdschmidt93/telescope-egrepify.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("telescope").load_extension("egrepify")
+    end,
+    keys = {
+      { "<leader>te", "<cmd>Telescope egrepify<cr>", desc = "Enhances live grep", noremap = true },
+    },
+  },
 }
