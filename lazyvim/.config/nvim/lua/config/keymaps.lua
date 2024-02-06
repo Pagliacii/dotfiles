@@ -30,6 +30,7 @@ if ok then
       name = "+util",
       mode = { "n", "v" },
     },
+    ["<leader>UC"] = { name = "+color code" },
     ["<leader>t"] = { name = "+telescope" },
     ["gz"] = "which_key_ignore",
     ["<leader>gu"] = { name = "+gitui" },

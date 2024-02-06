@@ -163,6 +163,7 @@ return {
     opts = opts,
     keys = {
       { "<leader>fb", false },
+      { "<leader>tk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", noremap = true },
       { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
       { "<leader>tn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notify", noremap = true },
       { "<leader>tt", "<cmd>Telescope treesitter<cr>", desc = "Treesitter", noremap = true },

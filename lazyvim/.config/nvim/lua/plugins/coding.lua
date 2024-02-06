@@ -217,4 +217,20 @@ return {
       { "<leader>ti", "<cmd>Telescope import<cr>", desc = "Import modules", noremap = true, silent = true },
     },
   },
+
+  {
+    "gregorias/coerce.nvim",
+    tag = "v0.3",
+    config = true,
+    keys = {
+      { "crc", mode = { "n", "v" }, desc = "camelCase" },
+      { "crd", mode = { "n", "v" }, desc = "dot.case" },
+      { "crk", mode = { "n", "v" }, desc = "kebab-case" },
+      { "crn", mode = { "n", "v" }, desc = "n12e" },
+      { "crp", mode = { "n", "v" }, desc = "PascalCase" },
+      { "crs", mode = { "n", "v" }, desc = "snake_case" },
+      { "cru", mode = { "n", "v" }, desc = "UPPER_CASE" },
+      { "cr/", mode = { "n", "v" }, desc = "path/case" },
+    },
+  },
 }

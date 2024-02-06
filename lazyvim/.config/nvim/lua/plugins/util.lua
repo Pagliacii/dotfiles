@@ -154,8 +154,15 @@ return {
     opts = {
       slots = { "a", "b", "c", "d", "e", "f" },
       lessNotifications = false,
+      clear = true,
     },
-    keys = { "q", "Q", "<C-q>", "cq", "yq" },
+    keys = {
+      { "q", desc = " Start Recording" },
+      { "Q", desc = " Play Recording" },
+      { "<C-q>", desc = " Switch slot" },
+      { "cq", desc = " Edit Macro" },
+      { "yq", desc = " Yank Macro" },
+    },
   },
 
   {
@@ -276,5 +283,10 @@ return {
     "uga-rosa/ccc.nvim",
     config = true,
     cmd = { "CccPick", "CccConvert", "CccHighligherToggle" },
+    keys = {
+      { "<leader>UCp", "<cmd>CccPick<cr>", desc = "Color picker", noremap = true, silent = true },
+      { "<leader>UCc", "<cmd>CccConvert<cr>", desc = "Color convert", noremap = true, silent = true },
+      { "<leader>UCt", "<cmd>CccHighligherToggle<cr>", desc = "Color highlight", noremap = true, silent = true },
+    },
   },
 }
