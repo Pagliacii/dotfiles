@@ -41,6 +41,7 @@ if ok then
       S = { name = "+send" },
     },
     ["<leader>k"] = { name = "+lspsaga" },
+    ["<leader>K"] = { name = "+keymap" },
     ["gp"] = { name = "+preview" },
     ["<leader>p"] = { name = "+python" },
     ["<leader>F"] = {

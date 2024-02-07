@@ -289,4 +289,19 @@ return {
       { "<leader>UCt", "<cmd>CccHighligherToggle<cr>", desc = "Color highlight", noremap = true, silent = true },
     },
   },
+
+  {
+    "tris203/hawtkeys.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = true,
+    cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
+    keys = {
+      { "<leader>Kk", "<cmd>Hawtkeys<cr>", desc = "Searching New Keymaps", noremap = true, silent = true },
+      { "<leader>Ka", "<cmd>HawtkeysAll<cr>", desc = "Show All Existing Keymaps", noremap = true, silent = true },
+      { "<leader>Kd", "<cmd>HawtkeysDupes<cr>", desc = "Showing Duplicate Keymaps", noremap = true, silent = true },
+    },
+  },
 }
