@@ -131,4 +131,17 @@ return {
       { "<M-C-o>", "<cmd>ScratchOpenFzf<cr>", desc = "ScratchOpenFzf" },
     },
   },
+
+  {
+    "simonmclean/triptych.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "nvim-tree/nvim-web-devicons", -- optional
+    },
+    config = true,
+    cmd = { "Triptych" },
+    keys = {
+      { "<leader>f/", "<cmd>Triptych<cr>", desc = "Directory Browser", noremap = true, silent = true },
+    },
+  },
 }
