@@ -18,6 +18,7 @@ return {
 
   {
     "normen/vim-pio",
+    enabled = false,
     cmd = {
       "PIO",
       "PIOInit",
@@ -26,6 +27,22 @@ return {
       "PIONewProject",
       "PIOAddLibrary",
       "PIORemoveLibrary",
+    },
+  },
+
+  {
+    "anurag3301/nvim-platformio.lua",
+    dependencies = {
+      { "akinsho/nvim-toggleterm.lua" },
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    cmd = {
+      "Pioinit",
+      "Piorun",
+      "Piocmd",
+      "Piolib",
+      "Piomon",
     },
   },
 
