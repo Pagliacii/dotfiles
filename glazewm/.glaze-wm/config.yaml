@@ -3,7 +3,7 @@ general:
   focus_follows_cursor: false
 
   # Whether to jump the cursor between windows focused by the WM.
-  cursor_follow_focus: false
+  cursor_follows_focus: false
 
   # Whether to switch back and forth between the previously focused workspace
   # when focusing the current workspace.
@@ -47,9 +47,9 @@ bar:
   font_family: "JetBrainsMono Nerd Font"
   font_size: "16px"
   padding: "4px 6px"
-  offset_x: "16"
-  offset_y: "16"
-  border_radius: "6"
+  offset_x: 16
+  offset_y: 16
+  border_radius: 6
   border_width: "1"
   border_color: "#343a41"
   components_left:
@@ -144,7 +144,7 @@ window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running
   # the WM as admin.
   - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost|Snipaste|explorer|vlc/"
+    match_process_name: "/Taskmgr|ScreenClippingHost|Snipaste|explorer|vlc|QQMusic/"
 
   - command: "ignore"
     match_title: "/OpenAI Translator|GoldenDict/"
@@ -310,4 +310,4 @@ keybindings:
   - commands: ["move to workspace 8", "focus workspace 8"]
     binding: "Alt+Shift+8"
   - commands: ["move to workspace 9", "focus workspace 9"]
-    bindings: ["Alt+Shift+9"]
+    binding: "Alt+Shift+9"
