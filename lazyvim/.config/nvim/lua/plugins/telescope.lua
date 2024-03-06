@@ -163,6 +163,8 @@ return {
     opts = opts,
     keys = {
       { "<leader>fb", false },
+      { "<leader>sb", false },
+      { "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)", noremap = true },
       { "<leader>tk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", noremap = true },
       { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
       { "<leader>tn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notify", noremap = true },
@@ -172,6 +174,17 @@ return {
       { "<leader>tR", "<cmd>Telescope registers theme=dropdown<cr>", desc = "Registers", noremap = true },
       { "<leader>tx", "<cmd>Telescope quickfix<cr>", desc = "Quickfix", noremap = true },
       { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", noremap = true },
+      {
+        "<leader>/",
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+            winblend = 10,
+            previewer = false,
+          }))
+        end,
+        desc = "Fuzzy search (buffer)",
+        noremap = true,
+      },
     },
   },
 }
