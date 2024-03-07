@@ -269,4 +269,32 @@ return {
       },
     },
   },
+
+  {
+    "bloznelis/before.nvim",
+    opts = {
+      -- How many edit locations to store in memory (default: 10)
+      history_size = 42,
+    },
+    keys = {
+      {
+        "[<space>",
+        function()
+          require("before").jump_to_last_edit()
+        end,
+        desc = "Prev edit",
+        noremap = true,
+        silent = true,
+      },
+      {
+        "]<space>",
+        function()
+          require("before").jump_to_next_edit()
+        end,
+        desc = "Next edit",
+        noremap = true,
+        silent = true,
+      },
+    },
+  },
 }

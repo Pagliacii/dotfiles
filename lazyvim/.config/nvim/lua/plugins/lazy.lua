@@ -33,4 +33,5 @@ return {
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.lua" },
   { import = "plugins.extras.game" },
+  { import = "plugins.extras.fun" },
 }

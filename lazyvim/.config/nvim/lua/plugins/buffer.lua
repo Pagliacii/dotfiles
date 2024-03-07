@@ -7,12 +7,16 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
     },
+    config = function(_, opts)
+      require("hbac").setup(opts)
+      require("telescope").load_extension("hbac")
+    end,
     cmd = "Hbac",
     opts = {
       threshold = 8,
     },
     keys = {
-      { "<leader>[", "<cmd>Hbac telescope<cr>", desc = "Manage buffers" },
+      { "<leader>tb", "<cmd>Telescope hbac buffers<cr>", desc = "Manage buffers" },
     },
   },
 }

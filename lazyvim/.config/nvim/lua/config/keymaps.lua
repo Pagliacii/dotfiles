@@ -7,6 +7,7 @@ local ok, wk = pcall(require, "which-key")
 -- Groups
 if ok then
   wk.register({
+    ["<leader>A"] = { name = "+Aha!" },
     ["<leader>r"] = { name = "+rust" },
     ["<leader>P"] = {
       name = "+picker",
