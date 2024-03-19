@@ -304,4 +304,12 @@ return {
       { "<leader>Kd", "<cmd>HawtkeysDupes<cr>", desc = "Showing Duplicate Keymaps", noremap = true, silent = true },
     },
   },
+
+  {
+    "David-Kunz/gen.nvim",
+    opts = {
+      display_mode = "split",
+    },
+    cmd = { "Gen" },
+  },
 }
