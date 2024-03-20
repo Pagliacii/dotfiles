@@ -64,4 +64,10 @@ return {
       { "<leader>V", toggle_venn, desc = "Venn", noremap = true },
     },
   },
+
+  {
+    "backdround/global-note.nvim",
+    cmd = { "GlobalNote" },
+    config = true,
+  },
 }
