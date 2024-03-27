@@ -31,13 +31,6 @@ return {
   },
 
   {
-    "monaqa/dial.nvim",
-    -- lazy-load on keys
-    -- mode is `n` by default. For more advanced options, check the section on key mappings
-    keys = { "<C-a>", { "<C-x>", mode = "n" } },
-  },
-
-  {
     "ziontee113/icon-picker.nvim",
     dependencies = {
       {
@@ -166,30 +159,6 @@ return {
   },
 
   {
-    "jackMort/ChatGPT.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    cmd = {
-      "ChatGPT",
-      "ChatGPTActAs",
-      "ChatGPTRun",
-      "ChatGPTEditWithInstructions",
-      "ChatGPTCompleteCode",
-    },
-    opts = {
-      openai_params = {
-        model = "gpt-4",
-      },
-      openai_edit_params = {
-        model = "gpt-4",
-      },
-    },
-  },
-
-  {
     "Sanix-Darker/snips.nvim",
     cmd = {
       "SnipsCreate",
@@ -303,13 +272,5 @@ return {
       { "<leader>Ka", "<cmd>HawtkeysAll<cr>", desc = "Show All Existing Keymaps", noremap = true, silent = true },
       { "<leader>Kd", "<cmd>HawtkeysDupes<cr>", desc = "Showing Duplicate Keymaps", noremap = true, silent = true },
     },
-  },
-
-  {
-    "David-Kunz/gen.nvim",
-    opts = {
-      display_mode = "split",
-    },
-    cmd = { "Gen" },
   },
 }

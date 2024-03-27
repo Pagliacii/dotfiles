@@ -7,3 +7,6 @@ any = true
 
 [jit]
 any = true
+
+[LazyVim]
+any = true

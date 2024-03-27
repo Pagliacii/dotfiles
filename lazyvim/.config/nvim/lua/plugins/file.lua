@@ -37,37 +37,6 @@ return {
   },
 
   {
-    "ThePrimeagen/harpoon",
-    dependencies = {
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-lua/plenary.nvim" },
-    },
-    config = function(_, opts)
-      require("harpoon").setup(opts)
-      require("telescope").load_extension("harpoon")
-    end,
-    opts = {
-      excluded_filetypes = {
-        "harpoon",
-        "dap-repl",
-        "dap-float",
-        "dap-terminal",
-        "terminal",
-        "toggleterm",
-        "alpha",
-        "dashboard",
-      },
-    },
-    keys = {
-      { "<leader>tm", "<cmd>Telescope harpoon marks<cr>", desc = "Marks", noremap = true },
-      { "<leader>f;", "<cmd>lua require('harpoon.mark').toggle_file()<cr>", desc = "Toggle mark", noremap = true },
-      { "<leader>ft", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick menu", noremap = true },
-      { "<leader>fk", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", desc = "Prev mark", noremap = true },
-      { "<leader>fj", "<cmd>lua require('harpoon.ui').nav_next()<cr>", desc = "Next mark", noremap = true },
-    },
-  },
-
-  {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {

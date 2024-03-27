@@ -297,4 +297,116 @@ return {
       },
     },
   },
+
+  {
+    "ThePrimeagen/harpoon",
+    opts = {
+      excluded_filetypes = {
+        "harpoon",
+        "dap-repl",
+        "dap-float",
+        "dap-terminal",
+        "terminal",
+        "toggleterm",
+        "alpha",
+        "dashboard",
+      },
+    },
+    keys = function()
+      return {
+        {
+          "<leader>Ht",
+          function()
+            local harpoon = require("harpoon")
+            local conf = require("telescope.config").values
+            local file_paths = {}
+            for _, item in ipairs(harpoon:list().items) do
+              table.insert(file_paths, item.value)
+            end
+
+            require("telescope.pickers")
+              .new({}, {
+                prompt_title = "Harpoon",
+                finder = require("telescope.finders").new_table({
+                  results = file_paths,
+                }),
+                previewer = conf.file_previewer({}),
+                sorter = conf.generic_sorter({}),
+              })
+              :find()
+          end,
+          desc = "Open harpoon window",
+          noremap = true,
+        },
+        {
+          "<leader>H;",
+          function()
+            require("harpoon"):list():append()
+          end,
+          desc = "Toggle mark",
+          noremap = true,
+        },
+        {
+          "<leader>Hm",
+          function()
+            local harpoon = require("harpoon")
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+          end,
+          desc = "Quick menu",
+          noremap = true,
+        },
+        {
+          "<leader>H1",
+          function()
+            require("harpoon"):list():select(1)
+          end,
+          desc = "Harpoon to File 1",
+        },
+        {
+          "<leader>H2",
+          function()
+            require("harpoon"):list():select(2)
+          end,
+          desc = "Harpoon to File 2",
+        },
+        {
+          "<leader>H3",
+          function()
+            require("harpoon"):list():select(3)
+          end,
+          desc = "Harpoon to File 3",
+        },
+        {
+          "<leader>H4",
+          function()
+            require("harpoon"):list():select(4)
+          end,
+          desc = "Harpoon to File 4",
+        },
+        {
+          "<leader>H5",
+          function()
+            require("harpoon"):list():select(5)
+          end,
+          desc = "Harpoon to File 5",
+        },
+        {
+          "<leader>Hk",
+          function()
+            require("harpoon"):list():prev()
+          end,
+          desc = "Prev mark",
+          noremap = true,
+        },
+        {
+          "<leader>Hj",
+          function()
+            require("harpoon"):list():next()
+          end,
+          desc = "Next mark",
+          noremap = true,
+        },
+      }
+    end,
+  },
 }

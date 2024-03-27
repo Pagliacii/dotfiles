@@ -15,20 +15,17 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
+    keys = function()
+      return {
+        {
+          "<leader>Mb",
+          ft = "markdown",
+          "<cmd>MarkdownPreviewToggle<cr>",
+          desc = "Preview in browser",
+          silent = true,
+        },
+      }
     end,
-    cmd = { "MarkdownPreviewToggle" },
-    keys = {
-      {
-        "<leader>Mb",
-        function()
-          vim.fn["mkdp#util#toggle_preview"]()
-        end,
-        desc = "Preview in browser",
-        silent = true,
-      },
-    },
   },
 
   {
@@ -56,7 +53,7 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      vim.list_extend(opts.sources, {
+      vim.list_extend(opts.sources or {}, {
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.hover.dictionary,
       })
@@ -67,10 +64,9 @@ return {
     "williamboman/mason.nvim",
     ft = filetypes,
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
+      vim.list_extend(opts.ensure_installed or {}, {
         "glow",
         "markdown-toc",
-        "markdownlint",
         "prettierd",
         "write-good",
       })

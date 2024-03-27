@@ -62,6 +62,7 @@ if ok then
     ["<leader>R"] = { name = "+run" },
     ["<leader>S"] = { name = "+snippet" },
     ["<leader>dL"] = { name = "+log" },
+    ["<leader>H"] = { name = "+harpoon" },
   })
 end
 
@@ -71,26 +72,26 @@ vim.keymap.del("n", "<leader>fT")
 
 if vim.fn.executable("gitui") == 1 then
   vim.keymap.set("n", "<leader>guG", function()
-    require("lazyvim.util").terminal.open({ "gitui" })
+    LazyVim.terminal.open({ "gitui" }, { esc_esc = false, ctrl_hjkl = false })
   end, { desc = "gitui (cwd)" })
   vim.keymap.set("n", "<leader>gug", function()
-    require("lazyvim.util").terminal.open({ "gitui" }, { cwd = require("lazyvim.util").root.get() })
+    LazyVim.terminal.open({ "gitui" }, { cwd = LazyVim.root.get(), esc_esc = false, ctrl_hjkl = false })
   end, { desc = "gitui (root dir)" })
 end
 
 if vim.fn.executable("verco") == 1 then
   vim.keymap.set("n", "<leader>gvG", function()
-    require("lazyvim.util").terminal.open({ "verco" })
+    LazyVim.terminal.open({ "verco" })
   end, { desc = "verco (cwd)" })
   vim.keymap.set("n", "<leader>gvg", function()
-    require("lazyvim.util").terminal.open({ "verco" }, { cwd = require("lazyvim.util").root.get() })
+    LazyVim.terminal.open({ "verco" }, { cwd = require("lazyvim.util").root.get() })
   end, { desc = "verco (root dir)" })
 end
 
 if vim.fn.executable("btop") == 1 then
   -- btop
   vim.keymap.set("n", "<leader>Ub", function()
-    require("lazyvim.util").terminal.open({ "btop" })
+    LazyVim.terminal.open({ "btop" })
   end, { desc = "btop" })
 end
 
