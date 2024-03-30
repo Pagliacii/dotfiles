@@ -78,4 +78,14 @@ return {
     config = true,
     cmd = { "TOC" },
   },
+
+  {
+    "HakonHarnes/img-clip.nvim",
+    ft = filetypes,
+    event = "BufEnter",
+    opts = {},
+    keys = {
+      { "<leader>Mp", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
+    },
+  },
 }
