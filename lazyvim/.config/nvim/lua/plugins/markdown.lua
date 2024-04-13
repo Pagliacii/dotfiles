@@ -82,7 +82,7 @@ return {
   {
     "HakonHarnes/img-clip.nvim",
     ft = filetypes,
-    event = "BufEnter",
+    event = "BufReadPre",
     opts = {},
     keys = {
       { "<leader>Mp", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },

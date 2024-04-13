@@ -24,21 +24,15 @@ return {
   },
 
   {
-    "rmagatti/goto-preview",
+    "dnlhc/glance.nvim",
     config = true,
-    keys = function(_, keys)
-      local cmd_factory = function(cmd)
-        return string.format("<cmd>lua require('goto-preview').%s()<cr>", cmd)
-      end
-      vim.list_extend(keys, {
-        { "gpd", cmd_factory("goto_preview_definition"), desc = "Preview definition", noremap = true },
-        { "gpt", cmd_factory("goto_preview_type_definition"), desc = "Preview type definition", noremap = true },
-        { "gpi", cmd_factory("goto_preview_implementation"), desc = "Preview implementation", noremap = true },
-        { "gpr", cmd_factory("goto_preview_references"), desc = "Preview references", noremap = true },
-        { "gpp", cmd_factory("close_all_win"), desc = "Close preview window", noremap = true },
-      })
-      return keys
-    end,
+    cmd = { "Glance" },
+    keys = {
+      { "gpr", "<cmd>Glance references<cr>", desc = "Peek references", noremap = true },
+      { "gpd", "<cmd>Glance definitions<cr>", desc = "Peek definitions", noremap = true },
+      { "gpt", "<cmd>Glance type_definitions<cr>", desc = "Peek type definitions", noremap = true },
+      { "gpi", "<cmd>Glance implementations<cr>", desc = "Peek implementations", noremap = true },
+    },
   },
 
   {

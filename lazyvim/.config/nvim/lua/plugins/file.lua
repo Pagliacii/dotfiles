@@ -85,7 +85,6 @@ return {
 
   {
     "LintaoAmons/scratch.nvim",
-    event = "VeryLazy",
     cmd = {
       "Scratch",
       "ScratchWithName",

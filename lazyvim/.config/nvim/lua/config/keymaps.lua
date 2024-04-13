@@ -43,7 +43,7 @@ if ok then
     },
     ["<leader>k"] = { name = "+lspsaga" },
     ["<leader>K"] = { name = "+keymap" },
-    ["gp"] = { name = "+preview" },
+    ["gp"] = { name = "+peek" },
     ["<leader>p"] = { name = "+python" },
     ["<leader>F"] = {
       name = "+fzf",
