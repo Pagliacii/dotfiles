@@ -184,6 +184,21 @@ return {
   },
 
   {
+    "icholy/lsplinks.nvim",
+    config = true,
+    keys = {
+      {
+        "gX",
+        function(...)
+          require("lsplinks").gx(...)
+        end,
+        desc = "LSP links",
+        noremap = true,
+      },
+    },
+  },
+
+  {
     "jokajak/keyseer.nvim",
     version = false,
     config = true,

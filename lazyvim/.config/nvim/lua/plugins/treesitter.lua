@@ -1,6 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "LiadOz/nvim-dap-repl-highlights",
+    },
     opts = {
       indent = { enable = false },
       ensure_installed = {
