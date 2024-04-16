@@ -220,6 +220,7 @@ pane_frames false
 //
 theme "tokyo-night-storm"
 // theme "catppuccin"
+// theme "everforest-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -229,7 +230,7 @@ default_layout "compact"
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
-default_mode "locked"
+default_mode "normal"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
@@ -255,9 +256,9 @@ default_mode "locked"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
-copy_command "cb copy"
+// copy_command "cb copy"
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.

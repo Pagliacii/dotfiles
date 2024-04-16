@@ -1,3 +1,10 @@
+-- it has benn lazy-load by default, but whatever we use this for which-key popup descriptions
+local fl = setmetatable({}, {
+  __index = function(_, k)
+    return ([[<cmd>lua require('fzf-lua-overlay').%s()<cr>]]):format(k)
+  end,
+})
+
 return {
   {
     "ibhagwan/fzf-lua",
@@ -504,6 +511,19 @@ return {
         desc = "packadd",
         noremap = true,
       },
+    },
+  },
+
+  {
+    "phanen/fzf-lua-overlay",
+    dependencies = { "ibhagwan/fzf-lua" },
+    cmd = "FLO",
+    init = function()
+      require("fzf-lua-overlay.providers.recentfiles").init()
+    end,
+    -- stylua: ignore
+    keys = {
+      { "<leader>Fz", fl.zoxide, desc = "Zoxide", noremap = true },
     },
   },
 }
