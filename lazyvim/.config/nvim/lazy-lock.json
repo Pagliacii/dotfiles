@@ -155,6 +155,7 @@
   "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
   "rustaceanvim": { "branch": "master", "commit": "2a53e2fe911e971fa90341af27d2fe1447c0cbd2" },
   "scratch.nvim": { "branch": "main", "commit": "9b35cf9ff22f243cea72febc37416897d6eae184" },
+  "screenkey.nvim": { "branch": "main", "commit": "3ee8f62196bb4fc3bdb9b102501f25a2f21218d9" },
   "shenzhen-solitaire.nvim": { "branch": "master", "commit": "cac9f55cd001f064a40cc5d1de3070fd97f54ee1" },
   "sibling-swap.nvim": { "branch": "main", "commit": "a9a0fbb734a8f767cd7cf4c99a78cb27aebe2f88" },
   "smart-splits.nvim": { "branch": "master", "commit": "95d11bfc83263236431ead7dc017f5ab0ff992ca" },

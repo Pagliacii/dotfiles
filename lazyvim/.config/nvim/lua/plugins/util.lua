@@ -288,4 +288,11 @@ return {
       { "<leader>Kd", "<cmd>HawtkeysDupes<cr>", desc = "Showing Duplicate Keymaps", noremap = true, silent = true },
     },
   },
+
+  {
+    "NStefan002/screenkey.nvim",
+    cmd = "Screenkey",
+    version = "*",
+    config = true,
+  },
 }
