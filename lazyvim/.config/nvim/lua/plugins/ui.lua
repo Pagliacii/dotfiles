@@ -3,8 +3,8 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       stages = "fade_in_slide_out",
-      timeout = 1500,
-      render = "compact",
+      timeout = 1000,
+      render = "default",
     },
   },
 
@@ -328,6 +328,7 @@ return {
   {
     "folke/noice.nvim",
     opts = function(_, opts)
+      opts.presets.bottom_search = false
       opts.presets.lsp_doc_border = true
     end,
   },
