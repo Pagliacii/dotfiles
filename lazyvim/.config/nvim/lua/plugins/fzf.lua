@@ -517,9 +517,9 @@ return {
   {
     "phanen/fzf-lua-overlay",
     dependencies = { "ibhagwan/fzf-lua" },
-    cmd = "FLO",
+    cond = not vim.g.vscode,
     init = function()
-      require("fzf-lua-overlay.providers.recentfiles").init()
+      require("fzf-lua-overlay").init()
     end,
     -- stylua: ignore
     keys = {
