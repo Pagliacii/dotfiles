@@ -163,11 +163,13 @@ return {
           on_attach = function(client, _)
             client.server_capabilities.hoverProvider = false
           end,
-          settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {
-              "--select",
-              table.concat(rules, ","),
+          init_options = {
+            settings = {
+              -- Any extra CLI arguments for `ruff` go here.
+              args = {
+                "--select",
+                table.concat(rules, ","),
+              },
             },
           },
         },

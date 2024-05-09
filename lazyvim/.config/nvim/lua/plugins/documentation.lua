@@ -11,6 +11,7 @@ return {
       cmd_args = { "-s", "dark", "-w", "80" },
       picker_cmd = true,
       after_open = function(bufnr)
+        -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc><Esc>", true, false, true), "t", false)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<Esc>", ":close<cr>", { silent = true })
         vim.api.nvim_buf_set_keymap(bufnr, "n", "q", ":close<cr>", { silent = true })
       end,

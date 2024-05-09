@@ -43,7 +43,10 @@ return {
         opts.sources = {}
       end
       vim.list_extend(opts.sources, {
-        null_ls.builtins.diagnostics.codespell,
+        null_ls.builtins.diagnostics.codespell.with({
+          extra_args = { "-I", vim.fn.stdpath("config") .. "/spell/en.utf-8.add" },
+        }),
+        null_ls.builtins.completion.spell,
       })
     end,
   },

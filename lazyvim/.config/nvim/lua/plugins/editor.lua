@@ -53,38 +53,31 @@ return {
   {
     "ziontee113/syntax-tree-surfer",
     event = { "BufReadPost" },
+    config = true,
     keys = function()
       -- Syntax Tree Surfer
       local opts = { noremap = true, silent = true }
 
       -- Normal Mode Swapping:
       -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
-      vim.keymap.set(
-        "n",
-        "vU",
-        "<cmd>STSSwapCurrentNodeNextNormal<cr>",
-        { silent = true, expr = true, desc = "Swap cursor node up" }
-      )
-      vim.keymap.set(
-        "n",
-        "vD",
-        "<cmd>STSSwapCurrentNodePrevNormal<cr>",
-        { silent = true, expr = true, desc = "Swap cursor node down" }
-      )
+      vim.keymap.set("n", "vU", function()
+        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+        return "g@l"
+      end, vim.tbl_extend("force", opts, { expr = true, desc = "Swap cursor node up" }))
+      vim.keymap.set("n", "vD", function()
+        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+        return "g@l"
+      end, vim.tbl_extend("force", opts, { expr = true, desc = "Swap cursor node down" }))
 
       -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
-      vim.keymap.set(
-        "n",
-        "vd",
-        "<cmd>STSSwapCurrentNodeNextNormal<cr>",
-        { silent = true, expr = true, desc = "Swap current node (next)" }
-      )
-      vim.keymap.set(
-        "n",
-        "vd",
-        "<cmd>STSSwapCurrentNodePrevNormal<cr>",
-        { silent = true, expr = true, desc = "Swap current node (prev)" }
-      )
+      vim.keymap.set("n", "vd", function()
+        vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
+        return "g@l"
+      end, vim.tbl_extend("force", opts, { expr = true, desc = "Swap current node (next)" }))
+      vim.keymap.set("n", "vu", function()
+        vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
+        return "g@l"
+      end, vim.tbl_extend("force", opts, { expr = true, desc = "Swap current node (prev)" }))
 
       -- Visual Selection from Normal Mode
       vim.keymap.set("n", "vx", "<cmd>STSSelectMasterNode<cr>", opts)
