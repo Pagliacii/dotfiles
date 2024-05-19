@@ -1,12 +1,15 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.coding.codeium",
     "lazyvim.plugins.extras.coding.yanky",
+    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.editor.illuminate",
+    "lazyvim.plugins.extras.editor.mini-files",
     "lazyvim.plugins.extras.editor.navic",
+    "lazyvim.plugins.extras.editor.trouble-v3",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.cmake",
     "lazyvim.plugins.extras.lang.go",
@@ -17,12 +20,12 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.lazyrc",
     "lazyvim.plugins.extras.lsp.none-ls",
+    "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.edgy",
-    "lazyvim.plugins.extras.util.dot",
-    "lazyvim.plugins.extras.editor.aerial"
+    "lazyvim.plugins.extras.util.dot"
   ],
   "news": {
-    "NEWS.md": "3415"
+    "NEWS.md": "5094"
   },
-  "version": 3
+  "version": 4
 }

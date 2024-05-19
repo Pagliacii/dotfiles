@@ -22,7 +22,7 @@ return {
         { "<leader>fy", cmd_factory("copyFilename"), desc = "Copy file name", noremap = true },
         { "<leader>fc", cmd_factory("createNewFile"), desc = "Create new file", noremap = true },
         { "<leader>fX", cmd_factory("chmodx"), desc = "Chmod", noremap = true },
-        { "<leader>fm", cmd_factory("moveAndRenameFile"), desc = "Mv & Rn", noremap = true },
+        { "<leader>fv", cmd_factory("moveAndRenameFile"), desc = "Mv & Rn", noremap = true },
         { "<leader>fd", cmd_factory("duplicateFile"), desc = "Duplicate", noremap = true },
         { "<leader>fD", cmd_factory("trashFile"), desc = "Move to trash", noremap = true },
         {

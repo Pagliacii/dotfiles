@@ -63,6 +63,7 @@ if ok then
     ["<leader>S"] = { name = "+snippet" },
     ["<leader>dL"] = { name = "+log" },
     ["<leader>H"] = { name = "+harpoon" },
+    ["<leader>cR"] = { name = "+refactoring" },
   })
 end
 

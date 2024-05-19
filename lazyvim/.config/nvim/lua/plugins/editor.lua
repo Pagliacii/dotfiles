@@ -222,16 +222,6 @@ return {
   },
 
   {
-    "RRethy/vim-illuminate",
-    event = "LazyFile",
-    opts = {
-      filetypes_denylist = {
-        "dashboard",
-      },
-    },
-  },
-
-  {
     "bloznelis/before.nvim",
     opts = {
       -- How many edit locations to store in memory (default: 10)

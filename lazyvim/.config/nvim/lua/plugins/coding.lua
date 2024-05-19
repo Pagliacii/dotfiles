@@ -178,24 +178,125 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("refactoring").setup()
+    config = function(_, opts)
+      require("refactoring").setup(opts)
       -- load refactoring Telescope extension
-      require("telescope").load_extension("refactoring")
+      if LazyVim.has("telescope.nvim") then
+        require("telescope").load_extension("refactoring")
+      end
     end,
     cmd = { "Refactor" },
     keys = {
       {
-        "<leader>cR",
+        "<leader>cRs",
         function()
           require("telescope").extensions.refactoring.refactors()
         end,
+        mode = "v",
         desc = "Refactor",
       },
+      {
+        "<leader>cRi",
+        function()
+          require("refactoring").refactor("Inline Variable")
+        end,
+        mode = { "n", "v" },
+        desc = "Inline Variable",
+      },
+      {
+        "<leader>cRb",
+        function()
+          require("refactoring").refactor("Extract Block")
+        end,
+        desc = "Extract Block",
+      },
+      {
+        "<leader>cRf",
+        function()
+          require("refactoring").refactor("Extract Block To File")
+        end,
+        desc = "Extract Block To File",
+      },
+      {
+        "<leader>cRP",
+        function()
+          require("refactoring").debug.printf({ below = true })
+        end,
+        desc = "Debug Print",
+      },
+      {
+        "<leader>cRp",
+        function()
+          require("refactoring").debug.print_var({ normal = true })
+        end,
+        desc = "Debug Print Variable",
+      },
+      {
+        "<leader>cRc",
+        function()
+          require("refactoring").debug.cleanup({})
+        end,
+        desc = "Debug Cleanup",
+      },
+      {
+        "<leader>cRf",
+        function()
+          require("refactoring").refactor("Extract Function")
+        end,
+        mode = "v",
+        desc = "Extract Function",
+      },
+      {
+        "<leader>cRF",
+        function()
+          require("refactoring").refactor("Extract Function To File")
+        end,
+        mode = "v",
+        desc = "Extract Function To File",
+      },
+      {
+        "<leader>cRx",
+        function()
+          require("refactoring").refactor("Extract Variable")
+        end,
+        mode = "v",
+        desc = "Extract Variable",
+      },
+      {
+        "<leader>cRp",
+        function()
+          require("refactoring").debug.print_var()
+        end,
+        mode = "v",
+        desc = "Debug Print Variable",
+      },
+    },
+    opts = {
+      prompt_func_return_type = {
+        go = false,
+        java = false,
+        cpp = false,
+        c = false,
+        h = false,
+        hpp = false,
+        cxx = false,
+      },
+      prompt_func_param_type = {
+        go = false,
+        java = false,
+        cpp = false,
+        c = false,
+        h = false,
+        hpp = false,
+        cxx = false,
+      },
+      printf_statements = {},
+      print_var_statements = {},
     },
   },
 
