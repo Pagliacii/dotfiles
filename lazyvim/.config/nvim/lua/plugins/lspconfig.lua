@@ -168,8 +168,11 @@ return {
   },
 
   {
-    "hinell/lsp-timeout.nvim",
+    "zeioth/garbage-day.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
-    event = "LspAttach",
+    event = "VeryLazy",
+    opts = {
+      grace_period = 60 * 10,
+    },
   },
 }
