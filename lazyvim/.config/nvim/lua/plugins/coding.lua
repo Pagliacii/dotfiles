@@ -78,6 +78,7 @@ return {
 
   {
     "stevearc/overseer.nvim",
+    dependencies = { "mfussenegger/nvim-dap" },
     opts = {
       templates = { "builtin", "user" },
     },

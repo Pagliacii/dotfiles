@@ -53,20 +53,4 @@ return {
       { "<leader>th", "<cmd>Telescope heading theme=dropdown<cr>", desc = "Headings", noremap = true },
     },
   },
-
-  {
-    "danymat/neogen",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = { snippet_engine = "luasnip" },
-    cmd = { "Neogen" },
-    keys = {
-      {
-        "<leader>a",
-        ":lua require('neogen').generate()<cr>",
-        desc = "Generate annotation",
-        noremap = true,
-        silent = true,
-      },
-    },
-  },
 }

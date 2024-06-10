@@ -64,6 +64,7 @@ return {
 
   {
     "simrat39/rust-tools.nvim",
+    enable = false,
     ft = filetypes,
     cmd = { "RustOpenCargo", "RustRunnables", "RustDebuggables" },
     keys = {
