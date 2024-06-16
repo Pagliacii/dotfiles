@@ -64,10 +64,29 @@ return {
 
   {
     "mfussenegger/nvim-dap",
+    opts = function()
+      local dap = require("dap")
+      dap.listeners.on_config["cpp"] = function(config)
+        if config.type ~= "codelldb" then
+          return config
+        end
+        if type(config.args) == "string" then
+          config.args = vim.split(config.args, " ")
+        end
+        return config
+      end
+    end,
     keys = {
       { "<leader>dO", false },
       { "<leader>dn", "<cmd>lua require('dap').step_over()<cr>", desc = "Next", noremap = true },
     },
+  },
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "codelldb", "debugpy", "delve" })
+    end,
   },
 
   {

@@ -295,4 +295,16 @@ return {
     version = "*",
     config = true,
   },
+
+  {
+    "sarrisv/readermode.nvim",
+    cmd = "ReaderMode",
+    opts = {
+      enabled = false, -- Turned off by default
+      keymap = "<leader>Ur",
+    },
+    keys = {
+      { "<leader>Ur", "<cmd>ReaderMode<cr>", desc = "Reader mode", noremap = true, silent = true },
+    },
+  },
 }

@@ -32,14 +32,6 @@ return {
   },
 
   {
-    "jay-babu/mason-nvim-dap.nvim",
-    ft = filetypes,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "debugpy" })
-    end,
-  },
-
-  {
     "mfussenegger/nvim-dap-python",
     ft = filetypes,
     config = function()
