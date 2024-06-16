@@ -93,8 +93,8 @@ return {
       "OverseerClearCache",
     },
     keys = {
-      { "<leader>Rr", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
-      { "<leader>Rl", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
+      { "<localleader>rr", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
+      { "<localleader>rl", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
     },
   },
 
@@ -110,7 +110,7 @@ return {
       },
     },
     keys = {
-      { "<leader>Rs", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
+      { "<localleader>rs", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
     },
   },
 
