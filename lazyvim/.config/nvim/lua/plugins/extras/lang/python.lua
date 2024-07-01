@@ -171,6 +171,7 @@ return {
 
   {
     "linux-cultist/venv-selector.nvim",
+    branch = "regexp", -- Use this branch for the new version
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-telescope/telescope.nvim",
@@ -179,20 +180,11 @@ return {
     cmd = "VenvSelect",
     opts = function(_, opts)
       opts.dap_enabled = true
-      opts.changed_venv_hooks = {
-        require("venv-selector").hooks.pyright,
-      }
     end,
+    ft = filetypes,
     keys = {
+      { "<leader>cv", false },
       { "<leader>pv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", noremap = true },
-      {
-        "<leader>pV",
-        function()
-          vim.print(require("venv-selector").get_active_venv())
-        end,
-        desc = "Show VirtualEnv",
-        noremap = true,
-      },
     },
   },
 }
