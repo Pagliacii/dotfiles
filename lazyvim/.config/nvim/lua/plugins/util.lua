@@ -251,19 +251,6 @@ return {
   },
 
   {
-    "roobert/activate.nvim",
-    keys = {
-      {
-        "<leader>Ua",
-        [[<cmd>lua require("activate").list_plugins()<cr>]],
-        desc = "Awesome plugins",
-        noremap = true,
-        silent = true,
-      },
-    },
-  },
-
-  {
     "uga-rosa/ccc.nvim",
     config = true,
     cmd = { "CccPick", "CccConvert", "CccHighligherToggle" },

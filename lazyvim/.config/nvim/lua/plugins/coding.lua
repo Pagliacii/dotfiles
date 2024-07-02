@@ -99,22 +99,6 @@ return {
   },
 
   {
-    "michaelb/sniprun",
-    enabled = not jit.os:find("Windows"),
-    build = "bash install.sh 1",
-    cmd = { "SnipRun", "SnipClose", "SnipReset", "SnipInfo" },
-    opts = {
-      display = {
-        "VirtualTextOk",
-        "VirtualTextError",
-      },
-    },
-    keys = {
-      { "<localleader>rs", "<cmd>SnipRun<cr>", mode = { "n", "v" }, desc = "SnipRun", noremap = true },
-    },
-  },
-
-  {
     "piersolenski/wtf.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
