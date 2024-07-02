@@ -23,37 +23,39 @@ local function toggle_venn()
   end
 end
 
+local prefix = "<leader>n"
+
 return {
   {
     "RutaTang/quicknote.nvim",
     config = true,
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>Nlc", quicknote_cmd("NewNoteAtCurrentLine"), desc = "Create" },
-      { "<leader>Nlo", quicknote_cmd("OpenNoteAtCurrentLine"), desc = "Open" },
-      { "<leader>Nld", quicknote_cmd("DeleteNoteAtCurrentLine"), desc = "Delete" },
-      { "<leader>Ncc", quicknote_cmd("NewNoteAtCWD"), desc = "Create" },
-      { "<leader>Nco", quicknote_cmd("OpenNoteAtCWD"), desc = "Open" },
-      { "<leader>Ncd", quicknote_cmd("DeleteNoteAtCWD"), desc = "Delete" },
-      { "<leader>Ngc", quicknote_cmd("NewNoteAtGlobal"), desc = "Create" },
-      { "<leader>Ngo", quicknote_cmd("OpenNoteAtGlobal"), desc = "Open" },
-      { "<leader>Ngd", quicknote_cmd("DeleteNoteAtGlobal"), desc = "Delete" },
-      { "<leader>NLb", quicknote_cmd("ListNotesForCurrentBuffer"), desc = "Current buffer" },
-      { "<leader>NLc", quicknote_cmd("ListNotesForCWD"), desc = "CWD" },
-      { "<leader>NLg", quicknote_cmd("ListNotesForGlobal"), desc = "Global" },
-      { "<leader>NLf", quicknote_cmd("ListNotesForAFileOrWDInCWD"), desc = "File or dir" },
-      { "<leader>Njp", quicknote_cmd("JumpToPreviousNote"), desc = "Previous" },
-      { "<leader>Njn", quicknote_cmd("JumpToNextNote"), desc = "Next" },
-      { "<leader>NCb", quicknote_cmd("GetNotesCountForCurrentBuffer"), desc = "Current buffer" },
-      { "<leader>NCc", quicknote_cmd("GetNotesCountForCWD"), desc = "CWD" },
-      { "<leader>NCg", quicknote_cmd("GetNotesCountForGlobal"), desc = "Global" },
-      { "<leader>Ns", quicknote_cmd("ToggleNoteSigns"), desc = "Toggle signs" },
-      { "<leader>NEb", quicknote_cmd("ExportNotesForCurrentBuffer"), desc = "Current buffer" },
-      { "<leader>NEc", quicknote_cmd("ExportNotesForCWD"), desc = "CWD" },
-      { "<leader>NEg", quicknote_cmd("ExportNotesForGlobal"), desc = "Global" },
-      { "<leader>NIb", quicknote_cmd("ImportNotesForCurrentBuffer"), desc = "Current buffer" },
-      { "<leader>NIc", quicknote_cmd("ImportNotesForCWD"), desc = "CWD" },
-      { "<leader>NIg", quicknote_cmd("ImportNotesForGlobal"), desc = "Global" },
+      { prefix .. "lc", quicknote_cmd("NewNoteAtCurrentLine"), desc = "Create" },
+      { prefix .. "lo", quicknote_cmd("OpenNoteAtCurrentLine"), desc = "Open" },
+      { prefix .. "ld", quicknote_cmd("DeleteNoteAtCurrentLine"), desc = "Delete" },
+      { prefix .. "cc", quicknote_cmd("NewNoteAtCWD"), desc = "Create" },
+      { prefix .. "co", quicknote_cmd("OpenNoteAtCWD"), desc = "Open" },
+      { prefix .. "cd", quicknote_cmd("DeleteNoteAtCWD"), desc = "Delete" },
+      { prefix .. "Gc", quicknote_cmd("NewNoteAtGlobal"), desc = "Create" },
+      { prefix .. "Go", quicknote_cmd("OpenNoteAtGlobal"), desc = "Open" },
+      { prefix .. "Gd", quicknote_cmd("DeleteNoteAtGlobal"), desc = "Delete" },
+      { prefix .. "Lb", quicknote_cmd("ListNotesForCurrentBuffer"), desc = "Current buffer" },
+      { prefix .. "Lc", quicknote_cmd("ListNotesForCWD"), desc = "CWD" },
+      { prefix .. "Lg", quicknote_cmd("ListNotesForGlobal"), desc = "Global" },
+      { prefix .. "Lf", quicknote_cmd("ListNotesForAFileOrWDInCWD"), desc = "File or dir" },
+      { prefix .. "jp", quicknote_cmd("JumpToPreviousNote"), desc = "Previous" },
+      { prefix .. "jn", quicknote_cmd("JumpToNextNote"), desc = "Next" },
+      { prefix .. "Cb", quicknote_cmd("GetNotesCountForCurrentBuffer"), desc = "Current buffer" },
+      { prefix .. "Cc", quicknote_cmd("GetNotesCountForCWD"), desc = "CWD" },
+      { prefix .. "Cg", quicknote_cmd("GetNotesCountForGlobal"), desc = "Global" },
+      { prefix .. "s", quicknote_cmd("ToggleNoteSigns"), desc = "Toggle signs" },
+      { prefix .. "Eb", quicknote_cmd("ExportNotesForCurrentBuffer"), desc = "Current buffer" },
+      { prefix .. "Ec", quicknote_cmd("ExportNotesForCWD"), desc = "CWD" },
+      { prefix .. "Eg", quicknote_cmd("ExportNotesForGlobal"), desc = "Global" },
+      { prefix .. "Ib", quicknote_cmd("ImportNotesForCurrentBuffer"), desc = "Current buffer" },
+      { prefix .. "Ic", quicknote_cmd("ImportNotesForCWD"), desc = "CWD" },
+      { prefix .. "Ig", quicknote_cmd("ImportNotesForGlobal"), desc = "Global" },
     },
   },
 
@@ -61,7 +63,7 @@ return {
     "jbyuki/venn.nvim",
     cmd = { "VBox" },
     keys = {
-      { "<leader>V", toggle_venn, desc = "Venn", noremap = true },
+      { prefix .. "v", toggle_venn, desc = "Venn", noremap = true },
     },
   },
 
@@ -69,5 +71,51 @@ return {
     "backdround/global-note.nvim",
     cmd = { "GlobalNote" },
     config = true,
+    keys = {
+      {
+        prefix .. "g",
+        function()
+          require("global-note").toggle_note()
+        end,
+        desc = "Global Note",
+        noremap = true,
+      },
+    },
+  },
+
+  {
+    "chomosuke/typst-preview.nvim",
+    ft = { "typ", "typst" },
+    version = "0.3.*",
+    build = function()
+      require("typst-preview").update()
+    end,
+    keys = {
+      { prefix .. "tp", "<cmd>TypstPreviewToggle<cr>", desc = "Toggle Typst Preview", noremap = true },
+      { prefix .. "tc", "<cmd>TypstPreviewSyncCursor<cr>", desc = "Sync Cursor", noremap = true },
+      { prefix .. "ts", "<cmd>TypstPreview slide<cr>", desc = "Preview in slides", noremap = true },
+    },
+  },
+
+  {
+    "williamboman/mason.nvim",
+    ft = { "typ", "typst" },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "typstfmt",
+        "typst-lsp",
+      })
+    end,
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    ft = { "typ", "typst" },
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      vim.list_extend(opts.sources or {}, {
+        null_ls.builtins.formatting.typstfmt,
+      })
+    end,
   },
 }

@@ -19,6 +19,7 @@ return {
         "python",
         "query",
         "regex",
+        "typst",
         "vim",
         "vimdoc",
         "yaml",
