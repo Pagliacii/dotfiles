@@ -173,8 +173,17 @@ return {
         if vim.tbl_contains(excluded_buftypes, buftype) then
           return true
         end
-        local excluded_filetypes = { "alpha", "dashboard" }
-        return vim.tbl_contains(excluded_filetypes, filetype)
+        local excluded_filetypes = { "alpha", "dashboard", "dap-repl", "neo-tree", "toggleterm" }
+        if vim.tbl_contains(excluded_filetypes, filetype) then
+          return true
+        end
+        local excluded_ft_prefixes = { "dapui_" }
+        for _, prefix in ipairs(excluded_ft_prefixes) do
+          if filetype:sub(1, #prefix) == prefix then
+            return true
+          end
+        end
+        return false
       end,
     },
   },
