@@ -19,6 +19,7 @@ return {
           name = "rg",
           keyword_length = 3,
         },
+        { name = "neorg" },
       }))
     end,
   },

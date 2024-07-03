@@ -84,15 +84,6 @@ return {
 
       return opts
     end,
-    keys = {
-      {
-        "<leader>o",
-        "<cmd>Dashboard<cr>",
-        desc = "Open Dashboard",
-        noremap = true,
-        silent = true,
-      },
-    },
   },
 
   {

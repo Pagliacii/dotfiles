@@ -118,4 +118,48 @@ return {
       })
     end,
   },
+
+  {
+    "nvim-neorg/neorg",
+    dependencies = {
+      {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+      },
+    },
+    lazy = false,
+    version = "*",
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.completion"] = {
+            config = { engine = "nvim-cmp" },
+          },
+          ["core.concealer"] = {},
+          ["core.export"] = {},
+          ["core.export.markdown"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              },
+              default_workspace = "notes",
+            },
+          },
+          ["core.summary"] = {},
+          ["core.ui.calendar"] = {},
+        },
+      })
+
+      vim.wo.foldlevel = 99
+      vim.wo.conceallevel = 2
+    end,
+    keys = {
+      { prefix .. "n", "<cmd>Neorg index<cr>", desc = "Neorg Index" },
+      { prefix .. "d", "<cmd>Neorg journal today<cr>", desc = "Today Journal" },
+      { prefix .. "r", "<cmd>Neorg return<cr>", desc = "Neorg Return" },
+    },
+  },
 }
