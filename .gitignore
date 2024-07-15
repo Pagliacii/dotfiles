@@ -330,3 +330,4 @@ vim/.vim/view
 .quicknote/
 scratch_config.json
 
+.aider*
