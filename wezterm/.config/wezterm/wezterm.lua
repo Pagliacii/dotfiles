@@ -527,6 +527,7 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	window:set_config_overrides(overrides)
 end)
 
+config.launch_menu = config.launch_menu or {}
 table.insert(config.launch_menu, {
 	label = "nushell",
 	args = { "nu" },
