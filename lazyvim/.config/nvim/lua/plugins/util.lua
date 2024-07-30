@@ -138,7 +138,7 @@ return {
     },
     cmd = { "Cheatsheet", "CheatsheetEdit" },
     keys = {
-      { "<leader>?", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
+      { "<localleader>?", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
     },
   },
 
@@ -246,7 +246,13 @@ return {
       "HydrateEnable",
     },
     keys = {
-      { "<leader>h", "<cmd>HydrateNow<cr>", desc = "Drink water", noremap = true, silent = true },
+      {
+        "<leader>h",
+        "<cmd>HydrateNow<cr>",
+        desc = "Drink water",
+        noremap = true,
+        silent = true,
+      },
     },
   },
 

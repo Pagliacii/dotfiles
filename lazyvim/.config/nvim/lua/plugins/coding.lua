@@ -83,20 +83,6 @@ return {
     opts = {
       templates = { "builtin", "user" },
     },
-    cmd = {
-      "OverseerRun",
-      "OverseerRunCmd",
-      "OverseerToggle",
-      "OverseerInfo",
-      "OverseerBuild",
-      "OverseerQuickAction",
-      "OverseerTaskAction",
-      "OverseerClearCache",
-    },
-    keys = {
-      { "<localleader>rr", "<cmd>OverseerRun<cr>", desc = "Run a task", noremap = true },
-      { "<localleader>rl", "<cmd>OverseerToggle!<cr>", desc = "Task list", noremap = true },
-    },
   },
 
   {

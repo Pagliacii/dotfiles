@@ -34,7 +34,7 @@ return {
       {
         "<leader>Bb",
         [[<cmd>lua require("browse").open_bookmarks()<cr>]],
-        desc = "Bookmarks",
+        desc = "Search bookmarks",
         noremap = true,
         silent = true,
       },
