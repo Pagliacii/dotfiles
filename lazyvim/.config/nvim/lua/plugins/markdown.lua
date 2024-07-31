@@ -88,4 +88,18 @@ return {
       { "<leader>Mp", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
     },
   },
+
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    opts = {
+      heading = {
+        sign = true,
+      },
+      code = {
+        sign = true,
+        left_pad = 1,
+        width = "full",
+      },
+    },
+  },
 }

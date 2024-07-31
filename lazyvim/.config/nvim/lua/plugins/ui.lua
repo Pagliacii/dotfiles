@@ -142,6 +142,8 @@ return {
         },
         excluded_filetypes = {
           "alpha",
+          "cmp_docs",
+          "cmp_menu",
           "dashboard",
           "neo-tree",
           "lazy",
