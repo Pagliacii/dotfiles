@@ -84,7 +84,6 @@ plugins=(
     encode64
     extract
     fancy-ctrl-z
-    fd
     fzf-tab
     git
     git-auto-fetch
@@ -97,7 +96,6 @@ plugins=(
     poetry
     pyenv
     python
-    ripgrep
     rust
     rustup
     safe-paste
