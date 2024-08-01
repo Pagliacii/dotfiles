@@ -93,12 +93,14 @@ return {
     "MeanderingProgrammer/markdown.nvim",
     opts = {
       heading = {
-        sign = true,
+        sign = false,
+        icons = { "◉ ", "○ ", "◆ ", "◇ ", "★ ", "✸ " },
       },
       code = {
-        sign = true,
-        left_pad = 1,
-        width = "full",
+        sign = false,
+        left_pad = 2,
+        right_pad = 2,
+        width = "block",
       },
     },
   },
