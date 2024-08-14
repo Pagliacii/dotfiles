@@ -2,7 +2,7 @@ return {
   {
     "sindrets/winshift.nvim",
     keys = {
-      { "<leader>wm", "<cmd>WinShift<cr>", desc = "Start Win-Move mode" },
+      { "<leader>wM", "<cmd>WinShift<cr>", desc = "Start Win-Move mode" },
       { "<leader>wh", "<cmd>WinShift left<cr>", desc = "Move current window to left" },
       { "<leader>wl", "<cmd>WinShift right<cr>", desc = "Move current window to right" },
       { "<leader>wk", "<cmd>WinShift up<cr>", desc = "Move current window to top" },
@@ -158,7 +158,6 @@ return {
     event = "VeryLazy",
     opts = {
       tint = -45,
-      saturation = 0.1,
       window_ignore_function = function(winid)
         local bufid = vim.api.nvim_win_get_buf(winid)
         local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")

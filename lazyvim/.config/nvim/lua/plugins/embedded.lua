@@ -63,4 +63,10 @@ return {
     config = true,
     cmd = { "HexDump", "HexAssemble", "HexToggle" },
   },
+
+  {
+    "jedrzejboczar/nvim-dap-cortex-debug",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = true,
+  },
 }

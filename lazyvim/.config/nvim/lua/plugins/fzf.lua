@@ -1,9 +1,93 @@
--- it has benn lazy-load by default, but whatever we use this for which-key popup descriptions
-local fl = setmetatable({}, {
-  __index = function(_, k)
-    return ([[<cmd>lua require('fzf-lua-overlay').%s()<cr>]]):format(k)
-  end,
-})
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>F" representing the "fzf" group
+---@param k string
+---@param cmd string
+---@param opts table
+---@return table
+local key = function(k, cmd, opts)
+  if type(opts) ~= "table" then
+    opts = {}
+  end
+  return vim.tbl_extend("force", {
+    ("<leader>F%s"):format(k),
+    ("<cmd>lua require('fzf-lua').%s()<cr>"):format(cmd),
+    desc = cmd,
+    noremap = true,
+    mode = { "n", "x" },
+  }, opts)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Fs" representing the "fzf > search" group
+---@param k string
+---@param cmd string
+---@param ... table
+---@return table
+local search_key = function(k, cmd, ...)
+  return key("s" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Ft" representing the "fzf > tags" group
+---@param k string
+---@param cmd string
+---@param ... table
+---@return table
+local tags_key = function(k, cmd, ...)
+  return key("t" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Fg" representing the "fzf > git" group
+---@param k any
+---@param cmd any
+---@param ... unknown
+---@return table
+local git_key = function(k, cmd, ...)
+  return key("g" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Fl" representing the "fzf > lsp" group
+---@param k any
+---@param cmd any
+---@param ... unknown
+---@return table
+local lsp_key = function(k, cmd, ...)
+  return key("l" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Fd" representing the "fzf > dap" group
+---@param k string
+---@param cmd string
+---@param ... table
+---@return table
+local dap_key = function(k, cmd, ...)
+  return key("d" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>FM" representing the "fzf > misc." group
+---@param k string
+---@param cmd string
+---@param ... table
+---@return table
+local misc_key = function(k, cmd, ...)
+  return key("M" .. k, cmd, ...)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>Fo" representing the "fzf > overlay" group
+---@param k any
+---@param cmd any
+---@param opts unknown
+---@return table
+local flo_key = function(k, cmd, opts)
+  if type(opts) ~= "table" then
+    opts = {}
+  end
+  return vim.tbl_extend("force", {
+    ("<leader>Fo%s"):format(k),
+    ("<cmd>lua require('flo').%s()<cr>"):format(cmd),
+    desc = cmd,
+    noremap = true,
+    mode = { "n", "x" },
+  }, opts)
+end
 
 return {
   {
@@ -59,471 +143,120 @@ return {
       },
     },
     keys = {
+      --- top-level keys
+      key("r", "resume"),
+      key("f", "files"),
+      key("b", "buffers"),
+      key("F", "oldfiles"),
+      key("x", "quickfix", { desc = "quickfix list" }),
+      key("X", "quickfix_stack", { desc = "quickfix stack" }),
+      key("j", "loclist", { desc = "location list" }),
+      key("J", "loclist_stack", { desc = "location stack" }),
+      key("B", "lines", { desc = "buffer lines" }),
+      key("c", "blines", { desc = "currnet buffer lines" }),
+      key("T", "tabs"),
+      key("A", "args"),
+      --- search group keys
+      search_key("s", "grep"),
+      search_key("s", "grep_visual", { desc = "grep visual", mode = { "v" } }),
+      search_key("l", "grep_last", { desc = "grep last" }),
+      search_key("w", "grep_cword", { desc = "grep word" }),
+      search_key("W", "grep_cWORD", { desc = "grep WORD" }),
+      search_key("p", "grep_project", { desc = "grep project" }),
+      search_key("b", "lgrep_curbuf", { desc = "live grep (buffer)" }),
+      search_key("g", "live_grep", { desc = "live grep (project)" }),
+      search_key("G", "live_grep_glob", { desc = "live grep (glob)" }),
+      search_key("n", "live_grep_native", { desc = "live grep (native)" }),
+      search_key("r", "live_grep_resume", { desc = "live grep resume" }),
       {
-        "<leader>Fr",
-        "<cmd>lua require('fzf-lua').resume()<cr>",
-        desc = "resume",
-        noremap = true,
-      },
-      {
-        "<leader>Ff",
-        "<cmd>lua require('fzf-lua').files()<cr>",
-        desc = "files",
-        noremap = true,
-      },
-      {
-        "<leader>Fb",
-        "<cmd>lua require('fzf-lua').buffers()<cr>",
-        desc = "buffers",
-        noremap = true,
-      },
-      {
-        "<leader>Fo",
-        "<cmd>lua require('fzf-lua').oldfiles()<cr>",
-        desc = "oldfiles",
-        noremap = true,
-      },
-      {
-        "<leader>Fx",
-        "<cmd>lua require('fzf-lua').quickfix()<cr>",
-        desc = "quickfix list",
-        noremap = true,
-      },
-      {
-        "<leader>FX",
-        "<cmd>lua require('fzf-lua').quickfix_stack()<cr>",
-        desc = "quickfix stack",
-        noremap = true,
-      },
-      {
-        "<leader>Fj",
-        "<cmd>lua require('fzf-lua').loclist()<cr>",
-        desc = "location list",
-        noremap = true,
-      },
-      {
-        "<leader>FJ",
-        "<cmd>lua require('fzf-lua').loclist_stack()<cr>",
-        desc = "location stack",
-        noremap = true,
-      },
-      {
-        "<leader>FB",
-        "<cmd>lua require('fzf-lua').lines()<cr>",
-        desc = "buffers lines",
-        noremap = true,
-      },
-      {
-        "<leader>Fc",
-        "<cmd>lua require('fzf-lua').blines()<cr>",
-        desc = "current buffers lines",
-        noremap = true,
-      },
-      {
-        "<leader>FT",
-        "<cmd>lua require('fzf-lua').tabs()<cr>",
-        desc = "tabs",
-        noremap = true,
-      },
-      {
-        "<leader>Fa",
-        "<cmd>lua require('fzf-lua').args()<cr>",
-        desc = "args",
-        noremap = true,
-      },
-      {
-        "<leader>Fss",
-        "<cmd>lua require('fzf-lua').grep()<cr>",
-        desc = "grep",
-        noremap = true,
-      },
-      {
-        "<leader>Fsl",
-        "<cmd>lua require('fzf-lua').grep_last()<cr>",
-        desc = "grep last",
-        noremap = true,
-      },
-      {
-        "<leader>Fsw",
-        "<cmd>lua require('fzf-lua').grep_cword()<cr>",
-        desc = "grep word",
-        noremap = true,
-      },
-      {
-        "<leader>FsW",
-        "<cmd>lua require('fzf-lua').grep_cWORD()<cr>",
-        desc = "grep WORD",
-        noremap = true,
-      },
-      {
-        "<leader>Fss",
-        "<cmd>lua require('fzf-lua').grep_visual()<cr>",
-        mode = { "n", "v" },
-        desc = "grep visual",
-        noremap = true,
-      },
-      {
-        "<leader>Fsp",
-        "<cmd>lua require('fzf-lua').grep_project()<cr>",
-        desc = "grep project lines",
-        noremap = true,
-      },
-      {
-        "<leader>Fsb",
-        "<cmd>lua require('fzf-lua').lgrep_curbuf()<cr>",
-        desc = "live grep (buffer)",
-        noremap = true,
-      },
-      {
-        "<leader>Fsg",
-        "<cmd>lua require('fzf-lua').live_grep()<cr>",
-        desc = "live grep (project)",
-        noremap = true,
-      },
-      {
-        "<leader>Fsr",
-        "<cmd>lua require('fzf-lua').live_grep_resume()<cr>",
-        desc = "live grep resume",
-        noremap = true,
-      },
-      {
-        "<leader>FsG",
-        "<cmd>lua require('fzf-lua').live_grep_glob()<cr>",
-        desc = "live grep (glob)",
-        noremap = true,
-      },
-      {
-        "<leader>Fsn",
-        "<cmd>lua require('fzf-lua').live_grep_native()<cr>",
-        desc = "live grep (native)",
-        noremap = true,
-      },
-      {
-        "<leader>Fsn",
+        "<leader>FsN",
         "<cmd>lua require('fzf-lua').grep_visual({ fzf_opts = { ['--layout'] = 'default' } })<cr>",
         desc = "grep",
         noremap = true,
       },
-      {
-        "<leader>Ftt",
-        "<cmd>lua require('fzf-lua').tags()<cr>",
-        desc = "project",
-        noremap = true,
-      },
-      {
-        "<leader>Ftb",
-        "<cmd>lua require('fzf-lua').btags()<cr>",
-        desc = "buffer",
-        noremap = true,
-      },
-      {
-        "<leader>Ftg",
-        "<cmd>lua require('fzf-lua').tags_grep()<cr>",
-        desc = "grep",
-        noremap = true,
-      },
-      {
-        "<leader>Ftw",
-        "<cmd>lua require('fzf-lua').tags_grep_cword()<cr>",
-        desc = "grep word",
-        noremap = true,
-      },
-      {
-        "<leader>FtW",
-        "<cmd>lua require('fzf-lua').tags_grep_cWORD()<cr>",
-        desc = "grep WORD",
-        noremap = true,
-      },
-      {
-        "<leader>Ftv",
-        "<cmd>lua require('fzf-lua').tags_grep_visual()<cr>",
-        mode = { "n", "v" },
-        desc = "grep visual",
-        noremap = true,
-      },
-      {
-        "<leader>Ftl",
-        "<cmd>lua require('fzf-lua').tags_live_grep()<cr>",
-        desc = "live grep",
-        noremap = true,
-      },
-      {
-        "<leader>Fgf",
-        "<cmd>lua require('fzf-lua').git_files()<cr>",
-        desc = "ls-files",
-        noremap = true,
-      },
-      {
-        "<leader>Fgs",
-        "<cmd>lua require('fzf-lua').git_status()<cr>",
-        desc = "status",
-        noremap = true,
-      },
-      {
-        "<leader>Fgc",
-        "<cmd>lua require('fzf-lua').git_bcommits()<cr>",
-        desc = "commits",
-        noremap = true,
-      },
-      {
-        "<leader>FgC",
-        "<cmd>lua require('fzf-lua').git_commits()<cr>",
-        desc = "commits (project)",
-        noremap = true,
-      },
-      {
-        "<leader>Fgb",
-        "<cmd>lua require('fzf-lua').git_branches()<cr>",
-        desc = "branches",
-        noremap = true,
-      },
-      {
-        "<leader>Fgh",
-        "<cmd>lua require('fzf-lua').git_stash()<cr>",
-        desc = "stash",
-        noremap = true,
-      },
-      {
-        "<leader>Flr",
-        "<cmd>lua require('fzf-lua').lsp_references()<cr>",
-        desc = "references",
-        noremap = true,
-      },
-      {
-        "<leader>Fld",
-        "<cmd>lua require('fzf-lua').lsp_definitions()<cr>",
-        desc = "definitions",
-        noremap = true,
-      },
-      {
-        "<leader>FlD",
-        "<cmd>lua require('fzf-lua').lsp_declarations()<cr>",
-        desc = "declarations",
-        noremap = true,
-      },
-      {
-        "<leader>Flt",
-        "<cmd>lua require('fzf-lua').lsp_typedefs()<cr>",
-        desc = "type definitions",
-        noremap = true,
-      },
-      {
-        "<leader>FlI",
-        "<cmd>lua require('fzf-lua').lsp_implementations()<cr>",
-        desc = "implementations",
-        noremap = true,
-      },
-      {
-        "<leader>Fls",
-        "<cmd>lua require('fzf-lua').lsp_document_symbols()<cr>",
-        desc = "doc symbols",
-        noremap = true,
-      },
-      {
-        "<leader>FlS",
-        "<cmd>lua require('fzf-lua').lsp_workspace_symbols()<cr>",
-        desc = "workspace symbols",
-        noremap = true,
-      },
-      {
-        "<leader>Fll",
-        "<cmd>lua require('fzf-lua').lsp_live_workspace_symbols()<cr>",
-        desc = "workspace symbols (live)",
-        noremap = true,
-      },
-      {
-        "<leader>Flc",
-        "<cmd>lua require('fzf-lua').lsp_code_actions()<cr>",
-        desc = "code actions",
-        noremap = true,
-      },
-      {
-        "<leader>Fli",
-        "<cmd>lua require('fzf-lua').lsp_incoming_calls()<cr>",
-        desc = "incoming calls",
-        noremap = true,
-      },
-      {
-        "<leader>Flo",
-        "<cmd>lua require('fzf-lua').lsp_outgoing_calls()<cr>",
-        desc = "outgoing calls",
-        noremap = true,
-      },
-      {
-        "<leader>Flf",
-        "<cmd>lua require('fzf-lua').lsp_finder()<cr>",
-        desc = "finder",
-        noremap = true,
-      },
-      {
-        "<leader>Flx",
-        "<cmd>lua require('fzf-lua').lsp_document_diagnostics()<cr>",
-        desc = "doc diagnostics",
-        noremap = true,
-      },
-      {
-        "<leader>FlX",
-        "<cmd>lua require('fzf-lua').lsp_workspace_diagnostics()<cr>",
-        desc = "workspace diagnostics",
-        noremap = true,
-      },
-      {
-        "<leader>Fdc",
-        "<cmd>lua require('fzf-lua').dap_commands()<cr>",
-        desc = "commands",
-        noremap = true,
-      },
-      {
-        "<leader>Fds",
-        "<cmd>lua require('fzf-lua').dap_configurations()<cr>",
-        desc = "configurations",
-        noremap = true,
-      },
-      {
-        "<leader>Fdb",
-        "<cmd>lua require('fzf-lua').dap_breakpoints()<cr>",
-        desc = "breakpoints",
-        noremap = true,
-      },
-      {
-        "<leader>Fdf",
-        "<cmd>lua require('fzf-lua').dap_frames()<cr>",
-        desc = "frames",
-        noremap = true,
-      },
-      {
-        "<leader>Fmb",
-        "<cmd>lua require('fzf-lua').builtin()<cr>",
-        desc = "builtin",
-        noremap = true,
-      },
-      {
-        "<leader>Fmp",
-        "<cmd>lua require('fzf-lua').profiles()<cr>",
-        desc = "profiles",
-        noremap = true,
-      },
-      {
-        "<leader>Fmh",
-        "<cmd>lua require('fzf-lua').help_tags()<cr>",
-        desc = "help tags",
-        noremap = true,
-      },
-      {
-        "<leader>Fmm",
-        "<cmd>lua require('fzf-lua').man_pages()<cr>",
-        desc = "man pages",
-        noremap = true,
-      },
-      {
-        "<leader>Fmo",
-        "<cmd>lua require('fzf-lua').colorschemes()<cr>",
-        desc = "color schemes",
-        noremap = true,
-      },
-      {
-        "<leader>FmH",
-        "<cmd>lua require('fzf-lua').highlights()<cr>",
-        desc = "highlight groups",
-        noremap = true,
-      },
-      {
-        "<leader>Fmc",
-        "<cmd>lua require('fzf-lua').commands()<cr>",
-        desc = "commands",
-        noremap = true,
-      },
-      {
-        "<leader>Fmd",
-        "<cmd>lua require('fzf-lua').command_history()<cr>",
-        desc = "command history",
-        noremap = true,
-      },
-      {
-        "<leader>Fms",
-        "<cmd>lua require('fzf-lua').search_history()<cr>",
-        desc = "search history",
-        noremap = true,
-      },
-      {
-        [[<leader>Fm']],
-        "<cmd>lua require('fzf-lua').marks()<cr>",
-        desc = "marks",
-        noremap = true,
-      },
-      {
-        "<leader>Fmj",
-        "<cmd>lua require('fzf-lua').jumps()<cr>",
-        desc = "jumps",
-        noremap = true,
-      },
-      {
-        "<leader>FmC",
-        "<cmd>lua require('fzf-lua').changes()<cr>",
-        desc = "changes",
-        noremap = true,
-      },
-      {
-        "<leader>Fmr",
-        "<cmd>lua require('fzf-lua').registers()<cr>",
-        desc = "registers",
-        noremap = true,
-      },
-      {
-        "<leader>Fmt",
-        "<cmd>lua require('fzf-lua').tagstack()<cr>",
-        desc = "tags",
-        noremap = true,
-      },
-      {
-        "<leader>Fma",
-        "<cmd>lua require('fzf-lua').autocmds()<cr>",
-        desc = "autocmd",
-        noremap = true,
-      },
-      {
-        "<leader>Fmk",
-        "<cmd>lua require('fzf-lua').keymaps()<cr>",
-        desc = "keymaps",
-        noremap = true,
-      },
-      {
-        "<leader>Fmf",
-        "<cmd>lua require('fzf-lua').filetypes()<cr>",
-        desc = "filetypes",
-        noremap = true,
-      },
-      {
-        "<leader>FmM",
-        "<cmd>lua require('fzf-lua').menus()<cr>",
-        desc = "menus",
-        noremap = true,
-      },
-      {
-        "<leader>FmS",
-        "<cmd>lua require('fzf-lua').spell_suggest()<cr>",
-        desc = "spelling suggestions",
-        noremap = true,
-      },
-      {
-        "<leader>Fmp",
-        "<cmd>lua require('fzf-lua').packadd()<cr>",
-        desc = "packadd",
-        noremap = true,
-      },
+      --- tags group keys
+      tags_key("t", "tags", { desc = "project" }),
+      tags_key("b", "btags", { desc = "buffer" }),
+      tags_key("g", "tags_grep", { desc = "grep" }),
+      tags_key("g", "tags_grep_visual", { desc = "grep visual", mode = { "v" } }),
+      tags_key("w", "tags_grep_cword", { desc = "grep word" }),
+      tags_key("W", "tags_grep_cWORD", { desc = "grep WORD" }),
+      tags_key("l", "tags_live_grep", { desc = "live grep" }),
+      --- git group keys
+      git_key("f", "git_files", { desc = "files" }),
+      git_key("s", "git_status", { desc = "status" }),
+      git_key("c", "git_bcommits", { desc = "commits (buffer)" }),
+      git_key("C", "git_commits", { desc = "commits (project)" }),
+      git_key("b", "git_branches", { desc = "branches" }),
+      git_key("t", "git_stash", { desc = "stash" }),
+      --- lsp group keys
+      lsp_key("r", "lsp_references", { desc = "references" }),
+      lsp_key("d", "lsp_definitions", { desc = "definitions" }),
+      lsp_key("D", "lsp_declarations", { desc = "declarations" }),
+      lsp_key("t", "lsp_typedefs", { desc = "type definitions" }),
+      lsp_key("p", "lsp_implementations", { desc = "implementations" }),
+      lsp_key("s", "lsp_document_symbols", { desc = "symbols (document)" }),
+      lsp_key("w", "lsp_workspace_symbols", { desc = "symbols (workspace)" }),
+      lsp_key("W", "lsp_live_workspace_symbols", { desc = "symbols (workspace live)" }),
+      lsp_key("c", "lsp_code_actions", { desc = "code actions" }),
+      lsp_key("i", "lsp_incoming_calls", { desc = "calls (incoming)" }),
+      lsp_key("o", "lsp_outgoing_calls", { desc = "calls (outgoing)" }),
+      lsp_key("f", "lsp_finder", { desc = "finder" }),
+      lsp_key("x", "lsp_document_diagnostics", { desc = "diagnostics (document)" }),
+      lsp_key("X", "lsp_workspace_diagnostics", { desc = "diagnostics (workspace)" }),
+      --- dap group keys
+      dap_key("c", "dap_commands", { desc = "commands" }),
+      dap_key("s", "dap_configurations", { desc = "configurations" }),
+      dap_key("b", "dap_breakpoints", { desc = "breakpoints" }),
+      dap_key("f", "dap_frames", { desc = "frames" }),
+      --- miscellaneous group keys
+      misc_key("b", "builtin"),
+      misc_key("p", "profiles"),
+      misc_key("h", "help_tags", { desc = "help tags" }),
+      misc_key("M", "man_pages", { desc = "man pages" }),
+      misc_key("K", "colorschemes", { desc = "color schemes" }),
+      misc_key("H", "highlights", { desc = "highlight groups" }),
+      misc_key("c", "commands"),
+      misc_key("o", "command_history", { desc = "command history" }),
+      misc_key("s", "search_history", { desc = "search history" }),
+      misc_key("'", "marks"),
+      misc_key("j", "jumps"),
+      misc_key("C", "changes"),
+      misc_key("r", "registers"),
+      misc_key("t", "tagstack", { desc = "tag stack" }),
+      misc_key("a", "autocmds"),
+      misc_key("k", "keymaps"),
+      misc_key("f", "filetypes"),
+      misc_key("m", "menus"),
+      misc_key("S", "spell_suggest", { desc = "spelling suggestions" }),
+      misc_key("P", "packadd"),
     },
   },
 
   {
     "phanen/fzf-lua-overlay",
-    dependencies = { "ibhagwan/fzf-lua" },
+    main = "flo",
     cond = not vim.g.vscode,
     init = function()
-      require("fzf-lua-overlay").init()
+      require("flo").init()
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>Fz", fl.zoxide, desc = "Zoxide", noremap = true },
+      flo_key("b", "buffers"),
+      flo_key("f", "files"),
+      flo_key("g", "live_grep_native", { desc = "live grep" }),
+      flo_key("l", "lazy"),
+      flo_key("n", "grep_notes", { desc = "grep (notes)", mode = { "n" } }),
+      flo_key("N", "find_notes", { desc = "find (notes)" }),
+      flo_key("i", "gitignore"),
+      flo_key("L", "licence"),
+      flo_key("r", "rtp"),
+      flo_key("s", "scriptnames"),
+      flo_key("z", "zoxide"),
+      flo_key("t", "todo_comment"),
+      flo_key("o", "recentfiles", { desc = "recent files" }),
+      flo_key("d", "grep_dots", { desc = "grep (dots)" }),
+      flo_key("D", "find_dots", { desc = "find (dots)" }),
     },
   },
 }
