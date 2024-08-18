@@ -7,7 +7,7 @@
 )
 
 (deflayer qwerty
-  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @eca 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @cap a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
@@ -16,4 +16,7 @@
 
 (defalias
   cap (tap-hold-press 200 200 esc lctl)
+  ;; 1 tap : "Escape"
+  ;; 2 tap : "Caps Lock"
+  eca (tap-dance 200 (esc caps))
 )
