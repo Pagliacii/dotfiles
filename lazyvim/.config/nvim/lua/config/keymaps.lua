@@ -19,7 +19,7 @@ if ok then
     { "<leader>S", group = "snippet", icon = { icon = " ", color = "azure" } },
     { "<leader>UC", group = "color code", icon = { icon = " ", color = "grey" } },
     { "<leader>W", group = "wezterm", icon = { icon = " ", color = "purple" } },
-    { "<leader>cR", group = "refactoring", icon = { icon = "󱍸 ", color = "orange" } },
+    { "<leader>cR", group = "refactoring", icon = { icon = " ", color = "orange" } },
     { "<leader>dL", group = "log", icon = { icon = " ", color = "green" } },
     { "<leader>du", group = "ui", icon = { icon = "󰕮 ", color = "azure" } },
     { "<leader>gu", group = "gitui" },
@@ -42,6 +42,7 @@ if ok then
     { "gp", group = "peek", icon = { icon = " ", color = "azure" } },
     {
       mode = { "n", "v" },
+      { "<leader>a", group = "AI", icon = { icon = "󰚩 ", color = "black" } },
       { "<leader>F", group = "fzf", icon = { icon = "󰈞 ", color = "blue" } },
       { "<leader>Fd", group = "dap", icon = { icon = " ", color = "purple" } },
       { "<leader>Fg", group = "git", icon = { icon = "󰊢 ", color = "orange" } },

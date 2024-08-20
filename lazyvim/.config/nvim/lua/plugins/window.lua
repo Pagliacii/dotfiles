@@ -168,7 +168,7 @@ return {
         if floating then
           return true
         end
-        local excluded_buftypes = { "terminal" }
+        local excluded_buftypes = { "nofile", "terminal" }
         if vim.tbl_contains(excluded_buftypes, buftype) then
           return true
         end

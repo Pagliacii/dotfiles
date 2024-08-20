@@ -4,13 +4,13 @@ return {
     ---@param opts cmp.ConfigSchema
     dependencies = {
       { "lukas-reineke/cmp-rg" },
+      { "onsails/lspkind.nvim" },
     },
     opts = function(_, opts)
       local cmp = require("cmp")
+      local lspkind = require("lspkind")
       table.insert(cmp.mapping.preset, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      })
-      table.insert(cmp.mapping.preset, {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       })
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
@@ -21,6 +21,15 @@ return {
         },
         { name = "neorg" },
       }))
+      opts.formatting = vim.tbl_extend("force", opts.formatting or {}, {
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          ellipsis_char = "...",
+          show_labelDetails = true,
+          symbol_map = { FittenCode = "" },
+        }),
+      })
     end,
   },
 

@@ -300,4 +300,18 @@ return {
       { "<leader>Ur", "<cmd>ReaderMode<cr>", desc = "Reader mode", noremap = true, silent = true },
     },
   },
+
+  {
+    "folke/which-key.nvim",
+    event = "LazyFile",
+    opts = {
+      icons = {
+        rules = {
+          { plugin = "hydrate.nvim", icon = "󰆫 ", color = "azure" },
+          { plugin = "dropbar.nvim", icon = "󰳯 ", color = "orange" },
+          { plugin = "readermode.nvim", icon = "󱃀 ", color = "green" },
+        },
+      },
+    },
+  },
 }
