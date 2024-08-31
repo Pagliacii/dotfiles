@@ -339,37 +339,32 @@ config.mouse_bindings = {
 	},
 }
 
---[[ smart-splits.nvim integrations
+-- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
 	-- this is set by the plugin, and unset on ExitPre in Neovim
 	return pane:get_user_vars().IS_NVIM == "true"
 end
+
 local direction_keys = {
-	Left = "h",
-	Right = "l",
-	Up = "k",
-	Down = "j",
-	-- reverse lookup
 	h = "Left",
-	l = "Right",
-	k = "Up",
 	j = "Down",
+	k = "Up",
+	l = "Right",
 }
+
 local function split_nav(resize_or_move, key)
-	local resize = resize_or_move == "resize"
-	local mod_key = resize and "META|SHIFT" or "CTRL"
+	local mods = resize_or_move == "resize" and "META" or "CTRL|SHIFT"
 	return {
 		key = key,
-		mods = mod_key,
+		mods = mods,
 		action = wezterm.action_callback(function(win, pane)
-			print(is_vim(pane))
 			if is_vim(pane) then
 				-- pass the keys through to vim/nvim
 				win:perform_action({
-					SendKey = { key = key, mods = mod_key },
+					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
 				}, pane)
 			else
-				if resize then
+				if resize_or_move == "resize" then
 					win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
 				else
 					win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
@@ -378,8 +373,10 @@ local function split_nav(resize_or_move, key)
 		end),
 	}
 end
---]]
+
 config.keys = {
+	-- CTRL-ALT-L activates the debug overlay
+	{ key = "L", mods = "CTRL|META", action = act.ShowDebugOverlay },
 	-- Splits the active pane in a particular direction.
 	{
 		key = "-",
@@ -421,37 +418,16 @@ config.keys = {
 			mode = "SwapWithActive",
 		}),
 	},
-	-- Activate an adjacent pane in the specified direction.
-	{
-		key = "H",
-		mods = "ALT",
-		action = act.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "L",
-		mods = "ALT",
-		action = act.ActivatePaneDirection("Right"),
-	},
-	{
-		key = "J",
-		mods = "ALT",
-		action = act.ActivatePaneDirection("Down"),
-	},
-	{
-		key = "K",
-		mods = "ALT",
-		action = act.ActivatePaneDirection("Up"),
-	},
 	-- move between split panes
-	-- split_nav("move", "h"),
-	-- split_nav("move", "j"),
-	-- split_nav("move", "k"),
-	-- split_nav("move", "l"),
-	-- -- resize panes
-	-- split_nav("resize", "h"),
-	-- split_nav("resize", "j"),
-	-- split_nav("resize", "k"),
-	-- split_nav("resize", "l"),
+	split_nav("move", "h"),
+	split_nav("move", "j"),
+	split_nav("move", "k"),
+	split_nav("move", "l"),
+	-- resize panes
+	split_nav("resize", "h"),
+	split_nav("resize", "j"),
+	split_nav("resize", "k"),
+	split_nav("resize", "l"),
 	-- Rotates the sequence of panes within the active tab,
 	-- preserving the sizes based on the tab positions.
 	{

@@ -112,10 +112,9 @@ return {
 
   {
     "dgagn/diagflow.nvim",
-    enabled = false,
     event = "LspAttach",
     opts = {
-      max_width = 80, -- The maximum width of the diagnostic messages
+      max_width = 60, -- The maximum width of the diagnostic messages
       severity_colors = { -- The highlight groups to use for each diagnostic severity level
         error = "DiagnosticFloatingError",
         warning = "DiagnosticFloatingWarning",
@@ -123,16 +122,15 @@ return {
         hint = "DiagnosticFloatingHint",
       },
       gap_size = 1,
-      scope = "cursor", -- 'cursor', 'line'
-      toggle_event = { "InsertEnter" },
-      format = function(diagnostic)
-        return "[LSP] " .. diagnostic.message
-      end,
+      scope = "line", -- 'cursor', 'line'
+      placement = "top",
+      show_sign = true,
     },
   },
 
   {
     "RaafatTurki/corn.nvim",
+    enabled = false,
     event = "LspAttach",
     config = function()
       -- ensure virtual_text diags are disabled
