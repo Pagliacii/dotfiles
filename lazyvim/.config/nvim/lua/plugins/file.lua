@@ -102,6 +102,7 @@ return {
 
   {
     "simonmclean/triptych.nvim",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
       "nvim-tree/nvim-web-devicons", -- optional
@@ -110,6 +111,23 @@ return {
     cmd = { "Triptych" },
     keys = {
       { "<leader>f/", "<cmd>Triptych<cr>", desc = "Directory Browser", noremap = true, silent = true },
+    },
+  },
+
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    cmd = { "Yazi" },
+    keys = {
+      { "<leader>f/", "<cmd>Yazi<cr>", desc = "Yazi (file)", noremap = true, silent = true },
+      { "<leader>fw", "<cmd>Yazi cwd<cr>", desc = "Yazi (cwd)", noremap = true, silent = true },
+      { "<leader>fz", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", noremap = true, silent = true },
+    },
+    ---@type YaziConfig
+    opts = {
+      open_multiple_tabs = true,
+      yazi_floating_window_border = "none",
+      floating_window_scaling_factor = 0.85,
     },
   },
 }

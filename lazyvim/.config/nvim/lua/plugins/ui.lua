@@ -58,7 +58,7 @@ return {
           -- stylua: ignore
           center = {
             { action = "Telescope file_browser", desc = " Browse files", icon = "󰥩 ", key = "b" },
-            { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+            { action = "Yazi cwd", desc = " Find file", icon = " ", key = "f" },
             { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
             { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
             { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
@@ -142,10 +142,8 @@ return {
     event = "BufReadPost",
     config = function()
       local scrollbar = require("scrollbar")
-      local colors = require("tokyonight.colors").setup()
       scrollbar.setup({
         handle = {
-          color = colors.bg_highlight,
           gitsigns = true,
           search = true,
         },
@@ -161,14 +159,6 @@ return {
           "prompt",
           "TelescopePrompt",
           "notify",
-        },
-        marks = {
-          Search = { color = colors.orange },
-          Error = { color = colors.error },
-          Warn = { color = colors.warning },
-          Info = { color = colors.info },
-          Hint = { color = colors.hint },
-          Misc = { color = colors.purple },
         },
         hide_if_all_visible = true,
         show_in_active_only = true,
