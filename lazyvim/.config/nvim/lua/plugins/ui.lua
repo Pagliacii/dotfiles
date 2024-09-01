@@ -11,7 +11,10 @@ return {
   {
     "folke/zen-mode.nvim",
     dependencies = {
-      { "folke/twilight.nvim" },
+      {
+        "folke/twilight.nvim",
+        cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+      },
     },
     keys = {
       { "<leader>z", "<cmd> ZenMode<cr>", desc = "Zen mode" },
@@ -20,6 +23,12 @@ return {
       plugins = {
         wezterm = { enabled = true },
       },
+      on_open = function()
+        require("incline").disable()
+      end,
+      on_close = function()
+        require("incline").enable()
+      end,
     },
   },
 
@@ -224,52 +233,6 @@ return {
   },
 
   {
-    "xiyaowong/transparent.nvim",
-    cmd = { "TransparentToggle" },
-    keys = {
-      { "<leader>ut", "<cmd>TransparentToggle<cr>", desc = "Transparent background", noremap = true },
-    },
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      exclude = {
-        filetypes = {
-          "aerial",
-          "noice",
-        },
-      },
-    },
-  },
-
-  {
-    "echasnovski/mini.indentscope",
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = {
-          "help",
-          "alpha",
-          "dashboard",
-          "dropbar_menu",
-          "neo-tree",
-          "Trouble",
-          "lazy",
-          "mason",
-          "notify",
-          "toggleterm",
-          "lazyterm",
-          "aerial",
-          "noice",
-        },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-    end,
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
@@ -334,7 +297,7 @@ return {
       require("incline").setup({
         window = {
           padding = 0,
-          margin = { horizontal = 0, vertical = 0 },
+          margin = { horizontal = 0 },
         },
         hide = {
           cursorline = true,
@@ -357,5 +320,17 @@ return {
     end,
     -- Optional: Lazy load Incline
     event = "VeryLazy",
+  },
+
+  {
+    "luukvbaal/statuscol.nvim",
+    config = true,
+    event = "BufReadPre",
+  },
+
+  {
+    "mcauley-penney/visual-whitespace.nvim",
+    config = true,
+    event = "BufReadPre",
   },
 }

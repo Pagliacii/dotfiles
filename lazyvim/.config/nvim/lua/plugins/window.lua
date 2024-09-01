@@ -192,4 +192,25 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    event = { "WinLeave" },
+    opts = {
+      no_exec_files = {
+        "packer",
+        "TelescopePrompt",
+        "mason",
+        "CompetiTest",
+        "NvimTree",
+        "neo-tree",
+        "lazy",
+        "edgy",
+      },
+      only_line_seq = false,
+      hi = {
+        fg = "#d8a657",
+      },
+    },
+  },
 }
