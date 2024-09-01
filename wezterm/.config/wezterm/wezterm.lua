@@ -201,7 +201,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 		-- shell is using OSC 7 on the remote host.
 		local cwd_uri = pane:get_current_working_dir()
 		if cwd_uri then
-			cwd_uri = cwd_uri:sub(8)
+			cwd_uri = cwd_uri.path
 			local slash = cwd_uri:find("/")
 			local cwd = ""
 			local hostname = ""
@@ -353,7 +353,8 @@ local direction_keys = {
 }
 
 local function split_nav(resize_or_move, key)
-	local mods = resize_or_move == "resize" and "META" or "CTRL|SHIFT"
+	local mods = resize_or_move == "resize" and "META" or "CTRL"
+	mods = "LEADER|" .. mods
 	return {
 		key = key,
 		mods = mods,
@@ -374,9 +375,15 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
-	-- CTRL-ALT-L activates the debug overlay
-	{ key = "L", mods = "CTRL|META", action = act.ShowDebugOverlay },
+	-- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+
+	{
+		key = "a",
+		mods = "LEADER|CTRL",
+		action = act.SendKey({ key = "a", mods = "CTRL" }),
+	},
 	-- Splits the active pane in a particular direction.
 	{
 		key = "-",
