@@ -24,6 +24,9 @@ local mappings = {
 }
 
 local pickers = {
+  colorscheme = {
+    enable_preview = true,
+  },
   find_files = {
     hidden = true,
     find_command = {
@@ -187,6 +190,7 @@ local keys = {
   { "<leader>tR", "<cmd>Telescope registers theme=dropdown<cr>", desc = "Registers", noremap = true },
   { "<leader>tx", "<cmd>Telescope quickfix<cr>", desc = "Quickfix", noremap = true },
   { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", noremap = true },
+  { "<leader>tC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", noremap = true },
   {
     "<leader>/",
     function()

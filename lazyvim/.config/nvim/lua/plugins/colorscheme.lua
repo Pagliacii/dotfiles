@@ -21,10 +21,16 @@ return {
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_enable_bold = true
       -- Set contrast.
-      vim.g.gruvbox_material_background = "soft"
+      vim.g.gruvbox_material_background = "medium"
       -- For better performance
       vim.g.gruvbox_material_better_performance = true
-      vim.cmd.colorscheme("gruvbox-material")
     end,
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox-material",
+    },
   },
 }
