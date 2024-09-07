@@ -13,6 +13,7 @@ return {
 
   {
     "sainnhe/gruvbox-material",
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -28,9 +29,21 @@ return {
   },
 
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("rose-pine").setup({
+        dark_variant = "moon",
+      })
+    end,
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "rose-pine",
     },
   },
 }

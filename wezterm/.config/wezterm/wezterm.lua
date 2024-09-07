@@ -83,7 +83,7 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 	config.enable_tab_bar = true
 	config.tab_bar_at_bottom = true
 
-	config.default_prog = { "pwsh.exe", "-NoLogo" }
+	config.default_prog = { "pwsh", "-NoLogo" }
 	config.launch_menu = { {
 		label = "pwsh",
 		args = config.default_prog,
@@ -109,11 +109,19 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 
 		local edge_foreground = background
 
+		-- Equivalent to POSIX basename(3)
+		-- Given "/foo/bar" returns "bar"
+		-- Given "c:\\foo\\bar" returns "bar"
+		function basename(s)
+			return string.gsub(s, "(.*[/\\])(.*)", "%2")
+		end
+
 		-- ensure that the titles fit in the available space,
 		-- and that we have room for the edges.
 		-- local title = wezterm.truncate_right(tab.active_pane.title, max_width - 2)
-		local title = tab.active_pane.title:gsub("%.exe", "")
-		title = title:match("[^\\]+$") -- extract the last part of path
+		local pane = tab.active_pane
+		local title = basename(pane.title or pane.foreground_process_name)
+		-- title = title:match("[^\\]+$") -- extract the last part of path
 		title = wezterm.truncate_right(string.format("%d:%s", tab.tab_id, title), max_width - 2)
 
 		return {
