@@ -30,6 +30,7 @@ return {
 
   {
     "rose-pine/neovim",
+    cond = false,
     name = "rose-pine",
     lazy = false,
     priority = 1000,
@@ -41,9 +42,16 @@ return {
   },
 
   {
+    "Mofiqul/vscode.nvim",
+    lazy = false,
+    priority = 1000,
+    config = true,
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "vscode",
     },
   },
 }
