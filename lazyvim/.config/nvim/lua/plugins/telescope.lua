@@ -180,7 +180,6 @@ local dependencies = {
 local keys = {
   { "<leader>fb", false },
   { "<leader>sb", false },
-  { "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)", noremap = true },
   { "<leader>tk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", noremap = true },
   { "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "Man pages", noremap = true },
   { "<leader>tn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notify", noremap = true },
@@ -192,7 +191,7 @@ local keys = {
   { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", noremap = true },
   { "<leader>tC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", noremap = true },
   {
-    "<leader>/",
+    "<leader>t/",
     function()
       require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,

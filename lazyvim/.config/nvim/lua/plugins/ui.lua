@@ -241,6 +241,7 @@ return {
           })
         end
       end
+      opts.options.theme = "catppuccin"
     end,
   },
 

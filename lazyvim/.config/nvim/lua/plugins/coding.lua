@@ -20,6 +20,7 @@ return {
           keyword_length = 3,
         },
         { name = "neorg" },
+        { name = "orgmode" },
       }))
       opts.formatting = vim.tbl_extend("force", opts.formatting or {}, {
         format = lspkind.cmp_format({

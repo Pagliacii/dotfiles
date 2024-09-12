@@ -213,4 +213,10 @@ return {
       },
     },
   },
+
+  {
+    "kevinhwang91/nvim-bqf",
+    event = { "BufReadPre" },
+    ft = { "qf" },
+  },
 }
