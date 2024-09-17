@@ -329,4 +329,21 @@ return {
       },
     },
   },
+
+  {
+    --- "aliqyan-21/wit.nvim",
+    "Pagliacii/wit.nvim",
+    cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
+    config = true,
+    keys = {
+      {
+        "<leader>Us",
+        ":'<,'>WitSearchVisual<cr>",
+        mode = { "v" },
+        desc = "Search selected text",
+        noremap = true,
+        silent = true,
+      },
+    },
+  },
 }
