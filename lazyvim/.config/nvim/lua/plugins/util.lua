@@ -303,6 +303,7 @@ return {
           { plugin = "hydrate.nvim", icon = "󰆫 ", color = "azure" },
           { plugin = "dropbar.nvim", icon = "󰳯 ", color = "orange" },
           { plugin = "readermode.nvim", icon = "󱃀 ", color = "green" },
+          { plugin = "legendary.nvim", icon = "⚡ ", color = "red" },
         },
       },
     },

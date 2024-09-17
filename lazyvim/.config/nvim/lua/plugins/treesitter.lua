@@ -73,23 +73,6 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufReadPost",
-    keys = {
-      {
-        "[c",
-        function(...)
-          require("treesitter-context").go_to_context(...)
-        end,
-        desc = "Goto context",
-        silent = true,
-        noremap = true,
-      },
-    },
-  },
-
-  {
     "nvim-treesitter/playground",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },

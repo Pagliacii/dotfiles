@@ -383,14 +383,14 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "\\", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	-- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
 
 	{
-		key = "a",
+		key = "\\",
 		mods = "LEADER|CTRL",
-		action = act.SendKey({ key = "a", mods = "CTRL" }),
+		action = act.SendKey({ key = "\\", mods = "CTRL" }),
 	},
 	-- Splits the active pane in a particular direction.
 	{
