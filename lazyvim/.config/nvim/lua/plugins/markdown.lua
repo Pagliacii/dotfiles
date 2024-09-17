@@ -29,26 +29,6 @@ return {
   },
 
   {
-    "AckslD/nvim-FeMaco.lua",
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-    opts = {
-      ensure_newline = function()
-        return true
-      end,
-      post_open_float = function()
-        vim.wo.signcolumn = "no"
-        vim.keymap.set("n", "q", "<C-w><C-q>", { buffer = 0, silent = true })
-      end,
-    },
-    cmd = { "FeMaco" },
-    keys = {
-      { "<leader>Mf", "<cmd>FeMaco<cr>", desc = "Edit code block", noremap = true },
-    },
-  },
-
-  {
     "nvimtools/none-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)

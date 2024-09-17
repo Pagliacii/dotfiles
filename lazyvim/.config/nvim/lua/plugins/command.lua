@@ -13,9 +13,18 @@ return {
         which_key = {
           auto_register = true,
         },
-        smart_splits = true,
+        smart_splits = {
+          directions = { "h", "j", "k", "l" },
+          mods = {
+            move = "<C>",
+            resize = "<M>",
+          },
+        },
         diffview = true,
       },
+    },
+    keys = {
+      { "<leader>\\", "<cmd>Legendary<cr>", desc = "Open Legendary", noremap = true, silent = true },
     },
   },
 }

@@ -112,6 +112,7 @@ return {
 
   {
     "dgagn/diagflow.nvim",
+    enabled = false,
     event = "LspAttach",
     opts = {
       max_width = 60, -- The maximum width of the diagnostic messages
@@ -145,20 +146,17 @@ return {
   },
 
   {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-    keys = {
-      { "<leader>cM", "<cmd>CodeActionMenu<cr>", desc = "Code action menu", noremap = true },
+    "rachartier/tiny-code-action.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
     },
-  },
-
-  {
-    "aznhe21/actions-preview.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "LspAttach",
+    config = true,
     keys = {
       {
-        "<leader>cp",
-        [[<cmd>lua require("actions-preview").code_actions()<cr>]],
+        "<leader>cM",
+        "<cmd>lua require('tiny-code-action').code_action()<cr>",
         desc = "Code actions preview",
         noremap = true,
       },
@@ -166,11 +164,11 @@ return {
   },
 
   {
-    "zeioth/garbage-day.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-    event = "VeryLazy",
-    opts = {
-      grace_period = 60 * 10,
-    },
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    config = function()
+      vim.diagnostic.config({ virtual_text = false })
+      require("tiny-inline-diagnostic").setup()
+    end,
   },
 }

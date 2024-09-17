@@ -61,8 +61,10 @@ return {
   {
     "Wansmer/treesj",
     opts = {
+      ---@type boolean Use default keymaps (<space>m - toggle, <space>j - join, <space>s - split)
       use_default_keymaps = false,
-      max_join_length = 150,
+      ---@type number If line after join will be longer than max value, node will not be formatted
+      max_join_length = 120,
       cursor_behavior = "end",
     },
     keys = {

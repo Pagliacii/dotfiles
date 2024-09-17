@@ -61,4 +61,16 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
+
+  {
+    "jmbuhr/otter.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    ft = { "markdown", "norg", "org" },
+    opts = {},
+    keys = {
+      { "<leader>Da", ":lua require('otter').activate()<cr>", desc = "Otter", noremap = true, silent = true },
+    },
+  },
 }

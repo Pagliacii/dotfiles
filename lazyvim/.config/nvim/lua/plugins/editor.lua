@@ -360,4 +360,17 @@ return {
       }
     end,
   },
+
+  {
+    "gbprod/substitute.nvim",
+    config = function(_, opts)
+      local substitute = require("substitute")
+      substitute.setup(opts)
+      vim.keymap.set("n", "s", substitute.operator, { noremap = true, silent = true })
+      vim.keymap.set("n", "ss", substitute.line, { noremap = true, silent = true })
+      vim.keymap.set("n", "S", substitute.eol, { noremap = true, silent = true })
+      vim.keymap.set("x", "s", substitute.visual, { noremap = true, silent = true })
+    end,
+    event = "BufReadPost",
+  },
 }

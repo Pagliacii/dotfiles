@@ -210,11 +210,29 @@ return {
     opts = opts,
     keys = keys,
   },
+
   {
     "catgoose/telescope-helpgrep.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
       { "<leader>tH", "<cmd>Telescope helpgrep<cr>", desc = "Helpgrep", noremap = true },
+    },
+  },
+
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("frecency")
+    end,
+    keys = {
+      { "<leader>tf", "<cmd>Telescope frecency<cr>", desc = "Frecency", noremap = true },
+      {
+        "<leader>tF",
+        '<cmd>Telescope frecency workspace=CWD path_display={"shorten"}<cr>',
+        desc = "Frecency",
+        noremap = true,
+      },
     },
   },
 }

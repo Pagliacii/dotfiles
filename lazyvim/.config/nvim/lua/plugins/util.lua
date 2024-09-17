@@ -212,13 +212,6 @@ return {
       require("live-command").setup({
         commands = {
           Norm = { cmd = "norm" },
-          Reg = {
-            cmd = "norm",
-            -- This will transform ":5Reg a" into ":norm 5@a"
-            args = function(opts)
-              return (opts.count == -1 and "" or opts.count) .. "@" .. opts.args
-            end,
-          },
         },
       })
     end,
@@ -311,6 +304,28 @@ return {
           { plugin = "dropbar.nvim", icon = "󰳯 ", color = "orange" },
           { plugin = "readermode.nvim", icon = "󱃀 ", color = "green" },
         },
+      },
+    },
+  },
+
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    cmd = "Leet",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- required by telescope
+      "MunifTanjim/nui.nvim",
+
+      -- optional
+      "nvim-treesitter/nvim-treesitter",
+      "rcarriga/nvim-notify",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      -- configuration goes here
+      plugins = {
+        non_standalone = true,
       },
     },
   },
