@@ -332,8 +332,7 @@ return {
   },
 
   {
-    --- "aliqyan-21/wit.nvim",
-    "Pagliacii/wit.nvim",
+    "aliqyan-21/wit.nvim",
     cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
     config = true,
     keys = {
