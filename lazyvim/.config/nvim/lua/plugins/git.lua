@@ -331,4 +331,21 @@ return {
       { "<leader>gnw", "<cmd>Neogit worktree<cr>", desc = "Worktree", noremap = true },
     },
   },
+
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = true,
+    keys = {
+      {
+        "<leader>gy",
+        proxy = "<leader>gy",
+        mode = { "n", "v" },
+        desc = "Generate shareable file permalinks",
+        noremap = true,
+      },
+    },
+  },
 }

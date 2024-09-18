@@ -47,10 +47,21 @@ return {
         "size",
         "mtime",
       },
+      view_options = {
+        show_hidden = true,
+      },
     },
     cmd = { "Oil" },
     keys = {
-      { "<leader>Uo", "<cmd>Oil<cr>", desc = "Oil", noremap = true },
+      { "<leader>UO", "<cmd>Oil<cr>", desc = "Open parent directory", noremap = true },
+      {
+        "<leader>Uo",
+        function(...)
+          require("oil").toggle_float(...)
+        end,
+        desc = "Open parent directory in float window",
+        noremap = true,
+      },
     },
   },
 
