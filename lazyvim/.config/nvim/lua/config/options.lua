@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.cmd("language en_US.utf8")
+vim.cmd("language en_US.UTF-8")
 
 -- disable some extension providers
 vim.g.loaded_python3_provider = 0
