@@ -11,6 +11,7 @@ return {
         "dap_repl",
         "json",
         "html", -- for devdocs
+        "http", -- for rest.nvim
         "lua",
         "luadoc",
         "luap",

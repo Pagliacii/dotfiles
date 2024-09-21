@@ -59,6 +59,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 -- Close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
+    "calendar",
     "dap-float",
     "dap-repl",
     "toggleterm",

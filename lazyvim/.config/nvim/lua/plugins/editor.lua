@@ -184,6 +184,12 @@ return {
           label = { exclude = "hjkliardcpxy" },
         },
       },
+      jump = {
+        -- clear highlight after jump
+        nohlsearch = true,
+        -- automatically jump when there is only one match
+        autojump = true,
+      },
     },
     keys = {
       { "s", false }, -- avoid to conflict with nvim-surround

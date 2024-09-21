@@ -24,6 +24,7 @@ local function toggle_venn()
 end
 
 local prefix = "<leader>n"
+local zt_prefix = "<leader>nz"
 
 return {
   {
@@ -170,6 +171,44 @@ return {
     opts = {
       org_agenda_files = "~/orgfiles/**/*",
       org_default_notes_file = "~/orgfiles/refile.org",
+    },
+  },
+
+  {
+    "renerocksai/telekasten.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-telekasten/calendar-vim",
+    },
+    cmd = { "Telekasten" },
+    opts = {
+      home = vim.fn.expand("~/zettelkasten"),
+    },
+    keys = {
+      { "<localleader>z", "<cmd>Telekasten panel<cr>", desc = "Panel", noremap = true },
+      { zt_prefix .. "p", "<cmd>Telekasten panel<cr>", desc = "Panel", noremap = true },
+      { zt_prefix .. "f", "<cmd>Telekasten find_notes<cr>", desc = "Find notes", noremap = true },
+      { zt_prefix .. "F", "<cmd>Telekasten find_friends<cr>", desc = "Find friends", noremap = true },
+      { zt_prefix .. "g", "<cmd>Telekasten search_notes<cr>", desc = "Search notes", noremap = true },
+      { zt_prefix .. "d", "<cmd>Telekasten goto_today<cr>", desc = "Daily notes", noremap = true },
+      { zt_prefix .. "D", "<cmd>Telekasten find_daily_notes<cr>", desc = "Find daily notes", noremap = true },
+      { zt_prefix .. "w", "<cmd>Telekasten goto_thisweek<cr>", desc = "Weekly notes", noremap = true },
+      { zt_prefix .. "W", "<cmd>Telekasten find_weekly_notes<cr>", desc = "Find weekly notes", noremap = true },
+      { zt_prefix .. "z", "<cmd>Telekasten follow_link<cr>", desc = "Follow link", noremap = true },
+      { zt_prefix .. "n", "<cmd>Telekasten new_note<cr>", desc = "New note", noremap = true },
+      { zt_prefix .. "N", "<cmd>Telekasten new_templated_note<cr>", desc = "New note by template", noremap = true },
+      { zt_prefix .. "c", "<cmd>Telekasten show_calendar<cr>", desc = "Calendar", noremap = true },
+      { zt_prefix .. "b", "<cmd>Telekasten show_backlinks<cr>", desc = "Backlinks", noremap = true },
+      { zt_prefix .. "t", "<cmd>Telekasten toggle_todo<cr>", desc = "Toggle todo", noremap = true },
+      { zt_prefix .. "T", "<cmd>Telekasten show_tags<cr>", desc = "Tags", noremap = true },
+      { zt_prefix .. "I", "<cmd>Telekasten insert_img_link<cr>", desc = "Insert image link", noremap = true },
+      { "[[", "<cmd>Telekasten insert_link<cr>", mode = "i", desc = "Insert image link", noremap = true },
+      { zt_prefix .. "p", "<cmd>Telekasten paste_img_and_link<cr>", desc = "Paste image and link", noremap = true },
+      -- { zt_prefix .. "P", "<cmd>Telekasten preview_img<cr>", desc = "Preview image", noremap = true },
+      { zt_prefix .. "y", "<cmd>Telekasten yank_notelink<cr>", desc = "Yank note link", noremap = true },
+      -- { zt_prefix .. "B", "<cmd>Telekasten browse_media<cr>", desc = "Browse media files", noremap = true },
+      { zt_prefix .. "r", "<cmd>Telekasten rename_note<cr>", desc = "Rename note", noremap = true },
+      { zt_prefix .. "v", "<cmd>Telekasten switch_vault<cr>", desc = "Switch vault", noremap = true },
     },
   },
 }

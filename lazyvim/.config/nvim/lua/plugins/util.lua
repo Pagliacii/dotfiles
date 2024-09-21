@@ -145,7 +145,13 @@ return {
   {
     "chrisgrieser/nvim-recorder",
     opts = {
+      -- Named registers where macros are saved (single lowercase letters only).
+      -- The first register is the default register used as macro-slot after
+      -- startup.
       slots = { "a", "b", "c", "d", "e", "f" },
+      -- If enabled, only essential notifications are sent.
+      -- If you do not use a plugin like nvim-notify, set this to `true`
+      -- to remove otherwise annoying messages.
       lessNotifications = false,
       clear = true,
     },
@@ -225,7 +231,7 @@ return {
       minute_interval = 15,
       -- The render style for notifications
       -- Accepted values are "default", "minimal", "simple" or "compact"
-      render_style = "compact",
+      render_style = "minimal",
       -- Loads time of last drink on startup
       -- Useful if you don't have long-running neovim instances
       -- or if you tend to have multiple instances running at a time
