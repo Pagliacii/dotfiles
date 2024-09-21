@@ -229,7 +229,7 @@ return {
       {
         "<leader>tF",
         '<cmd>Telescope frecency workspace=CWD path_display={"shorten"}<cr>',
-        desc = "Frecency",
+        desc = "Frecency (cwd)",
         noremap = true,
       },
     },

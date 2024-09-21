@@ -165,42 +165,11 @@ return {
   },
 
   {
-    "Sanix-Darker/snips.nvim",
-    cmd = {
-      "SnipsCreate",
-      "SnipsCreateFromRegister",
-      "SnipsList",
-    },
-    opts = {
-      post_behavior = "echo_and_yank",
-      ssh_cmd = "ssh -T",
-    },
-    keys = {
-      { "<leader>C", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
-    },
-  },
-
-  {
     "Pagliacii/sys-open.nvim",
     config = true,
     cmd = { "SysOpen" },
     keys = {
       { "gx", "<cmd>SysOpen<cr>" },
-    },
-  },
-
-  {
-    "icholy/lsplinks.nvim",
-    config = true,
-    keys = {
-      {
-        "gX",
-        function(...)
-          require("lsplinks").gx(...)
-        end,
-        desc = "LSP links",
-        noremap = true,
-      },
     },
   },
 
