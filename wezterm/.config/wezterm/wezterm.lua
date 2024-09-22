@@ -84,11 +84,11 @@ if string.find(wezterm.target_triple, "pc%-windows") then
 	config.enable_tab_bar = true
 	config.tab_bar_at_bottom = true
 
-	config.default_prog = { "pwsh", "-NoLogo" }
-	config.launch_menu = { {
-		label = "pwsh",
-		args = config.default_prog,
-	} }
+	config.default_prog = { "nu" }
+	config.launch_menu = {
+		{ label = " nushell", args = config.default_prog },
+		{ label = " pwsh", args = { "pwsh", "-NoLogo" } },
+	}
 
 	wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
 		--- The filled in variant of the < symbol
@@ -518,11 +518,5 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	end
 	window:set_config_overrides(overrides)
 end)
-
-config.launch_menu = config.launch_menu or {}
-table.insert(config.launch_menu, {
-	label = "nushell",
-	args = { "nu" },
-})
 
 return config

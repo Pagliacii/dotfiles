@@ -342,8 +342,30 @@ return {
 
   {
     "luukvbaal/statuscol.nvim",
-    config = true,
-    event = "BufReadPre",
+    event = "VeryLazy",
+    opts = {
+      relculright = true,
+      ft_ignore = { "dashboard" },
+    },
+  },
+
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    cmds = {
+      "MarksToggleSigns",
+      "MarksListBuf",
+      "MarksListGlobal",
+      "MarksListAll",
+      "BookmarksList",
+      "BookmarksListAll",
+      "MarksQFListBuf",
+      "MarksQFListGlobal",
+      "MarksQFListAll",
+      "BookmarksQFList",
+      "BookmarksQFListAll",
+    },
+    opts = {},
   },
 
   {

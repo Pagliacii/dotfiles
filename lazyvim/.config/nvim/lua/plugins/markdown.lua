@@ -1,4 +1,6 @@
 local filetypes = { "markdown" }
+local leader_key = "<leader>m"
+
 return {
   {
     "ellisonleao/glow.nvim",
@@ -7,7 +9,7 @@ return {
     keys = function(_, keys)
       if vim.fn.executable("glow") == 1 then
         vim.list_extend(keys, {
-          { "<leader>Mg", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true },
+          { leader_key .. "g", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true },
         })
       end
     end,
@@ -18,7 +20,7 @@ return {
     keys = function()
       return {
         {
-          "<leader>Mb",
+          leader_key .. "b",
           ft = "markdown",
           "<cmd>MarkdownPreviewToggle<cr>",
           desc = "Preview in browser",
@@ -54,18 +56,12 @@ return {
   },
 
   {
-    "richardbizik/nvim-toc",
-    config = true,
-    cmd = { "TOC" },
-  },
-
-  {
     "HakonHarnes/img-clip.nvim",
     ft = filetypes,
     event = "BufReadPre",
     opts = {},
     keys = {
-      { "<leader>Mp", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
+      { leader_key .. "p", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
     },
   },
 

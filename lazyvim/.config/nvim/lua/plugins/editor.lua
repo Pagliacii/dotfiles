@@ -379,4 +379,12 @@ return {
     end,
     event = "BufReadPost",
   },
+
+  {
+    "nacro90/numb.nvim",
+    event = "BufReadPost",
+    opts = {
+      number_only = true,
+    },
+  },
 }

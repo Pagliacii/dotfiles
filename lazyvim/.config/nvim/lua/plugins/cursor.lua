@@ -1,7 +1,8 @@
 return {
   {
     "sontungexpt/stcursorword",
-    event = "BufReadPost",
+    event = "VeryLazy",
+    cmd = "Cursorword",
     opts = {
       excluded = {
         filetypes = {

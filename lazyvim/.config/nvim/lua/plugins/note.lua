@@ -24,6 +24,8 @@ local function toggle_venn()
 end
 
 local prefix = "<leader>n"
+local neorg_prefix = "<leader>no"
+local qn_prefix = "<leader>nq"
 local zt_prefix = "<leader>nz"
 
 return {
@@ -32,31 +34,31 @@ return {
     config = true,
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { prefix .. "lc", quicknote_cmd("NewNoteAtCurrentLine"), desc = "Create" },
-      { prefix .. "lo", quicknote_cmd("OpenNoteAtCurrentLine"), desc = "Open" },
-      { prefix .. "ld", quicknote_cmd("DeleteNoteAtCurrentLine"), desc = "Delete" },
-      { prefix .. "cc", quicknote_cmd("NewNoteAtCWD"), desc = "Create" },
-      { prefix .. "co", quicknote_cmd("OpenNoteAtCWD"), desc = "Open" },
-      { prefix .. "cd", quicknote_cmd("DeleteNoteAtCWD"), desc = "Delete" },
-      { prefix .. "Gc", quicknote_cmd("NewNoteAtGlobal"), desc = "Create" },
-      { prefix .. "Go", quicknote_cmd("OpenNoteAtGlobal"), desc = "Open" },
-      { prefix .. "Gd", quicknote_cmd("DeleteNoteAtGlobal"), desc = "Delete" },
-      { prefix .. "Lb", quicknote_cmd("ListNotesForCurrentBuffer"), desc = "Current buffer" },
-      { prefix .. "Lc", quicknote_cmd("ListNotesForCWD"), desc = "CWD" },
-      { prefix .. "Lg", quicknote_cmd("ListNotesForGlobal"), desc = "Global" },
-      { prefix .. "Lf", quicknote_cmd("ListNotesForAFileOrWDInCWD"), desc = "File or dir" },
-      { prefix .. "jp", quicknote_cmd("JumpToPreviousNote"), desc = "Previous" },
-      { prefix .. "jn", quicknote_cmd("JumpToNextNote"), desc = "Next" },
-      { prefix .. "Cb", quicknote_cmd("GetNotesCountForCurrentBuffer"), desc = "Current buffer" },
-      { prefix .. "Cc", quicknote_cmd("GetNotesCountForCWD"), desc = "CWD" },
-      { prefix .. "Cg", quicknote_cmd("GetNotesCountForGlobal"), desc = "Global" },
-      { prefix .. "s", quicknote_cmd("ToggleNoteSigns"), desc = "Toggle signs" },
-      { prefix .. "Eb", quicknote_cmd("ExportNotesForCurrentBuffer"), desc = "Current buffer" },
-      { prefix .. "Ec", quicknote_cmd("ExportNotesForCWD"), desc = "CWD" },
-      { prefix .. "Eg", quicknote_cmd("ExportNotesForGlobal"), desc = "Global" },
-      { prefix .. "Ib", quicknote_cmd("ImportNotesForCurrentBuffer"), desc = "Current buffer" },
-      { prefix .. "Ic", quicknote_cmd("ImportNotesForCWD"), desc = "CWD" },
-      { prefix .. "Ig", quicknote_cmd("ImportNotesForGlobal"), desc = "Global" },
+      { qn_prefix .. "lc", quicknote_cmd("NewNoteAtCurrentLine"), desc = "Create" },
+      { qn_prefix .. "lo", quicknote_cmd("OpenNoteAtCurrentLine"), desc = "Open" },
+      { qn_prefix .. "ld", quicknote_cmd("DeleteNoteAtCurrentLine"), desc = "Delete" },
+      { qn_prefix .. "wc", quicknote_cmd("NewNoteAtCWD"), desc = "Create" },
+      { qn_prefix .. "wo", quicknote_cmd("OpenNoteAtCWD"), desc = "Open" },
+      { qn_prefix .. "wd", quicknote_cmd("DeleteNoteAtCWD"), desc = "Delete" },
+      { qn_prefix .. "gc", quicknote_cmd("NewNoteAtGlobal"), desc = "Create" },
+      { qn_prefix .. "go", quicknote_cmd("OpenNoteAtGlobal"), desc = "Open" },
+      { qn_prefix .. "gd", quicknote_cmd("DeleteNoteAtGlobal"), desc = "Delete" },
+      { qn_prefix .. "Lb", quicknote_cmd("ListNotesForCurrentBuffer"), desc = "Current buffer" },
+      { qn_prefix .. "Lc", quicknote_cmd("ListNotesForCWD"), desc = "CWD" },
+      { qn_prefix .. "Lg", quicknote_cmd("ListNotesForGlobal"), desc = "Global" },
+      { qn_prefix .. "Lf", quicknote_cmd("ListNotesForAFileOrWDInCWD"), desc = "File or dir" },
+      { qn_prefix .. "jp", quicknote_cmd("JumpToPreviousNote"), desc = "Previous" },
+      { qn_prefix .. "jn", quicknote_cmd("JumpToNextNote"), desc = "Next" },
+      { qn_prefix .. "cb", quicknote_cmd("GetNotesCountForCurrentBuffer"), desc = "Current buffer" },
+      { qn_prefix .. "cc", quicknote_cmd("GetNotesCountForCWD"), desc = "CWD" },
+      { qn_prefix .. "cg", quicknote_cmd("GetNotesCountForGlobal"), desc = "Global" },
+      { qn_prefix .. "s", quicknote_cmd("ToggleNoteSigns"), desc = "Toggle signs" },
+      { qn_prefix .. "eb", quicknote_cmd("ExportNotesForCurrentBuffer"), desc = "Current buffer" },
+      { qn_prefix .. "ec", quicknote_cmd("ExportNotesForCWD"), desc = "CWD" },
+      { qn_prefix .. "eg", quicknote_cmd("ExportNotesForGlobal"), desc = "Global" },
+      { qn_prefix .. "ib", quicknote_cmd("ImportNotesForCurrentBuffer"), desc = "Current buffer" },
+      { qn_prefix .. "ic", quicknote_cmd("ImportNotesForCWD"), desc = "CWD" },
+      { qn_prefix .. "ig", quicknote_cmd("ImportNotesForGlobal"), desc = "Global" },
     },
   },
 
@@ -128,6 +130,9 @@ return {
         priority = 1000,
         config = true,
       },
+      { "bottd/neorg-worklog" },
+      { "nvim-neorg/neorg-telescope" },
+      { "juniorsundar/neorg-extras" },
     },
     lazy = false,
     version = "*",
@@ -136,11 +141,18 @@ return {
         load = {
           ["core.defaults"] = {},
           ["core.completion"] = {
-            config = { engine = "nvim-cmp" },
+            config = { engine = "nvim-cmp", name = "[Norg] " },
           },
-          ["core.concealer"] = {},
+          ["core.integrations.nvim-cmp"] = {},
+          ["core.concealer"] = { config = { icon_preset = "diamond" } },
+          ["core.keybinds"] = {
+            -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/module.lua
+            config = {
+              default_keybinds = true,
+            },
+          },
           ["core.export"] = {},
-          ["core.export.markdown"] = {},
+          ["core.export.markdown"] = { config = { extensions = "all" } },
           ["core.dirman"] = {
             config = {
               workspaces = {
@@ -151,6 +163,21 @@ return {
           },
           ["core.summary"] = {},
           ["core.ui.calendar"] = {},
+          ["core.looking-glass"] = {},
+          ["core.clipboard.code-blocks"] = {},
+          ["core.esupports.hop"] = {},
+          ["core.esupports.indent"] = {},
+          ["core.esupports.metagen"] = { config = { type = "auto", update_date = true } },
+          ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
+          ["core.tangle"] = { config = { report_on_empty = false } },
+          ["core.journal"] = { config = { strategy = "flat" } },
+          ["core.integrations.telescope"] = {},
+          ["core.pivot"] = {},
+          ["core.promo"] = {},
+
+          ["external.agenda"] = {},
+          ["external.roam"] = {},
+          ["external.worklog"] = {},
         },
       })
 
@@ -158,9 +185,24 @@ return {
       vim.wo.conceallevel = 2
     end,
     keys = {
-      { prefix .. "n", "<cmd>Neorg index<cr>", desc = "Neorg Index" },
-      { prefix .. "d", "<cmd>Neorg journal today<cr>", desc = "Today Journal" },
-      { prefix .. "r", "<cmd>Neorg return<cr>", desc = "Neorg Return" },
+      { prefix .. "n", "<cmd>tabnew | Neorg index<cr>", desc = "Neorg Index" },
+      { prefix .. "d", "<cmd>tabnew | Neorg journal today<cr>", desc = "Today Journal" },
+      {
+        prefix .. "k",
+        function()
+          local dirman = require("neorg").modules.get_module("core.dirman")
+          dirman.create_file("tasks", "notes", {
+            no_open = false, -- open file after creation?
+            force = false, -- overwrite file if exists
+            metadata = {}, -- key-value table for metadata fields
+          })
+        end,
+        desc = "Neorg task",
+      },
+      { neorg_prefix .. "r", "<cmd>Neorg return<cr>", desc = "Return" },
+      { neorg_prefix .. "a", "<cmd>Neorg agenda<cr>", desc = "Agenda" },
+      { neorg_prefix .. "r", "<cmd>Neorg roam<cr>", desc = "Roam" },
+      { neorg_prefix .. "t", "<cmd>Neorg cycle_task<cr>", desc = "Cycle task" },
     },
   },
 
@@ -209,6 +251,15 @@ return {
       -- { zt_prefix .. "B", "<cmd>Telekasten browse_media<cr>", desc = "Browse media files", noremap = true },
       { zt_prefix .. "r", "<cmd>Telekasten rename_note<cr>", desc = "Rename note", noremap = true },
       { zt_prefix .. "v", "<cmd>Telekasten switch_vault<cr>", desc = "Switch vault", noremap = true },
+    },
+  },
+
+  {
+    "JellyApple102/flote.nvim",
+    config = true,
+    cmd = "Flote",
+    keys = {
+      { prefix .. "f", "<cmd>Flote<cr>", desc = "Flote", noremap = true },
     },
   },
 }

@@ -19,9 +19,4 @@ return {
       { "<leader>tb", "<cmd>Telescope hbac buffers<cr>", desc = "Manage buffers" },
     },
   },
-
-  {
-    "Makaze/watch.nvim",
-    cmd = { "WatchStart", "WatchStop" },
-  },
 }
