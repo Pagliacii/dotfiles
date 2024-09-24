@@ -238,7 +238,19 @@ return {
     main = "flo",
     cond = not vim.g.vscode,
     init = function()
-      require("flo").init()
+      vim.api.nvim_create_autocmd("BufDelete", {
+        callback = function(ev)
+          if not _G.__recent_hlist then
+            _G.__recent_hlist = require("flo.hashlist")({})
+          end
+          -- ignore no name buffer on enter...
+          if vim.api.nvim_buf_get_name(ev.buf) == "" then
+            return
+          end
+          print(ev.match)
+          _G.__recent_hlist:access(ev.match)
+        end,
+      })
     end,
     -- stylua: ignore
     keys = {

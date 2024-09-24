@@ -67,7 +67,7 @@ config.adjust_window_size_when_changing_font_size = false
 
 --- Fallback font
 config.font = wezterm.font_with_fallback({
-	{ family = "Iosevka Term", stretch = "Expanded", weight = "Regular" },
+	{ family = "Iosevka Term SS14", stretch = "Expanded", weight = "Medium" },
 	"JetBrainsMono Nerd Font",
 	"JetBrains Mono",
 	"Fira Code",
