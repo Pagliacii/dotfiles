@@ -66,6 +66,8 @@ return {
 
   {
     "jedrzejboczar/nvim-dap-cortex-debug",
+    lazy = true,
+    ft = { "c", "cpp" },
     dependencies = { "mfussenegger/nvim-dap" },
     config = true,
   },

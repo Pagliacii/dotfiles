@@ -46,11 +46,23 @@ return {
     event = "BufReadPost",
     cmd = "Fitten",
     opts = {
+      completion_mode = "inline", -- or "source"
       chat = {
         sidebar = {
           position = "right",
           width = 64,
         },
+      },
+      disable_specific_inline_completion = {
+        -- Disable auto-completion for some specific file suffixes by entering them below
+        -- For example, `suffixes = {'lua', 'cpp'}`
+        -- it is an array of filetypes
+        suffixes = { "TelescopePrompt" },
+      },
+      inline_completion = {
+        -- Disable auto completion when pressing Backspace or Delete.
+        ---@type boolean
+        disable_completion_when_delete = true,
       },
       keymaps = {
         inline = {

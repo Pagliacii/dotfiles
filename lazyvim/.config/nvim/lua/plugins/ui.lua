@@ -97,7 +97,6 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
     opts = {
       options = {
         numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
@@ -247,7 +246,7 @@ return {
 
   {
     "Bekaboo/dropbar.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     opts = function(_, opts)
       local utils = require("dropbar.utils")
       local quit = function()

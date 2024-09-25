@@ -47,7 +47,7 @@ return {
 
   {
     "michaelrommel/nvim-silicon",
-    enabled = vim.fn.executable("gitui") == 1,
+    enabled = vim.fn.executable("silicon") == 1,
     lazy = true,
     cmd = "Silicon",
     main = "nvim-silicon",

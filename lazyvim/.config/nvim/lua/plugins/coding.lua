@@ -10,25 +10,31 @@ return {
       local cmp = require("cmp")
       local lspkind = require("lspkind")
       table.insert(cmp.mapping.preset, {
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- Accept multi-line completion
+        ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Insert, select = false }),
       })
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "emoji" },
-        {
-          name = "rg",
-          keyword_length = 3,
-        },
-        { name = "neorg" },
-        { name = "orgmode" },
-      }))
+      opts.sources = cmp.config.sources(
+        vim.list_extend(opts.sources, {
+          { name = "emoji" },
+          {
+            name = "rg",
+            keyword_length = 3,
+          },
+          { name = "neorg" },
+          { name = "orgmode" },
+        }),
+        { name = "buffer" }
+      )
       opts.formatting = vim.tbl_extend("force", opts.formatting or {}, {
         format = lspkind.cmp_format({
           mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "...",
           show_labelDetails = true,
-          symbol_map = { FittenCode = "" },
+          symbol_map = {
+            -- FittenCode = "",
+            -- Codeium = "",
+          },
         }),
       })
 

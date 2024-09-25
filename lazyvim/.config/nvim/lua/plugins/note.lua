@@ -134,7 +134,6 @@ return {
       { "nvim-neorg/neorg-telescope" },
       { "juniorsundar/neorg-extras" },
     },
-    lazy = false,
     version = "*",
     config = function()
       require("neorg").setup({

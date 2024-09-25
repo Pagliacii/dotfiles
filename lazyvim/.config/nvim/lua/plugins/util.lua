@@ -321,4 +321,27 @@ return {
       },
     },
   },
+
+  {
+    "cenk1cenk2/jq.nvim",
+    enabled = vim.fn.executable("jq") == 1,
+    dependencies = {
+      -- https://github.com/nvim-lua/plenary.nvim
+      "nvim-lua/plenary.nvim",
+      -- https://github.com/MunifTanjim/nui.nvim
+      "MunifTanjim/nui.nvim",
+      -- https://github.com/grapp-dev/nui-components.nvim
+      "grapp-dev/nui-components.nvim",
+    },
+    ft = "json",
+    keys = {
+      {
+        "<leader>Uj",
+        function(...)
+          require("jq").run(...)
+        end,
+        desc = "Run jq",
+      },
+    },
+  },
 }
