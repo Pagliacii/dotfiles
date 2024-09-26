@@ -27,6 +27,8 @@ return {
         "yaml",
       },
       highlight = {
+        -- `true` to always enalbe or a a list of parsers
+        additional_vim_regex_highlighting = true,
         disable = function(_, bufnr)
           local line_nr_thresh = 5000
           return vim.api.nvim_buf_line_count(bufnr) > line_nr_thresh

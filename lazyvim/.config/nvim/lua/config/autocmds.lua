@@ -154,3 +154,39 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.b.miniindentscope_disable = true
   end,
 })
+
+vim.api.nvim_create_user_command("RichTextCopy", function(args)
+  local saved_html_use_css = vim.g.html_use_css
+  local saved_html_no_progress = vim.g.html_no_progress
+  vim.g.html_use_css = false
+  vim.g.html_no_progress = false
+
+  -- Create a temporary file to store the HTML content
+  local tmp_file = vim.fn.tempname() .. ".html"
+
+  -- Run TOHtml for the selected range
+  vim.api.nvim_cmd({
+    cmd = "TOhtml",
+    range = { args.line1, args.line2 },
+    mods = { silent = true, emsg_silent = true },
+  }, {})
+
+  -- Restore the original values for html_use_css and html_no_progress
+  vim.g.html_use_css = saved_html_use_css
+  vim.g.html_no_progress = saved_html_no_progress
+
+  -- Write the output to the temp file
+  vim.cmd("w " .. tmp_file)
+
+  -- Close the TOhtml buffer
+  vim.cmd.bwipeout({ bang = true })
+
+  -- Open the temp file in the default browser
+  if vim.fn.executable("xdg-open") == 1 then
+    vim.fn.system({ "xdg-open", tmp_file })
+  elseif vim.fn.executable("open") == 1 then
+    vim.fn.system({ "open", tmp_file })
+  elseif vim.fn.executable("powershell") then
+    vim.fn.system({ "powershell.exe", "-NoLogo", "-NoProfile", "-Command", "Start-Process", tmp_file })
+  end
+end, { range = true })
