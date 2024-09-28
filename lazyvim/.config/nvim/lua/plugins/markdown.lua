@@ -1,6 +1,16 @@
 local filetypes = { "markdown" }
 local leader_key = "<leader>m"
 
+vim.keymap.set("n", leader_key .. "m", function()
+  if vim.fn.executable("markmap") == 1 then
+    local cmd = vim.fn.exepath("markmap")
+    -- Create a temporary file to store the HTML content
+    local tmp_file = vim.fn.tempname() .. ".html"
+    local ret = vim.system({ cmd, "--offline", "--output", tmp_file, vim.fn.expand("%:p") }, { text = true })
+    vim.print(ret.cmd)
+  end
+end, { desc = "Markmap", silent = true, noremap = true })
+
 return {
   {
     "ellisonleao/glow.nvim",
@@ -49,6 +59,7 @@ return {
       vim.list_extend(opts.ensure_installed or {}, {
         "glow",
         "markdown-toc",
+        "markmap-cli",
         "prettierd",
         "write-good",
       })
