@@ -25,6 +25,7 @@ if ok then
     { "<leader>dL", group = "log", icon = { icon = " ", color = "green" } },
     { "<leader>du", group = "ui", icon = { icon = "󰕮 ", color = "azure" } },
     { "<leader>gc", group = "conflict", icon = { icon = " ", color = "yellow" } },
+    { "<leader>gd", group = "diff", icon = { icon = " ", color = "green" } },
     { "<leader>gn", group = "Neogit", icon = { icon = " ", color = "orange" } },
     { "<leader>gu", group = "gitui", icon = { icon = " ", color = "purple" } },
     { "<leader>gv", group = "verco", icon = { icon = " ", color = "purple" } },

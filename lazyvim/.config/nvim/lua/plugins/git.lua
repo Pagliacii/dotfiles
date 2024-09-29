@@ -3,13 +3,10 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
     opts = function(_, opts)
-      local actions = require("diffview.actions")
       opts.keymaps = {
+        disable_defaults = false, -- Disable the default keymaps
         view = {
           { "n", "q", "<cmd>DiffviewClose<cr>" },
-          { "n", "<leader>gR", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh Diffview" } },
-          { "n", "<leader>gB", actions.toggle_files, { desc = "Toggle the file panel" } },
-          { "n", "<leader>b", false },
         },
         file_panel = {
           { "n", "q", "<cmd>DiffviewClose<cr>" },
@@ -25,20 +22,44 @@ return {
           vim.diagnostic.disable(bufnr)
         end,
       }
+      opts.view = {
+        -- Configure the layout and behavior of different types of views.
+        -- Available layouts:
+        --  'diff1_plain'
+        --    |'diff2_horizontal'
+        --    |'diff2_vertical'
+        --    |'diff3_horizontal'
+        --    |'diff3_vertical'
+        --    |'diff3_mixed'
+        --    |'diff4_mixed'
+        -- For more info, see |diffview-config-view.x.layout|.
+        default = {
+          -- Config for changed files, and staged files in diff views.
+          layout = "diff2_horizontal",
+          disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
+          winbar_info = false, -- See |diffview-config-view.x.winbar_info|
+        },
+        file_history = {
+          -- Config for changed files in file history views.
+          layout = "diff2_horizontal",
+          disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
+          winbar_info = false, -- See |diffview-config-view.x.winbar_info|
+        },
+      }
       return opts
     end,
     keys = {
       { "<leader>gD", "<cmd>DiffviewOpen -uno<cr>", desc = "Open Diffview", noremap = true },
       {
-        "<leader>gF",
+        "<leader>gdf",
         "<cmd>DiffviewFileHistory %<cr>",
         desc = "Current file history",
         noremap = true,
       },
       {
-        "<leader>gF",
-        "<cmd>DiffviewFileHistory<cr>",
-        mode = "v",
+        "<leader>gdf",
+        "<cmd>'<,'>DiffviewFileHistory<cr>",
+        mode = { "v", "x" },
         desc = "File history",
         noremap = true,
       },

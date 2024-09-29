@@ -284,6 +284,12 @@ return {
     config = function()
       local devicons = require("nvim-web-devicons")
       require("incline").setup({
+        hide = {
+          cursorline = true,
+        },
+        ignore = {
+          filetypes = { "DiffviewFiles" },
+        },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
           if filename == "" then
@@ -344,7 +350,7 @@ return {
     event = "VeryLazy",
     opts = {
       relculright = true,
-      ft_ignore = { "dashboard" },
+      ft_ignore = { "dashboard", "DiffviewFiles" },
     },
   },
 
