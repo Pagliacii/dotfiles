@@ -261,4 +261,17 @@ return {
       { prefix .. "f", "<cmd>Flote<cr>", desc = "Flote", noremap = true },
     },
   },
+
+  {
+    "zk-org/zk-nvim",
+    enabled = vim.fn.executable("zk") == 1,
+    config = function()
+      require("zk").setup({
+        -- can be "telescope", "fzf", "fzf_lua", "minipick", or "select" (`vim.ui.select`)
+        -- it's recommended to use "telescope", "fzf", "fzf_lua", or "minipick"
+        picker = "telescope",
+      })
+    end,
+    cmd = { "ZkNew", "ZkNotes" },
+  },
 }

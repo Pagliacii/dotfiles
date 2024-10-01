@@ -9,6 +9,7 @@ return {
       ensure_installed = {
         "bash",
         "dap_repl",
+        "fennel",
         "json",
         "html", -- for devdocs
         "http", -- for rest.nvim

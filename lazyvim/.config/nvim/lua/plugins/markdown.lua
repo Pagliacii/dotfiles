@@ -1,28 +1,64 @@
 local filetypes = { "markdown" }
 local leader_key = "<leader>m"
 
-vim.keymap.set("n", leader_key .. "m", function()
-  if vim.fn.executable("markmap") == 1 then
-    local cmd = vim.fn.exepath("markmap")
-    -- Create a temporary file to store the HTML content
-    local tmp_file = vim.fn.tempname() .. ".html"
-    local ret = vim.system({ cmd, "--offline", "--output", tmp_file, vim.fn.expand("%:p") }, { text = true })
-    vim.print(ret.cmd)
+local function get_file_path()
+  local file_path = vim.fn.expand("%:p")
+  if file_path ~= "" then
+    return file_path
   end
+
+  -- Get the content of the current buffer
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local content = table.concat(lines, "\n")
+
+  -- Create a temporary file to store the content
+  local tmp_file = os.tmpname()
+  local file = io.open(tmp_file, "w")
+  file:write(content)
+  file:close()
+  return tmp_file
+end
+
+vim.keymap.set("n", leader_key .. "m", function()
+  if vim.fn.executable("markmap") ~= 1 then
+    vim.notify("Markmap not found", vim.log.levels.ERROR)
+  end
+
+  local cmd = vim.fn.exepath("markmap")
+  local file_path = get_file_path()
+  -- Create a temporary file to store the HTML content
+  local tmp_file = vim.fn.tempname() .. ".html"
+  vim.system({ cmd, "--offline", "--output", tmp_file, file_path }, { text = true })
 end, { desc = "Markmap", silent = true, noremap = true })
+
+vim.keymap.set("n", leader_key .. "s", function()
+  if vim.fn.executable("slides") ~= 1 then
+    vim.notify("Slides not found", vim.log.levels.ERROR)
+  end
+
+  local cmd = vim.fn.exepath("slides")
+  local file_path = get_file_path()
+  -- Run the command
+  LazyVim.terminal.open({ cmd, file_path }, {
+    esc_esc = false,
+    ctrl_hjkl = false,
+    ft = "slides",
+    size = {
+      width = vim.api.nvim_get_option("columns"),
+      height = vim.api.nvim_get_option("lines"),
+    },
+  })
+end, { desc = "Slides", silent = true, noremap = true })
 
 return {
   {
     "ellisonleao/glow.nvim",
+    enabled = vim.fn.executable("glow") == 1,
     config = true,
     cmd = { "Glow" },
-    keys = function(_, keys)
-      if vim.fn.executable("glow") == 1 then
-        vim.list_extend(keys, {
-          { leader_key .. "g", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true },
-        })
-      end
-    end,
+    keys = {
+      { leader_key .. "g", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true },
+    },
   },
 
   {

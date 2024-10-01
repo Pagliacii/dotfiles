@@ -9,7 +9,7 @@ if ok then
   wk.add({
     { "<leader>A", group = "Aha!", icon = { icon = " ", color = "yellow" } },
     { "<leader>B", group = "browse", icon = { icon = "󰦄 ", hl = "Keyword" } },
-    { "<leader>C", group = "comment", icon = { icon = " ", hl = "purple" } },
+    { "<leader>C", group = "comment", icon = { icon = " ", color = "purple" } },
     { "<leader>D", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
     { "<leader>G", group = "go", icon = { icon = " ", color = "blue" } },
     { "<leader>H", group = "harpoon", icon = { icon = "󰎐 ", color = "cyan" } },
