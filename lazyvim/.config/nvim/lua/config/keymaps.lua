@@ -9,7 +9,6 @@ if ok then
   wk.add({
     { "<leader>A", group = "Aha!", icon = { icon = " ", color = "yellow" } },
     { "<leader>B", group = "browse", icon = { icon = "󰦄 ", hl = "Keyword" } },
-    { "<leader>C", group = "comment", icon = { icon = " ", color = "purple" } },
     { "<leader>D", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
     { "<leader>G", group = "go", icon = { icon = " ", color = "blue" } },
     { "<leader>H", group = "harpoon", icon = { icon = "󰎐 ", color = "cyan" } },
@@ -29,8 +28,6 @@ if ok then
     { "<leader>gn", group = "Neogit", icon = { icon = " ", color = "orange" } },
     { "<leader>gu", group = "gitui", icon = { icon = " ", color = "purple" } },
     { "<leader>gv", group = "verco", icon = { icon = " ", color = "purple" } },
-    { "<leader>k", group = "lspsaga", icon = { icon = " ", color = "purple" } },
-    { "<leader>n", group = "note", icon = { icon = "󱞁 ", color = "orange" } },
     { "<leader>nq", group = "quicknote", icon = { icon = " ", color = "green" } },
     { "<leader>nqc", group = "count", icon = { icon = "󰆙 ", color = "orange" } },
     { "<leader>nqe", group = "export", icon = { icon = "󰈝 ", color = "orange" } },
@@ -51,6 +48,9 @@ if ok then
     {
       mode = { "n", "v" },
       { "<leader>a", group = "AI", icon = { icon = "🤖 ", color = "black" } },
+      { "<leader>k", group = "lspsaga", icon = { icon = " ", color = "purple" } },
+      { "<leader>n", group = "note", icon = { icon = "󱞁 ", color = "orange" } },
+      { "<leader>C", group = "comment", icon = { icon = " ", color = "purple" } },
       { "<leader>F", group = "fzf", icon = { icon = "󰈞 ", color = "blue" } },
       { "<leader>Fd", group = "dap", icon = { icon = " ", color = "purple" } },
       { "<leader>Fg", group = "git", icon = { icon = "󰊢 ", color = "orange" } },
@@ -63,6 +63,7 @@ if ok then
       { "<leader>T", group = "terminal" },
       { "<leader>TS", group = "send" },
       { "<leader>U", group = "util", icon = { icon = "󰦭 ", color = "yellow" } },
+      { "<leader>nb", group = "obsidian", icon = { icon = "📝 ", color = "purple" } },
     },
     { "<leader>o", group = "overseer", icon = { icon = "󰑮 ", color = "green" } },
   })

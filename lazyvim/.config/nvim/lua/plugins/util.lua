@@ -144,24 +144,39 @@ return {
 
   {
     "chrisgrieser/nvim-recorder",
-    opts = {
-      -- Named registers where macros are saved (single lowercase letters only).
-      -- The first register is the default register used as macro-slot after
-      -- startup.
-      slots = { "a", "b", "c", "d", "e", "f" },
-      -- If enabled, only essential notifications are sent.
-      -- If you do not use a plugin like nvim-notify, set this to `true`
-      -- to remove otherwise annoying messages.
-      lessNotifications = false,
-      clear = true,
-    },
-    keys = {
-      { "q", desc = " Start Recording" },
-      { "Q", desc = " Play Recording" },
-      { "<C-q>", desc = " Switch slot" },
-      { "cq", desc = " Edit Macro" },
-      { "yq", desc = " Yank Macro" },
-    },
+    event = "BufReadPost",
+    config = function()
+      local recorder = require("recorder")
+      recorder.setup({
+        -- Named registers where macros are saved (single lowercase letters only).
+        -- The first register is the default register used as macro-slot after
+        -- startup.
+        slots = { "a", "b", "c", "d", "e", "f" },
+        mapping = {
+          startStopRecording = "q",
+          playMacro = "Q",
+          editMacro = "cq",
+          deleteAllMacros = "dq",
+          yankMacro = "yq",
+          -- ⚠️ this should be a string you don't use in insert mode during a macro
+          addBreakPoint = "##",
+        },
+        -- If enabled, only essential notifications are sent.
+        -- If you do not use a plugin like nvim-notify, set this to `true`
+        -- to remove otherwise annoying messages.
+        lessNotifications = true,
+        clear = true,
+      })
+
+      local lualine = require("lualine")
+      local lualineX = lualine.get_config().sections.lualine_x or {}
+      table.insert(lualineX, { recorder.displaySlots, color = { fg = "orange" } })
+      lualine.setup({
+        sections = {
+          lualine_x = lualineX,
+        },
+      })
+    end,
   },
 
   {
@@ -341,6 +356,45 @@ return {
           require("jq").run(...)
         end,
         desc = "Run jq",
+      },
+    },
+  },
+
+  {
+    "epwalsh/pomo.nvim",
+    version = "*", -- Recommanded, use latest release instead of latest commit
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+    dependencies = {
+      -- Optional, but highly recommended if you want to use the "Default" timer
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      local pomo = require("pomo")
+      pomo.setup({})
+
+      require("telescope").load_extension("pomodori")
+
+      local lualine = require("lualine")
+      local lualineX = lualine.get_config().sections.lualine_x or {}
+      table.insert(lualineX, 1, {
+        function()
+          local timer = pomo.get_first_to_finish()
+          if timer == nil then
+            return ""
+          end
+          return "󰄉 " .. tostring(timer)
+        end,
+        color = { fg = "orange" },
+      })
+    end,
+    keys = {
+      {
+        "<leader>Ut",
+        function()
+          require("telescope").extensions.pomodori.timers()
+        end,
+        desc = "Manage Pomodori Timers",
       },
     },
   },

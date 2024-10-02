@@ -176,6 +176,10 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
+      search = {
+        -- behave like `incsearch`
+        incremental = true,
+      },
       label = {
         -- Enable this to use rainbow colors to highlight labels
         -- Can be useful for visualizing Treesitter ranges.
@@ -196,14 +200,22 @@ return {
           jump_labels = true,
           -- When using jump labels, don't use these keys
           -- This allows using those keys directly after the motion
-          label = { exclude = "hjkliardcpxy" },
+          label = { exclude = "hjkliardcpqxy" },
+          -- hide after jump when not using jump labels
+          autohide = true,
+          jump = {
+            register = false,
+            -- when using jump labels, set to 'true' to automatically jump
+            -- or execute a motion when there is only one match
+            autojump = true,
+          },
         },
       },
       jump = {
         -- clear highlight after jump
         nohlsearch = true,
         -- automatically jump when there is only one match
-        autojump = true,
+        autojump = false,
       },
     },
     keys = {
