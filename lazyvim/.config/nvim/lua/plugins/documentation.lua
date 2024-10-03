@@ -50,7 +50,7 @@ return {
       require("telescope").load_extension("heading")
     end,
     keys = {
-      { "<leader>th", "<cmd>Telescope heading theme=dropdown<cr>", desc = "Headings", noremap = true },
+      { "<leader>tH", "<cmd>Telescope heading theme=dropdown<cr>", desc = "Headings", noremap = true },
     },
   },
 

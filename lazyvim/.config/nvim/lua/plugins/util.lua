@@ -181,10 +181,10 @@ return {
 
   {
     "Pagliacii/sys-open.nvim",
-    config = true,
     cmd = { "SysOpen" },
+    opts = {},
     keys = {
-      { "gx", "<cmd>SysOpen<cr>" },
+      { "gx", "<cmd>SysOpen<cr>", desc = "Open URL under cursor" },
     },
   },
 

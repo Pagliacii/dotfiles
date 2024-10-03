@@ -116,14 +116,19 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       heading = {
-        sign = false,
-        icons = { "◉ ", "○ ", "◆ ", "◇ ", "★ ", "✸ " },
+        sign = true,
+        -- icons = { "◉ ", "○ ", "◆ ", "◇ ", "★ ", "✸ " },
       },
       code = {
-        sign = false,
+        sign = true,
         left_pad = 2,
         right_pad = 2,
         width = "block",
+      },
+    },
+    checkbox = {
+      custom = {
+        doing = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownWarn" },
       },
     },
   },

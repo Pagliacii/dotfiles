@@ -200,6 +200,7 @@ local keys = {
     desc = "Fuzzy search (buffer)",
     noremap = true,
   },
+  { "<leader>th", "<cmd>Telescope highlights<cr>", desc = "Highlights", noremap = true },
 }
 
 return {
@@ -214,7 +215,7 @@ return {
     "catgoose/telescope-helpgrep.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
-      { "<leader>tH", "<cmd>Telescope helpgrep<cr>", desc = "Helpgrep", noremap = true },
+      { "<leader>tg", "<cmd>Telescope helpgrep<cr>", desc = "Helpgrep", noremap = true },
     },
   },
 

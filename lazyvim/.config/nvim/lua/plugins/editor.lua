@@ -200,7 +200,7 @@ return {
           jump_labels = true,
           -- When using jump labels, don't use these keys
           -- This allows using those keys directly after the motion
-          label = { exclude = "hjkliardcpqxy" },
+          label = { exclude = "hjkliardcpqvxy" },
           -- hide after jump when not using jump labels
           autohide = true,
           jump = {
@@ -215,7 +215,7 @@ return {
         -- clear highlight after jump
         nohlsearch = true,
         -- automatically jump when there is only one match
-        autojump = false,
+        autojump = true,
       },
     },
     keys = {

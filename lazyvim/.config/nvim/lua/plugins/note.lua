@@ -290,6 +290,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter",
       "epwalsh/pomo.nvim",
+      "MeanderingProgrammer/render-markdown.nvim", -- for UI
     },
     config = function(_, opts)
       local obsidian = require("obsidian")
@@ -426,13 +427,14 @@ return {
       end,
 
       -- Either 'wiki' or 'markdown'.
-      preferred_link_style = "wiki",
+      preferred_link_style = "markdown",
 
       -- Optional, boolean or a function that takes a filename and returns a boolean.
       -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
       disable_frontmatter = false,
 
       -- Optional, alternatively you can customize the frontmatter data.
+      ---@param note obsidian.Note
       ---@return table
       note_frontmatter_func = function(note)
         -- Add the title of the note as an alias.
@@ -441,6 +443,11 @@ return {
         end
 
         local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+        if note:get_field("created") == nil then
+          note:add_field("created", os.date("%Y-%m-%d %H:%M:%S"))
+        end
+        note:add_field("modified", os.date("%Y-%m-%d %H:%M:%S"))
 
         -- `note.metadata` contains any manually added fields in the frontmatter.
         -- So here we just make sure those fields are kept in the frontmatter.
@@ -467,8 +474,7 @@ return {
       ---@param url string
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
-        local sys_open = require("sys-open")
-        vim.fn.jobstart(sys_open.cmd_factory(url))
+        require("sys-open").open(url)
         -- vim.fn.jobstart({ "open", url }) -- Mac OS
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
         -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
@@ -479,8 +485,7 @@ return {
       -- file it will be ignored but you can customize this behavior here.
       ---@param img string
       follow_img_func = function(img)
-        local sys_open = require("sys-open")
-        vim.fn.jobstart(sys_open.cmd_factory(img))
+        require("sys-open").open(img)
         -- vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
         -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
@@ -557,7 +562,7 @@ return {
       -- Optional, configure additional syntax highlighting / extmarks.
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
       ui = {
-        enable = true, -- set to false to disable all additional syntax features
+        enable = false, -- set to false to disable all additional syntax features
         update_debounce = 200, -- update delay after a text change (in milliseconds)
         max_file_length = 5000, -- disable UI features for files with more than this many lines
         -- Define how various check-boxes are displayed
@@ -658,6 +663,12 @@ return {
       { "<localleader>j", "<cmd>ObsidianJournal<cr>", desc = "Journal", noremap = true },
       { "<localleader>o", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian", noremap = true },
       { "<localleader>a", "<cmd>ObsidianNew<cr>", desc = "New Note", noremap = true },
+      { "<localleader>k", "<cmd>ObsidianLink<cr>", mode = "v", desc = "Link", noremap = true },
+      { "<localleader>K", "<cmd>ObsidianLinkNew<cr>", mode = "v", desc = "New Link", noremap = true },
+      { "<localleader>s", "<cmd>ObsidianSearch<cr>", desc = "Search", noremap = true },
+      { "<localleader>\\", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", noremap = true },
+      { "<localleader>b", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks", noremap = true },
+      { "<localleader>c", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Toggle Checkbox", noremap = true },
       { ob_prefix .. "o", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian", noremap = true },
       { ob_prefix .. "d", "<cmd>ObsidianDailies<cr>", desc = "Dailies", noremap = true },
       { ob_prefix .. "w", "<cmd>ObsidianWorkspace<cr>", desc = "Workspace", noremap = true },
