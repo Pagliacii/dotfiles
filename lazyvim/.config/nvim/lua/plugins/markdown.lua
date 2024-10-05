@@ -50,6 +50,61 @@ vim.keymap.set("n", leader_key .. "s", function()
   })
 end, { desc = "Slides", silent = true, noremap = true })
 
+vim.keymap.set("n", leader_key .. "l", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+
+  -- Find the start of the word
+  local start = col + 1
+  while start > 0 and line:sub(start, start):match("[^%s]") do
+    start = start - 1
+  end
+  start = start + 1
+
+  -- Find the end of the word
+  local finish = col + 1
+  while finish <= #line and line:sub(finish, finish):match("[^%s]") do
+    finish = finish + 1
+  end
+  finish = finish - 1
+
+  -- Extract the word
+  local word = line:sub(start, finish)
+
+  -- Replace the word with the link format
+  local new_text = "[" .. word .. "]()"
+  local new_line = line:sub(1, start - 1) .. new_text .. line:sub(finish + 1)
+
+  -- Update the line
+  vim.api.nvim_set_current_line(new_line)
+
+  -- Move the cursor inside the parentheses
+  vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), start + #word + 2 })
+
+  -- Change to insert mode
+  vim.cmd("startinsert")
+end, { noremap = true, silent = true, desc = "Linkify" })
+
+vim.keymap.set("v", leader_key .. "l", function()
+  local util = require("obsidian.util")
+  local viz = util.get_visual_selection()
+  local line = viz.lines[1]
+  -- Replace the word with the link format
+  local new_text = "[" .. viz.selection .. "]()"
+  local new_line = line:sub(1, viz.cscol - 1) .. new_text .. line:sub(viz.cecol + 1)
+
+  -- Update the line
+  vim.api.nvim_set_current_line(new_line)
+
+  -- Move the cursor inside the parentheses
+  vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), viz.cscol + #viz.selection + 2 })
+
+  -- Change to insert mode
+  vim.cmd("startinsert")
+end, { noremap = true, silent = true, desc = "Linkify" })
+
+vim.keymap.set("n", leader_key .. "c", "i```\n```<Esc>kA", { noremap = true, silent = true, desc = "Code block" })
+
 return {
   {
     "ellisonleao/glow.nvim",
