@@ -658,8 +658,44 @@ return {
       { "<localleader>j", "<cmd>ObsidianJournal<cr>", desc = "Journal", noremap = true },
       { "<localleader>o", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian", noremap = true },
       { "<localleader>a", "<cmd>ObsidianNew<cr>", desc = "New Note", noremap = true },
-      { "<localleader>k", "<cmd>ObsidianLink<cr>", mode = "v", desc = "Link", noremap = true },
-      { "<localleader>K", "<cmd>ObsidianLinkNew<cr>", mode = "v", desc = "New Link", noremap = true },
+      {
+        "<localleader>k",
+        function()
+          local util = require("obsidian.util")
+          local viz = util.get_visual_selection()
+          vim.ui.input({
+            prompt = "Enter a note title: ",
+            default = viz.selection,
+          }, function(input)
+            if input == nil or input == "" then
+              return
+            end
+            vim.cmd("ObsidianLink " .. input)
+          end)
+        end,
+        mode = "v",
+        desc = "Link",
+        noremap = true,
+      },
+      {
+        "<localleader>K",
+        function()
+          local util = require("obsidian.util")
+          local viz = util.get_visual_selection()
+          vim.ui.input({
+            prompt = "Enter a note title: ",
+            default = viz.selection,
+          }, function(input)
+            if input == nil or input == "" then
+              return
+            end
+            vim.cmd("ObsidianLinkNew " .. input)
+          end)
+        end,
+        mode = "v",
+        desc = "New Link",
+        noremap = true,
+      },
       { "<localleader>s", "<cmd>ObsidianSearch<cr>", desc = "Search", noremap = true },
       { "<localleader>\\", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", noremap = true },
       { "<localleader>b", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks", noremap = true },
@@ -670,8 +706,6 @@ return {
       { ob_prefix .. "T", "<cmd>ObsidianTemplate<cr>", desc = "Template", noremap = true },
       { ob_prefix .. "b", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks", noremap = true },
       { ob_prefix .. "l", "<cmd>ObsidianLinks<cr>", desc = "Links", noremap = true },
-      { ob_prefix .. "i", "<cmd>ObsidianLinkNew<cr>", mode = "v", desc = "New Link", noremap = true },
-      { ob_prefix .. "l", "<cmd>ObsidianLink<cr>", mode = "v", desc = "Link", noremap = true },
       { ob_prefix .. "t", "<cmd>ObsidianTags<cr>", desc = "Tags", noremap = true },
       { ob_prefix .. "s", "<cmd>ObsidianSearch<cr>", desc = "Search", noremap = true },
       { ob_prefix .. "n", "<cmd>ObsidianNew<cr>", desc = "New Note", noremap = true },

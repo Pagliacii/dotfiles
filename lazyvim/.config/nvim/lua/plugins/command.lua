@@ -37,7 +37,7 @@ return {
     opts = {
       notification = true,
       --- If you want to see the hint messages in insert and visual mode, set the 'showmode' to false.
-      showmode = false,
+      showmode = true,
     },
   },
 }
