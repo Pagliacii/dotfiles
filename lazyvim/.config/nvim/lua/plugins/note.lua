@@ -392,14 +392,18 @@ return {
         local suffix = ""
         if title ~= nil then
           -- If title is given, transform it into valid file name.
-          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          suffix = title:gsub(" ", "-"):gsub("[^%w-_]", ""):lower()
         else
           -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
           end
         end
-        return tostring(os.time()) .. "-" .. suffix
+
+        -- Generate Zettelkasten timestamp
+        local time = os.date("*t")
+        local timestamp = string.format("%04d%02d%02d%02d%02d", time.year, time.month, time.day, time.hour, time.min)
+        return timestamp .. "-" .. suffix
       end,
 
       -- Optional, customize how note file names are generated given the ID, target directory, and title.
@@ -700,6 +704,7 @@ return {
       { "<localleader>\\", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", noremap = true },
       { "<localleader>b", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks", noremap = true },
       { "<localleader>c", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Toggle Checkbox", noremap = true },
+      { "<localleader>R", "<cmd>ObsidianRename<cr>", desc = "Rename Note", noremap = true },
       { ob_prefix .. "o", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian", noremap = true },
       { ob_prefix .. "d", "<cmd>ObsidianDailies<cr>", desc = "Dailies", noremap = true },
       { ob_prefix .. "w", "<cmd>ObsidianWorkspace<cr>", desc = "Workspace", noremap = true },
