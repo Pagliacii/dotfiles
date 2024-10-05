@@ -190,3 +190,10 @@ vim.api.nvim_create_user_command("RichTextCopy", function(args)
     vim.fn.system({ "powershell.exe", "-NoLogo", "-NoProfile", "-Command", "Start-Process", tmp_file })
   end
 end, { range = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "md" },
+  callback = function(event)
+    vim.keymap.set("n", "<leader>ml", "ysaW]f]a()<Left>", { desc = "Insert link", buffer = event.buf, expr = true })
+  end,
+})

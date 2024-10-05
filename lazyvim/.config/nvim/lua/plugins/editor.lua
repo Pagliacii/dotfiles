@@ -32,7 +32,7 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufReadPost",
+    event = "VeryLazy",
     config = true,
   },
 
@@ -175,10 +175,11 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
+    ---@type Flash.Config
     opts = {
       search = {
         -- behave like `incsearch`
-        incremental = true,
+        incremental = false,
       },
       label = {
         -- Enable this to use rainbow colors to highlight labels
@@ -207,19 +208,20 @@ return {
             register = false,
             -- when using jump labels, set to 'true' to automatically jump
             -- or execute a motion when there is only one match
-            autojump = true,
+            autojump = false,
           },
         },
       },
       jump = {
         -- clear highlight after jump
-        nohlsearch = true,
+        nohlsearch = false,
         -- automatically jump when there is only one match
-        autojump = true,
+        autojump = false,
       },
     },
     keys = {
-      { "s", false }, -- avoid to conflict with nvim-surround
+      { "s", mode = { "n", "x", "o" }, false }, -- avoid to conflict with nvim-surround
+      { "S", mode = { "n", "x", "o" }, false }, -- avoid to conflict with nvim-surround
     },
   },
 
