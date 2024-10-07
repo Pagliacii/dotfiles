@@ -13,6 +13,7 @@ return {
         "json",
         "html", -- for devdocs
         "http", -- for rest.nvim
+        "latex",
         "lua",
         "luadoc",
         "luap",

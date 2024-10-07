@@ -1,3 +1,7 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
 (defsrc
   esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
@@ -7,17 +11,86 @@
 )
 
 (deflayer qwerty
-  @egc 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @egc  @1f1   2      @3f3   4      5      6      7      8      9      0      -      =      bspc
+  tab   q      w      e      r      t      y      u      i      o      p      [      ]      @bsl
+  @cap  @met_a @alt_s @sft_d @ctl_f g      h      @ctl_j @sft_k @alt_l @met_; '      ret
+  lsft  z      x      c      v      b      n      m      ,      .      /      rsft
+  lctl  lmet   lalt                 spc                  ralt   rctl
+)
+
+(deflayer nomods-layer
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    @bsl
   @cap a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  @cap lmet lalt           spc            ralt rctl
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayermap (layers)
+  1    @base
+  2    @nomods
+  3    lrld
+)
+
+(defvar
+  tap-timeout   50
+  hold-timeout  200
+  tt $tap-timeout
+  ht $hold-timeout
+
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+(deffakekeys
+  to-base (layer-switch qwerty)
 )
 
 (defalias
-  cap (tap-hold-press 200 200 esc lctl)
+  ;; toggle layer aliases
+  lay (layer-toggle layers)
+  ;; change the base layer between base and nomods-layer
+  base (layer-switch qwerty)
+  nomods (layer-switch nomods-layer)
+)
+
+(defalias
+  bsl (tap-hold-release $tt $ht \ @lay)
+  cap (tap-hold-press $tt $ht esc lctl)
   ;; 1 tap : "Escape"
   ;; 2 tap : "`"
   ;; 3 tap : "Caps Lock"
-  egc (tap-dance 200 (esc grave caps))
+  egc (tap-dance $tt (esc grave caps))
+  ;; 1 tap : "1"
+  ;; 2 tap : "F1"
+  1f1 (tap-dance $tt (1 f1))
+  ;; 1 tap : "3"
+  ;; 2 tap : "F3"
+  3f3 (tap-dance $tt (3 f3))
+)
+
+(defalias
+  tap (multi
+    (layer-switch nomods-layer)
+    (on-idle-fakekey to-base tap 15)
+  )
+
+  ;; home row mods -- GASC
+  met_a (tap-hold-release-keys $tt $ht (multi a @tap) lmet $left-hand-keys)
+  alt_s (tap-hold-release-keys $tt $ht (multi s @tap) lalt $left-hand-keys)
+  sft_d (tap-hold-release-keys $tt $ht (multi d @tap) lsft $left-hand-keys)
+  ctl_f (tap-hold-release-keys $tt $ht (multi f @tap) lctl $left-hand-keys)
+
+  ctl_j (tap-hold-release-keys $tt $ht (multi j @tap) rctl $right-hand-keys)
+  sft_k (tap-hold-release-keys $tt $ht (multi k @tap) rsft $right-hand-keys)
+  alt_l (tap-hold-release-keys $tt $ht (multi l @tap) lalt $right-hand-keys)
+  met_; (tap-hold-release-keys $tt $ht (multi ; @tap) rmet $right-hand-keys)
 )
