@@ -341,4 +341,15 @@ return {
       { "<leader>Cd", "<cmd>CBd<cr>", mode = { "n", "v" }, desc = "Remove a box", noremap = true, silent = true },
     },
   },
+
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = "LazyFile",
+    opts = {
+      highlight = {
+        comments_only = false,
+      },
+    },
+  },
 }

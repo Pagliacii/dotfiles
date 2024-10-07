@@ -105,6 +105,54 @@ end, { noremap = true, silent = true, desc = "Linkify" })
 
 vim.keymap.set("n", leader_key .. "c", "i```\n```<Esc>kA", { noremap = true, silent = true, desc = "Code block" })
 
+vim.keymap.set("n", leader_key .. "k", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+
+  -- Find the start of the word
+  local start = col + 1
+  while start > 0 and line:sub(start, start):match("[^%s]") do
+    start = start - 1
+  end
+  start = start + 1
+
+  -- Find the end of the word
+  local finish = col + 1
+  while finish <= #line and line:sub(finish, finish):match("[^%s]") do
+    finish = finish + 1
+  end
+  finish = finish - 1
+
+  -- Extract the word
+  local word = line:sub(start, finish)
+
+  -- Replace the word with the link format
+  local new_text = "<kbd>" .. word .. "</kbd>"
+  local new_line = line:sub(1, start - 1) .. new_text .. line:sub(finish + 1)
+
+  -- Update the line
+  vim.api.nvim_set_current_line(new_line)
+
+  -- Move the cursor inside the parentheses
+  vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), start + #word + 5 })
+end, { noremap = true, silent = true, desc = "Insert kbd tag" })
+
+vim.keymap.set("v", leader_key .. "k", function()
+  local util = require("obsidian.util")
+  local viz = util.get_visual_selection()
+  local line = viz.lines[1]
+  local col = viz.cscol
+  local text = line:sub(col, col)
+  local new_text = "<kbd>" .. text .. "</kbd>"
+  local new_line = line:sub(1, col - 1) .. new_text .. line:sub(col + 1)
+
+  -- Update the line
+  vim.api.nvim_set_current_line(new_line)
+
+  -- Move the cursor inside the parentheses
+  vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), col + #new_text - 1 })
+end, { noremap = true, silent = true, desc = "Insert kbd tag" })
+
 return {
   {
     "ellisonleao/glow.nvim",
@@ -118,6 +166,9 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
+    init = function()
+      vim.g.mkdp_theme = "light"
+    end,
     keys = function()
       return {
         {
