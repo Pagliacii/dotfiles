@@ -34,8 +34,10 @@
 
 (defvar
   tap-timeout   50
+  tap-dance-timeout 200
   hold-timeout  200
   tt $tap-timeout
+  td $tap-dance-timeout
   ht $hold-timeout
 
   left-hand-keys (
@@ -56,6 +58,7 @@
 
 (defalias
   ;; toggle layer aliases
+  bsl (tap-hold-release $tt $ht \ @lay)
   lay (layer-toggle layers)
   ;; change the base layer between base and nomods-layer
   base (layer-switch qwerty)
@@ -63,18 +66,17 @@
 )
 
 (defalias
-  bsl (tap-hold-release $tt $ht \ @lay)
   cap (tap-hold-press $tt $ht esc lctl)
   ;; 1 tap : "Escape"
   ;; 2 tap : "`"
   ;; 3 tap : "Caps Lock"
-  egc (tap-dance $tt (esc grave caps))
+  egc (tap-dance $td (esc grave caps))
   ;; 1 tap : "1"
   ;; 2 tap : "F1"
-  1f1 (tap-dance $tt (1 f1))
+  1f1 (tap-dance $td (1 f1))
   ;; 1 tap : "3"
   ;; 2 tap : "F3"
-  3f3 (tap-dance $tt (3 f3))
+  3f3 (tap-dance $td (3 f3))
 )
 
 (defalias
