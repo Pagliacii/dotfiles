@@ -58,8 +58,8 @@
 
 (defalias
   ;; toggle layer aliases
-  bsl (tap-hold-release $tt $ht \ @lay)
   lay (layer-toggle layers)
+  bsl (tap-hold-release $tt $ht \ @lay)
   ;; change the base layer between base and nomods-layer
   base (layer-switch qwerty)
   nomods (layer-switch nomods-layer)
