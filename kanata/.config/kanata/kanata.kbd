@@ -26,10 +26,19 @@
   lctl lmet lalt           spc            ralt rctl
 )
 
+(deflayer easy-life
+  grave f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  tab   q    ▲    e    r    t    y    u    ⎀    o    p    [    ]    @bsl
+  @cap  ◀    ▼    ▶    f    g    h    j    k    l    ⇤    ⇞    ret
+  lsft  z    ☰    c    v    b    🔉   🔊   🔇   ⇥    ⇟    rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
 (deflayermap (layers)
+  r    lrld
   1    @base
   2    @nomods
-  3    lrld
+  3    @easy
 )
 
 (defvar
@@ -63,6 +72,7 @@
   ;; change the base layer between base and nomods-layer
   base (layer-switch qwerty)
   nomods (layer-switch nomods-layer)
+  easy (layer-switch easy-life)
 )
 
 (defalias

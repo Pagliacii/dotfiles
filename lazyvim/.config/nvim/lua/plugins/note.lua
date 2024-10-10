@@ -298,7 +298,7 @@ return {
       vim.api.nvim_create_user_command("ObsidianJournal", "ObsidianToday", {})
       vim.api.nvim_create_user_command("ObsidianIndex", function()
         local client = obsidian.get_client()
-        local notes = client:find_notes("index")
+        local notes = client:find_notes("index.md")
         if #notes == 0 then
           vim.notify("No index note found.", vim.log.levels.ERROR)
         else
@@ -307,7 +307,7 @@ return {
       end, {})
       vim.api.nvim_create_user_command("ObsidianTasks", function()
         local client = obsidian.get_client()
-        local notes = client:find_notes("tasks")
+        local notes = client:find_notes("tasks.md")
         if #notes == 0 then
           vim.notify("No tasks note found.", vim.log.levels.ERROR)
         else
