@@ -147,7 +147,7 @@ window_rules:
     match_process_name: "/Taskmgr|ScreenClippingHost|Snipaste|explorer|vlc|QQMusic/"
 
   - command: "ignore"
-    match_title: "/OpenAI Translator|GoldenDict/"
+    match_title: "/OpenAI Translator|GoldenDict|Media viewer/"
 
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
