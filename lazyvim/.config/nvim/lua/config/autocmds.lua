@@ -62,8 +62,9 @@ vim.api.nvim_create_autocmd("FileType", {
     "calendar",
     "dap-float",
     "dap-repl",
-    "toggleterm",
+    "oil",
     "query",
+    "toggleterm",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

@@ -53,9 +53,9 @@ return {
     },
     cmd = { "Oil" },
     keys = {
-      { "<leader>UO", "<cmd>Oil<cr>", desc = "Open parent directory", noremap = true },
+      { "<leader>fO", "<cmd>Oil<cr>", desc = "Open parent directory", noremap = true },
       {
-        "<leader>Uo",
+        "<leader>fo",
         function(...)
           require("oil").toggle_float(...)
         end,

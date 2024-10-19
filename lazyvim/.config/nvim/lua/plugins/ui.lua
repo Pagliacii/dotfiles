@@ -57,14 +57,12 @@ return {
           header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "Telescope file_browser", desc = " Browse files", icon = "󰥩 ", key = "b" },
-            { action = "Yazi cwd", desc = " Find file", icon = " ", key = "f" },
-            { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+            { action = "Yazi cwd", desc = " Browse files", icon = "󰥩 ", key = "b" },
+            { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
             { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
             { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
             { action = "Telescope project", desc = " Projects", icon = " ", key = "p" },
             { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
-            { action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "e" },
             { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
             { action = "qa", desc = " Quit", icon = " ", key = "q" },
           },
@@ -240,7 +238,7 @@ return {
           })
         end
       end
-      opts.options.theme = "catppuccin"
+      opts.options.theme = "auto"
     end,
   },
 

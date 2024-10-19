@@ -15,7 +15,12 @@ end
 -- This is where you actually apply your config choices
 
 -- Colors & Appearance
+config.front_end = "OpenGL"
+config.max_fps = 144
+config.animation_fps = 1
 config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_rate = 500
+config.term = "xterm-256color" -- Set the terminal type
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
@@ -50,19 +55,9 @@ config.colors = {
 }
 
 --- Window Appearance
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE | RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.window_background_opacity = 0.8
-config.window_frame = {
-	border_left_width = "0.25cell",
-	border_right_width = "0.25cell",
-	border_bottom_height = "0.125cell",
-	border_top_height = "0.125cell",
-	border_left_color = "skyblue",
-	border_right_color = "skyblue",
-	border_bottom_color = "skyblue",
-	border_top_color = "skyblue",
-}
 
 config.adjust_window_size_when_changing_font_size = false
 
@@ -73,8 +68,10 @@ config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
 	"Fira Code",
 })
-config.font_size = 16.0
+config.cell_width = 0.9
+config.font_size = 18.0
 config.line_height = 1.2
+config.prefer_egl = true
 
 --- Disable the scroll bar
 config.enable_scroll_bar = false
