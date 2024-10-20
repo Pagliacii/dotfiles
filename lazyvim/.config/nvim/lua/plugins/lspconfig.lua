@@ -194,6 +194,13 @@ return {
     config = function()
       vim.diagnostic.config({ virtual_text = false })
       require("lsp_lines").setup()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = "LspLines",
+        pattern = "lazy",
+        callback = function()
+          require("lsp_lines").toggle()
+        end,
+      })
     end,
   },
 }
