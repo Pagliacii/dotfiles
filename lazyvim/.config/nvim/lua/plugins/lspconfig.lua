@@ -165,7 +165,6 @@ return {
 
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    enabled = false,
     event = "LspAttach",
     config = function()
       vim.diagnostic.config({ virtual_text = false })
@@ -186,21 +185,5 @@ return {
         noremap = true,
       },
     },
-  },
-
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    event = "LspAttach",
-    config = function()
-      vim.diagnostic.config({ virtual_text = false })
-      require("lsp_lines").setup()
-      vim.api.nvim_create_autocmd("FileType", {
-        group = "LspLines",
-        pattern = "lazy",
-        callback = function()
-          require("lsp_lines").toggle()
-        end,
-      })
-    end,
   },
 }
