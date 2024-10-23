@@ -2,7 +2,6 @@ return {
   {
     "wakatime/vim-wakatime",
     event = "InsertEnter",
-    enabled = vim.fn.executable("wakatime") == 1,
   },
 
   {
