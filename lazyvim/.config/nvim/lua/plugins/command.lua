@@ -34,10 +34,12 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     event = "BufReadPost",
     cmd = "Hardtime",
-    opts = {
-      notification = true,
-      --- If you want to see the hint messages in insert and visual mode, set the 'showmode' to false.
-      showmode = true,
-    },
+    config = function()
+      local config = require("hardtime.config").config
+      vim.list_extend(config.disabled_filetypes, { "Navbuddy", "grug-far" })
+      config.notification = true
+      config.show_mode = true
+      require("hardtime").setup(config)
+    end,
   },
 }
