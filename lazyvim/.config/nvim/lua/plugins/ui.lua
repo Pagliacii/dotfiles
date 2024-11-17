@@ -171,6 +171,8 @@ return {
     "karb94/neoscroll.nvim",
     opts = {
       mappings = {
+        "<C-f>",
+        "<C-b>",
         "<C-u>",
         "<C-d>",
         "<C-y>",
@@ -179,8 +181,11 @@ return {
         "zz",
         "zb",
       },
+      easing = "quadratic",
     },
     keys = {
+      "<C-f>",
+      "<C-b>",
       "<C-u>",
       "<C-d>",
       "<C-y>",

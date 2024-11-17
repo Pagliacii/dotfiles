@@ -120,15 +120,6 @@ return {
   },
 
   {
-    "max397574/better-escape.nvim",
-    config = true,
-    keys = {
-      { "jj", mode = "i" },
-      { "jk", mode = "i" },
-    },
-  },
-
-  {
     "sudormrfbin/cheatsheet.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -188,13 +179,6 @@ return {
   },
 
   {
-    "jokajak/keyseer.nvim",
-    version = false,
-    config = true,
-    cmd = { "KeySeer" },
-  },
-
-  {
     "smjonas/live-command.nvim",
     event = "BufReadPost",
     config = function()
@@ -250,28 +234,6 @@ return {
   },
 
   {
-    "tris203/hawtkeys.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = true,
-    cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
-    keys = {
-      { "<leader>Kk", "<cmd>Hawtkeys<cr>", desc = "Searching New Keymaps", noremap = true, silent = true },
-      { "<leader>Ka", "<cmd>HawtkeysAll<cr>", desc = "Show All Existing Keymaps", noremap = true, silent = true },
-      { "<leader>Kd", "<cmd>HawtkeysDupes<cr>", desc = "Showing Duplicate Keymaps", noremap = true, silent = true },
-    },
-  },
-
-  {
-    "NStefan002/screenkey.nvim",
-    cmd = "Screenkey",
-    version = "*",
-    config = true,
-  },
-
-  {
     "sarrisv/readermode.nvim",
     cmd = "ReaderMode",
     opts = {
@@ -280,21 +242,6 @@ return {
     },
     keys = {
       { "<leader>Ur", "<cmd>ReaderMode<cr>", desc = "Reader mode", noremap = true, silent = true },
-    },
-  },
-
-  {
-    "folke/which-key.nvim",
-    event = "LazyFile",
-    opts = {
-      icons = {
-        rules = {
-          { plugin = "hydrate.nvim", icon = "󰆫 ", color = "azure" },
-          { plugin = "dropbar.nvim", icon = "󰳯 ", color = "orange" },
-          { plugin = "readermode.nvim", icon = "󱃀 ", color = "green" },
-          { plugin = "legendary.nvim", icon = "⚡ ", color = "red" },
-        },
-      },
     },
   },
 
