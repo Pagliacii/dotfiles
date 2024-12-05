@@ -13,18 +13,20 @@ return {
         -- Accept multi-line completion
         ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Insert, select = false }),
       })
-      opts.sources = cmp.config.sources(
-        vim.list_extend(opts.sources, {
-          { name = "emoji" },
-          {
-            name = "rg",
-            keyword_length = 3,
-          },
-          { name = "neorg" },
-          { name = "orgmode" },
-        }),
-        { name = "buffer" }
-      )
+      opts.sources = cmp.config.sources({
+        { name = "fittencode", group_index = 1 },
+        { name = "nvim_lsp" },
+        { name = "path" },
+        {
+          name = "rg",
+          keyword_length = 3,
+        },
+        { name = "emoji" },
+        { name = "neorg" },
+        { name = "orgmode" },
+      }, {
+        { name = "buffer" },
+      })
       opts.formatting = vim.tbl_extend("force", opts.formatting or {}, {
         format = lspkind.cmp_format({
           mode = "symbol_text",
@@ -32,7 +34,7 @@ return {
           ellipsis_char = "...",
           show_labelDetails = true,
           symbol_map = {
-            -- FittenCode = "",
+            FittenCode = "",
             -- Codeium = "",
           },
         }),
@@ -45,6 +47,16 @@ return {
           { name = "vim-dadbod-completion" },
           { name = "buffer" },
         },
+      })
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+
+      cmp.setup.filetype("DressingInput", {
+        sources = cmp.config.sources({ { name = "omni" } }),
       })
 
       return opts
@@ -77,31 +89,6 @@ return {
         null_ls.builtins.completion.spell,
       })
     end,
-  },
-
-  {
-    "simrat39/symbols-outline.nvim",
-    enabled = false,
-    cmd = { "SymbolsOutline" },
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    opts = {
-      symbols = {
-        File = { icon = "󰈔", hl = "@text.uri" },
-        Module = { icon = "󰆧", hl = "@namespace" },
-        Namespace = { icon = "󱃖", hl = "@namespace" },
-        Package = { icon = "󰏗", hl = "@namespace" },
-        Field = { icon = "󰮄", hl = "@field" },
-        Interface = { icon = "󰜰", hl = "@type" },
-        Array = { icon = "󰅪", hl = "@constant" },
-        Component = { icon = "󰡀", hl = "@function" },
-        Fragment = { icon = "󰅴", hl = "@constant" },
-        Class = { icon = "", hl = "@type" },
-        String = { icon = "", hl = "@string" },
-        Struct = { icon = "", hl = "@type" },
-        Event = { icon = "", hl = "@type" },
-        TypeParameter = { icon = "", hl = "@parameter" },
-      },
-    },
   },
 
   {
