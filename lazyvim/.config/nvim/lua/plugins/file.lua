@@ -6,12 +6,6 @@ return {
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-omni",
     },
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup.filetype("DressingInput", {
-        sources = cmp.config.sources({ { name = "omni" } }),
-      })
-    end,
     keys = function(_, keys)
       local cmd_factory = function(cmd)
         return string.format("<cmd>lua require('genghis').%s()<cr>", cmd)
@@ -114,20 +108,6 @@ return {
     keys = {
       { "<M-C-n>", "<cmd>Scratch<cr>", desc = "Scratch" },
       { "<M-C-o>", "<cmd>ScratchOpenFzf<cr>", desc = "ScratchOpenFzf" },
-    },
-  },
-
-  {
-    "simonmclean/triptych.nvim",
-    enabled = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "nvim-tree/nvim-web-devicons", -- optional
-    },
-    config = true,
-    cmd = { "Triptych" },
-    keys = {
-      { "<leader>f/", "<cmd>Triptych<cr>", desc = "Directory Browser", noremap = true, silent = true },
     },
   },
 

@@ -111,41 +111,6 @@ return {
   },
 
   {
-    "dgagn/diagflow.nvim",
-    enabled = false,
-    event = "LspAttach",
-    opts = {
-      max_width = 60, -- The maximum width of the diagnostic messages
-      severity_colors = { -- The highlight groups to use for each diagnostic severity level
-        error = "DiagnosticFloatingError",
-        warning = "DiagnosticFloatingWarning",
-        info = "DiagnosticFloatingInfo",
-        hint = "DiagnosticFloatingHint",
-      },
-      gap_size = 1,
-      scope = "line", -- 'cursor', 'line'
-      placement = "top",
-      show_sign = true,
-    },
-  },
-
-  {
-    "RaafatTurki/corn.nvim",
-    enabled = false,
-    event = "LspAttach",
-    config = function()
-      -- ensure virtual_text diags are disabled
-      vim.diagnostic.config({ virtual_text = false })
-      -- toggle virtual_text diags when corn is toggled
-      require("corn").setup({
-        on_toggle = function(...)
-          vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
-        end,
-      })
-    end,
-  },
-
-  {
     "rachartier/tiny-code-action.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },

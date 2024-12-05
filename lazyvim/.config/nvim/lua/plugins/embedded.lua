@@ -17,20 +17,6 @@ return {
   },
 
   {
-    "normen/vim-pio",
-    enabled = false,
-    cmd = {
-      "PIO",
-      "PIOInit",
-      "PIOInstall",
-      "PIOUninstall",
-      "PIONewProject",
-      "PIOAddLibrary",
-      "PIORemoveLibrary",
-    },
-  },
-
-  {
     "anurag3301/nvim-platformio.lua",
     dependencies = {
       { "akinsho/nvim-toggleterm.lua" },

@@ -1,52 +1,10 @@
 return {
   {
-    "jackMort/ChatGPT.nvim",
-    enabled = false,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    cmd = {
-      "ChatGPT",
-      "ChatGPTActAs",
-      "ChatGPTRun",
-      "ChatGPTEditWithInstructions",
-      "ChatGPTCompleteCode",
-    },
-    opts = {
-      openai_params = {
-        model = "gpt-4",
-      },
-      openai_edit_params = {
-        model = "gpt-4",
-      },
-    },
-  },
-
-  {
-    "David-Kunz/gen.nvim",
-    enabled = false,
-    opts = {
-      display_mode = "split",
-    },
-    cmd = { "Gen" },
-  },
-
-  {
-    "Exafunction/codeium.nvim",
-    enabled = false,
-    opts = {
-      enable_chat = true,
-    },
-  },
-
-  {
     "luozhiya/fittencode.nvim",
     event = "BufReadPost",
     cmd = "Fitten",
     opts = {
-      completion_mode = "inline", -- or "source"
+      completion_mode = "source", -- or "inline"
       chat = {
         sidebar = {
           position = "right",
