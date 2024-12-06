@@ -19,4 +19,15 @@ return {
       },
     },
   },
+
+  {
+    "mvllow/modes.nvim",
+    event = "BufReadPre",
+    opts = {
+      -- Enable cursor highlights
+      set_cursor = false,
+      -- Enable line number highlights to match cursonline
+      set_number = false,
+    },
+  },
 }

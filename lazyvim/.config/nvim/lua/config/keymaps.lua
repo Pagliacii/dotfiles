@@ -99,7 +99,7 @@ end, { expr = true })
 
 vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+vim.keymap.set("n", "gw", "*N", { desc = "Search word under cursor" })
 vim.keymap.set("n", "i", "zzi", { desc = "Center screen on cursor" })
 vim.keymap.set("n", "a", "zza", { desc = "Center screen on cursor" })
 vim.keymap.set("n", "o", "zzo", { desc = "Center screen on cursor" })
