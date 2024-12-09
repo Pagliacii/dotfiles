@@ -1,14 +1,5 @@
 return {
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      stages = "static",
-      timeout = 3000,
-      render = "default",
-    },
-  },
-
-  {
     "folke/zen-mode.nvim",
     dependencies = {
       {
@@ -33,95 +24,49 @@ return {
   },
 
   {
-    "nvimdev/dashboard-nvim",
-    opts = function()
-      local logo = [[
- ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
- ██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║
- ██████╔╝███████║██║  ███╗██║     ██║███████║██║     ██║██║
- ██╔═══╝ ██╔══██║██║   ██║██║     ██║██╔══██║██║     ██║██║
- ██║     ██║  ██║╚██████╔╝███████╗██║██║  ██║╚██████╗██║██║
- ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝
-  [ github.com/Pagliacii ]
-      ]]
-      logo = string.rep("\n", 5) .. logo .. "\n"
-
-      local opts = {
-        theme = "doom",
-        hide = {
-          -- this is taken care of by lualine
-          -- enabling this messes up the actual laststatus setting after loading a file
-          statusline = false,
-        },
-        config = {
-          header = vim.split(logo, "\n"),
-          -- stylua: ignore
-          center = {
-            { action = "Yazi cwd", desc = " Browse files", icon = "󰥩 ", key = "b" },
-            { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
-            { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
-            { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
-            { action = "Telescope project", desc = " Projects", icon = " ", key = "p" },
-            { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
-            { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
-            { action = "qa", desc = " Quit", icon = " ", key = "q" },
-          },
-          footer = function()
-            local stats = require("lazy").stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-          end,
-        },
-      }
-
-      for _, button in ipairs(opts.config.center) do
-        button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-      end
-
-      -- close Lazy and re-open when the dashboard is ready
-      if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "DashboardLoaded",
-          callback = function()
-            require("lazy").show()
-          end,
-        })
-      end
-
-      return opts
-    end,
-  },
-
-  {
     "folke/snacks.nvim",
     opts = {
       dashboard = {
         preset = {
+          -- Used by the `header` section
           header = [[
-
  ██████╗  █████╗  ██████╗ ██╗     ██╗ █████╗  ██████╗██╗██╗
  ██╔══██╗██╔══██╗██╔════╝ ██║     ██║██╔══██╗██╔════╝██║██║
  ██████╔╝███████║██║  ███╗██║     ██║███████║██║     ██║██║
  ██╔═══╝ ██╔══██║██║   ██║██║     ██║██╔══██║██║     ██║██║
  ██║     ██║  ██║╚██████╔╝███████╗██║██║  ██║╚██████╗██║██║
  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝
-  [ github.com/Pagliacii ]
-          ]],
+  [ github.com/Pagliacii ] ]],
+          -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
+          ---@type fun(cmd:string, opts:table)|nil
+          pick = nil,
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]
           keys = {
-            { icon = "󰥩 ", key = "b", desc = "Browse File", action = "Yazi cwd" },
+            { icon = "󰥩 ", key = "b", desc = "Browse File", action = ":Yazi cwd" },
             { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
             { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+      },
+      styles = {
+        notification = {
+          wo = { wrap = true }, -- Wrap notifications
         },
       },
     },
@@ -131,35 +76,7 @@ return {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
-        numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-        show_buffer_icons = true,
         show_buffer_close_icons = false,
-        show_close_icon = false,
-        show_tab_indicators = true,
-        separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-        color_icons = true,
-        diagnostics = false,
-        highlights = {
-          buffer_selected = {
-            gui = "none",
-          },
-        },
-        offsets = {
-          {
-            filetype = "neo-tree",
-            text = "Neo-tree",
-            highlight = "Directory",
-            text_align = "left",
-          },
-          {
-            filetype = "Outline",
-            text = "Symbols Outline",
-            highlight = "TSType",
-            text_align = "left",
-          },
-        },
       },
     },
   },
