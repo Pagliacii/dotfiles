@@ -10,3 +10,6 @@ any = true
 
 [LazyVim]
 any = true
+
+[Snacks]
+any = true
