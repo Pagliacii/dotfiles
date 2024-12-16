@@ -120,35 +120,6 @@ return {
   },
 
   {
-    "karb94/neoscroll.nvim",
-    opts = {
-      mappings = {
-        "<C-f>",
-        "<C-b>",
-        "<C-u>",
-        "<C-d>",
-        "<C-y>",
-        "<C-e>",
-        "zt",
-        "zz",
-        "zb",
-      },
-      easing = "quadratic",
-    },
-    keys = {
-      "<C-f>",
-      "<C-b>",
-      "<C-u>",
-      "<C-d>",
-      "<C-y>",
-      "<C-e>",
-      "zt",
-      "zz",
-      "zb",
-    },
-  },
-
-  {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()

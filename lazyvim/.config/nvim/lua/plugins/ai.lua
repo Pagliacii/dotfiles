@@ -4,7 +4,11 @@ return {
     event = "BufReadPost",
     cmd = "Fitten",
     opts = {
-      completion_mode = "source", -- or "inline"
+      completion_mode = "inline", -- or "inline"
+      source_completion = {
+        enable = true,
+        engine = "blink",
+      },
       chat = {
         sidebar = {
           position = "right",

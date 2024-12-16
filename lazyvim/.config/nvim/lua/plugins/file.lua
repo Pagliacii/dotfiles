@@ -1,11 +1,7 @@
 return {
   {
     "chrisgrieser/nvim-genghis",
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-omni",
-    },
+    cmd = "Genghis",
     keys = function(_, keys)
       local cmd_factory = function(cmd)
         return string.format("<cmd>lua require('genghis').%s()<cr>", cmd)

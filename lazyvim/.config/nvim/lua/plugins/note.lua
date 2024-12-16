@@ -10,12 +10,10 @@ local function toggle_venn()
     vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<cr>", { noremap = true, silent = true })
     -- draw a box by pressing "f" with visual selection
     vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<cr>", { noremap = true, silent = true })
-    require("indent_blankline.commands").disable()
   else
     vim.cmd([[setlocal ve=]])
     vim.cmd([[mapclear <buffer>]])
     vim.b.venn_enabled = nil
-    require("indent_blankline.commands").enable()
   end
 end
 
@@ -79,6 +77,7 @@ return {
       { "bottd/neorg-worklog" },
       { "nvim-neorg/neorg-telescope" },
       { "juniorsundar/neorg-extras" },
+      { "benlubas/neorg-interim-ls" },
     },
     version = "*",
     config = function()
@@ -86,9 +85,8 @@ return {
         load = {
           ["core.defaults"] = {},
           ["core.completion"] = {
-            config = { engine = "nvim-cmp", name = "[Norg] " },
+            config = { engine = { module_name = "external.lsp-completion" } },
           },
-          ["core.integrations.nvim-cmp"] = {},
           ["core.concealer"] = { config = { icon_preset = "diamond" } },
           ["core.keybinds"] = {
             -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/module.lua
@@ -123,6 +121,21 @@ return {
           ["external.agenda"] = {},
           ["external.roam"] = {},
           ["external.worklog"] = {},
+          ["external.interim-ls"] = {
+            config = {
+              -- default config shown
+              completion_provider = {
+                -- Enable or disable the completion provider
+                enable = true,
+
+                -- Show file contents as documentation when you complete a file name
+                documentation = true,
+
+                -- Try to complete categories provided by Neorg Query. Requires `benlubas/neorg-query`
+                categories = false,
+              },
+            },
+          },
         },
       })
 
@@ -161,7 +174,7 @@ return {
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter",
       "epwalsh/pomo.nvim",
@@ -221,7 +234,7 @@ return {
       -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
       completion = {
         -- Set to false to disable completion.
-        nvim_cmp = true,
+        nvim_cmp = false,
         -- Trigger completion at 2 chars.
         min_chars = 2,
       },
