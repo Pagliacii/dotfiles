@@ -4,7 +4,7 @@ return {
     event = "BufReadPost",
     cmd = "Fitten",
     opts = {
-      completion_mode = "inline", -- or "inline"
+      completion_mode = "source", -- or "inline"
       source_completion = {
         enable = true,
         engine = "blink",

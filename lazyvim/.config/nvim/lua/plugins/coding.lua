@@ -360,6 +360,7 @@ return {
         version = not vim.g.lazyvim_blink_main and "*",
       },
       { "luozhiya/fittencode.nvim" },
+      { "onsails/lspkind.nvim" },
     },
     event = "InsertEnter",
 
@@ -407,16 +408,16 @@ return {
       sources = {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
-        compat = {},
+        compat = { "fittencode" },
         default = { "lsp", "path", "snippets", "buffer" },
         cmdline = {},
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer", "fittencode" },
-        },
         providers = {
           fittencode = {
             name = "fittencode",
             module = "fittencode.sources.blink",
+            async = true,
+            score_offset = 100,
+            kind = "FittenCode",
           },
         },
       },
@@ -506,6 +507,16 @@ return {
       end
 
       require("blink.cmp").setup(opts)
+
+      -- lspkind.lua
+      local lspkind = require("lspkind")
+      lspkind.init({
+        symbol_map = {
+          FittenCode = "",
+        },
+      })
+
+      vim.api.nvim_set_hl(0, "CmpItemKindFittenCode", { fg = "#6CC644" })
     end,
   },
 }
