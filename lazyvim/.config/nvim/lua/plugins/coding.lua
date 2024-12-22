@@ -305,18 +305,9 @@ return {
 
   {
     "gregorias/coerce.nvim",
-    tag = "v0.3",
+    tag = "v4.1.0",
     config = true,
-    keys = {
-      { "crc", mode = { "n", "v" }, desc = "camelCase" },
-      { "crd", mode = { "n", "v" }, desc = "dot.case" },
-      { "crk", mode = { "n", "v" }, desc = "kebab-case" },
-      { "crn", mode = { "n", "v" }, desc = "n12e" },
-      { "crp", mode = { "n", "v" }, desc = "PascalCase" },
-      { "crs", mode = { "n", "v" }, desc = "snake_case" },
-      { "cru", mode = { "n", "v" }, desc = "UPPER_CASE" },
-      { "cr/", mode = { "n", "v" }, desc = "path/case" },
-    },
+    event = "BufReadPre",
   },
 
   {
@@ -461,17 +452,6 @@ return {
             LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
             "fallback",
           }
-        end
-      end
-
-      ---  NOTE: compat with latest version. Currenlty 0.7.6
-      if not vim.g.lazyvim_blink_main then
-        ---@diagnostic disable-next-line: inject-field
-        opts.sources.completion = opts.sources.completion or {}
-        opts.sources.completion.enabled_providers = enabled
-        if vim.tbl_get(opts, "completion", "menu", "draw", "treesitter") then
-          ---@diagnostic disable-next-line: assign-type-mismatch
-          opts.completion.menu.draw.treesitter = true
         end
       end
 

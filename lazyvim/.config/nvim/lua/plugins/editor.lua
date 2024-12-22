@@ -42,7 +42,10 @@ return {
     opts = {
       keymaps = {
         useDefaults = true,
-        disabedDefaults = {},
+        -- disable only some default keymaps, for example { "ai", "!" }
+        -- (only relevant when you set `useDefaults = true`)
+        ---@type string[]
+        disabledDefaults = { "r" },
       },
     },
   },
@@ -219,6 +222,7 @@ return {
     keys = {
       { "s", mode = { "n", "x", "o" }, false }, -- avoid to conflict with nvim-surround
       { "S", mode = { "n", "x", "o" }, false }, -- avoid to conflict with nvim-surround
+      { "r", mode = "o", false }, -- avoid to conflict with coerce.nvim
     },
   },
 
