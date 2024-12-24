@@ -350,7 +350,6 @@ return {
         opts = {},
         version = not vim.g.lazyvim_blink_main and "*",
       },
-      { "luozhiya/fittencode.nvim" },
       { "onsails/lspkind.nvim" },
     },
     event = "InsertEnter",
