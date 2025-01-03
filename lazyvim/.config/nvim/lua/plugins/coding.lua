@@ -406,7 +406,7 @@ return {
             name = "fittencode",
             module = "fittencode.sources.blink",
             async = true,
-            score_offset = 100,
+            score_offset = 0,
             kind = "FittenCode",
           },
         },
