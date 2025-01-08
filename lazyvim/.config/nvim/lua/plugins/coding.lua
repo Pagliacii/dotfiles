@@ -351,6 +351,7 @@ return {
         version = not vim.g.lazyvim_blink_main and "*",
       },
       { "onsails/lspkind.nvim" },
+      { "xzbdmw/colorful-menu.nvim", config = true },
     },
     event = "InsertEnter",
 
@@ -361,6 +362,7 @@ return {
         expand = function(snippet, _)
           return LazyVim.cmp.expand(snippet)
         end,
+        preset = "luasnip",
       },
       appearance = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -381,6 +383,7 @@ return {
         menu = {
           draw = {
             treesitter = { "lsp" },
+            columns = { { "kind_icon" }, { "label", gap = 1 } },
           },
         },
         documentation = {
@@ -485,6 +488,12 @@ return {
         end
       end
 
+      opts.completion.menu.draw.components = {
+        lable = {
+          text = require("colorful-menu").blink_components_text,
+          highlight = require("colorful-menu").blink_components_highlight,
+        },
+      }
       require("blink.cmp").setup(opts)
 
       -- lspkind.lua
