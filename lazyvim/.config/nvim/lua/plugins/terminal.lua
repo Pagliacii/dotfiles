@@ -1,17 +1,5 @@
 return {
   {
-    "folke/snacks.nvim",
-    keys = {
-      {
-        "<leader>Tf",
-        function()
-          Snacks.terminal.toggle(vim.o.shell)
-        end,
-        desc = "Toggle float terminal",
-      },
-    },
-  },
-  {
     "willothy/wezterm.nvim",
     config = true,
     cmd = { "WeztermSpawn" },

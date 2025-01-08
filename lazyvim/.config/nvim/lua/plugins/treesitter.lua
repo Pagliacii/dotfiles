@@ -100,34 +100,43 @@ return {
   },
 
   {
-    "Wansmer/sibling-swap.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function(_, opts)
-      require("sibling-swap").setup(opts)
-    end,
+    "aaronik/treewalker.nvim",
+    cmd = "Treewalker",
+    -- The following options are the defaults.
+    -- Treewalker aims for sane defaults, so these are each individually optional,
+    -- and setup() does not need to be called, so the whole opts block is optional as well.
     opts = {
-      use_default_keymaps = false,
-      allowed_separators = { "..", "*" }, -- add multiplication & lua string concatenation
-      highlight_node_at_cursor = true,
-      ignore_injected_langs = true,
-      allow_interline_swaps = true,
-      interline_swaps_without_separator = false,
+      -- Whether to briefly highlight the node after jumping to it
+      highlight = true,
+
+      -- How long should above highlight last (in ms)
+      highlight_duration = 250,
+
+      -- The color of the above highlight. Must be a valid vim highlight group.
+      -- (see :h highlight-group for options)
+      highlight_group = "CursorLine",
     },
     keys = {
+      { "<leader>Tk", "<cmd>Treewalker Up<cr>", mode = { "n", "v" }, desc = "move up to neighbor node", silent = true },
       {
-        "<leader>cw",
-        function()
-          require("sibling-swap").swap_with_right()
-        end,
-        desc = "Swap with right",
+        "<leader>Tj",
+        "<cmd>Treewalker Down<cr>",
+        mode = { "n", "v" },
+        desc = "move down to neighbor node",
+        silent = true,
       },
+      { "<leader>Tl", "<cmd>Treewalker Right<cr>", mode = { "n", "v" }, desc = "move up to next node", silent = true },
       {
-        "<leader>cW",
-        function()
-          require("sibling-swap").swap_with_left()
-        end,
-        desc = "Swap with left",
+        "<leader>Th",
+        "<cmd>Treewalker Left<cr>",
+        mode = { "n", "v" },
+        desc = "move up to ancestor node",
+        silent = true,
       },
+      { "<leader>TK", "<cmd>Treewalker SwapUp<cr>", desc = "swap nodes up", silent = true },
+      { "<leader>TJ", "<cmd>Treewalker SwapDown<cr>", desc = "swap nodes down", silent = true },
+      { "<leader>TL", "<cmd>Treewalker SwapRight<cr>", desc = "swap nodes right", silent = true },
+      { "<leader>TH", "<cmd>Treewalker SwapLeft<cr>", desc = "swap nodes left", silent = true },
     },
   },
 }
