@@ -70,24 +70,6 @@ end
 local misc_key = function(k, cmd, ...)
   return key("M" .. k, cmd, ...)
 end
----Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Fo" representing the "fzf > overlay" group
----@param k any
----@param cmd any
----@param opts unknown
----@return table
-local flo_key = function(k, cmd, opts)
-  if type(opts) ~= "table" then
-    opts = {}
-  end
-  return vim.tbl_extend("force", {
-    ("<leader>Fo%s"):format(k),
-    ("<cmd>lua require('flo').%s()<cr>"):format(cmd),
-    desc = cmd,
-    noremap = true,
-    mode = { "n", "x" },
-  }, opts)
-end
 
 return {
   {
@@ -230,45 +212,6 @@ return {
       misc_key("m", "menus"),
       misc_key("S", "spell_suggest", { desc = "spelling suggestions" }),
       misc_key("P", "packadd"),
-    },
-  },
-
-  {
-    "phanen/fzf-lua-overlay",
-    main = "flo",
-    cond = not vim.g.vscode,
-    init = function()
-      vim.api.nvim_create_autocmd("BufDelete", {
-        callback = function(ev)
-          if not _G.__recent_hlist then
-            _G.__recent_hlist = require("flo.hashlist")({})
-          end
-          -- ignore no name buffer on enter...
-          if vim.api.nvim_buf_get_name(ev.buf) == "" then
-            return
-          end
-          print(ev.match)
-          _G.__recent_hlist:access(ev.match)
-        end,
-      })
-    end,
-    -- stylua: ignore
-    keys = {
-      flo_key("b", "buffers"),
-      flo_key("f", "files"),
-      flo_key("g", "live_grep_native", { desc = "live grep" }),
-      flo_key("l", "lazy"),
-      flo_key("n", "grep_notes", { desc = "grep (notes)", mode = { "n" } }),
-      flo_key("N", "find_notes", { desc = "find (notes)" }),
-      flo_key("i", "gitignore"),
-      flo_key("L", "licence"),
-      flo_key("r", "rtp"),
-      flo_key("s", "scriptnames"),
-      flo_key("z", "zoxide"),
-      flo_key("t", "todo_comment"),
-      flo_key("o", "recentfiles", { desc = "recent files" }),
-      flo_key("d", "grep_dots", { desc = "grep (dots)" }),
-      flo_key("D", "find_dots", { desc = "find (dots)" }),
     },
   },
 }
