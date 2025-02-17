@@ -180,6 +180,7 @@ return {
         if menu then
           menu:close()
         end
+        return "<C-w>q"
       end
       local menu = opts.menu or { quick_navigation = true }
       local keymaps = menu.keymaps or {}

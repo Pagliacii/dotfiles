@@ -396,14 +396,13 @@ return {
       },
 
       -- experimental signature help support
-      -- signature = { enabled = true },
+      signature = { enabled = true },
 
       sources = {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         compat = { "fittencode" },
         default = { "lsp", "path", "snippets", "buffer" },
-        cmdline = {},
         providers = {
           fittencode = {
             name = "fittencode",
@@ -414,6 +413,8 @@ return {
           },
         },
       },
+
+      cmdline = { sources = {} },
 
       keymap = {
         preset = "enter",
