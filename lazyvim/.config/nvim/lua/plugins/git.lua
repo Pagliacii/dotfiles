@@ -19,7 +19,7 @@ return {
       }
       opts.hooks = {
         diff_buf_read = function(bufnr)
-          vim.diagnostic.disable(bufnr)
+          vim.diagnostic.enable(false, { bufnr = bufnr })
         end,
       }
       opts.view = {

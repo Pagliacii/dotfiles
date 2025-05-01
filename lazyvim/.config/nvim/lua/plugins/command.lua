@@ -34,12 +34,9 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     event = "BufReadPost",
     cmd = "Hardtime",
-    config = function()
-      local config = require("hardtime.config").config
-      vim.list_extend(config.disabled_filetypes, { "Navbuddy", "grug-far" })
-      config.notification = true
-      config.show_mode = true
-      require("hardtime").setup(config)
-    end,
+    opts = {
+      disable_mouse = false,
+      disabled_filetypes = { "Navbuddy", "grug-far" },
+    },
   },
 }
