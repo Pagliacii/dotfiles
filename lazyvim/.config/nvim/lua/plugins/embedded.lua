@@ -1,4 +1,26 @@
+local filetypes = { "c", "cpp" }
 return {
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        clangd = {
+          filetypes = filetypes,
+        },
+      },
+    },
+  },
+
+  {
+    "mason-org/mason.nvim",
+    ft = filetypes,
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "clang-format",
+      })
+    end,
+  },
+
   {
     "tpope/vim-dispatch",
     cmd = {
@@ -35,7 +57,7 @@ return {
   {
     "p00f/clangd_extensions.nvim",
     lazy = true,
-    ft = { "c", "cpp" },
+    ft = filetypes,
     opts = {
       extensions = {
         inlay_hints = vim.fn.has("nvim-0.10") == 1,
@@ -53,7 +75,7 @@ return {
   {
     "jedrzejboczar/nvim-dap-cortex-debug",
     lazy = true,
-    ft = { "c", "cpp" },
+    ft = filetypes,
     dependencies = { "mfussenegger/nvim-dap" },
     config = true,
   },

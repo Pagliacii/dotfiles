@@ -121,8 +121,20 @@ keybinds clear-defaults=true {
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt Shift p" { PreviousSwapLayout; }
+        bind "Alt Shift n" { NextSwapLayout; }
+        bind "Alt /" {
+          LaunchOrFocusPlugin "https://github.com/karimould/zellij-forgot/releases/download/0.4.2/zellij_forgot.wasm" {
+            floating true
+          }
+        }
+        bind "Alt y" {
+          LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/download/v1.2.0/room.wasm" {
+            floating true
+            ignore_case true
+            quick_jump true
+          }
+        }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" "q" { SwitchToMode "Normal"; }
@@ -151,10 +163,17 @@ keybinds clear-defaults=true {
 }
 
 plugins {
-    tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
-    strider { path "strider"; }
-    compact-bar { path "compact-bar"; }
+    tab-bar location="zellij:tab-bar"
+    status-bar location="zellij:status-bar"
+    strider location="zellij:strider"
+    compact-bar location="zellij:compact-bar"
+    session-manager location="zellij:session-manager"
+    welcome-screen location="zellij:welcome-screen" {
+        welcome_screen true
+    }
+    filepicker location="zellij:filepicker" {
+        cwd "/"
+    }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
@@ -170,7 +189,7 @@ plugins {
 //    - true
 //    - false (Default)
 //
-simplified_ui true
+simplified_ui false
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -256,9 +275,9 @@ default_mode "normal"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-copy_command "wl-copy"                    // wayland
+// copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
-// copy_command "cb copy"
+copy_command "cb copy"
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.

@@ -8,17 +8,15 @@
 return {
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, {
-          "bash-language-server",
-          "shellcheck",
-          "shfmt",
-          "clang-format",
-          "cmakelint",
-        })
-      end
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "bash-language-server",
+        "shellcheck",
+        "shfmt",
+        "clang-format",
+        "cmakelint",
+      })
     end,
   },
 
@@ -32,6 +30,7 @@ return {
   { import = "plugins.extras.lang.python" },
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.lua" },
+  { import = "plugins.extras.lang.protobuf" },
   { import = "plugins.extras.game" },
   { import = "plugins.extras.fun" },
 }

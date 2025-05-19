@@ -45,12 +45,11 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     ft = { "typ", "typst" },
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "typstfmt",
-        "typst-lsp",
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "tinymist",
       })
     end,
   },

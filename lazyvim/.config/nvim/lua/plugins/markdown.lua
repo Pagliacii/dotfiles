@@ -195,10 +195,10 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     ft = filetypes,
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
         "glow",
         "markdown-toc",
         "markmap-cli",
