@@ -30,7 +30,7 @@ return {
       set_number = false,
       -- Disable modes highlights in specified filetypes
       -- Please PR commonly ignored filetypes
-      ignore_filetypes = { "NvimTree", "TelescopePrompt", "noice", "glow", "alpha", "dashboard" },
+      ignore = { "NvimTree", "TelescopePrompt", "noice", "glow", "alpha", "dashboard" },
     },
   },
 
