@@ -56,4 +56,5 @@ vim.g.python_indent = {
 
 vim.o.mousemoveevent = true
 vim.o.hidden = false
+vim.o.exrc = true
 vim.lsp.set_log_level("ERROR")

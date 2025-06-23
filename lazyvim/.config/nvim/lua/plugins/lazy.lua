@@ -31,6 +31,7 @@ return {
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.lua" },
   { import = "plugins.extras.lang.protobuf" },
+  { import = "plugins.extras.lang.nix" },
   { import = "plugins.extras.game" },
   { import = "plugins.extras.fun" },
 }
