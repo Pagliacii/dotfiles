@@ -1,4 +1,4 @@
-local filetypes = { "c", "cpp" }
+local filetypes = { "c", "cpp", "cmake" }
 return {
   {
     "neovim/nvim-lspconfig",

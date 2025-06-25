@@ -8,6 +8,17 @@ return {
   },
 
   {
+    "mason-org/mason.nvim",
+    ft = filetypes,
+    opts = {
+      ensure_installed = {
+        "alejandra",
+        "nil_ls",
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)
