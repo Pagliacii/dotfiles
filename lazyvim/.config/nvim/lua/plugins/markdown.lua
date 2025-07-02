@@ -210,9 +210,17 @@ return {
 
   {
     "HakonHarnes/img-clip.nvim",
-    ft = filetypes,
+    ft = { "markdown", "codecompanion" },
     event = "BufReadPre",
-    opts = {},
+    opts = {
+      filetypes = {
+        codecompanion = {
+          prompt_for_file_name = false,
+          template = "[Image]($FILE_PATH)",
+          use_absolute_path = true,
+        },
+      },
+    },
     keys = {
       { leader_key .. "p", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
     },
@@ -220,6 +228,7 @@ return {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
     opts = {
       heading = {
         sign = true,

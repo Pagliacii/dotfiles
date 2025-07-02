@@ -13,7 +13,7 @@ return {
     opts = {
       ensure_installed = {
         "alejandra",
-        "nil_ls",
+        "nil",
       },
     },
   },

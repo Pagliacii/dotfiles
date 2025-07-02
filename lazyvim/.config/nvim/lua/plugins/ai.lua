@@ -1,6 +1,7 @@
 return {
   {
     "luozhiya/fittencode.nvim",
+    enabled = false,
     event = "BufReadPost",
     cmd = "Fitten",
     opts = {
@@ -247,5 +248,60 @@ return {
       })
       return keys
     end,
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {
+      adapters = {
+        opts = {
+          show_model_choices = true,
+        },
+      },
+      display = {
+        inline = {
+          layout = "vertical", -- vertical|horizontal|buffer
+        },
+      },
+      strategies = {
+        chat = {
+          adapter = "copilot",
+          model = "claude-sonnet-4",
+        },
+        inline = {
+          adapter = "copilot",
+          model = "claude-sonnet-4",
+          keymaps = {
+            accept_change = {
+              modes = { n = "ga" },
+              description = "Accept the suggested change",
+            },
+            reject_change = {
+              modes = { n = "gR" },
+              description = "Reject the suggested change",
+            },
+          },
+        },
+        cmd = {
+          adapter = "copilot",
+          model = "claude-sonnet-4",
+        },
+      },
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "ravitemer/mcphub.nvim",
+    },
   },
 }

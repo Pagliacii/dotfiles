@@ -85,7 +85,7 @@ return {
     "petertriho/nvim-scrollbar",
     dependencies = {
       "kevinhwang91/nvim-hlslens",
-      "lewis6991/gitsigns.nvim",
+      -- "lewis6991/gitsigns.nvim",
     },
     event = "BufReadPost",
     config = function()
@@ -113,8 +113,8 @@ return {
         show_in_active_only = true,
       })
 
-      require("gitsigns").setup()
-      require("scrollbar.handlers.gitsigns").setup()
+      -- require("gitsigns").setup()
+      -- require("scrollbar.handlers.gitsigns").setup()
       require("scrollbar.handlers.search").setup()
     end,
   },

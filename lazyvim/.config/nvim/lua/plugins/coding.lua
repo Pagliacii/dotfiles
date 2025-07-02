@@ -15,7 +15,7 @@ return {
         ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Insert, select = false }),
       })
       opts.sources = cmp.config.sources({
-        { name = "fittencode", group_index = 1 },
+        -- { name = "fittencode", group_index = 1 },
         { name = "nvim_lsp" },
         { name = "path" },
         {
@@ -35,7 +35,7 @@ return {
           ellipsis_char = "...",
           show_labelDetails = true,
           symbol_map = {
-            FittenCode = "",
+            -- FittenCode = "",
             -- Codeium = "",
           },
         }),
@@ -401,17 +401,9 @@ return {
       sources = {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
-        compat = { "fittencode" },
+        compat = {},
         default = { "lsp", "path", "snippets", "buffer" },
-        providers = {
-          fittencode = {
-            name = "fittencode",
-            module = "fittencode.sources.blink",
-            async = true,
-            score_offset = 0,
-            kind = "FittenCode",
-          },
-        },
+        providers = {},
       },
 
       cmdline = { sources = {} },
