@@ -5,3 +5,17 @@ show_hidden = true
 edit = [
   { run = 'nvim "%*"', block = true, desc = "Edit file in neovim", for = "windows" },
 ]
+
+[[plugin.append_previewers]]
+name = "*"
+run = 'piper -- hexyl --border=none --terminal-width=$w "$1"'
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"

@@ -311,17 +311,6 @@ return {
   },
 
   {
-    "LudoPinelli/comment-box.nvim",
-    keys = {
-      { "<leader>Cb", "<cmd>CBccbox<cr>", mode = { "n", "v" }, desc = "Box Title", noremap = true, silent = true },
-      { "<leader>Ct", "<cmd>CBllline<cr>", mode = { "n", "v" }, desc = "Titled Line", noremap = true, silent = true },
-      { "<leader>Cl", "<cmd>CBlline<cr>", mode = { "n", "v" }, desc = "Simple Line", noremap = true, silent = true },
-      { "<leader>Cm", "<cmd>CBllbox14<cr>", mode = { "n", "v" }, desc = "Marked", noremap = true, silent = true },
-      { "<leader>Cd", "<cmd>CBd<cr>", mode = { "n", "v" }, desc = "Remove a box", noremap = true, silent = true },
-    },
-  },
-
-  {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "LazyFile",

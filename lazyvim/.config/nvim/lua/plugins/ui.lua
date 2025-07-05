@@ -1,29 +1,5 @@
 return {
   {
-    "folke/zen-mode.nvim",
-    dependencies = {
-      {
-        "folke/twilight.nvim",
-        cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-      },
-    },
-    keys = {
-      { "<leader>z", "<cmd> ZenMode<cr>", desc = "Zen mode" },
-    },
-    opts = {
-      plugins = {
-        wezterm = { enabled = true },
-      },
-      on_open = function()
-        require("incline").disable()
-      end,
-      on_close = function()
-        require("incline").enable()
-      end,
-    },
-  },
-
-  {
     "folke/snacks.nvim",
     opts = {
       dashboard = {

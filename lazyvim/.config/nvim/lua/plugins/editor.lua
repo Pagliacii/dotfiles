@@ -1,35 +1,5 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = { "Neotree" },
-    opts = {
-      close_if_last_window = true,
-      filesystem = {
-        follow_current_file = {
-          enabled = true,
-        },
-        group_empty_dirs = true,
-        hijack_netrw_behavior = "open_default",
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_by_name = {
-            "node_modules",
-            "__pycache__",
-          },
-          hide_by_pattern = {
-            "*.pyc",
-            "*.orig",
-            "*.rej",
-          },
-          never_show = {
-            ".DS_Store",
-          },
-        },
-      },
-    },
-  },
-
-  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -399,6 +369,7 @@ return {
 
   {
     "gbprod/substitute.nvim",
+    event = "BufReadPost",
     config = function(_, opts)
       local substitute = require("substitute")
       substitute.setup(opts)
@@ -407,7 +378,6 @@ return {
       vim.keymap.set("n", "S", substitute.eol, { noremap = true, silent = true })
       vim.keymap.set("x", "s", substitute.visual, { noremap = true, silent = true })
     end,
-    event = "BufReadPost",
   },
 
   {

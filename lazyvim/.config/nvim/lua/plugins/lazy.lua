@@ -20,11 +20,6 @@ return {
     end,
   },
 
-  {
-    "gennaro-tedesco/nvim-jqx",
-    ft = { "json", "yaml" },
-  },
-
   -- Custom language specific extension modules
   { import = "plugins.extras.lang.golang" },
   { import = "plugins.extras.lang.python" },
@@ -32,6 +27,4 @@ return {
   { import = "plugins.extras.lang.lua" },
   { import = "plugins.extras.lang.protobuf" },
   { import = "plugins.extras.lang.nix", enabled = vim.fn.executable("nix") == 1 },
-  { import = "plugins.extras.game" },
-  { import = "plugins.extras.fun" },
 }

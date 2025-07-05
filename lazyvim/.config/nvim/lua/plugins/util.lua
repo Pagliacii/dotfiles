@@ -8,16 +8,46 @@ return {
     "lewis6991/hover.nvim",
     opts = {
       init = function()
+        -- Require providers
+        require("hover.providers.dap")
+        require("hover.providers.diagnostic")
         require("hover.providers.dictionary")
+        require("hover.providers.fold_preview")
+        require("hover.providers.gh")
+        require("hover.providers.gh_user")
+        require("hover.providers.highlight")
+        require("hover.providers.lsp")
+        require("hover.providers.man")
       end,
     },
     keys = {
       {
-        "<leader>Ud",
+        "<leader>vk",
         function(...)
           require("hover").hover(...)
         end,
-        desc = "Lookup word under cursor in dictionary",
+        desc = "hover",
+      },
+      {
+        "<leader>vs",
+        function(...)
+          require("hover").hover_select(...)
+        end,
+        desc = "select",
+      },
+      {
+        "<leader>vp",
+        function(...)
+          require("hover").hover_switch("previous", ...)
+        end,
+        desc = "previous source",
+      },
+      {
+        "<leader>vn",
+        function(...)
+          require("hover").hover_switch("next", ...)
+        end,
+        desc = "next source",
       },
     },
   },
@@ -192,6 +222,7 @@ return {
 
   {
     "stefanlogue/hydrate.nvim",
+    dependencies = { "rcarriga/nvim-notify" },
     event = "VeryLazy",
     opts = {
       -- The interval between notifications in minutes
@@ -230,18 +261,6 @@ return {
       { "<leader>UCp", "<cmd>CccPick<cr>", desc = "Color picker", noremap = true, silent = true },
       { "<leader>UCc", "<cmd>CccConvert<cr>", desc = "Color convert", noremap = true, silent = true },
       { "<leader>UCt", "<cmd>CccHighligherToggle<cr>", desc = "Color highlight", noremap = true, silent = true },
-    },
-  },
-
-  {
-    "sarrisv/readermode.nvim",
-    cmd = "ReaderMode",
-    opts = {
-      enabled = false, -- Turned off by default
-      keymap = "<leader>Ur",
-    },
-    keys = {
-      { "<leader>Ur", "<cmd>ReaderMode<cr>", desc = "Reader mode", noremap = true, silent = true },
     },
   },
 

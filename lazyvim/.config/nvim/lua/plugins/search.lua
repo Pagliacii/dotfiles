@@ -70,28 +70,6 @@ return {
   },
 
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      require("telescope").load_extension("file_browser")
-    end,
-    keys = {
-      {
-        "<leader>fb",
-        "<cmd>Telescope file_browser<cr>",
-        desc = "File browser",
-        noremap = true,
-      },
-      {
-        "<leader>f.",
-        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
-        desc = "File browser (cwd)",
-        noremap = true,
-      },
-    },
-  },
-
-  {
     "benfowler/telescope-luasnip.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "L3MON4D3/LuaSnip" },
     config = function()
@@ -110,17 +88,6 @@ return {
     end,
     keys = {
       { "<leader>tv", "<cmd>Telescope env<cr>", desc = "Env variables", noremap = true },
-    },
-  },
-
-  {
-    "LinArcX/telescope-scriptnames.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("telescope").load_extension("scriptnames")
-    end,
-    keys = {
-      { "<leader>tA", "<cmd>Telescope scriptnames<cr>", desc = "Scriptnames", noremap = true },
     },
   },
 

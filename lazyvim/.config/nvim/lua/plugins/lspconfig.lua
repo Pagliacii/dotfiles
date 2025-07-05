@@ -136,33 +136,4 @@ return {
       require("tiny-inline-diagnostic").setup()
     end,
   },
-
-  {
-    "icholy/lsplinks.nvim",
-    config = true,
-    keys = {
-      {
-        "gX",
-        function(...)
-          require("lsplinks").gx(...)
-        end,
-        desc = "LSP links",
-        noremap = true,
-      },
-    },
-  },
-
-  {
-    "kungfusheep/snipe-lsp.nvim",
-    dependencies = {
-      "leath-dub/snipe.nvim",
-    },
-    cmd = "SnipeLspSymbols",
-    opts = {},
-    keys = {
-      { "<leader>cp", "<cmd>SnipeLspSymbols<cr>", desc = "Snipe LSP symbols", noremap = true },
-      { "<leader>ch", "<cmd>SnipeLspSymbolsSplit<cr>", desc = "Snipe LSP symbols (split)", noremap = true },
-      { "<leader>cv", "<cmd>SnipeLspSymbolsVSplit<cr>", desc = "Snipe LSP symbols (vsplit)", noremap = true },
-    },
-  },
 }

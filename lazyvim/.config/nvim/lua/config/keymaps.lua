@@ -33,6 +33,7 @@ if ok then
     { "<leader>p", group = "python", icon = { icon = " ", color = "blue" } },
     { "<leader>r", group = "rust", icon = { icon = "󱘗 ", color = "orange" } },
     { "<leader>t", group = "telescope" },
+    { "<leader>v", group = "hover", icon = { icon = " ", color = "red" } },
     { "<leader>y", group = "yank", icon = { icon = "󰆏 ", color = "cyan" } },
     { "gp", group = "peek", icon = { icon = " ", color = "azure" } },
     {
