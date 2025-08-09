@@ -8,7 +8,7 @@
 
 ## ✨ Features
 
-- 🚀 **LazyVim/Neovim** - Primary editor with 30+ modular plugin configurations
+- 🚀 **LazyVim/Neovim** - Primary editor with 25+ modular plugin configurations
 - 🐚 **Modern Shell** - Zsh + Oh My Zsh + Starship prompt
 - 🛠️ **Development Tools** - Python (pyenv + Poetry), CLI utilities, terminal multiplexers
 - 📝 **Multiple Editors** - Doom Emacs, Spacemacs, Vim configurations
@@ -127,13 +127,39 @@ echo 'export PATH="$HOME/.emacs.d/bin:$PATH"' >> ~/.zshrc
 ### 5. Terminal & Multiplexers
 
 ```bash
-# Deploy terminal configurations
-stow tmux alacritty wezterm
+# Install terminal multiplexers
+brew install tmux zellij
 
-# Or choose specific terminals
-stow tmux        # Terminal multiplexer
+# Deploy terminal configurations
+stow tmux zellij alacritty wezterm
+
+# Or choose specific terminals/multiplexers
+stow tmux        # Traditional terminal multiplexer
+stow zellij      # Modern terminal multiplexer with tabs/panes
 stow alacritty   # GPU-accelerated terminal
 stow wezterm     # Modern terminal with Rust/Lua config
+```
+
+### 6. Windows-Specific Tools
+
+```bash
+# Windows tiling window manager (Windows only)
+stow glazewm
+
+# Keyboard remapping (cross-platform)
+stow kanata
+```
+
+### 7. Development Tools
+
+```bash
+# Go development environment
+brew install go
+stow golang
+
+# Cheat sheet integration
+brew install cheat
+stow cheat.sh
 ```
 
 ## 🗂️ Repository Structure
@@ -141,31 +167,39 @@ stow wezterm     # Modern terminal with Rust/Lua config
 ```
 dotfiles/
 ├── lazyvim/              # LazyVim/Neovim (primary editor)
-│   └── .config/nvim/lua/plugins/  # 30+ plugin configurations
+│   └── .config/nvim/lua/plugins/  # 25+ plugin configurations
 ├── zsh/                  # Zsh shell with Oh My Zsh
 ├── starship/             # Cross-shell prompt
 ├── tmux/                 # Terminal multiplexer
+├── zellij/              # Modern terminal multiplexer
 ├── alacritty/           # GPU-accelerated terminal
 ├── wezterm/             # Modern terminal
 ├── doom-emacs/          # Doom Emacs configuration
 ├── spacemacs/           # Spacemacs configuration
 ├── vim/                 # Traditional Vim
+├── ranger/              # Console file manager
+├── yazi/                # Modern terminal file manager
+├── glazewm/             # Windows tiling window manager
+├── kanata/              # Keyboard remapping
+├── golang/              # Go development configuration
+├── cheat.sh/            # Cheat sheet integration
+├── pip/                 # Python package manager config
 ├── my_scripts/          # Custom scripts and utilities
 │   ├── .local/bin/      # User binaries
 │   └── scripts/dmenu/   # Productivity scripts
 ├── windows/             # Windows-specific configs
-├── config_files/        # Shared configurations
-└── README.org          # Original Org-mode documentation
+└── config_files/        # Shared configurations
 ```
 
 ## 🎯 Available Configurations
 
 | Package      | Description                     | Deploy Command    |
 | ------------ | ------------------------------- | ----------------- |
-| `lazyvim`    | LazyVim/Neovim with 30+ plugins | `stow lazyvim`    |
+| `lazyvim`    | LazyVim/Neovim with 25+ plugins | `stow lazyvim`    |
 | `zsh`        | Zsh with Oh My Zsh framework    | `stow zsh`        |
 | `starship`   | Modern cross-shell prompt       | `stow starship`   |
 | `tmux`       | Terminal multiplexer            | `stow tmux`       |
+| `zellij`     | Modern terminal multiplexer     | `stow zellij`     |
 | `alacritty`  | GPU-accelerated terminal        | `stow alacritty`  |
 | `wezterm`    | Modern terminal emulator        | `stow wezterm`    |
 | `doom-emacs` | Doom Emacs configuration        | `stow doom-emacs` |
@@ -173,6 +207,10 @@ dotfiles/
 | `vim`        | Traditional Vim configuration   | `stow vim`        |
 | `ranger`     | Console file manager            | `stow ranger`     |
 | `yazi`       | Modern terminal file manager    | `stow yazi`       |
+| `glazewm`    | Windows tiling window manager   | `stow glazewm`    |
+| `kanata`     | Keyboard remapping configuration| `stow kanata`     |
+| `golang`     | Go development configuration    | `stow golang`     |
+| `cheat.sh`   | Cheat sheet integration         | `stow cheat.sh`   |
 | `pip`        | Python package manager config   | `stow pip`        |
 | `windows`    | Windows-specific configurations | `stow windows`    |
 
@@ -180,13 +218,18 @@ dotfiles/
 
 ### LazyVim Plugin Organization
 
-The LazyVim configuration features 30+ modular plugin files organized by category:
+The LazyVim configuration features 25+ modular plugin files organized by category:
 
 - **Core**: `lazy.lua`, `lspconfig.lua`, `treesitter.lua`
 - **Development**: `coding.lua`, `git.lua`, `debug.lua`, `ai.lua`
 - **Interface**: `ui.lua`, `editor.lua`, `telescope.lua`, `fzf.lua`
 - **Tools**: `terminal.lua`, `file.lua`, `search.lua`, `markdown.lua`
+- **Formatting**: `formatting.lua`, `linter.lua`, `snips.lua`
 - **Utilities**: `util.lua`, `project.lua`, `note.lua`, `database.lua`
+- **Appearance**: `colorscheme.lua`, `cursor.lua`, `symbols.lua`
+- **Workflow**: `command.lua`, `keyboard.lua`, `window.lua`, `eval.lua`
+- **Documentation**: `documentation.lua`
+- **Embedded**: `embedded.lua` (for terminal/external integrations)
 
 Plugin versions are locked in `lazy-lock.json` for reproducible environments.
 
@@ -267,5 +310,5 @@ This project is licensed under the [LICENSE](LICENSE) file in the repository.
 
 ---
 
-_Last updated: February 2021 (Original), Enhanced for modern usage_
+_Last updated: August 2025_
 
