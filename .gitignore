@@ -331,3 +331,4 @@ vim/.vim/view
 scratch_config.json
 
 .aider*
+.claude/
