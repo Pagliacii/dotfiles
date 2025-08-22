@@ -14,6 +14,7 @@ $directory\
 [](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
+$hg_branch\
 [](fg:yellow bg:green)\
 $c\
 $rust\
@@ -169,6 +170,14 @@ style = "bg:lavender"
 disabled = false
 show_notifications = true
 min_time_to_notify = 45000
+
+[hg_branch]
+symbol = ""
+style = "bg:yellow"
+format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+truncation_length = 16
+truncation_symbol = '...'
+disabled = false
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
