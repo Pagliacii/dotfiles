@@ -125,31 +125,6 @@ return {
   },
 
   {
-    "trimclain/builder.nvim",
-    cmd = "Build",
-    keys = {
-      {
-        "<leader>cb",
-        function()
-          require("builder").build()
-        end,
-        desc = "Build",
-      },
-    },
-    opts = {
-      commands = {
-        -- add your commands
-        c = "clang % -o $basename.o && ./$basename.o",
-        cpp = "clang++ % -o $basename.o && ./$basename.o",
-        go = "go run %",
-        markdown = "glow %",
-        python = "python %",
-        rust = "cargo run",
-      },
-    },
-  },
-
-  {
     "gbprod/yanky.nvim",
     keys = {
       { "<leader>p", false },
@@ -293,13 +268,15 @@ return {
   },
 
   {
-    "piersolenski/telescope-import.nvim",
-    dependencies = "nvim-telescope/telescope.nvim",
-    config = function()
-      require("telescope").load_extension("import")
-    end,
+    "piersolenski/import.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+    },
+    opts = {
+      picker = "snacks",
+    },
     keys = {
-      { "<leader>ti", "<cmd>Telescope import<cr>", desc = "Import modules", noremap = true, silent = true },
+      { "<leader>ti", "<cmd>Import<cr>", desc = "Import modules", noremap = true, silent = true },
     },
   },
 

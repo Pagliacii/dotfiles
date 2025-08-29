@@ -1,36 +1,5 @@
 return {
   {
-    "rcarriga/cmp-dap",
-    ft = { "dap-repl", "dapui_watches", "dapui_hover" },
-    keys = function(_, keys)
-      ---Toggle dap sidebar
-      ---@param name string
-      ---@return function
-      local function toggle_sidebar(name)
-        return function(...)
-          local widgets = require("dap.ui.widgets")
-          local sidebar = widgets.sidebar(widgets[name], { width = 40 })
-          local is_opened = false
-          if is_opened then
-            sidebar.close(...)
-          else
-            sidebar.open(...)
-            vim.api.nvim_buf_set_option(sidebar.buf, "filetype", "dap-sidebar")
-          end
-        end
-      end
-      vim.list_extend(keys, {
-        { "<leader>dus", toggle_sidebar("scopes"), desc = "Scopes", noremap = true },
-        { "<leader>duf", toggle_sidebar("frames"), desc = "Frames", noremap = true },
-        { "<leader>duS", toggle_sidebar("sessions"), desc = "Sessions", noremap = true },
-        { "<leader>dut", toggle_sidebar("threads"), desc = "Threads", noremap = true },
-        { "<leader>due", toggle_sidebar("expression"), desc = "Expression", noremap = true },
-      })
-      return keys
-    end,
-  },
-
-  {
     "rcarriga/nvim-dap-ui",
     keys = {
       {

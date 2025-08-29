@@ -36,7 +36,7 @@ return {
     cmd = "Hardtime",
     opts = {
       disable_mouse = false,
-      disabled_filetypes = { "Navbuddy", "grug-far" },
+      disabled_filetypes = { "Navbuddy", "grug-far", "dropbar_menu" },
     },
   },
 }

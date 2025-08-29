@@ -1,7 +1,7 @@
 return {
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = true,
   },
@@ -372,7 +372,9 @@ return {
     event = "BufReadPost",
     config = function(_, opts)
       local substitute = require("substitute")
-      substitute.setup(opts)
+      substitute.setup(opts or {
+        on_substitute = require("yanky.integration").substitute(),
+      })
       vim.keymap.set("n", "s", substitute.operator, { noremap = true, silent = true })
       vim.keymap.set("n", "ss", substitute.line, { noremap = true, silent = true })
       vim.keymap.set("n", "S", substitute.eol, { noremap = true, silent = true })

@@ -3,7 +3,6 @@ return {
     "folke/which-key.nvim",
     event = "LazyFile",
     opts = {
-      preset = "modern",
       icons = {
         rules = {
           { plugin = "hydrate.nvim", icon = "󰆫 ", color = "azure" },
@@ -21,6 +20,19 @@ return {
     keys = {
       { "jj", mode = "i" },
       { "jk", mode = "i" },
+    },
+  },
+
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      timeout = 1,
+      maxkeys = 5,
+      position = "bottom-center",
+    },
+    keys = {
+      { "<leader>K", "<cmd>ShowkeysToggle<cr>", desc = "Toggle showkeys", noremap = true, silent = true },
     },
   },
 }

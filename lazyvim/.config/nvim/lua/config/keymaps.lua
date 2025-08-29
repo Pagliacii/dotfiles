@@ -12,7 +12,6 @@ if ok then
     { "<leader>D", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
     { "<leader>G", group = "go", icon = { icon = " ", color = "blue" } },
     { "<leader>H", group = "harpoon", icon = { icon = "󰎐 ", color = "cyan" } },
-    { "<leader>K", group = "keymap", icon = { icon = "󰌌 ", color = "green" } },
     { "<leader>m", group = "markdown", icon = { icon = " ", color = "black" } },
     { "<leader>O", group = "octo", icon = { icon = "🐙 ", color = "red" } },
     { "<leader>P", group = "picker", icon = { icon = " ", color = "purple" } },
@@ -100,54 +99,3 @@ end, { expr = true })
 vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 vim.keymap.set("n", "gw", "*N", { desc = "Search word under cursor" })
-
-vim.keymap.set("n", "<leader>yf", function()
-  local path = vim.fn.expand("%:p")
-  vim.fn.setreg("+", path)
-  vim.notify('Copied "' .. path .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "File abspath" })
-vim.keymap.set("n", "<leader>yF", function()
-  local filename = vim.fn.expand("%:t")
-  vim.fn.setreg("+", filename)
-  vim.notify('Copied "' .. filename .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "File name" })
-vim.keymap.set("n", "<leader>yb", function()
-  local filename = vim.fn.expand("%:t:r")
-  vim.fn.setreg("+", filename)
-  vim.notify('Copied "' .. filename .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "File name w/o ext" })
-vim.keymap.set("n", "<leader>yd", function()
-  local dir = vim.fn.expand("%:p:h")
-  vim.fn.setreg("+", dir)
-  vim.notify('Copied "' .. dir .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "Dir abspath" })
-vim.keymap.set("n", "<leader>yD", function()
-  local dir = vim.fn.expand("%:h:t")
-  vim.fn.setreg("+", dir)
-  vim.notify('Copied "' .. dir .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "Dir name" })
-vim.keymap.set("n", "<leader>yr", function()
-  local path = vim.fn.expand("%")
-  vim.fn.setreg("+", path)
-  vim.notify('Copied "' .. path .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "File relpath" })
-vim.keymap.set("n", "<leader>yR", function()
-  local dir = vim.fn.expand("%:h")
-  vim.fn.setreg("+", dir)
-  vim.notify('Copied "' .. dir .. '" to clipboard!', vim.log.levels.INFO)
-end, { desc = "Dir relpath" })
-
-vim.keymap.set("n", "<leader>N", function()
-  Snacks.win({
-    file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-    width = 0.6,
-    height = 0.6,
-    wo = {
-      spell = false,
-      wrap = false,
-      signcolumn = "yes",
-      statuscolumn = " ",
-      conceallevel = 3,
-    },
-  })
-end, { desc = "Open News", silent = true })

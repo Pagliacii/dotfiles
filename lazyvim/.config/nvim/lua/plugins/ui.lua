@@ -99,11 +99,10 @@ return {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
-      local rd = require("rainbow-delimiters")
       local opts = {}
       opts.strategy = {
-        [""] = rd.strategy["global"],
-        vim = rd.strategy["local"],
+        [""] = "rainbow-delimiters.strategy.global",
+        vim = "rainbow-delimiters.strategy.local",
       }
       opts.query = {
         [""] = "rainbow-delimiters",
@@ -176,9 +175,23 @@ return {
 
   {
     "folke/noice.nvim",
-    opts = function(_, opts)
-      opts.presets.bottom_search = false
-      opts.presets.lsp_doc_border = true
+    config = function()
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        presets = {
+          bottom_search = true,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = true,
+        },
+      })
     end,
   },
 
@@ -279,6 +292,6 @@ return {
   {
     "mcauley-penney/visual-whitespace.nvim",
     config = true,
-    event = "BufReadPre",
+    event = "ModeChanged *:[vV\22]", -- optionally, lazy load on entering visual mode
   },
 }

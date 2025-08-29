@@ -66,26 +66,9 @@ return {
     "mrjones2014/smart-splits.nvim",
     opts = {
       ignored_filetypes = { "neo-tree" },
-      resize_mode = {
-        silent = true,
-        hooks = {
-          on_enter = function()
-            vim.notify("Entering resize mode")
-          end,
-          on_leave = function()
-            vim.notify("Exiting resize mode, bye")
-          end,
-        },
-      },
+      zellij_move_focus_or_tab = true,
     },
     keys = {
-      {
-        "<leader>wr",
-        function(...)
-          require("smart-splits").start_resize_mode(...)
-        end,
-        desc = "Enter resize mode",
-      },
       {
         "<C-h>",
         function(...)
@@ -154,42 +137,9 @@ return {
   },
 
   {
-    "levouh/tint.nvim",
-    event = "VeryLazy",
-    opts = {
-      tint = -45,
-      window_ignore_function = function(winid)
-        local bufid = vim.api.nvim_win_get_buf(winid)
-        local buftype = vim.api.nvim_buf_get_option(bufid, "buftype")
-        local filetype = vim.api.nvim_buf_get_option(bufid, "filetype")
-        local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
-
-        -- Do not tint `terminal` or floating windows, tint everything else
-        if floating then
-          return true
-        end
-        local excluded_buftypes = { "nofile", "terminal" }
-        if vim.tbl_contains(excluded_buftypes, buftype) then
-          return true
-        end
-        local excluded_filetypes = { "alpha", "dashboard", "dap-repl", "neo-tree", "toggleterm" }
-        if vim.tbl_contains(excluded_filetypes, filetype) then
-          return true
-        end
-        local excluded_ft_prefixes = { "dapui_" }
-        for _, prefix in ipairs(excluded_ft_prefixes) do
-          if filetype:sub(1, #prefix) == prefix then
-            return true
-          end
-        end
-        return false
-      end,
-    },
-  },
-
-  {
     "stevearc/stickybuf.nvim",
     event = "VeryLazy",
+    cmd = { "PinBuffer", "PinBuftype", "PinFiletype", "Unpin" },
     opts = {},
   },
 
@@ -197,7 +147,7 @@ return {
     "nvim-zh/colorful-winsep.nvim",
     event = { "WinLeave" },
     opts = {
-      no_exec_files = {
+      excluded_ft = {
         "packer",
         "TelescopePrompt",
         "mason",
@@ -206,10 +156,6 @@ return {
         "neo-tree",
         "lazy",
         "edgy",
-      },
-      only_line_seq = false,
-      hi = {
-        fg = "#d8a657",
       },
     },
   },

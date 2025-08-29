@@ -2,14 +2,23 @@ return {
   {
     "chrisgrieser/nvim-genghis",
     cmd = "Genghis",
+    opts = {
+      navigation = {
+        ignoreDotfiles = false,
+      },
+    },
     keys = function(_, keys)
       local cmd_factory = function(cmd)
         return string.format("<cmd>lua require('genghis').%s()<cr>", cmd)
       end
 
       vim.list_extend(keys, {
-        { "<leader>fp", cmd_factory("copyFilepath"), desc = "Copy file path", noremap = true },
-        { "<leader>fy", cmd_factory("copyFilename"), desc = "Copy file name", noremap = true },
+        { "<leader>f1", cmd_factory("copyFilename"), desc = "Copy filename", noremap = true },
+        { "<leader>f2", cmd_factory("copyFilepath"), desc = "Copy abspath", noremap = true },
+        { "<leader>f3", cmd_factory("copyFilepathWithTilde"), desc = "Copy abspath with ~", noremap = true },
+        { "<leader>f4", cmd_factory("copyRelativePath"), desc = "Copy relpath", noremap = true },
+        { "<leader>f5", cmd_factory("copyDirectoryPath"), desc = "Copy dir abspath", noremap = true },
+        { "<leader>f6", cmd_factory("copyRelativeDirectoryPath"), desc = "Copy dir relpath", noremap = true },
         { "<leader>fc", cmd_factory("createNewFile"), desc = "Create new file", noremap = true },
         { "<leader>fX", cmd_factory("chmodx"), desc = "Chmod", noremap = true },
         { "<leader>fv", cmd_factory("moveAndRenameFile"), desc = "Mv & Rn", noremap = true },
@@ -21,6 +30,24 @@ return {
           mode = "x",
           desc = "Move to new file",
           noremap = true,
+        },
+        {
+          "<leader>f[",
+          function()
+            require("genghis").navigateToFileInFolder("prev")
+          end,
+          desc = "Prev file in folder",
+          noremap = true,
+          silent = true,
+        },
+        {
+          "<leader>f]",
+          function()
+            require("genghis").navigateToFileInFolder("next")
+          end,
+          desc = "Next file in folder",
+          noremap = true,
+          silent = true,
         },
       })
     end,
