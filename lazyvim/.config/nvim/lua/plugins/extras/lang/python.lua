@@ -50,7 +50,7 @@ return {
 
       local dap = require("dap")
       local job = require("plenary.job")
-      local function auto_detect(...)
+      local function auto_detect()
         local cwd = vim.fn.getcwd()
         local venv_path = "python"
         local local_venv_path = path.concat({
@@ -170,6 +170,7 @@ return {
 
   {
     "linux-cultist/venv-selector.nvim",
+    branch = "main",
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-telescope/telescope.nvim",
