@@ -9,6 +9,7 @@
 ## ✨ Features
 
 - 🚀 **LazyVim/Neovim** - Primary editor with 25+ modular plugin configurations
+- 🤖 **AI Coding Assistant** - Avante.nvim with Claude Sonnet 4 and Moonshot providers
 - 🐚 **Modern Shell** - Zsh + Oh My Zsh + Starship prompt
 - 🛠️ **Development Tools** - Python (pyenv + Poetry), CLI utilities, terminal multiplexers
 - 📝 **Multiple Editors** - Doom Emacs, Spacemacs, Vim configurations
@@ -221,7 +222,7 @@ dotfiles/
 The LazyVim configuration features 25+ modular plugin files organized by category:
 
 - **Core**: `lazy.lua`, `lspconfig.lua`, `treesitter.lua`
-- **Development**: `coding.lua`, `git.lua`, `debug.lua`, `ai.lua`
+- **Development**: `coding.lua`, `git.lua`, `debug.lua`, `ai.lua` (AI coding assistance with Avante.nvim integration)
 - **Interface**: `ui.lua`, `editor.lua`, `telescope.lua`, `fzf.lua`
 - **Tools**: `terminal.lua`, `file.lua`, `search.lua`, `markdown.lua`
 - **Formatting**: `formatting.lua`, `linter.lua`, `snips.lua`
