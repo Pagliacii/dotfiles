@@ -228,7 +228,7 @@ return {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "codecompanion", "Avante" },
     opts = {
       heading = {
         sign = true,
@@ -240,6 +240,7 @@ return {
         right_pad = 2,
         width = "block",
       },
+      file_types = { "markdown", "codecompanion", "Avante" },
     },
     checkbox = {
       custom = {

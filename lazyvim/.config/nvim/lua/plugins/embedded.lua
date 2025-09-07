@@ -56,17 +56,6 @@ return {
   },
 
   {
-    "p00f/clangd_extensions.nvim",
-    lazy = true,
-    ft = filetypes,
-    opts = {
-      extensions = {
-        inlay_hints = vim.fn.has("nvim-0.10") == 1,
-      },
-    },
-  },
-
-  {
     "RaafatTurki/hex.nvim",
     enabled = vim.fn.executable("xxd") == 1,
     config = true,

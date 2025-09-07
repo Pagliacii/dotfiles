@@ -10,7 +10,11 @@ return {
       format = {
         timeout_ms = 10000,
       },
-      servers = {},
+      servers = {
+        clangd = {
+          filetypes = { "c", "cpp" },
+        },
+      },
     },
   },
 

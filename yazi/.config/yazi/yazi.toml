@@ -19,3 +19,8 @@ run = "git"
 id = "git"
 name = "*/"
 run = "git"
+
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
