@@ -421,7 +421,7 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "folke/snacks.nvim", -- for input provider snacks
-      "echasnovski/mini.icons",
+      "nvim-mini/mini.icons",
       "zbirenbaum/copilot.lua", -- for providers="copilot"
       {
         -- support for image pasting

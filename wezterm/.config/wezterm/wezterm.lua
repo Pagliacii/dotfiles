@@ -483,6 +483,8 @@ config.keys = {
 		mods = "ALT",
 		action = act.ShowTabNavigator,
 	},
+	-- For Claude code
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 }
 
 --- Visual bell
