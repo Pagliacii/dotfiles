@@ -49,6 +49,16 @@ return {
           ),
           capabilities = (function()
             local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+            --- Setup capabilities to support utf-16, since copilot.lua only works with utf-16
+            --- this is a workaround to the limitations of copilot language server
+            capabilities = vim.tbl_deep_extend("force", capabilities, {
+              offsetEncoding = { "utf-16" },
+              general = {
+                positionEncodings = { "utf-16" },
+              },
+            })
+
             capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
             return capabilities
           end)(),
@@ -70,20 +80,24 @@ return {
             },
           },
         },
-        ruff_lsp = {
-          filetypes = filetypes,
-          root_dir = require("lspconfig.util").root_pattern(
-            "pyproject.toml",
-            "pyrightconfig.json",
-            "ruff.toml",
-            "venv",
-            ".git"
-          ),
-          on_attach = function(client, _)
-            client.server_capabilities.hoverProvider = false
-          end,
+        ruff = {
+          capabilities = (function()
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+            --- Setup capabilities to support utf-16, since copilot.lua only works with utf-16
+            --- this is a workaround to the limitations of copilot language server
+            capabilities = vim.tbl_deep_extend("force", capabilities, {
+              offsetEncoding = { "utf-16" },
+              general = {
+                positionEncodings = { "utf-16" },
+              },
+            })
+
+            return capabilities
+          end)(),
           init_options = {
             settings = {
+              logLevel = "error",
               -- Any extra CLI arguments for `ruff` go here.
               args = {
                 "--select",

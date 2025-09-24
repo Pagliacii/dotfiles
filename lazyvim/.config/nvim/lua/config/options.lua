@@ -58,3 +58,6 @@ vim.o.mousemoveevent = true
 vim.o.hidden = false
 vim.o.exrc = true
 vim.lsp.log.set_level("ERROR")
+
+vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_python_ruff = "ruff"

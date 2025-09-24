@@ -22,28 +22,28 @@ return {
     },
     keys = {
       {
-        "<leader>vk",
+        "<leader>hh",
         function(...)
           require("hover").hover(...)
         end,
         desc = "hover",
       },
       {
-        "<leader>vs",
+        "<leader>hs",
         function(...)
           require("hover").hover_select(...)
         end,
         desc = "select",
       },
       {
-        "<leader>vp",
+        "<leader>hp",
         function(...)
           require("hover").hover_switch("previous", ...)
         end,
         desc = "previous source",
       },
       {
-        "<leader>vn",
+        "<leader>hn",
         function(...)
           require("hover").hover_switch("next", ...)
         end,
@@ -218,50 +218,6 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "stefanlogue/hydrate.nvim",
-    dependencies = { "rcarriga/nvim-notify" },
-    event = "VeryLazy",
-    opts = {
-      -- The interval between notifications in minutes
-      minute_interval = 15,
-      -- The render style for notifications
-      -- Accepted values are "default", "minimal", "simple" or "compact"
-      render_style = "minimal",
-      -- Loads time of last drink on startup
-      -- Useful if you don't have long-running neovim instances
-      -- or if you tend to have multiple instances running at a time
-      persist_timer = false,
-    },
-    cmd = {
-      "HydrateWhen",
-      "HydrateNow",
-      "DrinkInterval",
-      "HydrateDisable",
-      "HydrateEnable",
-    },
-    keys = {
-      {
-        "<leader>h",
-        "<cmd>HydrateNow<cr>",
-        desc = "Drink water",
-        noremap = true,
-        silent = true,
-      },
-    },
-  },
-
-  {
-    "uga-rosa/ccc.nvim",
-    config = true,
-    cmd = { "CccPick", "CccConvert", "CccHighligherToggle" },
-    keys = {
-      { "<leader>UCp", "<cmd>CccPick<cr>", desc = "Color picker", noremap = true, silent = true },
-      { "<leader>UCc", "<cmd>CccConvert<cr>", desc = "Color convert", noremap = true, silent = true },
-      { "<leader>UCt", "<cmd>CccHighligherToggle<cr>", desc = "Color highlight", noremap = true, silent = true },
-    },
   },
 
   {

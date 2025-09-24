@@ -38,5 +38,8 @@ return {
       disable_mouse = false,
       disabled_filetypes = { "Navbuddy", "grug-far", "dropbar_menu" },
     },
+    keys = {
+      { "<leader>H", "<cmd>Hardtime toggle<cr>", desc = "Toggle Hardtime", noremap = true, silent = true },
+    },
   },
 }

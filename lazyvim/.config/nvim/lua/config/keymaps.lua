@@ -11,7 +11,6 @@ if ok then
     { "<leader>B", group = "browse", icon = { icon = "󰦄 ", hl = "Keyword" } },
     { "<leader>D", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
     { "<leader>G", group = "go", icon = { icon = " ", color = "blue" } },
-    { "<leader>H", group = "harpoon", icon = { icon = "󰎐 ", color = "cyan" } },
     { "<leader>m", group = "markdown", icon = { icon = " ", color = "black" } },
     { "<leader>O", group = "octo", icon = { icon = "🐙 ", color = "red" } },
     { "<leader>P", group = "picker", icon = { icon = " ", color = "purple" } },
@@ -32,7 +31,7 @@ if ok then
     { "<leader>p", group = "python", icon = { icon = " ", color = "blue" } },
     { "<leader>r", group = "rust", icon = { icon = "󱘗 ", color = "orange" } },
     { "<leader>t", group = "telescope" },
-    { "<leader>v", group = "hover", icon = { icon = " ", color = "red" } },
+    { "<leader>h", group = "hover", icon = { icon = " ", color = "red" } },
     { "<leader>y", group = "yank", icon = { icon = "󰆏 ", color = "cyan" } },
     { "gp", group = "peek", icon = { icon = " ", color = "azure" } },
     {
