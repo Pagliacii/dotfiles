@@ -4,9 +4,16 @@ local prefix = "<leader>ph"
 return {
   "mistweaverco/kulala.nvim",
   ft = filetypes,
+  dependencies = {
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = {
+        ensure_installed = { "http", "graphql" },
+      },
+    },
+  },
   keys = {
     -- Programming group REST keybindings
-    { "<leader>R", false }, -- unmap default LazyVim keybinding
     { prefix .. "b", "<cmd>lua require('kulala').scratchpad()<cr>", desc = "Open scratchpad", ft = "http" },
     { prefix .. "c", "<cmd>lua require('kulala').copy()<cr>", desc = "Copy as cURL", ft = "http" },
     { prefix .. "C", "<cmd>lua require('kulala').from_curl()<cr>", desc = "Paste from curl", ft = "http" },
