@@ -1,3 +1,5 @@
+local TREEWALKER_PREFIX = "<leader>cT"
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -111,26 +113,38 @@ return {
       highlight_group = "CursorLine",
     },
     keys = {
-      { "<leader>Tk", "<cmd>Treewalker Up<cr>", mode = { "n", "v" }, desc = "move up to neighbor node", silent = true },
       {
-        "<leader>Tj",
+        TREEWALKER_PREFIX .. "k",
+        "<cmd>Treewalker Up<cr>",
+        mode = { "n", "v" },
+        desc = "move up to neighbor node",
+        silent = true,
+      },
+      {
+        TREEWALKER_PREFIX .. "j",
         "<cmd>Treewalker Down<cr>",
         mode = { "n", "v" },
         desc = "move down to neighbor node",
         silent = true,
       },
-      { "<leader>Tl", "<cmd>Treewalker Right<cr>", mode = { "n", "v" }, desc = "move up to next node", silent = true },
       {
-        "<leader>Th",
+        TREEWALKER_PREFIX .. "l",
+        "<cmd>Treewalker Right<cr>",
+        mode = { "n", "v" },
+        desc = "move up to next node",
+        silent = true,
+      },
+      {
+        TREEWALKER_PREFIX .. "h",
         "<cmd>Treewalker Left<cr>",
         mode = { "n", "v" },
         desc = "move up to ancestor node",
         silent = true,
       },
-      { "<leader>TK", "<cmd>Treewalker SwapUp<cr>", desc = "swap nodes up", silent = true },
-      { "<leader>TJ", "<cmd>Treewalker SwapDown<cr>", desc = "swap nodes down", silent = true },
-      { "<leader>TL", "<cmd>Treewalker SwapRight<cr>", desc = "swap nodes right", silent = true },
-      { "<leader>TH", "<cmd>Treewalker SwapLeft<cr>", desc = "swap nodes left", silent = true },
+      { TREEWALKER_PREFIX .. "K", "<cmd>Treewalker SwapUp<cr>", desc = "swap nodes up", silent = true },
+      { TREEWALKER_PREFIX .. "J", "<cmd>Treewalker SwapDown<cr>", desc = "swap nodes down", silent = true },
+      { TREEWALKER_PREFIX .. "L", "<cmd>Treewalker SwapRight<cr>", desc = "swap nodes right", silent = true },
+      { TREEWALKER_PREFIX .. "H", "<cmd>Treewalker SwapLeft<cr>", desc = "swap nodes left", silent = true },
     },
   },
 }

@@ -1,4 +1,5 @@
 local filetypes = { "python" }
+local prefix = "<leader>py"
 
 -- ref: https://beta.ruff.rs/docs/rules
 local rules = {
@@ -125,8 +126,15 @@ return {
     ft = filetypes,
     keys = {
       { "<leader>cv", false },
-      { "<leader>pv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", noremap = true },
-      { "<leader>pc", "<cmd>VenvSelectCached<cr>", desc = "Select VirtualEnv (cached)", noremap = true },
+      { prefix, "", ft = filetypes },
+      { prefix .. "v", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", noremap = true, ft = filetypes },
+      {
+        prefix .. "c",
+        "<cmd>VenvSelectCached<cr>",
+        desc = "Select VirtualEnv (cached)",
+        noremap = true,
+        ft = filetypes,
+      },
     },
   },
 }

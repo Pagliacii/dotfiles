@@ -4,7 +4,7 @@ return {
     cmd = { "DB" },
     keys = {
       {
-        "<leader>Uc",
+        "<leader>vc",
         function()
           local url = vim.fn.input("DB URL: ")
           if #url > 0 then
@@ -29,7 +29,7 @@ return {
       "DBUIFindBuffer",
     },
     keys = {
-      { "<leader>Uu", "<cmd>DBUI<cr>", desc = "Open DBUI" },
+      { "<leader>vu", "<cmd>DBUI<cr>", desc = "Open DBUI" },
     },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1

@@ -1,3 +1,5 @@
+local prefix = "<leader>j"
+
 return {
   {
     "chrisgrieser/nvim-scissors",
@@ -7,7 +9,7 @@ return {
     },
     keys = {
       {
-        "<leader>Sa",
+        prefix .. "a",
         function()
           require("scissors").addNewSnippet()
         end,
@@ -17,7 +19,7 @@ return {
         silent = true,
       },
       {
-        "<leader>Se",
+        prefix .. "e",
         function()
           require("scissors").editSnippet()
         end,
@@ -40,8 +42,8 @@ return {
       ssh_cmd = "ssh -T",
     },
     keys = {
-      { "<leader>SC", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
-      { "<leader>Sl", ":SnipsList<cr>", desc = "List snips", silent = true },
+      { prefix .. "C", ":SnipsCreate<cr>", mode = { "v" }, desc = "Share selected code", silent = true },
+      { prefix .. "l", ":SnipsList<cr>", desc = "List snips", silent = true },
     },
   },
 
@@ -68,7 +70,7 @@ return {
     },
     keys = {
       {
-        "<leader>Sc",
+        prefix .. "c",
         function()
           require("nvim-silicon").clip()
         end,
@@ -76,7 +78,7 @@ return {
         desc = "Copy code screenshot to clipboard",
       },
       {
-        "<leader>Sf",
+        prefix .. "f",
         function()
           require("nvim-silicon").file()
         end,
@@ -84,7 +86,7 @@ return {
         desc = "Save code screenshot as file",
       },
       {
-        "<leader>Ss",
+        prefix .. "s",
         function()
           require("nvim-silicon").shoot()
         end,

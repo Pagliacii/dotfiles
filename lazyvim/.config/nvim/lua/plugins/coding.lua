@@ -69,10 +69,11 @@ return {
     config = true,
     cmd = { "Glance" },
     keys = {
-      { "gpr", "<cmd>Glance references<cr>", desc = "Peek references", noremap = true },
-      { "gpd", "<cmd>Glance definitions<cr>", desc = "Peek definitions", noremap = true },
-      { "gpt", "<cmd>Glance type_definitions<cr>", desc = "Peek type definitions", noremap = true },
-      { "gpi", "<cmd>Glance implementations<cr>", desc = "Peek implementations", noremap = true },
+      { "<leader>ir", "<cmd>Glance references<cr>", desc = "Peek references", noremap = true },
+      { "<leader>id", "<cmd>Glance definitions<cr>", desc = "Peek definitions", noremap = true },
+      { "<leader>it", "<cmd>Glance type_definitions<cr>", desc = "Peek type definitions", noremap = true },
+      { "<leader>ii", "<cmd>Glance implementations<cr>", desc = "Peek implementations", noremap = true },
+      { "<leader>iu", "<cmd>Glance resume<cr>", desc = "Glance resume", noremap = true },
     },
   },
 
@@ -135,130 +136,6 @@ return {
         end,
         desc = "Yank history",
       },
-    },
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function(_, opts)
-      require("refactoring").setup(opts)
-      -- load refactoring Telescope extension
-      if LazyVim.has("telescope.nvim") then
-        require("telescope").load_extension("refactoring")
-      end
-    end,
-    cmd = { "Refactor" },
-    keys = {
-      {
-        "<leader>cRs",
-        function()
-          require("telescope").extensions.refactoring.refactors()
-        end,
-        mode = "v",
-        desc = "Refactor",
-      },
-      {
-        "<leader>cRi",
-        function()
-          require("refactoring").refactor("Inline Variable")
-        end,
-        mode = { "n", "v" },
-        desc = "Inline Variable",
-      },
-      {
-        "<leader>cRb",
-        function()
-          require("refactoring").refactor("Extract Block")
-        end,
-        desc = "Extract Block",
-      },
-      {
-        "<leader>cRf",
-        function()
-          require("refactoring").refactor("Extract Block To File")
-        end,
-        desc = "Extract Block To File",
-      },
-      {
-        "<leader>cRP",
-        function()
-          require("refactoring").debug.printf({ below = true })
-        end,
-        desc = "Debug Print",
-      },
-      {
-        "<leader>cRp",
-        function()
-          require("refactoring").debug.print_var({ normal = true })
-        end,
-        desc = "Debug Print Variable",
-      },
-      {
-        "<leader>cRc",
-        function()
-          require("refactoring").debug.cleanup({})
-        end,
-        desc = "Debug Cleanup",
-      },
-      {
-        "<leader>cRf",
-        function()
-          require("refactoring").refactor("Extract Function")
-        end,
-        mode = "v",
-        desc = "Extract Function",
-      },
-      {
-        "<leader>cRF",
-        function()
-          require("refactoring").refactor("Extract Function To File")
-        end,
-        mode = "v",
-        desc = "Extract Function To File",
-      },
-      {
-        "<leader>cRx",
-        function()
-          require("refactoring").refactor("Extract Variable")
-        end,
-        mode = "v",
-        desc = "Extract Variable",
-      },
-      {
-        "<leader>cRp",
-        function()
-          require("refactoring").debug.print_var()
-        end,
-        mode = "v",
-        desc = "Debug Print Variable",
-      },
-    },
-    opts = {
-      prompt_func_return_type = {
-        go = false,
-        java = false,
-        cpp = false,
-        c = false,
-        h = false,
-        hpp = false,
-        cxx = false,
-      },
-      prompt_func_param_type = {
-        go = false,
-        java = false,
-        cpp = false,
-        c = false,
-        h = false,
-        hpp = false,
-        cxx = false,
-      },
-      printf_statements = {},
-      print_var_statements = {},
     },
   },
 

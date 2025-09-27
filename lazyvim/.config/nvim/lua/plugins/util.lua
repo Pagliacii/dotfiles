@@ -55,97 +55,7 @@ return {
   {
     "voldikss/vim-translator",
     keys = {
-      { "<leader>Uw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
-    },
-  },
-
-  {
-    "ziontee113/icon-picker.nvim",
-    dependencies = {
-      {
-        "NvChad/nvim-colorizer.lua",
-        cmd = { "ColorizerToggle" },
-        keys = function(_, keys)
-          local toggle = function()
-            local enabled = false
-            return function()
-              vim.cmd([[ColorizerToggle]])
-              enabled = not enabled
-              if enabled then
-                vim.notify("Colorizer enabled")
-              else
-                vim.notify("Colorizer disabled")
-              end
-            end
-          end
-          table.insert(keys, { "<leader>u;", toggle(), desc = "Toggle colorizer" })
-          return keys
-        end,
-        opts = {
-          filetyps = { "*" },
-          user_default_options = {
-            RGB = true, -- #RGB hex codes
-            RRGGBB = true, -- #RRGGBB hex codes
-            names = true, -- "Name" codes like Blue or blue
-            RRGGBBAA = true, -- #RRGGBBAA hex codes
-            AARRGGBB = true, -- 0xAARRGGBB hex codes
-            rgb_fn = true, -- CSS rgb() and rgba() functions
-            hsl_fn = true, -- CSS hsl() and hsla() functions
-            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-            -- Available modes for `mode`: foreground, background,  virtualtext
-            mode = "virtualtext",
-            -- True is same as normal
-            tailwind = false, -- Enable tailwind colors
-            -- parsers can contain values used in |user_default_options|
-            sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
-            virtualtext = "■",
-            -- update color values even if buffer is not focused
-            -- example use: cmp_menu, cmp_docs
-            always_update = true,
-          },
-        },
-      },
-    },
-    opts = {
-      disable_legacy_commands = true,
-    },
-    keys = {
-      {
-        "<leader>Pin",
-        "<cmd>IconPickerNormal nerd_font<cr>",
-        desc = "Pick nerd_font",
-        noremap = true,
-        silent = true,
-      },
-      {
-        "<leader>Pie",
-        "<cmd>IconPickerNormal emoji<cr>",
-        desc = "Pick emoji",
-        noremap = true,
-        silent = true,
-      },
-      {
-        "<leader>Pih",
-        "<cmd>IconPickerNormal html_colors<cr>",
-        desc = "Pick html_colors",
-        noremap = true,
-        silent = true,
-      },
-      {
-        "<leader>Pis",
-        "<cmd>IconPickerNormal symbols<cr>",
-        desc = "Pick symbols",
-        noremap = true,
-        silent = true,
-      },
-      {
-        "<leader>Piy",
-        "<cmd>IconPickerYank nerd_font emoji symbols html_colors<cr>",
-        desc = "Yank icon",
-        noremap = true,
-        silent = true,
-      },
+      { "<leader>vw", "<cmd>TranslateW<cr>", mode = { "n", "v" }, desc = "Display translation in window" },
     },
   },
 
@@ -243,22 +153,6 @@ return {
   },
 
   {
-    "aliqyan-21/wit.nvim",
-    cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
-    config = true,
-    keys = {
-      {
-        "<leader>Us",
-        ":'<,'>WitSearchVisual<cr>",
-        mode = { "v" },
-        desc = "Search selected text",
-        noremap = true,
-        silent = true,
-      },
-    },
-  },
-
-  {
     "cenk1cenk2/jq.nvim",
     enabled = vim.fn.executable("jq") == 1,
     dependencies = {
@@ -272,7 +166,7 @@ return {
     ft = "json",
     keys = {
       {
-        "<leader>Uj",
+        "<leader>vj",
         function(...)
           require("jq").run(...)
         end,
@@ -311,22 +205,11 @@ return {
     end,
     keys = {
       {
-        "<leader>Ut",
+        "<leader>T",
         function()
           require("telescope").extensions.pomodori.timers()
         end,
-        desc = "Manage Pomodori Timers",
-      },
-    },
-  },
-
-  {
-    "atiladefreitas/dooing",
-    cmd = { "Dooing" },
-    keys = { { "<localleader>d", desc = "Toggle Doing window" } },
-    opts = {
-      keymaps = {
-        toggle_window = "<localleader>d",
+        desc = "Pomodori Timers",
       },
     },
   },

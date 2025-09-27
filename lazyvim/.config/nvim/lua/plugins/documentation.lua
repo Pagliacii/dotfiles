@@ -1,3 +1,5 @@
+local prefix = "<leader>pd"
+
 return {
   {
     "luckasRanarison/nvim-devdocs",
@@ -28,18 +30,18 @@ return {
       "DevdocsUpdateAll",
     },
     keys = {
-      { "<leader>Di", "<cmd>DevdocsInstall<cr>", desc = "Install docs", noremap = true, silent = true },
-      { "<leader>Du", "<cmd>DevdocsUninstall<cr>", desc = "Uninstall docs", noremap = true, silent = true },
+      { prefix .. "i", "<cmd>DevdocsInstall<cr>", desc = "Install docs", noremap = true, silent = true },
+      { prefix .. "u", "<cmd>DevdocsUninstall<cr>", desc = "Uninstall docs", noremap = true, silent = true },
       {
-        "<leader>Do",
+        prefix .. "o",
         "<cmd>DevdocsOpenCurrentFloat<cr>",
         desc = "Open docs (current)",
         noremap = true,
         silent = true,
       },
-      { "<leader>DO", "<cmd>DevdocsOpenFloat<cr>", desc = "Open docs (all)", noremap = true, silent = true },
-      { "<leader>DU", "<cmd>DevdocsUpdate<cr>", desc = "Update docs", noremap = true, silent = true },
-      { "<leader>DF", "<cmd>DevdocsFetch<cr>", desc = "Fetch metadata", noremap = true, silent = true },
+      { prefix .. "O", "<cmd>DevdocsOpenFloat<cr>", desc = "Open docs (all)", noremap = true, silent = true },
+      { prefix .. "U", "<cmd>DevdocsUpdate<cr>", desc = "Update docs", noremap = true, silent = true },
+      { prefix .. "F", "<cmd>DevdocsFetch<cr>", desc = "Fetch metadata", noremap = true, silent = true },
     },
   },
 
@@ -70,7 +72,7 @@ return {
     ft = { "markdown", "norg", "org" },
     opts = {},
     keys = {
-      { "<leader>Da", ":lua require('otter').activate()<cr>", desc = "Otter", noremap = true, silent = true },
+      { prefix .. "a", ":lua require('otter').activate()<cr>", desc = "Otter", noremap = true, silent = true },
     },
   },
 }

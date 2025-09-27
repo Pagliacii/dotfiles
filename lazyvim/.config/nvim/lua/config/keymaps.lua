@@ -7,18 +7,14 @@ local ok, wk = pcall(require, "which-key")
 -- Groups
 if ok then
   wk.add({
-    { "<leader>A", group = "Aha!", icon = { icon = " ", color = "yellow" } },
-    { "<leader>B", group = "browse", icon = { icon = "󰦄 ", hl = "Keyword" } },
-    { "<leader>D", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
-    { "<leader>G", group = "go", icon = { icon = " ", color = "blue" } },
+    { "<leader>p", group = "programming", icon = { icon = "󰘦 ", color = "blue" } },
+    { "<leader>pb", group = "browse", icon = { icon = "󰦄 ", hl = "Keyword" } },
+    { "<leader>pd", group = "devdocs", icon = { icon = "󱁤 ", color = "white" } },
+    { "<leader>pr", group = "rust", icon = { icon = "󱘗 ", color = "orange" } },
+    { "<leader>pg", group = "go", icon = { icon = " ", color = "blue" } },
+    { "<leader>ph", group = "rest", icon = { icon = "🐼 ", color = "azure" } },
+    { "<leader>py", group = "python", icon = { icon = " ", color = "blue" } },
     { "<leader>m", group = "markdown", icon = { icon = " ", color = "black" } },
-    { "<leader>O", group = "octo", icon = { icon = "🐙 ", color = "red" } },
-    { "<leader>P", group = "picker", icon = { icon = " ", color = "purple" } },
-    { "<leader>Pi", group = "icon", icon = { icon = "󱊒 ", color = "red" } },
-    { "<leader>R", group = "Rest", icon = { icon = "🐼 ", color = "azure" } },
-    { "<leader>UC", group = "color code", icon = { icon = " ", color = "grey" } },
-    { "<leader>W", group = "wezterm", icon = { icon = " ", color = "purple" } },
-    { "<leader>cR", group = "refactoring", icon = { icon = " ", color = "orange" } },
     { "<leader>dL", group = "log", icon = { icon = " ", color = "green" } },
     { "<leader>du", group = "ui", icon = { icon = "󰕮 ", color = "azure" } },
     { "<leader>gc", group = "conflict", icon = { icon = " ", color = "yellow" } },
@@ -26,34 +22,32 @@ if ok then
     { "<leader>gn", group = "Neogit", icon = { icon = " ", color = "orange" } },
     { "<leader>gu", group = "gitui", icon = { icon = " ", color = "purple" } },
     { "<leader>gv", group = "verco", icon = { icon = " ", color = "purple" } },
+    { "<leader>gO", group = "octo", icon = { icon = "🐙 ", color = "red" } },
     { "<leader>no", group = "neorg", icon = { icon = " ", color = "orange" } },
     { "<leader>nt", group = "typst", icon = { icon = "󰼭 ", color = "orange" } },
-    { "<leader>p", group = "python", icon = { icon = " ", color = "blue" } },
-    { "<leader>r", group = "rust", icon = { icon = "󱘗 ", color = "orange" } },
     { "<leader>t", group = "telescope" },
     { "<leader>h", group = "hover", icon = { icon = " ", color = "red" } },
-    { "<leader>y", group = "yank", icon = { icon = "󰆏 ", color = "cyan" } },
-    { "gp", group = "peek", icon = { icon = " ", color = "azure" } },
+    { "<leader>y", group = "yazi", icon = { icon = "🦆 ", color = "cyan" } },
+    { "<leader>v", group = "tools", icon = { icon = "󰦭 ", color = "yellow" } },
+    { "<leader>i", group = "inspect", icon = { icon = "🔍", color = "azure" } },
+    { "<leader>o", group = "overseer", icon = { icon = "󰑮 ", color = "green" } },
     {
       mode = { "n", "v" },
       { "<leader>a", group = "AI", icon = { icon = "🤖 ", color = "black" } },
+      { "<leader>j", group = "jots", icon = { icon = "🔫 ", color = "azure" } },
       { "<leader>k", group = "lspsaga", icon = { icon = " ", color = "purple" } },
       { "<leader>n", group = "note", icon = { icon = "󱞁 ", color = "orange" } },
-      { "<leader>C", group = "comment", icon = { icon = " ", color = "purple" } },
-      { "<leader>F", group = "fzf", icon = { icon = "󰈞 ", color = "blue" } },
-      { "<leader>Fd", group = "dap", icon = { icon = " ", color = "purple" } },
-      { "<leader>Fg", group = "git", icon = { icon = "󰊢 ", color = "orange" } },
-      { "<leader>Fl", group = "lsp", icon = { icon = " ", color = "yellow" } },
-      { "<leader>Fo", group = "overlay", icon = { icon = "󰌨 ", color = "cyan" } },
-      { "<leader>FM", group = "misc.", icon = { icon = " ", color = "blue" } },
-      { "<leader>Fs", group = "search", icon = { icon = " ", color = "green" } },
-      { "<leader>Ft", group = "tags", icon = { icon = " ", color = "red" } },
-      { "<leader>S", group = "snips", icon = { icon = "🔫 ", color = "azure" } },
-      { "<leader>T", group = "treesitter", icon = { icon = " ", color = "green" } },
-      { "<leader>U", group = "util", icon = { icon = "󰦭 ", color = "yellow" } },
+      { "<leader>z", group = "fzf", icon = { icon = "󰈞 ", color = "blue" } },
+      { "<leader>zd", group = "dap", icon = { icon = " ", color = "purple" } },
+      { "<leader>zg", group = "git", icon = { icon = "󰊢 ", color = "orange" } },
+      { "<leader>zl", group = "lsp", icon = { icon = " ", color = "yellow" } },
+      { "<leader>zo", group = "overlay", icon = { icon = "󰌨 ", color = "cyan" } },
+      { "<leader>zM", group = "misc", icon = { icon = " ", color = "blue" } },
+      { "<leader>zs", group = "search", icon = { icon = " ", color = "green" } },
+      { "<leader>zt", group = "tags", icon = { icon = " ", color = "red" } },
+      { "<leader>cT", group = "treesitter", icon = { icon = " ", color = "green" } },
       { "<leader>nb", group = "obsidian", icon = { icon = "📝 ", color = "purple" } },
     },
-    { "<leader>o", group = "overseer", icon = { icon = "󰑮 ", color = "green" } },
   })
 end
 
@@ -61,27 +55,9 @@ end
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 
-if vim.fn.executable("gitui") == 1 then
-  vim.keymap.set("n", "<leader>guG", function()
-    LazyVim.terminal.open({ "gitui" }, { esc_esc = false, ctrl_hjkl = false })
-  end, { desc = "gitui (cwd)" })
-  vim.keymap.set("n", "<leader>gug", function()
-    LazyVim.terminal.open({ "gitui" }, { cwd = LazyVim.root.get(), esc_esc = false, ctrl_hjkl = false })
-  end, { desc = "gitui (root dir)" })
-end
-
-if vim.fn.executable("verco") == 1 then
-  vim.keymap.set("n", "<leader>gvG", function()
-    LazyVim.terminal.open({ "verco" })
-  end, { desc = "verco (cwd)" })
-  vim.keymap.set("n", "<leader>gvg", function()
-    LazyVim.terminal.open({ "verco" }, { cwd = require("lazyvim.util").root.get() })
-  end, { desc = "verco (root dir)" })
-end
-
 if vim.fn.executable("btop") == 1 then
   -- btop
-  vim.keymap.set("n", "<leader>Ub", function()
+  vim.keymap.set("n", "<leader>vb", function()
     LazyVim.terminal.open({ "btop" })
   end, { desc = "btop" })
 end

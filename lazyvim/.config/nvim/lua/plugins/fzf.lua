@@ -1,74 +1,101 @@
 ---Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>F" representing the "fzf" group
+---With prefix "<leader>z" representing the "fzf" group
 ---@param k string
 ---@param cmd string
----@param opts table
+---@param opts table|nil
+---@param params table|nil Optional parameters to pass to the fzf-lua function
 ---@return table
-local key = function(k, cmd, opts)
-  if type(opts) ~= "table" then
-    opts = {}
+local key = function(k, cmd, opts, params)
+  -- Set defaults for optional parameters
+  k = k or ""
+  cmd = cmd or ""
+  opts = type(opts) == "table" and opts or {}
+  params = type(params) == "table" and params or {}
+
+  -- Validate required parameters when not using defaults
+  if k == "" and cmd == "" then
+    -- Return empty table if no parameters provided
+    return {}
   end
+
+  -- Convert table parameters to string representation
+  local params_str = ""
+  if next(params) ~= nil then
+    -- Use vim.inspect with proper formatting for the command
+    params_str = vim.inspect(params)
+    -- Ensure the string is suitable for command execution
+    -- Remove newlines and extra spaces that might cause issues
+    params_str = params_str:gsub("%s+", " ")
+    params_str = params_str:gsub("%s*,%s*", ", ")
+  end
+
   return vim.tbl_extend("force", {
-    ("<leader>F%s"):format(k),
-    ("<cmd>lua require('fzf-lua').%s()<cr>"):format(cmd),
+    ("<leader>z%s"):format(k),
+    ("<cmd>lua require('fzf-lua').%s(%s)<cr>"):format(cmd, params_str),
     desc = cmd,
     noremap = true,
     mode = { "n", "x" },
   }, opts)
 end
 ---Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Fs" representing the "fzf > search" group
+---With prefix "<leader>zs" representing the "fzf > search" group
 ---@param k string
 ---@param cmd string
----@param ... table
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
 ---@return table
-local search_key = function(k, cmd, ...)
-  return key("s" .. k, cmd, ...)
+local search_key = function(k, cmd, opts, params)
+  return key("s" .. k, cmd, opts, params)
 end
 ---Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Ft" representing the "fzf > tags" group
+---With prefix "<leader>zt" representing the "fzf > tags" group
 ---@param k string
 ---@param cmd string
----@param ... table
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
 ---@return table
-local tags_key = function(k, cmd, ...)
-  return key("t" .. k, cmd, ...)
+local tags_key = function(k, cmd, opts, params)
+  return key("t" .. k, cmd, opts, params)
 end
 ---Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Fg" representing the "fzf > git" group
----@param k any
----@param cmd any
----@param ... unknown
----@return table
-local git_key = function(k, cmd, ...)
-  return key("g" .. k, cmd, ...)
-end
----Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Fl" representing the "fzf > lsp" group
----@param k any
----@param cmd any
----@param ... unknown
----@return table
-local lsp_key = function(k, cmd, ...)
-  return key("l" .. k, cmd, ...)
-end
----Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>Fd" representing the "fzf > dap" group
+---With prefix "<leader>zg" representing the "fzf > git" group
 ---@param k string
 ---@param cmd string
----@param ... table
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
 ---@return table
-local dap_key = function(k, cmd, ...)
-  return key("d" .. k, cmd, ...)
+local git_key = function(k, cmd, opts, params)
+  return key("g" .. k, cmd, opts, params)
 end
 ---Returns a table that can be used as a keybindings in NeoVIM
----With prefix "<leader>FM" representing the "fzf > misc." group
+---With prefix "<leader>zl" representing the "fzf > lsp" group
 ---@param k string
 ---@param cmd string
----@param ... table
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
 ---@return table
-local misc_key = function(k, cmd, ...)
-  return key("M" .. k, cmd, ...)
+local lsp_key = function(k, cmd, opts, params)
+  return key("l" .. k, cmd, opts, params)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>zd" representing the "fzf > dap" group
+---@param k string
+---@param cmd string
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
+---@return table
+local dap_key = function(k, cmd, opts, params)
+  return key("d" .. k, cmd, opts, params)
+end
+---Returns a table that can be used as a keybindings in NeoVIM
+---With prefix "<leader>zM" representing the "fzf > misc." group
+---@param k string
+---@param cmd string
+---@param opts table|nil
+---@param params string|nil Optional parameters to pass to the fzf-lua function
+---@return table
+local misc_key = function(k, cmd, opts, params)
+  return key("M" .. k, cmd, opts, params)
 end
 
 return {
@@ -150,12 +177,7 @@ return {
       search_key("G", "live_grep_glob", { desc = "live grep (glob)" }),
       search_key("n", "live_grep_native", { desc = "live grep (native)" }),
       search_key("r", "live_grep_resume", { desc = "live grep resume" }),
-      {
-        "<leader>FsN",
-        "<cmd>lua require('fzf-lua').grep_visual({ fzf_opts = { ['--layout'] = 'default' } })<cr>",
-        desc = "grep",
-        noremap = true,
-      },
+      search_key("N", "grep_visual", { desc = "grep" }, { fzf_opts = { ["--layout"] = "default" } }),
       --- tags group keys
       tags_key("t", "tags", { desc = "project" }),
       tags_key("b", "btags", { desc = "buffer" }),

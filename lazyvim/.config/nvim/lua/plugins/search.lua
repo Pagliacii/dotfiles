@@ -1,3 +1,5 @@
+local browse_prefix = "<leader>pb"
+
 return {
   {
     "cshuaimin/ssr.nvim",
@@ -30,37 +32,43 @@ return {
       },
     },
     keys = {
-      { "<leader>BB", [[<cmd>lua require("browse").browse()<cr>]], desc = "Browse", noremap = true, silent = true },
       {
-        "<leader>Bb",
+        browse_prefix .. "B",
+        [[<cmd>lua require("browse").browse()<cr>]],
+        desc = "Browse",
+        noremap = true,
+        silent = true,
+      },
+      {
+        browse_prefix .. "b",
         [[<cmd>lua require("browse").open_bookmarks()<cr>]],
         desc = "Search bookmarks",
         noremap = true,
         silent = true,
       },
       {
-        "<leader>Bs",
+        browse_prefix .. "s",
         [[<cmd>lua require("browse").input_search()<cr>]],
         desc = "Search",
         noremap = true,
         silent = true,
       },
       {
-        "<leader>Bd",
+        browse_prefix .. "d",
         [[<cmd>lua require("browse.devdocs").search()<cr>]],
         desc = "Search devdocs",
         noremap = true,
         silent = true,
       },
       {
-        "<leader>Bf",
+        browse_prefix .. "f",
         [[<cmd>lua require("browse.devdocs").search_with_filetype()<cr>]],
         desc = "Search devdocs (ft)",
         noremap = true,
         silent = true,
       },
       {
-        "<leader>Bm",
+        browse_prefix .. "m",
         [[<cmd>lua require("browse.mdn").search()<cr>]],
         desc = "Search MDN",
         noremap = true,
@@ -125,6 +133,22 @@ return {
     end,
     keys = {
       { "<leader>te", "<cmd>Telescope egrepify<cr>", desc = "Enhances live grep", noremap = true },
+    },
+  },
+
+  {
+    "aliqyan-21/wit.nvim",
+    cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
+    config = true,
+    keys = {
+      {
+        "<leader>sv",
+        ":'<,'>WitSearchVisual<cr>",
+        mode = { "v" },
+        desc = "Search selected text online",
+        noremap = true,
+        silent = true,
+      },
     },
   },
 }

@@ -1,4 +1,5 @@
 local filetypes = { "go", "gomod", "gosum", "gowork", "gotmpl" }
+local prefix = "<leader>pg"
 
 return {
   {
@@ -46,18 +47,19 @@ return {
       end
 
       vim.list_extend(keys, {
-        { "<leader>Ga", "<cmd>GoTestAdd<cr>", desc = "Add one test", silent = true },
-        { "<leader>GA", "<cmd>GoTestsAll<cr>", desc = "Add all tests", silent = true },
-        { "<leader>Gj", "<cmd>GoTagAdd json<cr>", desc = "Add json tag", silent = true },
-        { "<leader>GJ", "<cmd>GoTagRm json<cr>", desc = "Remove json tag", silent = true },
-        { "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", desc = "Add yaml tag", silent = true },
-        { "<leader>GY", "<cmd>GoTagRm yaml<cr>", desc = "Remove yaml tag", silent = true },
-        { "<leader>Gm", go_mod_init, desc = "go mod init", silent = true },
-        { "<leader>Gg", go_get, desc = "go get", silent = true },
-        { "<leader>Gc", "<cmd>GoGenerate<cr>", desc = "go generate (cwd)", silent = true },
-        { "<leader>GC", "<cmd>GoGenerate %<cr>", desc = "go generate (current file)", silent = true },
-        { "<leader>Gd", "<cmd>GoCmt<cr>", desc = "Doc comment", silent = true },
-        { "<leader>Ge", "<cmd>GoIfErr<cr>", desc = "Insert iferr", silent = true },
+        { prefix, "", ft = filetypes },
+        { prefix .. "a", "<cmd>GoTestAdd<cr>", desc = "Add one test", silent = true, ft = filetypes },
+        { prefix .. "A", "<cmd>GoTestsAll<cr>", desc = "Add all tests", silent = true, ft = filetypes },
+        { prefix .. "j", "<cmd>GoTagAdd json<cr>", desc = "Add json tag", silent = true, ft = filetypes },
+        { prefix .. "J", "<cmd>GoTagRm json<cr>", desc = "Remove json tag", silent = true, ft = filetypes },
+        { prefix .. "y", "<cmd>GoTagAdd yaml<cr>", desc = "Add yaml tag", silent = true, ft = filetypes },
+        { prefix .. "Y", "<cmd>GoTagRm yaml<cr>", desc = "Remove yaml tag", silent = true, ft = filetypes },
+        { prefix .. "m", go_mod_init, desc = "go mod init", silent = true, ft = filetypes },
+        { prefix .. "G", go_get, desc = "go get", silent = true, ft = filetypes },
+        { prefix .. "c", "<cmd>GoGenerate<cr>", desc = "go generate (cwd)", silent = true, ft = filetypes },
+        { prefix .. "C", "<cmd>GoGenerate %<cr>", desc = "go generate (current file)", silent = true, ft = filetypes },
+        { prefix .. "d", "<cmd>GoCmt<cr>", desc = "Doc comment", silent = true, ft = filetypes },
+        { prefix .. "e", "<cmd>GoIfErr<cr>", desc = "Insert iferr", silent = true, ft = filetypes },
       })
       return keys
     end,
@@ -118,7 +120,7 @@ return {
     end,
     ft = filetypes,
     keys = {
-      { "<leader>Gi", "<cmd>Telescope goimpl<cr>", desc = "Interface stub", silent = true },
+      { prefix .. "i", "<cmd>Telescope goimpl<cr>", desc = "Interface stub", silent = true, ft = filetypes },
     },
   },
 }

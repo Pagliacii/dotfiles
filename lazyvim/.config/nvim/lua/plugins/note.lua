@@ -612,4 +612,15 @@ return {
       { ob_prefix .. "q", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", noremap = true },
     },
   },
+
+  {
+    "atiladefreitas/dooing",
+    cmd = { "Dooing" },
+    keys = { { "<localleader>d", desc = "Toggle Doing window" } },
+    opts = {
+      keymaps = {
+        toggle_window = "<localleader>d",
+      },
+    },
+  },
 }

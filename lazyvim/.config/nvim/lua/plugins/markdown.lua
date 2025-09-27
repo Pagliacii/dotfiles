@@ -160,7 +160,7 @@ return {
     config = true,
     cmd = { "Glow" },
     keys = {
-      { leader_key .. "g", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true },
+      { leader_key .. "g", "<cmd>Glow<cr>", desc = "Preview in glow", silent = true, ft = filetypes },
     },
   },
 
@@ -177,6 +177,7 @@ return {
           "<cmd>MarkdownPreviewToggle<cr>",
           desc = "Preview in browser",
           silent = true,
+          ft = filetypes,
         },
       }
     end,
@@ -222,7 +223,7 @@ return {
       },
     },
     keys = {
-      { leader_key .. "p", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true },
+      { leader_key .. "p", "<cmd>PasteImage<cr>", desc = "Paste clipboard image", noremap = true, ft = filetypes },
     },
   },
 

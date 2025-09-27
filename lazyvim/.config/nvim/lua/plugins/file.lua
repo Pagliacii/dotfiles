@@ -139,9 +139,9 @@ return {
     "mikavilpas/yazi.nvim",
     cmd = { "Yazi" },
     keys = {
-      { "<leader>f/", "<cmd>Yazi<cr>", desc = "Yazi (file)", noremap = true, silent = true },
-      { "<leader>fw", "<cmd>Yazi cwd<cr>", desc = "Yazi (cwd)", noremap = true, silent = true },
-      { "<leader>fz", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", noremap = true, silent = true },
+      { "<leader>yy", "<cmd>Yazi<cr>", desc = "Yazi (file)", noremap = true, silent = true },
+      { "<leader>y/", "<cmd>Yazi cwd<cr>", desc = "Yazi (cwd)", noremap = true, silent = true },
+      { "<leader>yz", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", noremap = true, silent = true },
     },
     ---@type YaziConfig
     opts = {
