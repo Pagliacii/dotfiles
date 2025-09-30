@@ -402,7 +402,7 @@ return {
         ["glm-coding"] = {
           __inherited_from = "claude",
           endpoint = "https://open.bigmodel.cn/api/anthropic",
-          model = "glm-4.5",
+          model = "glm-4.6",
           api_key_name = "GLM_API_KEY",
         },
       },

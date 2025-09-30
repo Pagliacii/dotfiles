@@ -37,6 +37,8 @@ return {
     opts = {
       disable_mouse = false,
       disabled_filetypes = { "Navbuddy", "grug-far", "dropbar_menu" },
+      max_count = 5,
+      restriction_mode = "hint",
     },
     keys = {
       { "<leader>H", "<cmd>Hardtime toggle<cr>", desc = "Toggle Hardtime", noremap = true, silent = true },
