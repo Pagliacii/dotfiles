@@ -19,7 +19,7 @@ return {
   },
 
   {
-    "SmiteshP/nvim-navbuddy",
+    "hasansujon786/nvim-navbuddy",
     event = "LspAttach",
     dependencies = {
       "neovim/nvim-lspconfig",
