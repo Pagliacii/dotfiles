@@ -1,6 +1,7 @@
 return {
   {
     "sindrets/diffview.nvim",
+    enabled = false,
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
     opts = function(_, opts)
       opts.keymaps = {
@@ -368,5 +369,11 @@ return {
         noremap = true,
       },
     },
+  },
+
+  {
+    "esmuellert/vscode-diff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = { "CodeDiff" },
   },
 }
