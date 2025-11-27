@@ -375,5 +375,10 @@ return {
     "esmuellert/vscode-diff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = { "CodeDiff" },
+    opts = {
+      diff = {
+        disable_inlay_hints = true,
+      },
+    },
   },
 }
