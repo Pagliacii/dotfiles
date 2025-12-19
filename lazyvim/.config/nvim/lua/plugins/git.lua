@@ -395,7 +395,6 @@ return {
       vim.list_extend(opts.sources, {
         null_ls.builtins.code_actions.gitrebase,
         null_ls.builtins.code_actions.gitsigns,
-        null_ls.builtins.diagnostics.commitlint,
         null_ls.builtins.diagnostics.gitlint,
       })
     end,
@@ -405,7 +404,6 @@ return {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
-        "commitlint",
         "gitlint",
       })
     end,
