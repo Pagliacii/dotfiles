@@ -19,6 +19,7 @@ return {
         c = { "clang_format" },
         cpp = { "clang_format" },
         cmake = { "cmake_format" },
+        makefile = { "mbake" },
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
