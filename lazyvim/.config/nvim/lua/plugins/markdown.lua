@@ -173,7 +173,6 @@ return {
       return {
         {
           leader_key .. "b",
-          ft = "markdown",
           "<cmd>MarkdownPreviewToggle<cr>",
           desc = "Preview in browser",
           silent = true,
@@ -189,7 +188,9 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources or {}, {
+        null_ls.builtins.code_actions.textlint,
         null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.formatting.cbfmt,
         null_ls.builtins.hover.dictionary,
       })
     end,
@@ -200,11 +201,11 @@ return {
     ft = filetypes,
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "cbfmt",
         "glow",
-        "markdown-toc",
         "markmap-cli",
-        "prettierd",
         "write-good",
+        "textlint",
       })
     end,
   },

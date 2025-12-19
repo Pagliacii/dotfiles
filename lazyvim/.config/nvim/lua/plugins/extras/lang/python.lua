@@ -26,7 +26,18 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
         "pyright",
+        "mypy",
         "ruff",
+      })
+    end,
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        null_ls.builtins.diagnostics.mypy,
       })
     end,
   },

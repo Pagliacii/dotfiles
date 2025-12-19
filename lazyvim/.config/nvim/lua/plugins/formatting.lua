@@ -19,12 +19,12 @@ return {
         c = { "clang_format" },
         cpp = { "clang_format" },
         cmake = { "cmake_format" },
-        makefile = { "mbake" },
+        make = { "mbake" },
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
-        ["_"] = { "trim_whitespace" },
+        ["_"] = { "codespell", "trim_whitespace" },
       },
       -- LazyVim will merge the options you set here with builtin formatters.
       -- You can also define any custom formatters here.

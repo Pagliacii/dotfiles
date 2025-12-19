@@ -381,4 +381,33 @@ return {
       },
     },
   },
+
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+    },
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      if not opts.sources then
+        opts.sources = {}
+      end
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.code_actions.gitrebase,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.diagnostics.commitlint,
+        null_ls.builtins.diagnostics.gitlint,
+      })
+    end,
+  },
+
+  {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "commitlint",
+        "gitlint",
+      })
+    end,
+  },
 }

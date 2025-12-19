@@ -1,5 +1,26 @@
 return {
   {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "editorconfig-checker",
+      })
+    end,
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        null_ls.builtins.diagnostics.editorconfig_checker,
+        null_ls.builtins.diagnostics.todo_comments,
+        null_ls.builtins.diagnostics.trail_space,
+      })
+    end,
+  },
+
+  {
     "kylechui/nvim-surround",
     version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",

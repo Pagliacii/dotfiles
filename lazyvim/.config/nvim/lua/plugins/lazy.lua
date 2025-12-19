@@ -7,19 +7,6 @@
 
 return {
   -- add any tools you want to have installed below
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
-        "bash-language-server",
-        "shellcheck",
-        "shfmt",
-        "clang-format",
-        "cmakelint",
-      })
-    end,
-  },
-
   -- Custom language specific extension modules
   { import = "plugins.extras.lang.golang" },
   { import = "plugins.extras.lang.python" },

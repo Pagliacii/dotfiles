@@ -61,38 +61,31 @@ return {
     "petertriho/nvim-scrollbar",
     dependencies = {
       "kevinhwang91/nvim-hlslens",
-      -- "lewis6991/gitsigns.nvim",
+      "lewis6991/gitsigns.nvim",
     },
     event = "BufReadPost",
-    config = function()
-      local scrollbar = require("scrollbar")
-      scrollbar.setup({
-        handle = {
-          gitsigns = true,
-          search = true,
-        },
-        excluded_filetypes = {
-          "alpha",
-          "cmp_docs",
-          "cmp_menu",
-          "dashboard",
-          "neo-tree",
-          "lazy",
-          "mason",
-          "noice",
-          "prompt",
-          "TelescopePrompt",
-          "notify",
-          "snacks_dashboard",
-        },
-        hide_if_all_visible = true,
-        show_in_active_only = true,
-      })
-
-      -- require("gitsigns").setup()
-      -- require("scrollbar.handlers.gitsigns").setup()
-      require("scrollbar.handlers.search").setup()
-    end,
+    opts = {
+      handlers = {
+        gitsigns = true,
+        search = true,
+      },
+      excluded_filetypes = {
+        "alpha",
+        "cmp_docs",
+        "cmp_menu",
+        "dashboard",
+        "neo-tree",
+        "lazy",
+        "mason",
+        "noice",
+        "prompt",
+        "TelescopePrompt",
+        "notify",
+        "snacks_dashboard",
+      },
+      hide_if_all_visible = true,
+      show_in_active_only = true,
+    },
   },
 
   {

@@ -1,4 +1,4 @@
-local filetypes = { "c", "cpp", "cmake" }
+local filetypes = { "c", "cpp", "cmake", "make" }
 
 return {
   {
@@ -13,11 +13,30 @@ return {
   },
 
   {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      if not opts.sources then
+        opts.sources = {}
+      end
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.diagnostics.checkmake,
+        null_ls.builtins.diagnostics.cmake_lint,
+        null_ls.builtins.diagnostics.cppcheck,
+      })
+    end,
+  },
+
+  {
     "mason-org/mason.nvim",
     ft = filetypes,
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
+        "arduino-language-server",
+        "checkmake",
         "clang-format",
+        "cmakelint",
+        "mbake",
       })
     end,
   },

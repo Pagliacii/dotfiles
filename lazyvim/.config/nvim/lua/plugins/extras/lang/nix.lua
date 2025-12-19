@@ -14,6 +14,8 @@ return {
       ensure_installed = {
         "alejandra",
         "nil",
+        "nixfmt",
+        "nixpkgs-fmt",
       },
     },
   },
@@ -22,8 +24,12 @@ return {
     "nvimtools/none-ls.nvim",
     ft = filetypes,
     opts = function(_, opts)
+      local null_ls = require("null-ls")
       vim.list_extend(opts.sources, {
-        require("null-ls").builtins.formatting.alejandra,
+        null_ls.builtins.formatting.alejandra,
+        null_ls.builtins.formatting.nixfmt,
+        null_ls.builtins.formatting.nixpkgs_fmt,
+        null_ls.builtins.formatting.nix_flake_fmt,
       })
     end,
   },

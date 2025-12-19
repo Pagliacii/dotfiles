@@ -6,6 +6,7 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
         "buf",
+        "protolint",
       })
     end,
   },
@@ -17,6 +18,7 @@ return {
       local null_ls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources or {}, {
         null_ls.builtins.diagnostics.buf,
+        null_ls.builtins.diagnostics.protolint,
         null_ls.builtins.formatting.buf,
       })
     end,
