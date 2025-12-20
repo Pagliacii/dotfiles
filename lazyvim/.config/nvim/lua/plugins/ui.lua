@@ -176,7 +176,8 @@ return {
             kind = "progress",
             ---@cast message NoiceMessage
             cond = function(message)
-              local client = message.opts.progress.client
+              -- Safely navigate the table to find the client name
+              local client = message.opts and message.opts.progress and message.opts.progress.client
               return client == "null-ls" or client == "none-ls"
             end,
           },
