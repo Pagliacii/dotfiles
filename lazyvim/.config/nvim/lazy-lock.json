@@ -15,7 +15,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "ce8d176faa4643e026e597ae3c31db59b63cef09" },
   "cheatsheet.nvim": { "branch": "master", "commit": "9716f9aaa94dd1fd6ce59b5aae0e5f25e2a463ef" },
-  "clangd_extensions.nvim": { "branch": "main", "commit": "2f71838619f552cc17a5e2ebebd2a463c6e910dc" },
+  "clangd_extensions.nvim": { "branch": "main", "commit": "6fd7f12df71a04dd9ec398fc63aaa23fbe9f525f" },
   "cmake-tools.nvim": { "branch": "master", "commit": "f34418d7aa57c730ee91b3e45e7612978506fcf3" },
   "codecompanion.nvim": { "branch": "main", "commit": "3dac4f711389011e6dc40e293df2c30c4647c43e" },
   "coerce.nvim": { "branch": "main", "commit": "b7927c42bd7f3adaae5f5dcf86a89140d5d80430" },
