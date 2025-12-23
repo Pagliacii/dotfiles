@@ -10,7 +10,7 @@ return {
         bash = { "shellcheck" },
         zsh = { "shellcheck" },
         -- Conform will run multiple formatters sequentially
-        markdown = { "markdown-toc", "prettierd" },
+        markdown = { "markdown-toc", "prettierd", "codespell" },
         go = { "gofumpt", "goimports_reviser", "golines" },
         python = { "ruff_fix", "ruff_format" },
         rust = { "rustfmt" },
@@ -24,7 +24,7 @@ return {
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
-        ["_"] = { "codespell", "trim_whitespace" },
+        ["_"] = { "trim_whitespace" },
       },
       -- LazyVim will merge the options you set here with builtin formatters.
       -- You can also define any custom formatters here.

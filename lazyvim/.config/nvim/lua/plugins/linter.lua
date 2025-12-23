@@ -30,7 +30,7 @@ return {
         null_ls.builtins.diagnostics.spectral,
         null_ls.builtins.diagnostics.yamllint,
       })
-      if not jit.os:find("Windows") then
+      if vim.fn.executable("semgrep") == 1 then
         vim.list_extend(opts.sources, {
           null_ls.builtins.formatting.semgrep,
         })
@@ -42,10 +42,12 @@ return {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
-        "semgrep",
         "spectral-language-server",
         "yamllint",
       })
+      if not jit.os:find("Windows") then
+        table.insert(opts.ensure_installed, "semgrep")
+      end
     end,
   },
 }

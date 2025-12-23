@@ -373,7 +373,7 @@ return {
       -- this file can contain specific instructions for your project
       instructions_file = "avante.md",
       -- for example
-      provider = "copilot",
+      provider = "glm-coding",
       providers = {
         claude = {
           endpoint = "https://api.anthropic.com",
@@ -396,7 +396,7 @@ return {
         ["glm-coding"] = {
           __inherited_from = "claude",
           endpoint = "https://open.bigmodel.cn/api/anthropic",
-          model = "glm-4.6",
+          model = "glm-4.7",
           api_key_name = "GLM_API_KEY",
         },
       },

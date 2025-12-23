@@ -22,8 +22,10 @@ return {
       vim.list_extend(opts.sources, {
         null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.diagnostics.cmake_lint,
-        null_ls.builtins.diagnostics.cppcheck,
       })
+      if vim.fn.executable("cppcheck") == 1 then
+        table.insert(opts.sources, null_ls.builtins.diagnostics.cppcheck)
+      end
     end,
   },
 
