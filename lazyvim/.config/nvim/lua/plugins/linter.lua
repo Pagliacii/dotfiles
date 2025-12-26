@@ -30,11 +30,6 @@ return {
         null_ls.builtins.diagnostics.spectral,
         null_ls.builtins.diagnostics.yamllint,
       })
-      if vim.fn.executable("semgrep") == 1 then
-        vim.list_extend(opts.sources, {
-          null_ls.builtins.formatting.semgrep,
-        })
-      end
     end,
   },
 
@@ -45,9 +40,6 @@ return {
         "spectral-language-server",
         "yamllint",
       })
-      if not jit.os:find("Windows") then
-        table.insert(opts.ensure_installed, "semgrep")
-      end
     end,
   },
 }

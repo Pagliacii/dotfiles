@@ -13,7 +13,6 @@ return {
           extra_args = { "-I", vim.fn.stdpath("config") .. "/spell/en.utf-8.add" },
         }),
         null_ls.builtins.diagnostics.proselint,
-        null_ls.builtins.formatting.codespell,
       })
     end,
   },
