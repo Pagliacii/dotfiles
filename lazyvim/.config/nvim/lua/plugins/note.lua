@@ -165,6 +165,7 @@ return {
 
   {
     "epwalsh/obsidian.nvim",
+    enabled = false,
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     event = {
@@ -611,6 +612,28 @@ return {
       { ob_prefix .. "r", "<cmd>ObsidianRename<cr>", desc = "Rename Note", noremap = true },
       { ob_prefix .. "q", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch", noremap = true },
     },
+  },
+
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- use latest release, remove to use latest commit
+    ft = "markdown",
+    ---@module 'obsidian'
+    ---@type obsidian.config
+    opts = {
+      legacy_commands = false,
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/vaults/personal",
+        },
+        {
+          name = "work",
+          path = "~/vaults/work",
+        },
+      },
+    },
+    cmd = { "Obsidian" },
   },
 
   {
