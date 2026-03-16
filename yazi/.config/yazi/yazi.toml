@@ -1,0 +1,26 @@
+[mgr]
+show_hidden = true
+
+[opener]
+edit = [
+  { run = 'nvim "%*"', block = true, desc = "Edit file in neovim", for = "windows" },
+]
+
+[[plugin.append_previewers]]
+name = "*"
+run = 'piper -- hexyl --border=none --terminal-width=$w "$1"'
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"
+
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"

@@ -1,0 +1,4 @@
+{
+    "workspace.checkThirdParty": false,
+    "workspace.maxPreload": 1016
+}

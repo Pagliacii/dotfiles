@@ -1,0 +1,108 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer qwerty
+  @egc  @1f1   2      @3f3   4      5      6      7      8      9      0      -      =      bspc
+  tab   q      w      e      r      t      y      u      i      o      p      [      ]      @bsl
+  @cap  @met_a @alt_s @sft_d @ctl_f g      h      @ctl_j @sft_k @alt_l @met_; '      ret
+  lsft  z      x      c      v      b      n      m      ,      .      /      rsft
+  lctl  lmet   lalt                 spc                  ralt   rctl
+)
+
+(deflayer nomods-layer
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    @bsl
+  lctl a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer easy-life
+  grave f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+  tab   q    ▲    e    r    t    y    u    ⎀    o    p    [    ]    @bsl
+  @cap  ◀    ▼    ▶    f    g    h    j    k    l    ⇤    ⇞    ret
+  lsft  z    ☰    c    v    b    🔉   🔊   🔇   ⇥    ⇟    rsft
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayermap (layers)
+  r    lrld
+  1    @base
+  2    @nomods
+  3    @easy
+)
+
+(defvar
+  tap-timeout   50
+  tap-dance-timeout 200
+  hold-timeout  200
+  tt $tap-timeout
+  td $tap-dance-timeout
+  ht $hold-timeout
+
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+(deffakekeys
+  to-base (layer-switch qwerty)
+)
+
+(defalias
+  ;; toggle layer aliases
+  lay (layer-toggle layers)
+  bsl (tap-hold-release $tt $ht \ @lay)
+  ;; change the base layer between base and nomods-layer
+  base (layer-switch qwerty)
+  nomods (layer-switch nomods-layer)
+  easy (layer-switch easy-life)
+)
+
+(defalias
+  cap (tap-hold-press $tt $ht esc lctl)
+  ;; 1 tap : "Escape"
+  ;; 2 tap : "`"
+  ;; 3 tap : "Caps Lock"
+  egc (tap-dance $td (esc grave caps))
+  ;; 1 tap : "1"
+  ;; 2 tap : "F1"
+  1f1 (tap-dance $td (1 f1))
+  ;; 1 tap : "3"
+  ;; 2 tap : "F3"
+  3f3 (tap-dance $td (3 f3))
+)
+
+(defalias
+  tap (multi
+    (layer-switch nomods-layer)
+    (on-idle-fakekey to-base tap 15)
+  )
+
+  ;; home row mods -- GASC
+  met_a (tap-hold-release-keys $tt $ht (multi a @tap) lmet $left-hand-keys)
+  alt_s (tap-hold-release-keys $tt $ht (multi s @tap) lalt $left-hand-keys)
+  sft_d (tap-hold-release-keys $tt $ht (multi d @tap) lsft $left-hand-keys)
+  ctl_f (tap-hold-release-keys $tt $ht (multi f @tap) lctl $left-hand-keys)
+
+  ctl_j (tap-hold-release-keys $tt $ht (multi j @tap) rctl $right-hand-keys)
+  sft_k (tap-hold-release-keys $tt $ht (multi k @tap) rsft $right-hand-keys)
+  alt_l (tap-hold-release-keys $tt $ht (multi l @tap) lalt $right-hand-keys)
+  met_; (tap-hold-release-keys $tt $ht (multi ; @tap) rmet $right-hand-keys)
+)

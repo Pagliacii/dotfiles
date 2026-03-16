@@ -1,0 +1,231 @@
+return {
+  {
+    "hrsh7th/nvim-cmp",
+    cond = false,
+    ---@param opts cmp.ConfigSchema
+    dependencies = {
+      { "lukas-reineke/cmp-rg" },
+      { "onsails/lspkind.nvim" },
+    },
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      local lspkind = require("lspkind")
+      table.insert(cmp.mapping.preset, {
+        -- Accept multi-line completion
+        ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Insert, select = false }),
+      })
+      opts.sources = cmp.config.sources({
+        -- { name = "fittencode", group_index = 1 },
+        { name = "nvim_lsp" },
+        { name = "path" },
+        {
+          name = "rg",
+          keyword_length = 3,
+        },
+        { name = "emoji" },
+        { name = "neorg" },
+        { name = "orgmode" },
+      }, {
+        { name = "buffer" },
+      })
+      opts.formatting = vim.tbl_extend("force", opts.formatting or {}, {
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          ellipsis_char = "...",
+          show_labelDetails = true,
+          symbol_map = {
+            -- FittenCode = "",
+            -- Codeium = "",
+          },
+        }),
+      })
+
+      -- From tjdevries/config.nvim
+      -- : https://github.com/tjdevries/config.nvim/blob/784dc2623b66bfdda53b59de776e9c7d4a186d20/lua/custom/completion.lua#L38-L44
+      cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+
+      cmp.setup.filetype("DressingInput", {
+        sources = cmp.config.sources({ { name = "omni" } }),
+      })
+
+      return opts
+    end,
+  },
+
+  {
+    "dnlhc/glance.nvim",
+    config = true,
+    cmd = { "Glance" },
+    keys = {
+      { "<leader>ir", "<cmd>Glance references<cr>", desc = "Peek references", noremap = true },
+      { "<leader>id", "<cmd>Glance definitions<cr>", desc = "Peek definitions", noremap = true },
+      { "<leader>it", "<cmd>Glance type_definitions<cr>", desc = "Peek type definitions", noremap = true },
+      { "<leader>ii", "<cmd>Glance implementations<cr>", desc = "Peek implementations", noremap = true },
+      { "<leader>iu", "<cmd>Glance resume<cr>", desc = "Glance resume", noremap = true },
+    },
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      if not opts.sources then
+        opts.sources = {}
+      end
+      vim.list_extend(opts.sources, {
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.completion.nvim_snippets,
+        null_ls.builtins.completion.tags,
+      })
+    end,
+  },
+
+  {
+    "stevearc/overseer.nvim",
+    dependencies = { "mfussenegger/nvim-dap" },
+    opts = {
+      templates = { "builtin", "user" },
+    },
+  },
+
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {},
+    keys = {
+      {
+        "gj",
+        function()
+          require("wtf").search()
+        end,
+        desc = "Search diagnostic with Google",
+      },
+      {
+        "gk",
+        function()
+          require("wtf").ai()
+        end,
+        desc = "Search diagnostic with AI",
+      },
+    },
+  },
+
+  {
+    "gbprod/yanky.nvim",
+    keys = {
+      { "<leader>p", false },
+      {
+        "<leader>ty",
+        function()
+          require("telescope").extensions.yank_history.yank_history({})
+        end,
+        desc = "Yank history",
+      },
+    },
+  },
+
+  {
+    "chrisgrieser/nvim-puppeteer",
+    lazy = false, -- plugin lazy-loads itself.
+  },
+
+  {
+    "piersolenski/import.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+    },
+    opts = {
+      picker = "snacks",
+    },
+    keys = {
+      { "<leader>ti", "<cmd>Import<cr>", desc = "Import modules", noremap = true, silent = true },
+    },
+  },
+
+  {
+    "gregorias/coerce.nvim",
+    tag = "v4.1.0",
+    config = true,
+    event = "BufReadPre",
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = "LazyFile",
+    opts = {
+      highlight = {
+        comments_only = false,
+      },
+    },
+  },
+
+  {
+    "saghen/blink.cmp",
+    dependencies = {
+      { "onsails/lspkind.nvim" },
+      { "xzbdmw/colorful-menu.nvim", config = true },
+      -- for avante source
+      "Kaiser-Yang/blink-cmp-avante",
+    },
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      completion = {
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+            columns = { { "kind_icon" }, { "label", gap = 1 } },
+            components = {
+              label = {
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require("colorful-menu").blink_components_highlight(ctx)
+                end,
+              },
+            },
+          },
+        },
+      },
+
+      -- experimental signature help support
+      signature = { enabled = true },
+
+      sources = {
+        -- adding any nvim-cmp sources here will enable them
+        -- with blink.compat
+        compat = {},
+        default = { "avante", "copilot", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+            opts = {
+              -- options for blink-cmp-avante
+            },
+          },
+        },
+        per_filetype = {
+          codecompanion = { "codecompanion" },
+        },
+      },
+    },
+  },
+}
