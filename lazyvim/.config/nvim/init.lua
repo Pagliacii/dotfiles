@@ -31,9 +31,12 @@ if vim.treesitter and vim.treesitter.get_parser and not vim.g._ts_get_parser_pat
         -- Resolve lang from buffer filetype if not passed explicitly
         local resolved_lang = lang
         if not resolved_lang and bufnr then
-          local ft = vim.bo[bufnr] and vim.bo[bufnr].ft
-          if ft then
-            resolved_lang = vim.treesitter.language.get_lang(ft) or ft
+          local ok_ft, ft = pcall(function()
+            return vim.bo[bufnr] and vim.bo[bufnr].ft
+          end)
+          if ok_ft and ft and ft ~= "" then
+            local get_lang = vim.treesitter.language.get_lang
+            resolved_lang = get_lang and get_lang(ft) or ft
           end
         end
         return setmetatable({ _lang = resolved_lang, _bufnr = bufnr }, noop_parser_mt)
