@@ -1,8 +1,8 @@
--- Workaround for Neovim v0.12-dev: vim.treesitter.get_parser() may return nil
+-- Workaround for Neovim v0.12+: vim.treesitter.get_parser() may return nil
 -- instead of throwing an error when no parser is available (behavior change
 -- around build 2582). Some plugins (rainbow-delimiters, nvim-treesitter-context,
 -- none-ls todo_comments builtins) don't handle nil and crash.
--- Returns a stub parser with safe method return values for v0.12-dev+ only.
+-- Returns a stub parser with safe method return values for Neovim v0.12+ and later only.
 -- TODO: Remove once plugins add nil checks upstream.
 if vim.treesitter and vim.treesitter.get_parser and not vim.g._ts_get_parser_patched then
   -- Only apply stub on v0.12+ where get_parser returns nil instead of throwing
