@@ -28,7 +28,15 @@ if vim.treesitter and vim.treesitter.get_parser and not vim.g._ts_get_parser_pat
       if ok then
         if parser then return parser end
         -- v0.12-dev >=2582: returns nil, no parser available
-        return setmetatable({ _lang = lang }, noop_parser_mt)
+        -- Resolve lang from buffer filetype if not passed explicitly
+        local resolved_lang = lang
+        if not resolved_lang and bufnr then
+          local ft = vim.bo[bufnr] and vim.bo[bufnr].ft
+          if ft then
+            resolved_lang = vim.treesitter.language.get_lang(ft) or ft
+          end
+        end
+        return setmetatable({ _lang = resolved_lang, _bufnr = bufnr }, noop_parser_mt)
       end
       -- v0.12-dev <2582 still throws; re-throw at level 2 so traceback
       -- points to the caller, not this wrapper
