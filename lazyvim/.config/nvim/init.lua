@@ -4,7 +4,8 @@
 -- null-ls todo_comments) don't handle nil and crash.
 -- Returns a stub parser with safe method return values.
 -- TODO: Remove once plugins add nil checks upstream.
-do
+if not vim.g._ts_get_parser_patched then
+  vim.g._ts_get_parser_patched = true
   local _get_parser = vim.treesitter.get_parser
   local function noop() end
   local function children() return {} end
@@ -12,7 +13,6 @@ do
   local noop_parser_mt = {
     __index = function(t, key)
       if key == "lang" then
-        -- Return the lang passed to get_parser, not empty string
         return function() return rawget(t, "_lang") end
       end
       if key == "children" then return children end
@@ -29,10 +29,11 @@ do
     end
     -- v0.12-dev <2582 or stable: throws error on no parser
     -- Only stub for the expected "no parser" error; re-throw others
+    -- at level 2 so the traceback points to the caller, not this wrapper
     if type(parser) == "string" and parser:match("[Pp]arser could not be created") then
       return setmetatable({ _lang = lang }, noop_parser_mt)
     end
-    error(parser)
+    error(parser, 2)
   end
 end
 
