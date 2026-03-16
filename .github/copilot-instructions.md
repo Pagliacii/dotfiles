@@ -2,7 +2,7 @@
 
 ## What This Repository Is
 
-This is a **personal dotfiles repository** for managing system configurations across Unix/Linux/macOS (primary) and Windows (secondary). It uses **GNU Stow** for symlink-based deployment — each top-level directory is a self-contained "stow package" that mirrors the home directory structure.
+This is a **personal dotfiles repository** for managing system configurations across Unix/Linux/macOS (primary) and Windows (secondary). It uses **GNU Stow** for symlink-based deployment — most top-level directories are self-contained "stow packages" that mirror the home directory structure.
 
 There are **no build steps, no CI/CD pipelines, no automated tests, and no compiled artifacts**. Changes are validated by deploying configurations to a real system.
 
@@ -10,7 +10,7 @@ There are **no build steps, no CI/CD pipelines, no automated tests, and no compi
 
 ### GNU Stow Package Layout
 
-Every top-level directory is a deployable stow package. When you run `stow <package>`, it creates symlinks from the package contents into `$HOME`. The internal structure mirrors the home directory:
+Most top-level directories that contain dotfiles are deployable stow packages (for example, `lazyvim/`, `zsh/`, `tmux/`). Some top-level directories are not stow packages, such as `img/` (README assets) and `config_files/` (shared configs). When you run `stow <package>`, it creates symlinks from the package contents into `$HOME`. The internal structure mirrors the home directory:
 
 ```
 <package>/
