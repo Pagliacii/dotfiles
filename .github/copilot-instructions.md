@@ -137,6 +137,5 @@ This repository assumes:
 ## Workarounds and Known Issues
 
 - **Neovim v0.12+ treesitter compatibility**: `lazyvim/.config/nvim/init.lua` contains a workaround that patches `vim.treesitter.get_parser()` to return a stub parser instead of nil. This prevents plugin crashes (rainbow-delimiters, nvim-treesitter-context, none-ls). This should be removed once upstream plugins add nil checks.
-- **CLAUDE.md references `README.org`**: The file references `README.org` but the actual documentation file is `README.md`.
 - **Shallow clone limitations**: The repository is often cloned with shallow history. Run `git fetch --unshallow origin` if full history is needed for operations like rebase.
 - **Rust mirror**: `.zshrc` configures a Chinese mirror for rustup (`mirrors.tuna.tsinghua.edu.cn`). This may cause issues outside China — adjust `RUSTUP_DIST_SERVER` if needed.
