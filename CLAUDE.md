@@ -30,7 +30,7 @@ stow doom-emacs && ~/.emacs.d/bin/doom install
 
 ## Core Files
 
-- `README.org` - Complete setup guide with dependencies
+- `README.md` - Complete setup guide with dependencies
 - `lazyvim/.config/nvim/lua/plugins/*.lua` - 30+ modular Neovim plugin configs
 - `lazyvim/.config/nvim/lazy-lock.json` - Plugin version lockfile (DO NOT manually edit)
 - `zsh/.zshrc` - Shell configuration with Oh My Zsh
