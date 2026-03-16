@@ -23,7 +23,7 @@ Most top-level directories that contain dotfiles are deployable stow packages (f
 
 | Package | Purpose | Key Files |
 |---------|---------|-----------|
-| `lazyvim/` | Primary Neovim editor (LazyVim framework) | `.config/nvim/lua/plugins/*.lua` (36 plugin files), `lazy-lock.json` |
+| `lazyvim/` | Primary Neovim editor (LazyVim framework) | `.config/nvim/lua/plugins/*.lua` (39 plugin files), `lazy-lock.json` |
 | `zsh/` | Shell environment (Oh My Zsh) | `.zshrc` |
 | `starship/` | Cross-shell prompt | `.config/starship.toml` |
 | `tmux/` | Terminal multiplexer | `.config/tmux/` |
@@ -39,6 +39,9 @@ Most top-level directories that contain dotfiles are deployable stow packages (f
 | `windows/` | Windows-specific (AutoHotkey v2.0) | `AutoHotkey.ahk` |
 | `yazi/` | Terminal file manager | `.config/yazi/` |
 | `ranger/` | File manager (submodule for devicons) | `.config/ranger/` |
+| `golang/` | Go environment config | `.config/go/env` |
+| `pip/` | pip package manager config | `.config/pip/pip.conf` |
+| `cheat.sh/` | cheat.sh CLI + zsh completion | `.local/bin/cht.sh`, `.zsh.d/_cht` |
 
 ### Git Submodules
 
@@ -71,6 +74,7 @@ Plugin files in `lazyvim/.config/nvim/lua/plugins/` are organized by function:
 - **Interface**: `ui.lua`, `editor.lua`, `telescope.lua`, `fzf.lua`, `colorscheme.lua`, `symbols.lua`, `window.lua`
 - **Tools**: `terminal.lua`, `file.lua`, `search.lua`, `markdown.lua`, `formatting.lua`, `linter.lua`, `snips.lua`, `shell.lua`, `database.lua`
 - **Workflow**: `command.lua`, `keyboard.lua`, `eval.lua`, `writing.lua`, `documentation.lua`, `embedded.lua`, `note.lua`, `project.lua`
+- **Utility**: `util.lua`
 - **Language extras** (in `extras/lang/`): `python.lua`, `rust.lua`, `golang.lua`, `lua.lua`, `nix.lua`, `protobuf.lua`
 
 ### Lua Style for LazyVim Plugins
@@ -83,7 +87,7 @@ Plugin files in `lazyvim/.config/nvim/lua/plugins/` are organized by function:
 ## Shell Configuration
 
 - **Framework**: Oh My Zsh (required — plain zsh will not work)
-- **35 Oh My Zsh plugins** enabled in `.zshrc`
+- **41 Oh My Zsh plugins** enabled in `.zshrc`
 - **Prompt**: Starship (initialized via Homebrew)
 - **Editor**: `vim` (set via `$EDITOR` and `$VISUAL`)
 - **Core CLI tools required**: fzf, ripgrep, fd, bat, lsd, autojump
