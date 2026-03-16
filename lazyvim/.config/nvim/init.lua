@@ -30,9 +30,11 @@ if vim.treesitter and vim.treesitter.get_parser and not vim.g._ts_get_parser_pat
         -- v0.12-dev >=2582: returns nil, no parser available
         -- Resolve lang from buffer filetype if not passed explicitly
         local resolved_lang = lang
-        if not resolved_lang and bufnr then
+        if not resolved_lang then
+          local resolved_bufnr = bufnr or vim.api.nvim_get_current_buf()
           local ok_ft, ft = pcall(function()
-            return vim.bo[bufnr] and vim.bo[bufnr].ft
+            local bo = vim.bo[resolved_bufnr]
+            return bo and bo.ft
           end)
           if ok_ft and ft and ft ~= "" then
             local get_lang = vim.treesitter.language.get_lang
