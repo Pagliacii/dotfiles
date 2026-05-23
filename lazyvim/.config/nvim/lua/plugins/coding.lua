@@ -23,7 +23,6 @@ return {
           keyword_length = 3,
         },
         { name = "emoji" },
-        { name = "neorg" },
         { name = "orgmode" },
       }, {
         { name = "buffer" },
@@ -90,6 +89,97 @@ return {
         null_ls.builtins.completion.tags,
       })
     end,
+  },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      show_success_message = true,
+    },
+    config = function(_, opts)
+      require("refactoring").setup(opts)
+    end,
+    keys = {
+      {
+        "<leader>rs",
+        function()
+          require("refactoring").select_refactor()
+        end,
+        mode = { "n", "x" },
+        desc = "Refactor",
+      },
+      {
+        "<leader>ri",
+        function()
+          return require("refactoring").inline_var()
+        end,
+        mode = { "n", "x" },
+        desc = "Inline Variable",
+        expr = true,
+      },
+      {
+        "<leader>rb",
+        false,
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>rf",
+        function()
+          return require("refactoring").extract_func()
+        end,
+        mode = { "n", "x" },
+        desc = "Extract Function",
+        expr = true,
+      },
+      {
+        "<leader>rF",
+        function()
+          return require("refactoring").extract_func_to_file()
+        end,
+        mode = { "n", "x" },
+        desc = "Extract Function To File",
+        expr = true,
+      },
+      {
+        "<leader>rx",
+        function()
+          return require("refactoring").extract_var()
+        end,
+        mode = { "n", "x" },
+        desc = "Extract Variable",
+        expr = true,
+      },
+      {
+        "<leader>rP",
+        function()
+          return require("refactoring.debug").print_loc()
+        end,
+        desc = "Debug Print Location",
+        expr = true,
+      },
+      {
+        "<leader>rp",
+        function()
+          return require("refactoring.debug").print_var()
+        end,
+        mode = { "n", "x" },
+        desc = "Debug Print Variable",
+        expr = true,
+      },
+      {
+        "<leader>rc",
+        function()
+          return require("refactoring.debug").cleanup()
+        end,
+        desc = "Debug Cleanup",
+        expr = true,
+      },
+    },
   },
 
   {

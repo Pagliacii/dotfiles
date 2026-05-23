@@ -18,7 +18,6 @@ local function toggle_venn()
 end
 
 local prefix = "<leader>n"
-local neorg_prefix = prefix .. "o"
 local ob_prefix = prefix .. "b"
 
 return {
@@ -63,104 +62,6 @@ return {
         null_ls.builtins.formatting.typstfmt,
       })
     end,
-  },
-
-  {
-    "nvim-neorg/neorg",
-    dependencies = {
-      {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        config = true,
-      },
-      { "bottd/neorg-worklog" },
-      { "nvim-neorg/neorg-telescope" },
-      { "juniorsundar/neorg-extras" },
-      { "benlubas/neorg-interim-ls" },
-    },
-    version = "*",
-    config = function()
-      require("neorg").setup({
-        load = {
-          ["core.defaults"] = {},
-          ["core.completion"] = {
-            config = { engine = { module_name = "external.lsp-completion" } },
-          },
-          ["core.concealer"] = { config = { icon_preset = "diamond" } },
-          ["core.keybinds"] = {
-            -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/module.lua
-            config = {
-              default_keybinds = true,
-            },
-          },
-          ["core.export"] = {},
-          ["core.export.markdown"] = { config = { extensions = "all" } },
-          ["core.dirman"] = {
-            config = {
-              workspaces = {
-                notes = "~/notes",
-              },
-              default_workspace = "notes",
-            },
-          },
-          ["core.summary"] = {},
-          ["core.ui.calendar"] = {},
-          ["core.looking-glass"] = {},
-          ["core.clipboard.code-blocks"] = {},
-          ["core.esupports.hop"] = {},
-          ["core.esupports.indent"] = {},
-          ["core.esupports.metagen"] = { config = { type = "auto", update_date = true } },
-          ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
-          ["core.tangle"] = { config = { report_on_empty = false } },
-          ["core.journal"] = { config = { strategy = "flat" } },
-          ["core.integrations.telescope"] = {},
-          ["core.pivot"] = {},
-          ["core.promo"] = {},
-
-          ["external.agenda"] = {},
-          ["external.roam"] = {},
-          ["external.worklog"] = {},
-          ["external.interim-ls"] = {
-            config = {
-              -- default config shown
-              completion_provider = {
-                -- Enable or disable the completion provider
-                enable = true,
-
-                -- Show file contents as documentation when you complete a file name
-                documentation = true,
-
-                -- Try to complete categories provided by Neorg Query. Requires `benlubas/neorg-query`
-                categories = false,
-              },
-            },
-          },
-        },
-      })
-
-      vim.wo.foldlevel = 99
-      vim.wo.conceallevel = 2
-    end,
-    keys = {
-      { prefix .. "n", "<cmd>tabnew | Neorg index<cr>", desc = "Neorg Index" },
-      { prefix .. "d", "<cmd>tabnew | Neorg journal today<cr>", desc = "Today Journal" },
-      {
-        prefix .. "k",
-        function()
-          local dirman = require("neorg").modules.get_module("core.dirman")
-          dirman.create_file("tasks", "notes", {
-            no_open = false, -- open file after creation?
-            force = false, -- overwrite file if exists
-            metadata = {}, -- key-value table for metadata fields
-          })
-        end,
-        desc = "Neorg task",
-      },
-      { neorg_prefix .. "r", "<cmd>Neorg return<cr>", desc = "Return" },
-      { neorg_prefix .. "a", "<cmd>Neorg agenda<cr>", desc = "Agenda" },
-      { neorg_prefix .. "r", "<cmd>Neorg roam<cr>", desc = "Roam" },
-      { neorg_prefix .. "t", "<cmd>Neorg cycle_task<cr>", desc = "Cycle task" },
-    },
   },
 
   {

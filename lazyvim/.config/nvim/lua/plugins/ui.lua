@@ -143,6 +143,15 @@ return {
     event = "VeryLazy",
     opts = function(_, opts)
       local utils = require("dropbar.utils")
+      opts.bar = opts.bar or {}
+      opts.bar.update_events = vim.tbl_deep_extend("force", opts.bar.update_events or {}, {
+        buf = {
+          "FileChangedShellPost",
+          "TextChanged",
+          "ModeChanged",
+        },
+      })
+
       local quit = function()
         local menu = utils.menu.get_current()
         if menu then

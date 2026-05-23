@@ -189,7 +189,6 @@ return {
       local null_ls = require("null-ls")
       vim.list_extend(opts.sources or {}, {
         null_ls.builtins.code_actions.textlint,
-        null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.formatting.cbfmt,
         null_ls.builtins.hover.dictionary,
       })

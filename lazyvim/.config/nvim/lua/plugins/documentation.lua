@@ -69,7 +69,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    ft = { "markdown", "norg", "org" },
+    ft = { "markdown", "org" },
     opts = {},
     keys = {
       { prefix .. "a", ":lua require('otter').activate()<cr>", desc = "Otter", noremap = true, silent = true },

@@ -23,7 +23,6 @@ if ok then
     { "<leader>gu", group = "gitui", icon = { icon = " ", color = "purple" } },
     { "<leader>gv", group = "verco", icon = { icon = " ", color = "purple" } },
     { "<leader>gO", group = "octo", icon = { icon = "🐙 ", color = "red" } },
-    { "<leader>no", group = "neorg", icon = { icon = " ", color = "orange" } },
     { "<leader>nt", group = "typst", icon = { icon = "󰼭 ", color = "orange" } },
     { "<leader>t", group = "telescope" },
     { "<leader>h", group = "hover", icon = { icon = " ", color = "red" } },
