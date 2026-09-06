@@ -1,0 +1,100 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "mouse_follows_focus": false,
+  "default_workspace_padding": 16,
+  "default_container_padding": 16,
+  "resize_delta": 50,
+  "border": true,
+  "border_width": 4,
+  "border_offset": -1,
+  "border_style": "System",
+  "border_colours": {
+    "single": "#87CEEB",
+    "stack": "#87CEEB",
+    "monocle": "#87CEEB",
+    "floating": "#87CEEB",
+    "unfocused": "#343a41"
+  },
+  "ignore_rules": [
+    {
+      "kind": "Exe",
+      "id": "^(yasb|whkd|zebar)$",
+      "matching_strategy": "Regex"
+    },
+    {
+      "kind": "Exe",
+      "id": "^(Taskmgr|ScreenClippingHost|Snipaste|explorer|vlc|QQMusic)$",
+      "matching_strategy": "Regex"
+    },
+    {
+      "kind": "Title",
+      "id": "^(NextAI Translator|OpenAI Translator|GoldenDict|Media viewer)$",
+      "matching_strategy": "Regex"
+    }
+  ],
+  "floating_applications": [
+    {
+      "kind": "Class",
+      "id": "#32770",
+      "matching_strategy": "Equals"
+    }
+  ],
+  "monitors": [
+    {
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Telegram",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "2",
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "wezterm-gui",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "3",
+          "layout": "BSP"
+        },
+        {
+          "name": "4",
+          "layout": "BSP"
+        },
+        {
+          "name": "5",
+          "layout": "BSP"
+        },
+        {
+          "name": "6",
+          "layout": "BSP"
+        },
+        {
+          "name": "7",
+          "layout": "BSP"
+        },
+        {
+          "name": "8",
+          "layout": "BSP"
+        },
+        {
+          "name": "9",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ]
+}
